@@ -16,11 +16,11 @@ Trace links point backward to the layer being satisfied. Higher layers describe 
 
 | Layer | Artifact | Responsibility | Links Back To |
 | --- | --- | --- | --- |
-| Intent | `docs/vision.md` | Captures why the harness exists, the problems it solves, desired outcomes, non-goals, and guiding principles. | None |
-| Product Commitments | `docs/product-commitments.md` | Translates intent into durable product promises. | Intent |
-| System Architecture | `docs/architecture.md` | Describes stable guarantees, concepts, boundaries, and control flow. | Product Commitments and requirements |
-| Technical Decisions | `docs/decisions/` | Bridges architecture to material build choices and tradeoffs. | Architecture, requirements, and constraints |
-| Implementation | `docs/implementation.md`, `devfix/`, `docs/execution-adapters.md` | Implements the selected decisions and exposes operational behavior. | Technical decisions, requirements, and architecture |
+| Intent | `docs/01-intent/vision.md` | Captures why the harness exists, the problems it solves, desired outcomes, non-goals, and guiding principles. | None |
+| Product Commitments | `docs/02-product-commitments/product-commitments.md` | Translates intent into durable product promises. | Intent |
+| System Architecture | `docs/03-system-architecture/architecture.md` | Describes stable guarantees, concepts, boundaries, and control flow. | Product Commitments and requirements |
+| Technical Decisions | `docs/04-technical-decisions/` | Bridges architecture to material build choices and tradeoffs. | Architecture, requirements, and constraints |
+| Implementation | `docs/05-implementation/implementation.md`, `src/devfix/`, `docs/05-implementation/execution-adapters.md` | Implements the selected decisions and exposes operational behavior. | Technical decisions, requirements, and architecture |
 | Verification | Tests, execution evidence, reviewer verdicts, final control reports | Proves whether implementation satisfies the documented contract. | Implementation, requirements, and acceptance criteria |
 
 ## Traceability Rules
@@ -49,16 +49,16 @@ Trace links point backward to the layer being satisfied. Higher layers describe 
 | --- | --- | --- | --- |
 | `requirement_contract` node | FR-001, FR-002, FR-003 | ADR-0001 | UC-001, PC-001 |
 | `architecture_context` node | FR-004, FR-020 | ADR-0001 | UC-002, PC-002 |
-| `known_mistake_check` node, `docs/lessons/known-mistakes.md` | FR-005, FR-016 | ADR-0004 | UC-003, UC-009, PC-003 |
+| `known_mistake_check` node, `docs/07-lessons/known-mistakes.md` | FR-005, FR-016 | ADR-0004 | UC-003, UC-009, PC-003 |
 | `implementation_packet`, `external_agent_handoff` nodes | FR-006, FR-007 | ADR-0003 | UC-004, PC-004 |
 | independent reviewer nodes | FR-008, FR-017, FR-018 | ADR-0001 | UC-005, UC-010, PC-004 |
 | `completion_gate`, `revise_packet`, `human_interrupt` nodes | FR-013, FR-014, FR-019 | ADR-0003 | UC-006, PC-005 |
-| `devfix/harness/models.py`, `.env.example` | FR-009, QR-003 | ADR-0002 | UC-007 |
+| `src/devfix/harness/models.py`, `.env.example` | FR-009, QR-003 | ADR-0002 | UC-007 |
 | `final_control_report` node | FR-015 | ADR-0001 | UC-008 |
-| `devfix/runner.py` default context loading | FR-020 | ADR-0001 | PC-002 |
-| `devfix/harness/execution/`, `--executor`, opencode adapter | FR-021, FR-022, FR-023 | ADR-0003 | PC-004 |
+| `src/devfix/runner.py` default context loading | FR-020 | ADR-0001 | PC-002 |
+| `src/devfix/harness/execution/`, `--executor`, opencode adapter | FR-021, FR-022, FR-023 | ADR-0003 | PC-004 |
 | external handoff packet with no direct code-edit tools | QR-002, QR-008, QR-009 | ADR-0003 | PC-004, PC-005 |
-| `docs/`, `devfix/harness/prompts.py` | QR-001, QR-004, QR-005 | ADR-0001 | PC-006 |
+| `docs/01-intent/`, `docs/02-product-commitments/`, `docs/03-system-architecture/`, `docs/04-technical-decisions/`, `docs/05-implementation/`, `docs/06-verification/`, `docs/07-lessons/`, `src/devfix/harness/prompts.py` | QR-001, QR-004, QR-005 | ADR-0001 | PC-006 |
 
 ## Decision To Requirement Mapping
 

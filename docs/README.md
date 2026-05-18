@@ -4,22 +4,29 @@ This documentation captures the reason for the harness before the implementation
 
 ## Reading Order
 
-1. [Vision](vision.md)
-2. [Product Commitments](product-commitments.md)
-3. [Use Cases](use-cases.md)
-4. [Requirements](requirements.md)
-5. [Architecture Overview](architecture.md)
-6. [Decision Records](decisions/README.md)
-7. [Traceability Matrix](traceability.md)
-8. [Implementation Notes](implementation.md)
-9. [Roadmap](roadmap.md)
-10. [Known Mistakes](lessons/known-mistakes.md)
-11. [Execution Adapters](execution-adapters.md)
-12. [Verification Artifacts](verification/README.md)
+1. [01 Intent](01-intent/README.md)
+2. [02 Product Commitments](02-product-commitments/README.md)
+3. [03 System Architecture](03-system-architecture/README.md)
+4. [04 Technical Decisions](04-technical-decisions/README.md)
+5. [05 Implementation](05-implementation/README.md)
+6. [06 Verification](06-verification/README.md)
+7. [07 Lessons](07-lessons/README.md)
+
+## Folder Layout
+
+- `docs/01-intent/` holds vision and intent.
+- `docs/02-product-commitments/` holds durable product promises.
+- `docs/03-system-architecture/` holds use cases, requirements, architecture, and glossary.
+- `docs/04-technical-decisions/` holds ADRs and decision templates.
+- `docs/05-implementation/` holds implementation notes and execution adapters.
+- `docs/06-verification/` holds traceability and verification records.
+- `docs/07-lessons/` holds persistent known mistakes and lesson examples.
+- `plans/` holds feature, implementation, and delivery plans outside `docs/`.
+- If a folder contains an ordered sequence, use numeric prefixes on folders or files to make the reading order obvious.
 
 ## Decision Records
 
-Architecture and product decisions live in [decisions](decisions/README.md).
+Architecture and product decisions live in [04-technical-decisions](04-technical-decisions/README.md).
 
 Use decision records when a choice is likely to matter later, for example:
 

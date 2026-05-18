@@ -1,5 +1,7 @@
 # Decision Records
 
+This folder captures architectural and product decisions.
+
 Decision records explain important choices and their tradeoffs.
 
 ## Records

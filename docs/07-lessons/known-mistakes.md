@@ -93,3 +93,18 @@ Keep the documentation chain separated: Intent -> Product Commitments -> System 
 
 Completion check:
 Reviewers must verify that product vision captures intent, product commitments translate intent into durable product promises, system architecture describes stable guarantees and boundaries, technical decisions bridge architecture to build details, and implementation or verification artifacts trace backward to the requirement, decision, or architecture they satisfy.
+
+### KM-006: Keep Folder Layout Hierarchical And Easy To Scan
+
+Pattern:
+Agents may scatter related files across multiple folders, use inconsistent naming, or add new locations without a clear parent-child relationship.
+
+Why it matters:
+Scattered folders make the project harder to navigate, hide the canonical location for a concern, and increase the chance that future changes land in the wrong place.
+
+Prevention rule:
+Group related artifacts under a single obvious home, keep naming consistent, and prefer a simple hierarchy over ad hoc folder growth. Before adding a new folder or top-level file, check whether the concern belongs in an existing directory or whether a named subfolder should be created for it.
+If sequential order matters, prefer imposing that order at the folder level with numbering so the scan path matches the intended reading order.
+
+Completion check:
+Reviewers must verify that the repository has a clear folder hierarchy, that each artifact type has one obvious location, and that new files improve readability and findability instead of creating a second path for the same concern.

@@ -18,16 +18,16 @@ Implementation details should trace backward to requirements, decisions, and arc
 
 | Path | Responsibility |
 | --- | --- |
-| `devfix/cli.py` | CLI entrypoint, prompt loading, argument parsing, environment setup, and graph invocation. |
-| `devfix/runner.py` | Shared runner utilities for context loading, evidence loading, execution adapters, and graph invocation. |
-| `devfix/harness/graph.py` | Contract-driven workflow nodes, conditional routing, validation, and graph builders. |
-| `devfix/harness/state.py` | Graph state channels and artifact accumulation. |
-| `devfix/harness/schemas.py` | Structured contracts, evidence, review, waiver, and completion schemas. |
-| `devfix/harness/models.py` | OpenAI-compatible model client configuration. |
-| `devfix/harness/prompts.py` | Inspectable role prompts used by workflow nodes. |
-| `devfix/harness/rendering.py` | Human-readable artifact rendering. |
-| `devfix/harness/lessons.py` | Known-mistake markdown and YAML parsing. |
-| `devfix/harness/execution/` | Execution adapter abstractions and implementations. |
+| `src/devfix/cli.py` | CLI entrypoint, prompt loading, argument parsing, environment setup, and graph invocation. |
+| `src/devfix/runner.py` | Shared runner utilities for context loading, evidence loading, execution adapters, and graph invocation. |
+| `src/devfix/harness/graph.py` | Contract-driven workflow nodes, conditional routing, validation, and graph builders. |
+| `src/devfix/harness/state.py` | Graph state channels and artifact accumulation. |
+| `src/devfix/harness/schemas.py` | Structured contracts, evidence, review, waiver, and completion schemas. |
+| `src/devfix/harness/models.py` | OpenAI-compatible model client configuration. |
+| `src/devfix/harness/prompts.py` | Inspectable role prompts used by workflow nodes. |
+| `src/devfix/harness/rendering.py` | Human-readable artifact rendering. |
+| `src/devfix/harness/lessons.py` | Known-mistake markdown and YAML parsing. |
+| `src/devfix/harness/execution/` | Execution adapter abstractions and implementations. |
 
 ## Runtime Configuration
 

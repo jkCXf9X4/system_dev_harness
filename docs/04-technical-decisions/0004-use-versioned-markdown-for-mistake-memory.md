@@ -12,7 +12,7 @@ A database or local JSON store would be easier for automation later, but harder 
 
 ## Decision
 
-Start persistent mistake memory as versioned markdown in `docs/lessons/known-mistakes.md`, with YAML lesson input also supported for more structured automation.
+Start persistent mistake memory as versioned markdown in `docs/07-lessons/known-mistakes.md`, with YAML lesson input also supported for more structured automation.
 
 Each lesson should include:
 

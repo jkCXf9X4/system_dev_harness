@@ -22,3 +22,6 @@ devfix = "devfix.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["devfix*"]
+
+[tool.setuptools.package-dir]
+"" = "src"

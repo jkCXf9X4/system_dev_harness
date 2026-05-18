@@ -6,4 +6,5 @@ Each artifact should trace backward to the requirement, decision, architecture b
 
 ## Records
 
+- [Traceability Matrix](traceability.md)
 - [KM-005 Documentation Layer Review](km-005-documentation-layer-review.md)

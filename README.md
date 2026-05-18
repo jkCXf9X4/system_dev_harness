@@ -13,11 +13,14 @@ The harness is designed to keep agentic development on track. It focuses on prev
 Start here for the broader product and engineering intent:
 
 - [Documentation Index](docs/README.md)
-- [Vision](docs/vision.md)
-- [Use Cases](docs/use-cases.md)
-- [Traceability Matrix](docs/traceability.md)
-- [Architecture Overview](docs/architecture.md)
-- [Decision Records](docs/decisions/README.md)
+- [Plans](plans/README.md)
+- [Intent](docs/01-intent/README.md)
+- [Product Commitments](docs/02-product-commitments/README.md)
+- [System Architecture](docs/03-system-architecture/README.md)
+- [Technical Decisions](docs/04-technical-decisions/README.md)
+- [Implementation](docs/05-implementation/README.md)
+- [Verification](docs/06-verification/README.md)
+- [Lessons](docs/07-lessons/README.md)
 
 ## Setup
 
@@ -43,12 +46,12 @@ Optional context:
 devfix \
   --prompt examples/backlog_item.md \
   --context "Stakeholders care about short feedback loops and maintainability." \
-  --context-file docs/vision.md \
-  --lessons docs/lessons/known-mistakes.md \
+  --context-file docs/01-intent/vision.md \
+  --lessons docs/07-lessons/known-mistakes.md \
   --thread-id demo-001
 ```
 
-By default, the harness grounds architecture context from `docs/architecture.md`, `docs/requirements.md`, and ADRs under `docs/decisions/`. Use `--no-default-context` to disable that behavior.
+By default, the harness grounds architecture context from `docs/03-system-architecture/architecture.md`, `docs/03-system-architecture/requirements.md`, and ADRs under `docs/04-technical-decisions/`. Use `--no-default-context` to disable that behavior.
 
 Review an external coding-agent result by adding evidence:
 
@@ -59,7 +62,7 @@ devfix \
   --diff tmp/diff.patch \
   --test-output tmp/test-output.txt \
   --waivers tmp/waivers.json \
-  --changed-file devfix/harness/graph.py
+  --changed-file src/devfix/harness/graph.py
 ```
 
 Run through an execution adapter:
