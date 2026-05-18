@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "devfix"
+version = "0.1.0"
+description = "Guarded agentic development harness with execution adapters."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "langgraph>=1.0.0",
+  "langchain>=1.0.0",
+  "langchain-openai>=1.0.0",
+  "python-dotenv>=1.0.1",
+  "pydantic>=2.7.4",
+  "pyyaml>=6.0.0",
+]
+
+[project.scripts]
+devfix = "devfix.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["devfix*"]

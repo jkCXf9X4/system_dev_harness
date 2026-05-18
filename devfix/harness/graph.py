@@ -9,8 +9,8 @@ from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import END, START, StateGraph
 from pydantic import BaseModel, ValidationError
 
-from harness.models import openrouter_model
-from harness.prompts import (
+from devfix.harness.models import openrouter_model
+from devfix.harness.prompts import (
     ARCHITECTURE_CONTEXT_PROMPT,
     ARCHITECTURE_REVIEW_PROMPT,
     COMPLETENESS_REVIEW_PROMPT,
@@ -23,8 +23,8 @@ from harness.prompts import (
     REQUIREMENT_CONTRACT_PROMPT,
     REQUIREMENTS_REVIEW_PROMPT,
 )
-from harness.rendering import render_model, render_text
-from harness.schemas import (
+from devfix.harness.rendering import render_model, render_text
+from devfix.harness.schemas import (
     ArchitectureContext,
     ChecklistStatus,
     CompletionDecision,
@@ -40,7 +40,7 @@ from harness.schemas import (
     TaskContract,
     Waiver,
 )
-from harness.state import HarnessState
+from devfix.harness.state import HarnessState
 
 SchemaT = TypeVar("SchemaT", bound=BaseModel)
 

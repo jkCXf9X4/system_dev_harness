@@ -25,6 +25,7 @@ Start here for the broader product and engineering intent:
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+pip install -e .
 cp .env.example .env
 ```
 
@@ -33,14 +34,14 @@ Edit `.env` and set `OPENROUTER_API_KEY`.
 ## Run
 
 ```bash
-python app.py --backlog examples/backlog_item.md
+devfix --prompt examples/backlog_item.md
 ```
 
 Optional context:
 
 ```bash
-python app.py \
-  --backlog examples/backlog_item.md \
+devfix \
+  --prompt examples/backlog_item.md \
   --context "Stakeholders care about short feedback loops and maintainability." \
   --context-file docs/vision.md \
   --lessons docs/lessons/known-mistakes.md \
@@ -52,28 +53,28 @@ By default, the harness grounds architecture context from `docs/architecture.md`
 Review an external coding-agent result by adding evidence:
 
 ```bash
-python app.py \
-  --backlog examples/backlog_item.md \
+devfix \
+  --prompt examples/backlog_item.md \
   --agent-output tmp/agent-output.md \
   --diff tmp/diff.patch \
   --test-output tmp/test-output.txt \
   --waivers tmp/waivers.json \
-  --changed-file harness/graph.py
+  --changed-file devfix/harness/graph.py
 ```
 
 Run through an execution adapter:
 
 ```bash
-python app.py \
-  --backlog examples/backlog_item.md \
+devfix \
+  --prompt examples/backlog_item.md \
   --executor manual
 ```
 
 Run opencode headlessly:
 
 ```bash
-python app.py \
-  --backlog examples/backlog_item.md \
+devfix \
+  --prompt examples/backlog_item.md \
   --executor opencode \
   --execution-mode headless \
   --opencode-agent build
@@ -84,11 +85,33 @@ Run opencode against an existing server:
 ```bash
 opencode serve
 
-python app.py \
-  --backlog examples/backlog_item.md \
+devfix \
+  --prompt examples/backlog_item.md \
   --executor opencode \
   --opencode-attach http://localhost:4096
 ```
+
+## Devfix Entrypoint
+
+After editable install, `devfix` reads `.agents/devfix/PROMPT.md` and runs the harness.
+
+```bash
+devfix
+```
+
+Override the prompt:
+
+```bash
+devfix --prompt path/to/PROMPT.md
+```
+
+Use an execution adapter:
+
+```bash
+devfix --executor opencode --opencode-agent build
+```
+
+The command uses `.agents/devfix/` for local storage and creates `.env` from `.env.example` if `.env` is missing.
 
 ## Workflow
 

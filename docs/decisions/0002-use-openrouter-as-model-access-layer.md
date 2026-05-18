@@ -44,4 +44,4 @@ Tradeoffs:
 - Vision: configurable model access over provider lock-in
 - Use cases: UC-007
 - Requirements: FR-009, QR-003, C-003
-- Implementation: `harness/models.py`, `.env.example`
+- Implementation: `devfix/harness/models.py`, `.env.example`

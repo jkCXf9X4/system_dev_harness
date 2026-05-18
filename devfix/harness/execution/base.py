@@ -5,7 +5,7 @@ from pathlib import Path
 
 from pydantic import BaseModel
 
-from harness.schemas import EvidenceBundle, ExternalAgentHandoff
+from devfix.harness.schemas import EvidenceBundle, ExternalAgentHandoff
 
 
 class SessionRef(BaseModel):

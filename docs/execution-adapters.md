@@ -43,7 +43,7 @@ Use it when:
 - manually controlling the coding session
 
 ```bash
-python app.py --backlog examples/backlog_item.md --executor manual
+devfix --prompt examples/backlog_item.md --executor manual
 ```
 
 ## OpenCode Adapter
@@ -53,8 +53,8 @@ The opencode adapter runs `opencode run --format json` and captures stdout/stder
 Use it headlessly:
 
 ```bash
-python app.py \
-  --backlog examples/backlog_item.md \
+devfix \
+  --prompt examples/backlog_item.md \
   --executor opencode \
   --execution-mode headless
 ```
@@ -64,8 +64,8 @@ Use it with an existing opencode server:
 ```bash
 opencode serve
 
-python app.py \
-  --backlog examples/backlog_item.md \
+devfix \
+  --prompt examples/backlog_item.md \
   --executor opencode \
   --opencode-attach http://localhost:4096
 ```

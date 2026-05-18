@@ -47,4 +47,4 @@ Tradeoffs:
 - Vision: governed contract loop, inspectable workflow
 - Use cases: UC-001 through UC-008
 - Requirements: FR-001 through FR-012, QR-001, QR-004
-- Implementation: `harness/graph.py`, `harness/state.py`, `harness/prompts.py`
+- Implementation: `devfix/harness/graph.py`, `devfix/harness/state.py`, `devfix/harness/prompts.py`

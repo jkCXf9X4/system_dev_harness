@@ -5,13 +5,15 @@ This documentation captures the reason for the harness before the implementation
 ## Reading Order
 
 1. [Vision](vision.md)
-2. [Use Cases](use-cases.md)
-3. [Requirements](requirements.md)
-4. [Traceability Matrix](traceability.md)
+2. [Product Commitments](product-commitments.md)
+3. [Use Cases](use-cases.md)
+4. [Requirements](requirements.md)
 5. [Architecture Overview](architecture.md)
-6. [Roadmap](roadmap.md)
-7. [Known Mistakes](lessons/known-mistakes.md)
-8. [Execution Adapters](execution-adapters.md)
+6. [Decision Records](decisions/README.md)
+7. [Traceability Matrix](traceability.md)
+8. [Roadmap](roadmap.md)
+9. [Known Mistakes](lessons/known-mistakes.md)
+10. [Execution Adapters](execution-adapters.md)
 
 ## Decision Records
 
@@ -29,7 +31,11 @@ Use decision records when a choice is likely to matter later, for example:
 ## Documentation Principles
 
 - Vision explains why the harness exists.
+- Product commitments translate intent into durable product promises.
 - Use cases explain who benefits and what they do.
 - Requirements explain what the system must support.
+- Architecture explains stable system concepts, guarantees, and boundaries.
 - Decisions explain why a concrete design was chosen.
-- Traceability connects implementation decisions back to outcomes.
+- Implementation artifacts satisfy decisions, requirements, and architecture constraints.
+- Verification proves whether implementation satisfies the documented contract.
+- Traceability links point backward to the layer being satisfied.

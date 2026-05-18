@@ -15,12 +15,13 @@ CLI input
 
 | Component | Responsibility |
 | --- | --- |
-| `app.py` | CLI entrypoint, reads backlog input, gathers default/project context, reads evidence, invokes graph with a thread ID. |
-| `harness/graph.py` | Defines the contract-driven LangGraph workflow nodes and edges. |
-| `harness/state.py` | Defines graph state channels and artifact accumulation. |
-| `harness/models.py` | Isolates OpenRouter/OpenAI-compatible model configuration. |
-| `harness/prompts.py` | Stores inspectable role prompts. |
-| `harness/execution/` | Contains execution adapter abstractions and implementations for manual and opencode flows. |
+| `devfix/cli.py` | CLI entrypoint, reads prompt input, gathers default/project context, reads evidence, invokes graph with a thread ID. |
+| `devfix/runner.py` | Shared runner utilities for context loading, evidence loading, execution adapters, and graph invocation. |
+| `devfix/harness/graph.py` | Defines the contract-driven LangGraph workflow nodes and edges. |
+| `devfix/harness/state.py` | Defines graph state channels and artifact accumulation. |
+| `devfix/harness/models.py` | Isolates OpenRouter/OpenAI-compatible model configuration. |
+| `devfix/harness/prompts.py` | Stores inspectable role prompts. |
+| `devfix/harness/execution/` | Contains execution adapter abstractions and implementations for manual and opencode flows. |
 | `examples/` | Holds runnable sample backlog inputs. |
 | `docs/` | Captures vision, requirements, use cases, traceability, and decisions. |
 
@@ -105,7 +106,7 @@ Future durable options:
 
 Current boundaries:
 
-- no repository write access from harness agents
+- no repository write access from devfix harness agents
 - no issue tracker integration
 - no durable state outside process memory
 - no retrieval layer over project docs

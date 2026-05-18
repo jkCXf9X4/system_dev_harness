@@ -53,4 +53,4 @@ Tradeoffs:
 - Vision: external coding-agent handoff before built-in code editing
 - Use cases: UC-004, UC-006, UC-008
 - Requirements: FR-006, FR-007, FR-013, FR-014, FR-017, FR-019, FR-021, FR-022, FR-023, QR-002, QR-008, QR-009, QR-010
-- Implementation: `implementation_packet`, `external_agent_handoff`, `harness/execution/`, `evidence_intake`, `completion_gate`
+- Implementation: `implementation_packet`, `external_agent_handoff`, `devfix/harness/execution/`, `evidence_intake`, `completion_gate`

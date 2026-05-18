@@ -3,8 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 from uuid import uuid4
 
-from harness.execution.base import ExecutionAdapter, ExecutionResult, SessionRef
-from harness.schemas import EvidenceBundle, ExternalAgentHandoff
+from devfix.harness.execution.base import ExecutionAdapter, ExecutionResult, SessionRef
+from devfix.harness.schemas import EvidenceBundle, ExternalAgentHandoff
 
 
 class ManualAdapter(ExecutionAdapter):

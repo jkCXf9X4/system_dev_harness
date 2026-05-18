@@ -1,25 +1,64 @@
 # Traceability Matrix
 
-This matrix connects use cases, requirements, implementation artifacts, and design decisions.
+This file records backward traceability between documentation layers and implementation evidence.
 
-## Current Traceability
+## Documentation Chain
 
-| Source | Requirement | Implementation | Decision |
+The documentation chain moves from intent to proof:
+
+```text
+Intent -> Product Commitments -> System Architecture -> Technical Decisions -> Implementation -> Verification
+```
+
+Trace links point backward to the layer being satisfied. Higher layers describe intent and constraints without linking down into lower-level implementation details.
+
+## Layer Responsibilities
+
+| Layer | Artifact | Responsibility | Links Back To |
 | --- | --- | --- | --- |
-| UC-001 | FR-001, FR-002, FR-003 | `requirement_contract` node | ADR-0001 |
-| UC-002 | FR-004 | `architecture_context` node | ADR-0001 |
-| UC-003 | FR-005, FR-016 | `known_mistake_check` node, `docs/lessons/known-mistakes.md` | ADR-0004 |
-| UC-004 | FR-006, FR-007 | `implementation_packet`, `external_agent_handoff` nodes | ADR-0003 |
-| UC-005 | FR-008 | independent reviewer nodes | ADR-0001 |
-| UC-006 | FR-013, FR-014, FR-019 | `completion_gate`, `revise_packet`, `human_interrupt` nodes | ADR-0003 |
-| UC-007 | FR-009, QR-003 | `harness/models.py`, `.env.example` | ADR-0002 |
-| UC-008 | FR-015 | `final_control_report` node | ADR-0001 |
-| UC-009 | FR-005, FR-016 | `docs/lessons/known-mistakes.md` | ADR-0004 |
-| UC-010 | FR-017, FR-018 | `evidence_intake`, Pydantic schemas, independent reviewer nodes | ADR-0001 |
-| Vision: grounded architecture context | FR-020 | default context loading in `app.py` | ADR-0001 |
-| Vision: tighter execution integration | FR-021, FR-022, FR-023 | `harness/execution/`, `--executor`, opencode adapter | ADR-0003 |
-| Vision: guarded agentic development | QR-002, QR-008, QR-009 | no direct code-edit tools; external handoff packet | ADR-0003 |
-| Vision: inspectable workflow | QR-001, QR-004, QR-005 | `docs/`, `harness/prompts.py` | ADR-0001 |
+| Intent | `docs/vision.md` | Captures why the harness exists, the problems it solves, desired outcomes, non-goals, and guiding principles. | None |
+| Product Commitments | `docs/product-commitments.md` | Translates intent into durable product promises. | Intent |
+| System Architecture | `docs/architecture.md` | Describes stable guarantees, concepts, boundaries, and control flow. | Product Commitments and requirements |
+| Technical Decisions | `docs/decisions/` | Bridges architecture to material build choices and tradeoffs. | Architecture, requirements, and constraints |
+| Implementation | `devfix/`, `docs/execution-adapters.md` | Implements the selected decisions and exposes operational behavior. | Technical decisions, requirements, and architecture |
+| Verification | Tests, execution evidence, reviewer verdicts, final control reports | Proves whether implementation satisfies the documented contract. | Implementation, requirements, and acceptance criteria |
+
+## Traceability Rules
+
+- Higher-level artifacts should not link down into lower-level implementation details.
+- Lower-level artifacts should identify the higher-level promise, requirement, decision, or boundary they satisfy.
+- Requirements should be stable anchors; if meaning changes, create a new ID.
+- Architecture should describe stable concepts and boundaries, not transient module layouts.
+- Technical decisions should explain why a build choice satisfies architecture and constraints.
+- Implementation evidence should trace backward to requirements, decisions, or acceptance criteria.
+
+## Requirement To Product Commitment Mapping
+
+| Requirement | Satisfies |
+| --- | --- |
+| FR-001, FR-002, FR-003 | PC-001 |
+| FR-004, FR-020 | PC-002 |
+| FR-005, FR-016 | PC-003 |
+| FR-006, FR-007, FR-017, FR-021, FR-022, FR-023 | PC-004 |
+| FR-013, FR-014, FR-019, QR-008, QR-009, QR-010 | PC-005 |
+| QR-001, QR-004, QR-005 | PC-006 |
+
+## Implementation Traceability
+
+| Implementation Artifact | Satisfies | Decision | Upstream Rationale |
+| --- | --- | --- | --- |
+| `requirement_contract` node | FR-001, FR-002, FR-003 | ADR-0001 | UC-001, PC-001 |
+| `architecture_context` node | FR-004, FR-020 | ADR-0001 | UC-002, PC-002 |
+| `known_mistake_check` node, `docs/lessons/known-mistakes.md` | FR-005, FR-016 | ADR-0004 | UC-003, UC-009, PC-003 |
+| `implementation_packet`, `external_agent_handoff` nodes | FR-006, FR-007 | ADR-0003 | UC-004, PC-004 |
+| independent reviewer nodes | FR-008, FR-017, FR-018 | ADR-0001 | UC-005, UC-010, PC-004 |
+| `completion_gate`, `revise_packet`, `human_interrupt` nodes | FR-013, FR-014, FR-019 | ADR-0003 | UC-006, PC-005 |
+| `devfix/harness/models.py`, `.env.example` | FR-009, QR-003 | ADR-0002 | UC-007 |
+| `final_control_report` node | FR-015 | ADR-0001 | UC-008 |
+| `devfix/runner.py` default context loading | FR-020 | ADR-0001 | PC-002 |
+| `devfix/harness/execution/`, `--executor`, opencode adapter | FR-021, FR-022, FR-023 | ADR-0003 | PC-004 |
+| external handoff packet with no direct code-edit tools | QR-002, QR-008, QR-009 | ADR-0003 | PC-004, PC-005 |
+| `docs/`, `devfix/harness/prompts.py` | QR-001, QR-004, QR-005 | ADR-0001 | PC-006 |
 
 ## Decision To Requirement Mapping
 

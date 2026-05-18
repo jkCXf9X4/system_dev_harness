@@ -5,7 +5,7 @@ from typing import Any
 
 import yaml
 
-from harness.schemas import KnownMistake
+from devfix.harness.schemas import KnownMistake
 
 
 def parse_lessons(content: str) -> list[KnownMistake]:
