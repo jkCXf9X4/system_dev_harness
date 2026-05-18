@@ -31,7 +31,9 @@ def run_with_executor(args: argparse.Namespace, initial_state: dict, config: dic
             f"## Execution Session\n\n```json\n{execution.session.model_dump_json(indent=2)}\n```",
         ],
     }
-    return build_review_graph().invoke(merged_state, config=config)
+    result = build_review_graph().invoke(merged_state, config=config)
+    result["execution_session"] = execution.session.model_dump()
+    return result
 
 
 def build_adapter(args: argparse.Namespace):

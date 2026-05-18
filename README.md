@@ -65,6 +65,14 @@ devfix \
   --changed-file src/devfix/harness/graph.py
 ```
 
+Capture run artifacts to a directory:
+
+```bash
+devfix \
+  --prompt plans/backlog/completed/001-add-output-artifact-directory.md \
+  --output-dir tmp/devfix-run-output
+```
+
 Run through an execution adapter:
 
 ```bash

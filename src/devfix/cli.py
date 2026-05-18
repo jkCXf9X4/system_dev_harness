@@ -6,6 +6,7 @@ from pathlib import Path
 from uuid import uuid4
 
 from devfix.harness.lessons import parse_lessons
+from devfix.output import export_run_failure, export_run_output
 from devfix.runner import build_context, read_optional, read_waivers, run_with_executor
 
 DEFAULT_PROMPT = Path(".agents/devfix/PROMPT.md")
@@ -53,6 +54,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--test-output", type=Path, default=None, help="Test/check output evidence file.")
     parser.add_argument("--agent-output", type=Path, default=None, help="External coding-agent response evidence file.")
     parser.add_argument("--waivers", type=Path, default=None, help="JSON waiver request file.")
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=None,
+        help="Optional directory to export run artifacts, final report, and metadata.",
+    )
     parser.add_argument(
         "--executor",
         choices=["none", "manual", "opencode"],
@@ -107,10 +114,28 @@ def main() -> None:
     try:
         result = run_with_executor(args, initial_state, config)
     except Exception as exc:
+        if args.output_dir is not None:
+            export_run_failure(
+                args.output_dir,
+                thread_id=thread_id,
+                prompt_path=args.prompt,
+                executor=args.executor,
+                prompt_text=prompt,
+                error=exc,
+            )
         raise SystemExit(f"devfix run failed: {exc}") from exc
 
     print(f"# Devfix Harness Result\n\nThread: `{thread_id}`{env_message}{lessons_warning}\n")
     print(result["final_control_report"])
+
+    if args.output_dir is not None:
+        export_run_output(
+            args.output_dir,
+            thread_id=thread_id,
+            prompt_path=args.prompt,
+            executor=args.executor,
+            result=result,
+        )
 
 
 def _ensure_local_storage() -> None:

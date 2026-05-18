@@ -6,8 +6,10 @@ Items that are already covered by the current implementation are not repeated he
 
 ## Current Items
 
-1. [001 Add Output Artifact Directory](001-add-output-artifact-directory.md)
-2. [002 Add Human Approval Gates](002-add-human-approval-gates.md)
-3. [003 Add Durable Runs](003-add-durable-runs.md)
-4. [004 Add Controlled Built-In Implementation Agents](004-add-controlled-built-in-implementation-agents.md)
+1. [002 Add Human Approval Gates](002-add-human-approval-gates.md)
+2. [003 Add Durable Runs](003-add-durable-runs.md)
+3. [004 Add Controlled Built-In Implementation Agents](004-add-controlled-built-in-implementation-agents.md)
 
+## Completed
+
+- [001 Add Output Artifact Directory](completed/001-add-output-artifact-directory.md)
