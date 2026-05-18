@@ -8,7 +8,6 @@ Items that are already covered by the current implementation are not repeated he
 
 1. [002 Add Human Approval Gates](002-add-human-approval-gates.md)
 2. [003 Add Durable Runs](003-add-durable-runs.md)
-3. [004 Add Controlled Built-In Implementation Agents](004-add-controlled-built-in-implementation-agents.md)
 
 ## Completed
 
