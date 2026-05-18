@@ -41,7 +41,6 @@ Tradeoffs:
 
 ## Traceability
 
-- Vision: configurable model access over provider lock-in
+- Product commitments: PC-006
 - Use cases: UC-007
 - Requirements: FR-009, QR-003, C-003
-- Implementation: `devfix/harness/models.py`, `.env.example`

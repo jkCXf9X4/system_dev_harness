@@ -243,5 +243,5 @@ Primary value:
 - Attach project documents and architecture decisions as retrieval context.
 - Integrate with GitHub issues and pull requests.
 - Integrate with Jira or Linear.
-- Add human approval interrupts inside LangGraph.
+- Add human approval interrupts inside the workflow.
 - Add controlled built-in code-editing agents after external handoff is mature.

@@ -1,6 +1,6 @@
 # System Dev Harness Documentation
 
-This documentation captures the reason for the harness before the implementation grows. Design decisions should trace back to the vision, use cases, and explicit requirements here.
+This documentation captures the reason for the harness before the implementation grows. Lower-level artifacts should trace back to product commitments, use cases, requirements, architecture, or decisions.
 
 ## Reading Order
 
@@ -11,9 +11,11 @@ This documentation captures the reason for the harness before the implementation
 5. [Architecture Overview](architecture.md)
 6. [Decision Records](decisions/README.md)
 7. [Traceability Matrix](traceability.md)
-8. [Roadmap](roadmap.md)
-9. [Known Mistakes](lessons/known-mistakes.md)
-10. [Execution Adapters](execution-adapters.md)
+8. [Implementation Notes](implementation.md)
+9. [Roadmap](roadmap.md)
+10. [Known Mistakes](lessons/known-mistakes.md)
+11. [Execution Adapters](execution-adapters.md)
+12. [Verification Artifacts](verification/README.md)
 
 ## Decision Records
 

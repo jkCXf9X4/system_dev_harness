@@ -20,7 +20,7 @@ Trace links point backward to the layer being satisfied. Higher layers describe 
 | Product Commitments | `docs/product-commitments.md` | Translates intent into durable product promises. | Intent |
 | System Architecture | `docs/architecture.md` | Describes stable guarantees, concepts, boundaries, and control flow. | Product Commitments and requirements |
 | Technical Decisions | `docs/decisions/` | Bridges architecture to material build choices and tradeoffs. | Architecture, requirements, and constraints |
-| Implementation | `devfix/`, `docs/execution-adapters.md` | Implements the selected decisions and exposes operational behavior. | Technical decisions, requirements, and architecture |
+| Implementation | `docs/implementation.md`, `devfix/`, `docs/execution-adapters.md` | Implements the selected decisions and exposes operational behavior. | Technical decisions, requirements, and architecture |
 | Verification | Tests, execution evidence, reviewer verdicts, final control reports | Proves whether implementation satisfies the documented contract. | Implementation, requirements, and acceptance criteria |
 
 ## Traceability Rules

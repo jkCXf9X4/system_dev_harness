@@ -40,7 +40,6 @@ Tradeoffs:
 
 ## Traceability
 
-- Vision: persistent mistake memory over repeating the same correction loop
+- Product commitments: PC-003
 - Use cases: UC-003, UC-009
 - Requirements: FR-005, FR-016, C-006
-- Implementation: `docs/lessons/known-mistakes.md`, `--lessons`, `known_mistake_check`

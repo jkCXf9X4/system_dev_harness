@@ -2,6 +2,13 @@
 
 Execution adapters connect the harness control loop to external coding tools.
 
+Traceability:
+
+- Satisfies: FR-006, FR-007, FR-017, FR-021, FR-022, FR-023
+- Supports: PC-004
+- Decision: ADR-0003
+- Architecture boundary: execution boundary and evidence intake
+
 The harness remains responsible for:
 
 - task contract

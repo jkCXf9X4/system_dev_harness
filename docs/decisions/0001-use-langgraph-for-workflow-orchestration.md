@@ -44,7 +44,6 @@ Tradeoffs:
 
 ## Traceability
 
-- Vision: governed contract loop, inspectable workflow
-- Use cases: UC-001 through UC-008
+- Product commitments: PC-001, PC-002, PC-004, PC-005, PC-006
+- Use cases: UC-001 through UC-006, UC-008, UC-010
 - Requirements: FR-001 through FR-012, QR-001, QR-004
-- Implementation: `devfix/harness/graph.py`, `devfix/harness/state.py`, `devfix/harness/prompts.py`

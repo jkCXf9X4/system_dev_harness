@@ -34,7 +34,7 @@ Requirement IDs are stable anchors for traceability. If a requirement changes me
 
 | ID | Requirement |
 | --- | --- |
-| QR-001 | Design choices shall be traceable to documented goals or use cases. |
+| QR-001 | Design choices shall be traceable to documented product commitments, goals, or use cases. |
 | QR-002 | The harness shall avoid direct code modification until external agent handoff is mature. |
 | QR-003 | Model provider details shall be isolated from graph workflow logic. |
 | QR-004 | Prompts shall be role-specific and inspectable in source control. |

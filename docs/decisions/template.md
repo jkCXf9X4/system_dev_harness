@@ -22,9 +22,9 @@ What risks remain?
 
 ## Traceability
 
-Related vision, use cases, requirements, or code:
+Related product commitments, use cases, requirements, or constraints:
 
-- Vision:
+- Product commitments:
 - Use cases:
 - Requirements:
-- Implementation:
+- Constraints:

@@ -1,50 +1,52 @@
-# Architecture Overview
+# System Architecture
 
-## Current Architecture
+## Architectural Purpose
+
+The system acts as a control layer around agentic development. It separates task definition, architectural grounding, external execution, evidence collection, independent review, and deterministic completion routing.
+
+## Control Flow
 
 ```text
-CLI input
-  -> LangGraph StateGraph
-  -> typed contract and evidence state
-  -> OpenRouter-backed chat models
-  -> deterministic validation and gate routing
+task intake
+  -> typed contract state
+  -> grounded architecture context
+  -> known-mistake guardrails
+  -> external execution handoff
+  -> evidence intake
+  -> independent review
+  -> deterministic gate routing
   -> final control report
 ```
 
-## Components
+## Stable Concepts
 
-| Component | Responsibility |
+| Concept | Responsibility |
 | --- | --- |
-| `devfix/cli.py` | CLI entrypoint, reads prompt input, gathers default/project context, reads evidence, invokes graph with a thread ID. |
-| `devfix/runner.py` | Shared runner utilities for context loading, evidence loading, execution adapters, and graph invocation. |
-| `devfix/harness/graph.py` | Defines the contract-driven LangGraph workflow nodes and edges. |
-| `devfix/harness/state.py` | Defines graph state channels and artifact accumulation. |
-| `devfix/harness/models.py` | Isolates OpenRouter/OpenAI-compatible model configuration. |
-| `devfix/harness/prompts.py` | Stores inspectable role prompts. |
-| `devfix/harness/execution/` | Contains execution adapter abstractions and implementations for manual and opencode flows. |
-| `examples/` | Holds runnable sample backlog inputs. |
-| `docs/` | Captures vision, requirements, use cases, traceability, and decisions. |
+| Task intake | Accepts a rough development task and any supplied project context. |
+| Requirement contract | Converts task input into checklistable obligations, acceptance criteria, and completion rules. |
+| Architecture context | Grounds the task in stable system boundaries, constraints, and integration expectations. |
+| Mistake memory | Applies persistent lessons to reduce repeated correction loops. |
+| Implementation handoff | Packages contract, constraints, and checks for an external coding agent. |
+| Execution boundary | Keeps coding-tool mechanics outside the control workflow. |
+| Evidence intake | Normalizes implementation output, test output, waivers, and session references for review. |
+| Independent review | Separates requirements, architecture, QA, completeness, and mistake-review responsibilities. |
+| Deterministic gate | Computes approved, blocked, or waiver-required outcomes from structured evidence and reviews. |
+| Control report | Captures the final state, decision, and remaining gaps for human inspection. |
 
 ## Workflow
 
 ```text
-START
-  -> requirement_contract
-  -> architecture_context
-  -> known_mistake_check
-  -> implementation_packet
-  -> external_agent_handoff
-  -> evidence_intake
-  -> requirements_review
-  -> architecture_review
-  -> qa_review
-  -> completeness_review
-  -> known_mistake_review
-  -> completion_gate
-  -> approved: final_control_report
-  -> blocked: revise_packet -> final_control_report
-  -> waiver_required: human_interrupt -> final_control_report
-  -> END
+start
+  -> establish contract
+  -> establish architecture context
+  -> apply known-mistake guardrails
+  -> prepare external implementation handoff
+  -> collect implementation evidence
+  -> run independent reviews
+  -> compute completion outcome
+  -> approve, revise, or require waiver
+  -> emit control report
+  -> end
 ```
 
 ## State Model
@@ -58,55 +60,29 @@ The graph state stores:
 - accumulated artifact list
 - final control report
 
-LLM outputs are validated with Pydantic schemas before later nodes can consume them. Artifacts are also rendered as JSON-in-markdown so humans can inspect the same state the graph uses.
+Generated control artifacts are validated against typed schemas before later steps can consume them. Artifacts are also rendered for human inspection so the same state can be audited outside the running workflow.
 
 ## Model Access
 
-The model adapter uses OpenRouter through an OpenAI-compatible client. Model IDs are configured through environment variables:
-
-- `PLANNER_MODEL`
-- `REVIEWER_MODEL`
-- `FAST_MODEL`
-
-This keeps workflow logic independent from the exact model catalog.
+Model access is isolated behind a provider boundary. Workflow logic depends on role-level model capabilities rather than direct provider calls or hard-coded model IDs.
 
 ## Grounded Context
 
-The CLI automatically adds repo documentation context from:
-
-- `docs/architecture.md`
-- `docs/requirements.md`
-- ADRs under `docs/decisions/`
-
-Additional files can be supplied with `--context-file`. This keeps architecture guardrails grounded in versioned project documentation instead of only the task prompt.
+Architecture guardrails should be grounded in versioned project documentation and explicit task context. This prevents the architecture context from depending only on the immediate task prompt.
 
 ## Execution Adapters
 
-Execution adapters are optional. With `--executor none`, the graph runs as a pure control/review pipeline over manually supplied evidence. With `--executor manual` or `--executor opencode`, the harness first generates a handoff packet, executes or prepares an external coding-agent session, then feeds adapter evidence into the review graph.
-
-The current adapters are:
-
-- manual: returns paste instructions and no implementation evidence
-- opencode: runs `opencode run --format json` and captures raw output as evidence
+Execution adapters are optional integration boundaries. They prepare or run external coding-agent sessions and return evidence to the control workflow. Adapter-specific commands and session mechanics remain outside the architecture layer.
 
 ## Persistence
 
-The current graph uses LangGraph `InMemorySaver`.
-
-This supports checkpointed execution during a process lifetime and requires a `thread_id`. It does not survive process restarts.
-
-Future durable options:
-
-- SQLite for local development
-- Postgres for team/server usage
-- Redis for high-throughput or ephemeral workflow state
-- LangGraph Platform if deployment moves there
+Workflow state should be checkpointable by thread or run identity. The initial implementation may use process-local persistence, but the architecture requires persistence concerns to remain separable from task, review, and gate logic.
 
 ## Boundaries
 
 Current boundaries:
 
-- no repository write access from devfix harness agents
+- no repository write access from harness-controlled agents
 - no issue tracker integration
 - no durable state outside process memory
 - no retrieval layer over project docs
