@@ -42,8 +42,23 @@ Optional context:
 python app.py \
   --backlog examples/backlog_item.md \
   --context "Stakeholders care about short feedback loops and maintainability." \
+  --context-file docs/vision.md \
   --lessons docs/lessons/known-mistakes.md \
   --thread-id demo-001
+```
+
+By default, the harness grounds architecture context from `docs/architecture.md`, `docs/requirements.md`, and ADRs under `docs/decisions/`. Use `--no-default-context` to disable that behavior.
+
+Review an external coding-agent result by adding evidence:
+
+```bash
+python app.py \
+  --backlog examples/backlog_item.md \
+  --agent-output tmp/agent-output.md \
+  --diff tmp/diff.patch \
+  --test-output tmp/test-output.txt \
+  --waivers tmp/waivers.json \
+  --changed-file harness/graph.py
 ```
 
 ## Workflow
@@ -55,8 +70,10 @@ task input
   -> known mistake check
   -> implementation packet
   -> external agent handoff
-  -> reviewer council
-  -> completion decision
+  -> evidence intake
+  -> independent reviewer agents
+  -> deterministic completion gate
+  -> revise / waiver / approve route
   -> final control report
 ```
 

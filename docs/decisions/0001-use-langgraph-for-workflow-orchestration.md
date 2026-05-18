@@ -21,8 +21,10 @@ Represent guarded development roles as graph nodes:
 - known mistake check
 - implementation packet
 - external agent handoff
-- reviewer council
-- completion decision
+- evidence intake
+- independent reviewer agents
+- deterministic completion gate
+- revision and waiver routes
 - final control report
 
 ## Consequences

@@ -10,11 +10,13 @@ This matrix connects use cases, requirements, implementation artifacts, and desi
 | UC-002 | FR-004 | `architecture_context` node | ADR-0001 |
 | UC-003 | FR-005, FR-016 | `known_mistake_check` node, `docs/lessons/known-mistakes.md` | ADR-0004 |
 | UC-004 | FR-006, FR-007 | `implementation_packet`, `external_agent_handoff` nodes | ADR-0003 |
-| UC-005 | FR-008 | `reviewer_council` node | ADR-0001 |
-| UC-006 | FR-013, FR-014 | `completion_decision` node | ADR-0003 |
+| UC-005 | FR-008 | independent reviewer nodes | ADR-0001 |
+| UC-006 | FR-013, FR-014, FR-019 | `completion_gate`, `revise_packet`, `human_interrupt` nodes | ADR-0003 |
 | UC-007 | FR-009, QR-003 | `harness/models.py`, `.env.example` | ADR-0002 |
 | UC-008 | FR-015 | `final_control_report` node | ADR-0001 |
 | UC-009 | FR-005, FR-016 | `docs/lessons/known-mistakes.md` | ADR-0004 |
+| UC-010 | FR-017, FR-018 | `evidence_intake`, Pydantic schemas, independent reviewer nodes | ADR-0001 |
+| Vision: grounded architecture context | FR-020 | default context loading in `app.py` | ADR-0001 |
 | Vision: guarded agentic development | QR-002, QR-008, QR-009 | no direct code-edit tools; external handoff packet | ADR-0003 |
 | Vision: inspectable workflow | QR-001, QR-004, QR-005 | `docs/`, `harness/prompts.py` | ADR-0001 |
 

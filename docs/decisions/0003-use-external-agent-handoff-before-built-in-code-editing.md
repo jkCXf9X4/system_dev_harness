@@ -24,7 +24,7 @@ The packet must include:
 - stop conditions
 - required final response shape
 
-Completion is not self-assessed by the coding agent. It is checked by reviewer roles against the contract.
+Completion is not self-assessed by the coding agent. It is checked by independent reviewer roles against the contract and implementation evidence, then routed through a deterministic completion gate.
 
 ## Consequences
 
@@ -38,12 +38,12 @@ Benefits:
 Tradeoffs:
 
 - users must still run a separate coding agent
-- the harness cannot directly verify changed files yet
-- review is initially focused on the handoff packet rather than actual code diffs
+- the harness depends on supplied external evidence until direct integrations exist
+- review quality depends on the completeness of changed files, diff, test output, and agent output provided to the CLI
 
 ## Traceability
 
 - Vision: external coding-agent handoff before built-in code editing
 - Use cases: UC-004, UC-006, UC-008
-- Requirements: FR-006, FR-007, FR-013, FR-014, QR-002, QR-008, QR-009
-- Implementation: `implementation_packet`, `external_agent_handoff`, `completion_decision`
+- Requirements: FR-006, FR-007, FR-013, FR-014, FR-017, FR-019, QR-002, QR-008, QR-009, QR-010
+- Implementation: `implementation_packet`, `external_agent_handoff`, `evidence_intake`, `completion_gate`

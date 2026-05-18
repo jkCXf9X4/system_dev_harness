@@ -17,8 +17,10 @@ task input
   -> known mistake check
   -> implementation packet
   -> external coding-agent handoff
-  -> reviewer council
-  -> completion decision
+  -> implementation evidence intake
+  -> independent reviewer agents
+  -> deterministic completion gate
+  -> revise / waive / approve route
   -> final control report
 ```
 

@@ -1,0 +1,10 @@
+lessons:
+  - id: KM-001
+    title: Do Not Implement Plausible Partial Solutions
+    pattern: Agents may satisfy the most visible part of a task while leaving edge cases, integration points, documentation, or tests unfinished.
+    prevention_rule: Every implementation packet must include a completion checklist tied to the requirement contract.
+    completion_check: Reviewers must verify each contract item is complete, explicitly waived, or blocking.
+    severity: high
+    tags:
+      - completeness
+      - requirements

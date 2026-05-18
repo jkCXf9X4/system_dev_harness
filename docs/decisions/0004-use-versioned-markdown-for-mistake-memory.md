@@ -12,7 +12,7 @@ A database or local JSON store would be easier for automation later, but harder 
 
 ## Decision
 
-Start persistent mistake memory as versioned markdown in `docs/lessons/known-mistakes.md`.
+Start persistent mistake memory as versioned markdown in `docs/lessons/known-mistakes.md`, with YAML lesson input also supported for more structured automation.
 
 Each lesson should include:
 
@@ -21,7 +21,7 @@ Each lesson should include:
 - prevention rule
 - completion check
 
-The graph reads this file through the CLI and passes its contents into the known mistake check node.
+The CLI parses lesson files into structured `KnownMistake` objects before passing them into the known mistake check node.
 
 ## Consequences
 
@@ -34,7 +34,7 @@ Benefits:
 
 Tradeoffs:
 
-- markdown is less machine-queryable than JSON or SQLite
+- markdown is less machine-queryable than YAML, JSON, or SQLite
 - duplicate or stale lessons require human hygiene
 - relevance matching is initially LLM-driven
 

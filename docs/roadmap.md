@@ -12,7 +12,7 @@ Scope:
 - In-memory checkpointing.
 - versioned markdown known-mistakes file.
 - external coding-agent handoff packet.
-- reviewer council and completion decision.
+- independent reviewer agents and deterministic completion gate.
 - Markdown final control report.
 - Documentation structure and decision traceability.
 

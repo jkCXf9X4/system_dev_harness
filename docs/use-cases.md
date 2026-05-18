@@ -7,7 +7,7 @@
 - External coding agent: implements work from the generated handoff packet.
 - Architect or technical lead: reviews maintainability, integration, and long-term fit.
 - QA or validation owner: defines evidence that the complete task worked.
-- Reviewer council: support-agent roles that check requirements, architecture, QA, completeness, and known mistakes.
+- Reviewer agents: independent support-agent roles that check requirements, architecture, QA, completeness, and known mistakes.
 - Harness operator: runs the CLI or future UI and manages configuration.
 
 ## UC-001: Create A Requirement Contract
@@ -113,6 +113,7 @@ Input:
 - requirement contract
 - architecture constraints
 - known mistake checks
+- implementation evidence
 
 Output:
 
@@ -134,8 +135,9 @@ Goal: decide whether a task is approved, blocked, or requires waivers.
 Input:
 
 - contract checklist
-- reviewer council findings
+- independent reviewer findings
 - waiver requests
+- implementation evidence
 
 Output:
 
@@ -149,6 +151,28 @@ Output:
 Primary value:
 
 - prevents reviewer approval from silently overriding incomplete requirements
+
+## UC-010: Review External Agent Evidence
+
+Goal: validate the actual output from a coding agent, not only the handoff packet.
+
+Input:
+
+- changed files
+- diff or diff summary
+- test output
+- external agent final response
+- waiver requests
+
+Output:
+
+- evidence bundle
+- independent reviewer findings
+- deterministic gate status
+
+Primary value:
+
+- closes the loop between planned contract and actual implementation result
 
 ## UC-007: Compare Model Choices By Role
 

@@ -5,9 +5,9 @@
 ```text
 CLI input
   -> LangGraph StateGraph
-  -> contract-driven role nodes
+  -> typed contract and evidence state
   -> OpenRouter-backed chat models
-  -> markdown artifacts in graph state
+  -> deterministic validation and gate routing
   -> final control report
 ```
 
@@ -15,7 +15,7 @@ CLI input
 
 | Component | Responsibility |
 | --- | --- |
-| `app.py` | CLI entrypoint, reads backlog input, invokes graph with a thread ID. |
+| `app.py` | CLI entrypoint, reads backlog input, gathers default/project context, reads evidence, invokes graph with a thread ID. |
 | `harness/graph.py` | Defines the contract-driven LangGraph workflow nodes and edges. |
 | `harness/state.py` | Defines graph state channels and artifact accumulation. |
 | `harness/models.py` | Isolates OpenRouter/OpenAI-compatible model configuration. |
@@ -32,9 +32,16 @@ START
   -> known_mistake_check
   -> implementation_packet
   -> external_agent_handoff
-  -> reviewer_council
-  -> completion_decision
-  -> final_control_report
+  -> evidence_intake
+  -> requirements_review
+  -> architecture_review
+  -> qa_review
+  -> completeness_review
+  -> known_mistake_review
+  -> completion_gate
+  -> approved: final_control_report
+  -> blocked: revise_packet -> final_control_report
+  -> waiver_required: human_interrupt -> final_control_report
   -> END
 ```
 
@@ -44,12 +51,12 @@ The graph state stores:
 
 - original backlog item
 - stakeholder context
-- persistent known mistakes
-- per-role control artifacts
+- structured persistent known mistakes
+- structured contract, architecture, packet, evidence, review, and gate artifacts
 - accumulated artifact list
 - final control report
 
-Artifacts are accumulated with a reducer so every node can append its output without replacing earlier artifacts.
+LLM outputs are validated with Pydantic schemas before later nodes can consume them. Artifacts are also rendered as JSON-in-markdown so humans can inspect the same state the graph uses.
 
 ## Model Access
 
@@ -60,6 +67,16 @@ The model adapter uses OpenRouter through an OpenAI-compatible client. Model IDs
 - `FAST_MODEL`
 
 This keeps workflow logic independent from the exact model catalog.
+
+## Grounded Context
+
+The CLI automatically adds repo documentation context from:
+
+- `docs/architecture.md`
+- `docs/requirements.md`
+- ADRs under `docs/decisions/`
+
+Additional files can be supplied with `--context-file`. This keeps architecture guardrails grounded in versioned project documentation instead of only the task prompt.
 
 ## Persistence
 
@@ -88,6 +105,8 @@ These are deliberate first-version boundaries, not final product boundaries.
 
 ## Completion Model
 
-The harness produces `approved`, `blocked`, or `waiver_required`.
+The deterministic completion gate produces `approved`, `blocked`, or `waiver_required`.
 
-Reviewer approval is required, but it cannot silently override missing contract items. Incomplete items require explicit waivers with reason, risk, owner, and follow-up action.
+Independent reviewer nodes evaluate requirements, architecture, QA, completeness, and known mistakes. The deterministic gate aggregates review findings and implementation evidence. Reviewer approval cannot silently override missing contract items. Incomplete items require explicit waivers with reason, risk, owner, and follow-up action.
+
+External evidence can include changed files, diff summaries, test output, coding-agent final output, and JSON waiver requests.
