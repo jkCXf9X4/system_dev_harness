@@ -61,6 +61,35 @@ python app.py \
   --changed-file harness/graph.py
 ```
 
+Run through an execution adapter:
+
+```bash
+python app.py \
+  --backlog examples/backlog_item.md \
+  --executor manual
+```
+
+Run opencode headlessly:
+
+```bash
+python app.py \
+  --backlog examples/backlog_item.md \
+  --executor opencode \
+  --execution-mode headless \
+  --opencode-agent build
+```
+
+Run opencode against an existing server:
+
+```bash
+opencode serve
+
+python app.py \
+  --backlog examples/backlog_item.md \
+  --executor opencode \
+  --opencode-attach http://localhost:4096
+```
+
 ## Workflow
 
 ```text
@@ -70,6 +99,7 @@ task input
   -> known mistake check
   -> implementation packet
   -> external agent handoff
+  -> optional execution adapter
   -> evidence intake
   -> independent reviewer agents
   -> deterministic completion gate

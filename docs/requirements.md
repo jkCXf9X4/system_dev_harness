@@ -26,6 +26,9 @@ Requirement IDs are stable anchors for traceability. If a requirement changes me
 | FR-018 | The harness shall validate LLM-generated control artifacts against structured schemas. |
 | FR-019 | The harness shall route approved, blocked, and waiver-required outcomes through explicit graph branches. |
 | FR-020 | The harness shall ground architecture/context generation in versioned project documentation by default. |
+| FR-021 | The harness shall support execution adapters for external coding tools. |
+| FR-022 | The harness shall include an opencode execution adapter. |
+| FR-023 | The harness shall preserve execution session references as review evidence. |
 
 ## Quality Requirements
 

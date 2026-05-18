@@ -20,6 +20,7 @@ CLI input
 | `harness/state.py` | Defines graph state channels and artifact accumulation. |
 | `harness/models.py` | Isolates OpenRouter/OpenAI-compatible model configuration. |
 | `harness/prompts.py` | Stores inspectable role prompts. |
+| `harness/execution/` | Contains execution adapter abstractions and implementations for manual and opencode flows. |
 | `examples/` | Holds runnable sample backlog inputs. |
 | `docs/` | Captures vision, requirements, use cases, traceability, and decisions. |
 
@@ -77,6 +78,15 @@ The CLI automatically adds repo documentation context from:
 - ADRs under `docs/decisions/`
 
 Additional files can be supplied with `--context-file`. This keeps architecture guardrails grounded in versioned project documentation instead of only the task prompt.
+
+## Execution Adapters
+
+Execution adapters are optional. With `--executor none`, the graph runs as a pure control/review pipeline over manually supplied evidence. With `--executor manual` or `--executor opencode`, the harness first generates a handoff packet, executes or prepares an external coding-agent session, then feeds adapter evidence into the review graph.
+
+The current adapters are:
+
+- manual: returns paste instructions and no implementation evidence
+- opencode: runs `opencode run --format json` and captures raw output as evidence
 
 ## Persistence
 

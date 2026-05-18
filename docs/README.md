@@ -11,6 +11,7 @@ This documentation captures the reason for the harness before the implementation
 5. [Architecture Overview](architecture.md)
 6. [Roadmap](roadmap.md)
 7. [Known Mistakes](lessons/known-mistakes.md)
+8. [Execution Adapters](execution-adapters.md)
 
 ## Decision Records
 

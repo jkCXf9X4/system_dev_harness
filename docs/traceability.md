@@ -17,6 +17,7 @@ This matrix connects use cases, requirements, implementation artifacts, and desi
 | UC-009 | FR-005, FR-016 | `docs/lessons/known-mistakes.md` | ADR-0004 |
 | UC-010 | FR-017, FR-018 | `evidence_intake`, Pydantic schemas, independent reviewer nodes | ADR-0001 |
 | Vision: grounded architecture context | FR-020 | default context loading in `app.py` | ADR-0001 |
+| Vision: tighter execution integration | FR-021, FR-022, FR-023 | `harness/execution/`, `--executor`, opencode adapter | ADR-0003 |
 | Vision: guarded agentic development | QR-002, QR-008, QR-009 | no direct code-edit tools; external handoff packet | ADR-0003 |
 | Vision: inspectable workflow | QR-001, QR-004, QR-005 | `docs/`, `harness/prompts.py` | ADR-0001 |
 

@@ -365,6 +365,60 @@ Structured artifacts:
     return {"final_control_report": output, "artifacts": [render_text("Final Control Report", output)]}
 
 
+def build_packet_graph():
+    workflow = StateGraph(HarnessState)
+    workflow.add_node("requirement_contract", requirement_contract)
+    workflow.add_node("architecture_context", architecture_context)
+    workflow.add_node("known_mistake_check", known_mistake_check)
+    workflow.add_node("implementation_packet", implementation_packet)
+    workflow.add_node("external_agent_handoff", external_agent_handoff)
+
+    workflow.add_edge(START, "requirement_contract")
+    workflow.add_edge("requirement_contract", "architecture_context")
+    workflow.add_edge("architecture_context", "known_mistake_check")
+    workflow.add_edge("known_mistake_check", "implementation_packet")
+    workflow.add_edge("implementation_packet", "external_agent_handoff")
+    workflow.add_edge("external_agent_handoff", END)
+
+    return workflow.compile(checkpointer=InMemorySaver())
+
+
+def build_review_graph():
+    workflow = StateGraph(HarnessState)
+    workflow.add_node("evidence_intake", evidence_intake)
+    workflow.add_node("requirements_review", requirements_review)
+    workflow.add_node("architecture_review", architecture_review)
+    workflow.add_node("qa_review", qa_review)
+    workflow.add_node("completeness_review", completeness_review)
+    workflow.add_node("known_mistake_review", known_mistake_review)
+    workflow.add_node("completion_gate", completion_gate)
+    workflow.add_node("revise_packet", revise_packet)
+    workflow.add_node("human_interrupt", human_interrupt)
+    workflow.add_node("final_control_report", final_control_report)
+
+    workflow.add_edge(START, "evidence_intake")
+    workflow.add_edge("evidence_intake", "requirements_review")
+    workflow.add_edge("requirements_review", "architecture_review")
+    workflow.add_edge("architecture_review", "qa_review")
+    workflow.add_edge("qa_review", "completeness_review")
+    workflow.add_edge("completeness_review", "known_mistake_review")
+    workflow.add_edge("known_mistake_review", "completion_gate")
+    workflow.add_conditional_edges(
+        "completion_gate",
+        route_after_gate,
+        {
+            "final_control_report": "final_control_report",
+            "revise_packet": "revise_packet",
+            "human_interrupt": "human_interrupt",
+        },
+    )
+    workflow.add_edge("revise_packet", "final_control_report")
+    workflow.add_edge("human_interrupt", "final_control_report")
+    workflow.add_edge("final_control_report", END)
+
+    return workflow.compile(checkpointer=InMemorySaver())
+
+
 def build_graph():
     workflow = StateGraph(HarnessState)
     workflow.add_node("requirement_contract", requirement_contract)
