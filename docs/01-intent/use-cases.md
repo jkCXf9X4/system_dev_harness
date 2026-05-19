@@ -5,7 +5,6 @@
 - Requester: provides the task, bug report, or improvement idea.
 - Orchestrator: coordinates the workflow and routes work to specialist agents.
 - Planner: normalizes the request and defines the work order.
-- Shortcut agent: prepares a compact path for small tasks that do not need the full guardrail workflow.
 - Discovery agent: finds the smallest relevant file set and search targets.
 - Contract agent: turns the task into a verifiable requirement contract.
 - Architecture agent: extracts guardrails, boundaries, design quality goals, and forbidden shortcuts.
@@ -15,6 +14,7 @@
 - Packet agent: produces the strict implementation packet.
 - Handoff agent: turns the packet into a paste-ready coding brief.
 - Builder: makes the approved changes.
+- OpenCode build agent: handles small bounded implementation tasks that do not need the full guardrail workflow.
 - Verifier: runs focused checks and summarizes evidence.
 - Review agents: independently review requirements, architecture, QA, completeness, and lessons.
 - Completion gate: computes approved, blocked, or waiver-required outcomes.
@@ -301,9 +301,9 @@ Workflow boundary:
 - candidates must not be implemented inside a contained feature task unless they are explicitly part of that task contract
 - accepted candidates become backlog entries or future task contracts before code changes begin
 
-## UC-013: Execute A Shortcut Loop For Small Tasks
+## UC-013: Hand Off Small Tasks To OpenCode Build
 
-Goal: route small, low-risk tasks through a lightweight workflow that avoids the full guardrail path when it would add unnecessary overhead.
+Goal: route small, low-risk tasks directly to OpenCode's built-in `build` primary agent when the full guardrail path would add unnecessary overhead.
 
 Input:
 
@@ -319,11 +319,11 @@ Output:
 - minimal implementation steps
 - minimum checks
 - stop conditions
-- escalation criteria if the task grows beyond shortcut scope
+- escalation criteria if the task grows beyond small-task scope
 
 Primary value:
 
-- lets the orchestrator move trivial or low-risk work quickly without forcing the full contract, architecture, and review loop
+- lets the orchestrator avoid unnecessary ceremony by producing a compact build-agent handoff for trivial or low-risk work
 
 ## Trace Links
 

@@ -6,7 +6,6 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 
 - `opencode.json` - copy into the target development repo root as the OpenCode config and entrypoint selector.
 - `.opencode/agents/orchestrator.md` - primary workflow coordinator.
-- `.opencode/agents/orchestrator-shortcut.md` - shortcut-loop coordinator for small tasks.
 - `.opencode/agents/orchestrator-*.md` - stage agents for planning, discovery, contract, architecture, lessons, packet, handoff, builder, verifier, review, gate, reporter, research, and improvement discovery.
 - `.opencode/known-mistakes.md` - persistent lesson memory.
 - `.opencode/templates/prompts/*.md` - reusable prompt templates tied to use cases.
@@ -23,7 +22,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 - `orchestrator-builder` is the only edit-capable stage.
 - `orchestrator-verifier` is shell-capable for focused checks.
 - review agents are read-only and exist to keep approval separate from implementation.
-- `orchestrator-shortcut` is read-only and prepares the lightweight path for small tasks.
+- Small bounded tasks are handed off to OpenCode's built-in `build` primary agent instead of a package-specific shortcut agent.
 - `orchestrator-improvement` is read-only and exists to feed backlog candidates, not to implement them.
 
 ## Trace Links
