@@ -1,8 +1,9 @@
 ---
 description: Creates a paste-ready handoff for external or manual coding agents.
 mode: subagent
+model: openrouter/deepseek/deepseek-v4-flash
 hidden: true
-color: teal
+color: info
 temperature: 0.1
 permission:
   read: allow

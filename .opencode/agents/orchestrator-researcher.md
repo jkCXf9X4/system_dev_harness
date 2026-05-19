@@ -1,6 +1,7 @@
 ---
 description: Researches OpenCode docs and external references without touching the workspace.
 mode: subagent
+model: openrouter/deepseek/deepseek-v4-flash
 hidden: true
 color: secondary
 temperature: 0.1

@@ -1,6 +1,7 @@
 ---
 description: Applies the deterministic completion gate to the full review bundle.
 mode: subagent
+model: openrouter/deepseek/deepseek-v4-flash
 hidden: true
 color: warning
 temperature: 0.0

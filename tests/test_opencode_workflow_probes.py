@@ -1,0 +1,98 @@
+from __future__ import annotations
+
+import subprocess
+from pathlib import Path
+
+
+def as_text(value: str | bytes | None) -> str:
+    if isinstance(value, bytes):
+        return value.decode("utf-8", "replace")
+    return value or ""
+
+
+def run_opencode(
+    project: Path,
+    env: dict[str, str],
+    *,
+    agent: str,
+    title: str,
+    prompt: str,
+    timeout: int = 30,
+) -> tuple[int, str]:
+    cmd = [
+        "opencode",
+        "run",
+        "--format",
+        "default",
+        "--print-logs",
+        "--pure",
+        "--title",
+        title,
+        "--agent",
+        agent,
+        prompt,
+    ]
+
+    try:
+        completed = subprocess.run(
+            cmd,
+            cwd=project,
+            env=env,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            check=False,
+        )
+        output = as_text(completed.stdout) + as_text(completed.stderr)
+        return completed.returncode, output
+    except subprocess.TimeoutExpired as exc:
+        output = as_text(exc.stdout) + as_text(exc.stderr)
+        return 124, output
+
+
+def assert_output_contains(output: str, needle: str) -> None:
+    assert needle in output, f"missing {needle!r}\n\nlast output:\n{output[-2000:]}"
+
+
+def test_contract_stage_smoke(simple_project: Path, opencode_env: dict[str, str]) -> None:
+    status, output = run_opencode(
+        simple_project,
+        opencode_env,
+        agent="orchestrator-contract",
+        title="contract_stage",
+        prompt="Create a requirement contract for adding a verification probes section to the repository.",
+        timeout=30,
+    )
+
+    assert status in {0, 124}
+    assert_output_contains(output, "Falling back to default agent")
+    assert_output_contains(output, "orchestrator-contract.md")
+
+
+def test_build_stage_smoke(simple_project: Path, opencode_env: dict[str, str]) -> None:
+    status, output = run_opencode(
+        simple_project,
+        opencode_env,
+        agent="build",
+        title="build_stage",
+        prompt="Fix a tiny typo in README.",
+        timeout=20,
+    )
+
+    assert status in {0, 124}
+    assert_output_contains(output, "agent=build mode=primary")
+
+
+def test_improvement_stage_smoke(simple_project: Path, opencode_env: dict[str, str]) -> None:
+    status, output = run_opencode(
+        simple_project,
+        opencode_env,
+        agent="orchestrator-improvement",
+        title="improvement_stage",
+        prompt="Find backlog-ready improvement candidates in this workflow package. Do not edit files.",
+        timeout=60,
+    )
+
+    assert status in {0, 124}
+    assert "orchestrator-improvement" in output.lower()
+    assert "continuous-improvement-discovery.md" in output.lower()

@@ -1,8 +1,9 @@
 ---
 description: Independently checks whether the whole contracted task appears complete.
 mode: subagent
+model: openrouter/deepseek/deepseek-v4-flash
 hidden: true
-color: yellow
+color: warning
 temperature: 0.0
 permission:
   read: allow

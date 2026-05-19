@@ -1,8 +1,9 @@
 ---
 description: Produces the strict implementation packet used by the builder stage.
 mode: subagent
+model: openrouter/deepseek/deepseek-v4-flash
 hidden: true
-color: green
+color: success
 temperature: 0.1
 permission:
   read: allow

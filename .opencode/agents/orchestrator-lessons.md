@@ -1,8 +1,9 @@
 ---
 description: Checks the task against persistent lesson memory and turns lessons into prevention rules.
 mode: subagent
+model: openrouter/deepseek/deepseek-v4-flash
 hidden: true
-color: orange
+color: warning
 temperature: 0.1
 permission:
   read: allow

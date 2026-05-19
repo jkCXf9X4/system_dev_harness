@@ -1,8 +1,9 @@
 ---
 description: Extracts architecture guardrails, design quality goals, boundaries, and forbidden shortcuts.
 mode: subagent
+model: openrouter/deepseek/deepseek-v4-flash
 hidden: true
-color: purple
+color: accent
 temperature: 0.1
 permission:
   read: allow

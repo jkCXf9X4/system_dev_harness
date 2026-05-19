@@ -1,8 +1,9 @@
 ---
 description: Converts the task into a strict requirement contract with verifiable checks.
 mode: subagent
+model: openrouter/deepseek/deepseek-v4-flash
 hidden: true
-color: blue
+color: info
 temperature: 0.1
 permission:
   read: allow

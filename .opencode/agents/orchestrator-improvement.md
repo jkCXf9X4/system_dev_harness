@@ -1,8 +1,9 @@
 ---
 description: Explores continuous improvement opportunities and prepares backlog-ready candidates without editing code.
 mode: subagent
+model: openrouter/deepseek/deepseek-v4-flash
 hidden: true
-color: magenta
+color: accent
 temperature: 0.1
 permission:
   read: allow

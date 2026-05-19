@@ -1,6 +1,7 @@
 ---
 description: Coordinates the full guarded workflow, delegates specialist agents, and keeps the repo aligned to the request.
 mode: primary
+model: openrouter/deepseek/deepseek-v4-flash
 color: primary
 temperature: 0.2
 permission:

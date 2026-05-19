@@ -1,6 +1,7 @@
 ---
 description: Implements approved changes and reports implementation evidence.
 mode: subagent
+model: openrouter/deepseek/deepseek-v4-flash
 hidden: true
 color: success
 temperature: 0.2

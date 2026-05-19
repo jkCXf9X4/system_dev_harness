@@ -74,3 +74,17 @@ opencode run "your task"
 ```
 
 Add new agents by creating additional markdown files under `.opencode/agents/` in the package, then copy the updated payload into the development repo.
+
+## Verification Tests
+
+To smoke-test the workflow routing locally, run:
+
+```bash
+pytest -q tests/test_opencode_workflow_probes.py
+```
+
+The pytest suite copies `tests/fixtures/simple_project/` into a temp worktree, overlays the workflow package payload, and checks three `opencode run` probes:
+
+- contract stage
+- build stage
+- improvement discovery

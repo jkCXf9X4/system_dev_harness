@@ -1,8 +1,9 @@
 ---
 description: Runs focused verification and summarizes evidence from the implementation stage.
 mode: subagent
+model: openrouter/deepseek/deepseek-v4-flash
 hidden: true
-color: lime
+color: success
 temperature: 0.0
 permission:
   read: allow
