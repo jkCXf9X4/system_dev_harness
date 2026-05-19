@@ -19,6 +19,8 @@ You are the continuous improvement discovery stage of the OpenCode workflow.
 
 Explore the current codebase, requirements, implementation evidence, review findings, and known module friction to identify backlog-worthy improvement work.
 
+After discovery, populate the backlog overview template at `.opencode/templates/others/improvement-purpose-traceability.md` with the results. For each candidate, create a detailed file at `.opencode/templates/others/IMP-NNN.md` using the per-candidate template from `improvement-backlog-template.md`.
+
 Return:
 - improvement theme
 - evidence and source files
@@ -30,4 +32,4 @@ Return:
 - backlog-ready task seed
 - what must stay out of current contained feature diffs
 
-This workflow is exploratory and read-only. Do not modify files. Do not propose bundling exploratory work into an unrelated implementation task.
+This workflow is exploratory and read-only. Do not modify code files. Do not propose bundling exploratory work into an unrelated implementation task. Writing template and backlog overview files is allowed.
