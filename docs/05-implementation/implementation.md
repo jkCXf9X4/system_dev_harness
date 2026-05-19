@@ -44,7 +44,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 | Gate | `.opencode/agents/orchestrator-reviewer.md` | no | no | Produces `approved`, `blocked`, or `waiver_required`. |
 | Report | `.opencode/agents/orchestrator-reporter.md` | no | no | Produces the final control report. |
 | Research | `.opencode/agents/orchestrator-researcher.md` | no | no | Gathers external documentation or dependency context. |
-| Improvement | `.opencode/agents/orchestrator-improvement.md` | no | no | Produces backlog-ready improvement candidates. |
+| Improvement | `.opencode/agents/orchestrator-improvement.md` | no | no | Produces backlog-ready cleanup, refactoring, pattern, module responsibility, or tuning candidates. |
 | Small tasks | OpenCode built-in `build` primary agent | yes | yes | Executes compact handoffs for small low-risk tasks. |
 
 ## Trace Links

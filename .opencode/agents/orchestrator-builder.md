@@ -28,4 +28,4 @@ When you finish, report:
 - any blockers or follow-up work
 
 Do not broaden scope without explicit instruction.
-Do not implement exploratory refactoring, pattern switches, responsibility switches, or tuning unless they are part of the approved contract.
+Do not implement exploratory cleanup, refactoring, pattern switches, responsibility switches, or tuning unless they are part of the approved contract.

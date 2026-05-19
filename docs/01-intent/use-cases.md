@@ -287,6 +287,7 @@ Input:
 
 Output:
 
+- cleanup candidates
 - refactoring candidates
 - pattern switch candidates
 - module responsibility switch candidates

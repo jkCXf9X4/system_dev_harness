@@ -43,4 +43,4 @@ Use `orchestrator-researcher` for external documentation or dependency context.
 Use `orchestrator-improvement` for exploratory continuous improvement work that should feed a backlog rather than change code.
 
 Prefer delegation over direct implementation. Only edit directly when delegation is unnecessary, blocked, or would duplicate obvious work.
-Do not let exploratory refactoring, pattern switches, responsibility switches, or tuning pollute a contained feature or bug-fix diff unless the task contract explicitly includes that work.
+Do not let exploratory cleanup, refactoring, pattern switches, responsibility switches, or tuning pollute a contained feature or bug-fix diff unless the task contract explicitly includes that work.

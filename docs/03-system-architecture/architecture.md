@@ -26,7 +26,7 @@ continuous improvement:
   improvement intake
     -> read-only discovery
     -> pressure analysis
-    -> backlog-ready candidates
+    -> cleanup, refactoring, and other backlog-ready candidates
     -> final report
 
 small task handoff:
@@ -53,7 +53,7 @@ small task handoff:
 | Completion gate | Computes approved, blocked, or waiver-required outcomes. |
 | Final report | Captures the final state, decision, and remaining gaps. |
 | Small task handoff | Sends small bounded tasks to OpenCode's built-in `build` primary agent instead of the full guardrail loop. |
-| Improvement workflow | Separately explores refactoring, pattern, module responsibility, and tuning opportunities. |
+| Improvement workflow | Separately explores cleanup, refactoring, pattern, module responsibility, and tuning opportunities. |
 | Improvement backlog | Stores accepted improvement candidates before they become scoped implementation tasks. |
 | Reusable templates | Capture cross-project prompt and supporting templates under `.opencode/templates/`. |
 
@@ -86,9 +86,9 @@ The repository supports three related workflow branches:
 
 - Delivery workflow: normalize a bounded task, create a contract, implement only the contracted change, verify it, review it, and gate completion.
 - Small-task handoff: normalize a small bounded task, confirm it stays low-risk, and hand it to OpenCode's built-in `build` primary agent.
-- Improvement workflow: explore current features, requirements, implementation evidence, reviewer findings, and module friction to produce backlog-ready improvement candidates.
+- Improvement workflow: explore current features, requirements, implementation evidence, reviewer findings, module friction, and cleanup opportunities to produce backlog-ready improvement candidates.
 
-The delivery workflow may report improvement candidates, but it must not absorb exploratory refactoring or pattern changes unless the contract explicitly includes them. This keeps diffs small, verification focused, and review evidence tied to the requested feature or fix.
+The delivery workflow may report improvement candidates, but it must not absorb exploratory cleanup, refactoring, or pattern changes unless the contract explicitly includes them. This keeps diffs small, verification focused, and review evidence tied to the requested feature or fix.
 
 ## Trace Links
 

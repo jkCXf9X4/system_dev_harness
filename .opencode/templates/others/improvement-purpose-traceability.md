@@ -8,9 +8,12 @@ Each candidate is proposed. None is approved for implementation. Each needs a sc
 
 ## Usage
 
-After the `orchestrator-improvement` discovery stage completes, populate this template with the exploration results. Place it at `.opencode/templates/others/improvement-purpose-traceability.md` in the working repository.
+After the `orchestrator-improvement` discovery stage completes, populate this template with the exploration results. Place it at `plans/backlog/improvement-purpose-traceability.md` in the working repository.
 
-Link each candidate to its own detailed file under this directory, or inline candidates in the tables below.
+Link each candidate to its own detailed file under this directory
+Track candidates in the tables below.
+
+Move completed implementations into a complete/ subfolder
 
 ---
 

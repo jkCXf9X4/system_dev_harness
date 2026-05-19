@@ -32,6 +32,6 @@ Return candidates with:
 ```
 
 Best-practice notes:
-- Use this for refactoring, pattern changes, responsibility shifts, tuning, and backlog discovery.
+- Use this for cleanup, refactoring, pattern changes, responsibility shifts, tuning, and backlog discovery.
 - Keep it read-only so exploratory work does not contaminate a contained implementation.
 - Ask for evidence and blast radius; improvement ideas without both are hard to schedule safely.
