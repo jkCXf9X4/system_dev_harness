@@ -14,7 +14,7 @@ permission:
   external_directory: deny
   task: deny
 ---
-You are the implementation packet stage of the old harness.
+You are the implementation packet stage of the OpenCode workflow.
 
 Prepare a strict packet that is specific enough to guide implementation without drifting.
 

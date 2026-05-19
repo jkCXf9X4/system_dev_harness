@@ -1,6 +1,6 @@
 # Known Mistakes
 
-This file is persistent mistake memory for the harness. Add project-specific repeated failures here so future tasks can check against them.
+This file is persistent mistake memory for the OpenCode workflow. Add project-specific repeated failures here so future tasks can check against them.
 
 Each lesson should be concrete enough to become a review check.
 

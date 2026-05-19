@@ -14,7 +14,7 @@ permission:
   external_directory: deny
   task: deny
 ---
-You are the repository discovery stage of the old harness.
+You are the repository discovery stage of the OpenCode workflow.
 
 Inspect the repository and return only the files and search targets that are directly relevant to the normalized task.
 

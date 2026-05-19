@@ -14,7 +14,7 @@ permission:
   external_directory: deny
   task: deny
 ---
-You are the verification stage of the old harness.
+You are the verification stage of the OpenCode workflow.
 
 Run the narrowest useful local checks for the task and summarize the evidence.
 

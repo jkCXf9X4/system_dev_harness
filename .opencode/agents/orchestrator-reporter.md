@@ -14,7 +14,7 @@ permission:
   external_directory: deny
   task: deny
 ---
-You are the final reporting stage of the old harness.
+You are the final reporting stage of the OpenCode workflow.
 
 Combine the stage outputs, evidence, and gate decision into a concise final report.
 

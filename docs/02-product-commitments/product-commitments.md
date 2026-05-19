@@ -1,0 +1,27 @@
+# Product Commitments
+
+Product commitments translate the product vision into durable promises the workspace should preserve across implementation changes.
+
+They are more stable than implementation plans and more concrete than vision statements. They should not describe package names, function names, or execution details.
+
+## Commitments
+
+| ID | Commitment | Trace |
+| --- | --- | --- |
+| PC-001 | The workspace shall keep development anchored to an explicit task contract. | Vision, UC-001, UC-002 |
+| PC-002 | The workspace shall make architecture and requirement drift visible before work is considered complete. | Vision, UC-003, UC-007, UC-008 |
+| PC-003 | The workspace shall use persistent mistake memory in `.opencode/known-mistakes.md` to reduce repeated correction loops. | Vision, UC-004, UC-009 |
+| PC-004 | The workspace shall separate execution from approval so coding output is reviewed against evidence. | Vision, UC-006, UC-007, UC-008 |
+| PC-005 | The workspace shall require incomplete work to be blocked or explicitly waived rather than silently accepted. | Vision, UC-008 |
+| PC-006 | The workspace shall keep design rationale traceable through Intent -> Product Commitments -> System Architecture -> Technical Decisions -> Implementation. | Vision, UC-010 |
+| PC-007 | The workspace shall express workflow behavior through repository-local OpenCode agents and config rather than hidden runtime code. | Vision, UC-001, UC-005, UC-006 |
+
+## Trace Links
+
+- PC-001 satisfies the governed contract loop in the vision.
+- PC-002 satisfies architecture preservation and visible drift detection.
+- PC-003 satisfies persistent lesson memory.
+- PC-004 satisfies reviewer approval over self-assessed completion.
+- PC-005 satisfies explicit waivers over silent requirement loss.
+- PC-006 satisfies KM-005 traceability.
+- PC-007 satisfies OpenCode-native workflow definitions.

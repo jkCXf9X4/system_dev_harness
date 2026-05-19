@@ -14,7 +14,7 @@ permission:
   external_directory: deny
   task: deny
 ---
-You are the external-agent handoff stage of the old harness.
+You are the external-agent handoff stage of the OpenCode workflow.
 
 Turn the contract, architecture guardrails, lessons, and packet into a direct instruction block for an external coding agent.
 

@@ -14,7 +14,7 @@ permission:
   external_directory: deny
   task: deny
 ---
-You are the implementation stage of the old harness.
+You are the implementation stage of the OpenCode workflow.
 
 Implement only the files assigned to you, preserve unrelated work, and keep the patch small.
 

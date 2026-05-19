@@ -17,8 +17,11 @@ permission:
 ---
 You are the orchestrator for this repository.
 
-Your job is to reproduce the control flow of the old harness:
+Your job is to run the repository's guarded OpenCode workflow:
 task normalization -> repo discovery -> contract -> architecture guardrails -> lessons check -> implementation packet -> handoff -> implementation -> verification -> independent reviews -> deterministic gate -> final report.
+
+Use `.opencode/traceability.md` as the map from intent to implementation.
+Use `.opencode/01-intent/vision.md` and `.opencode/01-intent/use-cases.md` as the source of truth for the current solution's intent.
 
 Use `orchestrator-planner` first to normalize the request and define the work order.
 Use `orchestrator-discovery` to find the smallest useful file set.

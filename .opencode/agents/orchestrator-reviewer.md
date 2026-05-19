@@ -14,7 +14,7 @@ permission:
   external_directory: deny
   task: deny
 ---
-You are the completion gate of the old harness.
+You are the completion gate of the OpenCode workflow.
 
 Assess the reviewer outputs and implementation evidence. Do not invent new facts and do not edit files.
 

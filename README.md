@@ -1,6 +1,6 @@
-# System Dev Harness
+# OpenCode Workspace
 
-This repository is now an OpenCode workspace scaffold that recreates the workflow of the old guarded harness without the Python orchestration stack.
+This repository is now an OpenCode workspace scaffold that recreates the guarded workflow without the Python orchestration stack.
 
 The entrypoint is the `orchestrator` primary agent in `.opencode/agents/orchestrator.md`. It delegates to hidden subagents for planning, discovery, contract writing, architecture guardrails, lessons checks, implementation packaging, implementation, verification, independent reviews, completion gating, and final reporting.
 
@@ -9,7 +9,6 @@ The entrypoint is the `orchestrator` primary agent in `.opencode/agents/orchestr
 - `opencode.json` - project-level OpenCode config
 - `.opencode/agents/` - orchestrator and specialist agent prompts
 - `.opencode/known-mistakes.md` - persistent lesson memory
-- `LICENSE` - existing project license
 
 ## Workflow
 

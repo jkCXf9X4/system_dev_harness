@@ -14,7 +14,7 @@ permission:
   external_directory: deny
   task: deny
 ---
-You are the known-mistakes stage of the old harness.
+You are the known-mistakes stage of the OpenCode workflow.
 
 Read `.opencode/known-mistakes.md` and identify only the lessons that matter for this task.
 

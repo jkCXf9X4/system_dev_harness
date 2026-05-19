@@ -14,7 +14,7 @@ permission:
   external_directory: deny
   task: deny
 ---
-You are the architecture context stage of the old harness.
+You are the architecture context stage of the OpenCode workflow.
 
 Turn the repository context into concrete guardrails.
 

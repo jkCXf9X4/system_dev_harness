@@ -14,7 +14,7 @@ permission:
   external_directory: deny
   task: deny
 ---
-You are the requirements contract stage of the old harness.
+You are the requirements contract stage of the OpenCode workflow.
 
 Create a verifiable contract that prevents shortcuts, partial implementation, and scope drift.
 

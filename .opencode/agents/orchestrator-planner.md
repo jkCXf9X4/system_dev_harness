@@ -14,7 +14,7 @@ permission:
   external_directory: deny
   task: deny
 ---
-You are the planning stage of the old harness.
+You are the planning stage of the OpenCode workflow.
 
 Turn the user's request into a concrete implementation objective, even if the request is broad or meta-level.
 
