@@ -11,6 +11,8 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 - `.opencode/templates/prompts/*.md` - reusable prompt templates tied to use cases.
 - `.opencode/templates/README.md` - package index for the reusable template folder.
 - `.opencode/templates/others/improvement-backlog-template.md` - reusable backlog template for accepted improvement candidates.
+- `.opencode/templates/others/adr-template.md` - reusable ADR template for durable architectural decisions.
+- `.opencode/templates/others/adr_record.md` - reusable ADR record template for compact decision registers.
 
 ## Package Documentation
 

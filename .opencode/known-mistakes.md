@@ -89,10 +89,10 @@ Why it matters:
 Mixed documentation layers make ownership unclear, cause higher-level product intent to churn with implementation changes, and make traceability harder to audit.
 
 Prevention rule:
-Keep the documentation chain separated: Intent -> Product Commitments -> System Architecture -> Technical Decisions -> Implementation -> Verification. Trace links should point backward to the layer being satisfied. Higher layers describe intent and constraints without linking down into lower-level implementation details.
+Keep the documentation chain separated: Intent -> Product Decisions -> System Architecture -> Technical Decisions -> Implementation -> Verification. Trace links should point backward to the layer being satisfied. Higher layers describe intent and constraints without linking down into lower-level implementation details.
 
 Completion check:
-Reviewers must verify that product vision captures intent, product commitments translate intent into durable product promises, system architecture describes stable guarantees and boundaries, technical decisions bridge architecture to build details, and implementation or verification artifacts trace backward to the requirement, decision, or architecture they satisfy.
+Reviewers must verify that product vision captures intent, product commitments/decisions translate intent into durable product promises, system architecture describes stable guarantees and boundaries, technical decisions bridge architecture to build details, and implementation or verification artifacts trace backward to the requirement, decision, or architecture they satisfy.
 
 ### KM-006: Keep Folder Layout Hierarchical And Easy To Scan
 

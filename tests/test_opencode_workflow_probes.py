@@ -54,6 +54,10 @@ def assert_output_contains(output: str, needle: str) -> None:
     assert needle in output, f"missing {needle!r}\n\nlast output:\n{output[-2000:]}"
 
 
+def read_prompt(project: Path, relative_path: str) -> str:
+    return (project / relative_path).read_text(encoding="utf-8")
+
+
 def test_contract_stage_smoke(simple_project: Path, opencode_env: dict[str, str]) -> None:
     status, output = run_opencode(
         simple_project,
@@ -66,7 +70,9 @@ def test_contract_stage_smoke(simple_project: Path, opencode_env: dict[str, str]
 
     assert status in {0, 124}
     assert_output_contains(output, "Falling back to default agent")
-    assert_output_contains(output, "orchestrator-contract.md")
+    prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-contract.md")
+    assert "requirements contract stage" in prompt.lower()
+    assert "verifiable contract" in prompt.lower()
 
 
 def test_build_stage_smoke(simple_project: Path, opencode_env: dict[str, str]) -> None:
@@ -95,4 +101,27 @@ def test_improvement_stage_smoke(simple_project: Path, opencode_env: dict[str, s
 
     assert status in {0, 124}
     assert "orchestrator-improvement" in output.lower()
-    assert "continuous-improvement-discovery.md" in output.lower()
+    prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-improvement.md")
+    assert "continuous improvement discovery stage" in prompt.lower()
+    assert "backlog-worthy improvement work" in prompt.lower()
+
+
+def test_adr_templates_are_generic_and_referenced(simple_project: Path) -> None:
+    architecture_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-architecture.md")
+    packet_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-packet.md")
+    review_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-architecture.md")
+    adr_template = read_prompt(simple_project, ".opencode/templates/others/adr-template.md")
+    adr_record = read_prompt(simple_project, ".opencode/templates/others/adr_record.md")
+
+    assert "adr-template.md" in architecture_prompt.lower()
+    assert "adr_record.md" in architecture_prompt.lower()
+    assert "adr-template.md" in packet_prompt.lower()
+    assert "adr_record.md" in packet_prompt.lower()
+    assert "adr-template.md" in review_prompt.lower()
+    assert "adr_record.md" in review_prompt.lower()
+    assert "architecture decision record" in adr_template.lower()
+    assert "adr record template" in adr_record.lower()
+    assert "ssp_references" not in adr_template
+    assert "ssp_references" not in adr_record
+    assert "docs/adr/README.md" not in adr_template
+    assert "docs/adr/README.md" not in adr_record

@@ -5,7 +5,7 @@ This directory holds reusable workflow templates that are copied into developmen
 ## Layout
 
 - `prompts/` - reusable prompt templates mapped to the workflow use cases.
-- `others/` - supporting templates that are not prompts, such as the improvement backlog template.
+- `others/` - supporting templates that are not prompts, such as the improvement backlog template and ADR templates.
 
 ## Usage
 

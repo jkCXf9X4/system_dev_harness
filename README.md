@@ -17,7 +17,7 @@ The active payload is `opencode.json` plus `.opencode/`. The entrypoint is the `
 - `.opencode/agents/` - orchestrator and specialist agent prompts.
 - `.opencode/known-mistakes.md` - persistent lesson memory.
 - `.opencode/templates/prompts/` - reusable prompt templates tied to the use cases.
-- `.opencode/templates/others/` - reusable supporting templates such as the improvement backlog template.
+- `.opencode/templates/others/` - reusable supporting templates such as the improvement backlog template and ADR templates.
 
 ## Where To Change Things
 
