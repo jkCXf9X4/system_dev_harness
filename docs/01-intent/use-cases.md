@@ -22,6 +22,8 @@
 - Researcher: gathers external documentation or dependency context when needed.
 - Human operator: approves waivers or re-runs tasks when the gate blocks completion.
 
+## Guarded Delivery
+
 ## UC-001: Normalize A Request
 
 Goal: turn a rough instruction into a concrete task shape and work order.
@@ -268,6 +270,8 @@ Primary value:
 
 - prevents architecture review from focusing only on drift while missing unnecessary complexity, poor readability, or weak module boundaries
 
+## Continuous Improvement
+
 ## UC-012: Drive Continuous Codebase Improvement
 
 Goal: run a separate exploratory workflow that identifies improvement work and feeds a backlog without polluting contained feature implementation.
@@ -300,6 +304,8 @@ Workflow boundary:
 - continuous improvement discovery is read-only and exploratory
 - candidates must not be implemented inside a contained feature task unless they are explicitly part of that task contract
 - accepted candidates become backlog entries or future task contracts before code changes begin
+
+## Small Task Handoff
 
 ## UC-013: Hand Off Small Tasks To OpenCode Build
 

@@ -19,6 +19,18 @@ The active payload is `opencode.json` plus `.opencode/`. The entrypoint is the `
 - `.opencode/templates/prompts/` - reusable prompt templates tied to the use cases.
 - `.opencode/templates/others/` - reusable supporting templates such as the improvement backlog template.
 
+## Where To Change Things
+
+| Concern | Change Here |
+| --- | --- |
+| Package install and copy instructions | `README.md` |
+| Runtime agent behavior copied into projects | `.opencode/agents/` |
+| Reusable cross-project prompts and supporting templates | `.opencode/templates/` |
+| Persistent repeated-failure checks | `.opencode/known-mistakes.md` |
+| Product intent, commitments, architecture, and decisions | `docs/` |
+| Canonical workflow policy and branch rules | `docs/03-system-architecture/architecture.md` |
+| Concrete artifact-to-stage mapping | `docs/05-implementation/implementation.md` |
+
 ## Delivery Workflow
 
 1. `orchestrator-planner` turns the request into a concrete task and work order.

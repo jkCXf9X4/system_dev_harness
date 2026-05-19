@@ -25,6 +25,28 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 - Small bounded tasks are handed off to OpenCode's built-in `build` primary agent instead of a package-specific shortcut agent.
 - `orchestrator-improvement` is read-only and exists to feed backlog candidates, not to implement them.
 
+## Stage Map
+
+| Stage | Artifact | Edit | Bash | Responsibility |
+| --- | --- | --- | --- | --- |
+| Entrypoint | `opencode.json` | n/a | n/a | Selects `orchestrator` as the default primary agent. |
+| Orchestration | `.opencode/agents/orchestrator.md` | ask | ask | Chooses guarded delivery, improvement discovery, or small-task handoff. |
+| Planning | `.opencode/agents/orchestrator-planner.md` | no | no | Normalizes the request and recommends the workflow branch. |
+| Discovery | `.opencode/agents/orchestrator-discovery.md` | no | no | Finds the smallest relevant repository context. |
+| Contract | `.opencode/agents/orchestrator-contract.md` | no | no | Creates the checklistable requirement contract. |
+| Architecture | `.opencode/agents/orchestrator-architecture.md` | no | no | Extracts boundaries, design quality goals, and guardrails. |
+| Lessons | `.opencode/agents/orchestrator-lessons.md` | no | no | Applies persistent mistake memory to the task. |
+| Packet | `.opencode/agents/orchestrator-packet.md` | no | no | Produces the strict implementation packet. |
+| Handoff | `.opencode/agents/orchestrator-handoff.md` | no | no | Turns the packet into a direct coding brief. |
+| Build | `.opencode/agents/orchestrator-builder.md` | yes | yes | Applies approved changes and reports implementation evidence. |
+| Verify | `.opencode/agents/orchestrator-verifier.md` | no | yes | Runs focused checks and summarizes verification evidence. |
+| Review | `.opencode/agents/orchestrator-review-*.md` | no | no | Independently reviews requirements, architecture, QA, completeness, and lessons. |
+| Gate | `.opencode/agents/orchestrator-reviewer.md` | no | no | Produces `approved`, `blocked`, or `waiver_required`. |
+| Report | `.opencode/agents/orchestrator-reporter.md` | no | no | Produces the final control report. |
+| Research | `.opencode/agents/orchestrator-researcher.md` | no | no | Gathers external documentation or dependency context. |
+| Improvement | `.opencode/agents/orchestrator-improvement.md` | no | no | Produces backlog-ready improvement candidates. |
+| Small tasks | OpenCode built-in `build` primary agent | yes | yes | Executes compact handoffs for small low-risk tasks. |
+
 ## Trace Links
 
 - Implements ADR-0001 through ADR-0004.

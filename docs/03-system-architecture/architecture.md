@@ -6,14 +6,33 @@ The current solution acts as a control layer around agentic development. It sepa
 
 ## Control Flow
 
+This document is the canonical policy for workflow branches, boundaries, and execution ownership.
+
 ```text
-task intake
-  -> OpenCode primary orchestrator
-  -> specialist agents
-  -> implementation evidence
-  -> independent review
-  -> deterministic gate routing
-  -> final control report
+guarded delivery:
+  task intake
+    -> OpenCode primary orchestrator
+    -> planner
+    -> discovery
+    -> contract, architecture, lessons
+    -> packet and handoff
+    -> builder
+    -> verifier
+    -> independent reviews
+    -> deterministic gate routing
+    -> final control report
+
+continuous improvement:
+  improvement intake
+    -> read-only discovery
+    -> pressure analysis
+    -> backlog-ready candidates
+    -> final report
+
+small task handoff:
+  small bounded task
+    -> compact build handoff
+    -> OpenCode build primary agent
 ```
 
 ## Stable Concepts
@@ -40,7 +59,8 @@ task intake
 
 ## Boundaries
 
-- The source of truth lives in `.opencode/`.
+- Runtime source of truth lives in `.opencode/`.
+- Design and traceability source of truth lives in `docs/`.
 - `opencode.json` selects the primary agent and loads the workflow instructions.
 - The builder agent is the only agent meant to edit files.
 - Review agents are read-only.
@@ -62,7 +82,7 @@ Independent reviewer nodes evaluate requirements, architecture, QA, completeness
 
 ## Workflow Split
 
-The repository supports two related workflows:
+The repository supports three related workflow branches:
 
 - Delivery workflow: normalize a bounded task, create a contract, implement only the contracted change, verify it, review it, and gate completion.
 - Small-task handoff: normalize a small bounded task, confirm it stays low-risk, and hand it to OpenCode's built-in `build` primary agent.
@@ -72,7 +92,7 @@ The delivery workflow may report improvement candidates, but it must not absorb 
 
 ## Trace Links
 
-- Intent docs feed PC-001 through PC-009.
+- Intent docs feed PC-001 through PC-010.
 - Product commitments constrain the agent roles and permissions.
 - Technical decisions justify the OpenCode-native workflow and persistent docs.
 - Implementation artifacts realize the workflow in `opencode.json`, `.opencode/agents/*.md`, `.opencode/known-mistakes.md`, and `.opencode/templates/*.md`.

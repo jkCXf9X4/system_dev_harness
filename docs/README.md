@@ -1,4 +1,4 @@
-# Traceability
+# Internal Documentation Map
 
 This file maps the current solution from intent to implementation.
 
@@ -18,4 +18,4 @@ The docs tree itself is not copied into development repos.
 
 ## How To Use
 
-Start at the intent docs, then walk downward through commitments, architecture, decisions, and implementation. Reviewers should verify that changes preserve the chain in both directions: from implementation back to intent, and from intent down to the package docs in this repository.
+Start at the intent docs, then walk downward through commitments, architecture, decisions, and implementation. Use `docs/03-system-architecture/architecture.md` as the canonical workflow policy and `docs/05-implementation/implementation.md` as the artifact map. Reviewers should verify that changes preserve the chain in both directions: from implementation back to intent, and from intent down to the package docs in this repository.

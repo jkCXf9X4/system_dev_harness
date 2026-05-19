@@ -1,5 +1,5 @@
 ---
-description: Implements approved changes and runs the narrowest useful verification.
+description: Implements approved changes and reports implementation evidence.
 mode: subagent
 hidden: true
 color: success
@@ -22,7 +22,7 @@ Prefer simple, readable, modular changes that fit the assigned module responsibi
 When you finish, report:
 - files changed
 - summary of the implementation
-- verification performed
+- suggested focused verification for the verifier to run
 - any out-of-contract improvement candidates exposed by the work, without implementing them
 - any blockers or follow-up work
 

@@ -10,14 +10,14 @@ They are more stable than implementation plans and more concrete than vision sta
 | --- | --- | --- |
 | PC-001 | The workspace shall keep development anchored to an explicit task contract. | Vision, UC-001, UC-002 |
 | PC-002 | The workspace shall make architecture and requirement drift visible before work is considered complete. | Vision, UC-003, UC-007, UC-008 |
-| PC-003 | The workspace shall use persistent mistake memory in `.opencode/known-mistakes.md` to reduce repeated correction loops. | Vision, UC-004, UC-009 |
+| PC-003 | The workspace shall use persistent mistake memory to reduce repeated correction loops. | Vision, UC-004, UC-009 |
 | PC-004 | The workspace shall separate execution from approval so coding output is reviewed against evidence. | Vision, UC-006, UC-007, UC-008 |
 | PC-005 | The workspace shall require incomplete work to be blocked or explicitly waived rather than silently accepted. | Vision, UC-008 |
 | PC-006 | The workspace shall keep design rationale traceable through Intent -> Product Commitments -> System Architecture -> Technical Decisions -> Implementation. | Vision, UC-010 |
 | PC-007 | The workspace shall express workflow behavior through repository-local OpenCode agents and config rather than hidden runtime code. | Vision, UC-001, UC-005, UC-006 |
 | PC-008 | The workspace shall require architecture work to evaluate modularity, simplicity, readability, and module responsibility fit. | Vision, UC-003, UC-011 |
 | PC-009 | The workspace shall run continuous improvement as a separate exploratory workflow that feeds backlog candidates without expanding contained feature diffs. | Vision, UC-009, UC-012 |
-| PC-010 | The workspace shall route small bounded tasks directly to OpenCode's built-in build agent when the full guardrail workflow is unnecessary. | Vision, UC-001, UC-013 |
+| PC-010 | The workspace shall provide a lightweight execution path for small bounded tasks when the full guardrail workflow is unnecessary. | Vision, UC-001, UC-013 |
 
 ## Trace Links
 
@@ -30,4 +30,4 @@ They are more stable than implementation plans and more concrete than vision sta
 - PC-007 satisfies OpenCode-native workflow definitions.
 - PC-008 satisfies active design quality stewardship during architecture work.
 - PC-009 satisfies deliberate codebase improvement from current delivery pressure while preserving scoped implementation and verification.
-- PC-010 satisfies a lightweight build-agent handoff for trivial or low-risk tasks.
+- PC-010 satisfies a lightweight path for trivial or low-risk tasks.
