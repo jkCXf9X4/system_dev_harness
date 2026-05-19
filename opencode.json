@@ -3,6 +3,6 @@
   "default_agent": "orchestrator",
   "share": "disabled",
   "instructions": [
-    ".opencode/orchestrator.md"
+    ".opencode/agents/orchestrator.md"
   ]
 }

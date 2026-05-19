@@ -33,6 +33,7 @@ task intake
 | Review agents | Independently review requirements, architecture, QA, completeness, and lessons. |
 | Completion gate | Computes approved, blocked, or waiver-required outcomes. |
 | Final report | Captures the final state, decision, and remaining gaps. |
+| Shortcut workflow | Handles small bounded tasks with a lightweight path that skips the full guardrail loop. |
 | Improvement workflow | Separately explores refactoring, pattern, module responsibility, and tuning opportunities. |
 | Improvement backlog | Stores accepted improvement candidates before they become scoped implementation tasks. |
 | Reusable templates | Capture cross-project prompt and supporting templates under `.opencode/templates/`. |
@@ -40,12 +41,14 @@ task intake
 ## Boundaries
 
 - The source of truth lives in `.opencode/`.
-- `opencode.json` loads the traceability docs and persistent lessons.
+- `opencode.json` selects the primary agent and loads the workflow instructions.
 - The builder agent is the only agent meant to edit files.
 - Review agents are read-only.
 - The workflow should remain inspectable without a hidden Python runtime.
 - Persistent lesson memory lives in versioned markdown, not in ephemeral conversation state.
 - Reusable templates live in versioned markdown under `.opencode/templates/` so they can be copied between projects without losing structure.
+- The shortcut workflow is for small, low-risk tasks where the full contract and review chain would add unnecessary overhead.
+- If a shortcut task grows, it must escalate to the full delivery workflow.
 - Architecture guardrails include modularity, simplicity, readability, and module responsibility fit, not only preservation of the current shape.
 - Improvement discovery is separate from contained implementation. It may inspect broadly, but it must not change code.
 - Improvement candidates must be traceable to current features, requirements, evidence, review findings, or observed module friction.
@@ -62,6 +65,7 @@ Independent reviewer nodes evaluate requirements, architecture, QA, completeness
 The repository supports two related workflows:
 
 - Delivery workflow: normalize a bounded task, create a contract, implement only the contracted change, verify it, review it, and gate completion.
+- Shortcut workflow: normalize a small bounded task, confirm it stays low-risk, and use the smallest useful implementation and verification path.
 - Improvement workflow: explore current features, requirements, implementation evidence, reviewer findings, and module friction to produce backlog-ready improvement candidates.
 
 The delivery workflow may report improvement candidates, but it must not absorb exploratory refactoring or pattern changes unless the contract explicitly includes them. This keeps diffs small, verification focused, and review evidence tied to the requested feature or fix.
@@ -71,4 +75,4 @@ The delivery workflow may report improvement candidates, but it must not absorb 
 - Intent docs feed PC-001 through PC-009.
 - Product commitments constrain the agent roles and permissions.
 - Technical decisions justify the OpenCode-native workflow and persistent docs.
-- Implementation artifacts realize the workflow in `opencode.json`, `.opencode/agents/*.md`, and `.opencode/templates/*.md`.
+- Implementation artifacts realize the workflow in `opencode.json`, `.opencode/agents/*.md`, `.opencode/known-mistakes.md`, and `.opencode/templates/*.md`.

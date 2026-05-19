@@ -17,6 +17,7 @@ They are more stable than implementation plans and more concrete than vision sta
 | PC-007 | The workspace shall express workflow behavior through repository-local OpenCode agents and config rather than hidden runtime code. | Vision, UC-001, UC-005, UC-006 |
 | PC-008 | The workspace shall require architecture work to evaluate modularity, simplicity, readability, and module responsibility fit. | Vision, UC-003, UC-011 |
 | PC-009 | The workspace shall run continuous improvement as a separate exploratory workflow that feeds backlog candidates without expanding contained feature diffs. | Vision, UC-009, UC-012 |
+| PC-010 | The workspace shall route small bounded tasks through a lightweight shortcut workflow when the full guardrail workflow is unnecessary. | Vision, UC-001, UC-013 |
 
 ## Trace Links
 
@@ -29,3 +30,4 @@ They are more stable than implementation plans and more concrete than vision sta
 - PC-007 satisfies OpenCode-native workflow definitions.
 - PC-008 satisfies active design quality stewardship during architecture work.
 - PC-009 satisfies deliberate codebase improvement from current delivery pressure while preserving scoped implementation and verification.
+- PC-010 satisfies a lightweight path for trivial or low-risk tasks.

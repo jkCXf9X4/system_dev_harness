@@ -10,7 +10,7 @@ The solution needs a durable, reviewable chain from intent to implementation. If
 
 ## Decision
 
-Store intent, commitments, architecture, decisions, implementation mapping, persistent lessons, and reusable templates under `.opencode/`. Load those docs through `opencode.json` instructions so agents share the same stable context.
+Store intent, commitments, architecture, decisions, implementation mapping, persistent lessons, and reusable templates as versioned markdown in the package. Keep the reusable workflow payload under `.opencode/` and keep the traceability chain in `docs/` so the package source stays reviewable even though only the payload is copied into a development repo.
 
 ## Consequences
 

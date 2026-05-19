@@ -32,6 +32,7 @@ The solution should make this loop repeatable, inspectable, and hard to shortcut
 - Repeated mistakes are easy to repeat if lesson memory is not versioned.
 - Review is less useful if it happens after the wrong solution has already been built.
 - Handoffs are weak when they do not require a strict completion checklist.
+- Small bounded tasks can use a shortcut loop without paying the full guarded-workflow overhead.
 
 ## Desired Outcomes
 
@@ -42,7 +43,8 @@ The solution should make this loop repeatable, inspectable, and hard to shortcut
 - Reviewer agents challenge completeness, requirements, architecture, QA, and mistake avoidance.
 - Completion requires reviewer approval against evidence.
 - Missing contract items require explicit waivers with reason, risk, owner, and follow-up action.
-- The current solution remains traceable through `.opencode/` docs.
+- The current solution remains traceable through the package `docs/` tree.
+- Small tasks can use a shortcut loop when the full guardrail workflow would add unnecessary ceremony.
 
 ## Non-Goals
 
@@ -64,5 +66,5 @@ The solution should make this loop repeatable, inspectable, and hard to shortcut
 
 ## Trace Links
 
-- Feeds: `.opencode/02-product-commitments/product-commitments.md`
-- Informs: `.opencode/01-intent/use-cases.md`
+- Feeds: `docs/02-product-commitments/product-commitments.md`
+- Informs: `docs/01-intent/use-cases.md`

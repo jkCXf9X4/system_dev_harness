@@ -1,16 +1,23 @@
-# OpenCode Workspace
+# OpenCode Workflow Package
 
-This repository is now an OpenCode workspace scaffold that recreates the guarded workflow without the Python orchestration stack.
+This repository is a portable OpenCode workflow package. Its active payload is meant to be copied into a development repo so the target repo can run the guarded workflow without a separate orchestration runtime.
 
-The entrypoint is the `orchestrator` primary agent in `.opencode/agents/orchestrator.md`. It delegates to hidden subagents for planning, discovery, contract writing, architecture guardrails, lessons checks, implementation packaging, implementation, verification, independent reviews, completion gating, final reporting, and continuous-improvement discovery.
+The active payload is `opencode.json` plus `.opencode/`. The entrypoint is the `orchestrator` primary agent in `.opencode/agents/orchestrator.md`. It delegates to hidden subagents for planning, discovery, shortcut handling, contract writing, architecture guardrails, lessons checks, implementation packaging, implementation, verification, independent reviews, completion gating, final reporting, and continuous-improvement discovery.
 
 ## Layout
 
-- `opencode.json` - project-level OpenCode config
-- `.opencode/agents/` - orchestrator and specialist agent prompts
-- `.opencode/known-mistakes.md` - persistent lesson memory
-- `.opencode/templates/prompts/` - reusable prompt templates tied to the use cases
-- `.opencode/templates/others/` - reusable supporting templates such as the improvement backlog template
+- `opencode.json` - copy this into the target development repo root as the OpenCode config
+- `.opencode/` - copy this directory into the target development repo root as the workflow payload
+- `docs/` - package documentation and source references retained in this repository only
+- `.opencode/templates/README.md` - index for the reusable template payload
+
+## Active Payload
+
+- `opencode.json` - selects the primary agent and workflow instructions.
+- `.opencode/agents/` - orchestrator and specialist agent prompts.
+- `.opencode/known-mistakes.md` - persistent lesson memory.
+- `.opencode/templates/prompts/` - reusable prompt templates tied to the use cases.
+- `.opencode/templates/others/` - reusable supporting templates such as the improvement backlog template.
 
 ## Delivery Workflow
 
@@ -30,9 +37,19 @@ For exploratory refactoring, pattern switch, module responsibility, tuning, or b
 
 That workflow is read-only. It produces backlog-ready candidates rather than changing code, so contained feature diffs stay small and verifiable.
 
+## Shortcut Workflow
+
+For small, low-risk tasks, the orchestrator routes to `orchestrator-shortcut`.
+
+That workflow skips the full contract and architecture chain, then uses the smallest useful implementation and verification path. If the task grows or the risk changes, it escalates back to the delivery workflow.
+
 ## Usage
 
-Install OpenCode, then run it from the repository root:
+Copy only `opencode.json` and `.opencode/` into the development repo that should use the workflow package.
+
+Do not copy `docs/` or this README. They stay in the package repo as source documentation.
+
+Then run OpenCode from that development repo root:
 
 ```bash
 opencode
@@ -44,4 +61,4 @@ For a one-shot run:
 opencode run "your task"
 ```
 
-Add new agents by creating additional markdown files under `.opencode/agents/`.
+Add new agents by creating additional markdown files under `.opencode/agents/` in the package, then copy the updated payload into the development repo.

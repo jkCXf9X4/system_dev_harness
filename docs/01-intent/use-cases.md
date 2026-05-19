@@ -5,6 +5,7 @@
 - Requester: provides the task, bug report, or improvement idea.
 - Orchestrator: coordinates the workflow and routes work to specialist agents.
 - Planner: normalizes the request and defines the work order.
+- Shortcut agent: prepares a compact path for small tasks that do not need the full guardrail workflow.
 - Discovery agent: finds the smallest relevant file set and search targets.
 - Contract agent: turns the task into a verifiable requirement contract.
 - Architecture agent: extracts guardrails, boundaries, design quality goals, and forbidden shortcuts.
@@ -300,6 +301,30 @@ Workflow boundary:
 - candidates must not be implemented inside a contained feature task unless they are explicitly part of that task contract
 - accepted candidates become backlog entries or future task contracts before code changes begin
 
+## UC-013: Execute A Shortcut Loop For Small Tasks
+
+Goal: route small, low-risk tasks through a lightweight workflow that avoids the full guardrail path when it would add unnecessary overhead.
+
+Input:
+
+- small bounded request
+- obvious target files
+- low-coupling change
+- minimal verification needs
+
+Output:
+
+- compact task summary
+- narrow file set
+- minimal implementation steps
+- minimum checks
+- stop conditions
+- escalation criteria if the task grows beyond shortcut scope
+
+Primary value:
+
+- lets the orchestrator move trivial or low-risk work quickly without forcing the full contract, architecture, and review loop
+
 ## Trace Links
 
-- UC-001 through UC-012 feed `.opencode/02-product-commitments/product-commitments.md`
+- UC-001 through UC-013 feed `docs/02-product-commitments/product-commitments.md`
