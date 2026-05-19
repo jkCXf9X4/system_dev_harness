@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-The solution needs explicit workflow roles, controlled transitions, review gating, and future support for interrupts and replay. A hidden runtime would make the process harder to inspect and harder to update.
+The solution needs explicit workflow roles, controlled transitions, review gating, future support for interrupts and replay, and a way to separate exploratory improvement discovery from contained implementation. A hidden runtime would make the process harder to inspect and harder to update.
 
 ## Decision
 
@@ -29,5 +29,5 @@ Tradeoffs:
 
 ## Traceability
 
-- Product commitments: PC-001, PC-002, PC-004, PC-005, PC-006, PC-007
-- Use cases: UC-001 through UC-010
+- Product commitments: PC-001, PC-002, PC-004, PC-005, PC-006, PC-007, PC-008, PC-009
+- Use cases: UC-001 through UC-012

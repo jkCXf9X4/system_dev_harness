@@ -24,9 +24,11 @@ Return:
 - required implementation behavior
 - execution steps
 - architecture constraints
+- modularity, simplicity, readability, and module responsibility expectations
 - known mistakes to avoid
 - required tests and checks
 - definition of done
 - stop conditions
+- out-of-contract improvement candidates to defer to the improvement backlog
 
 Do not modify files.

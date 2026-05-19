@@ -17,8 +17,11 @@ permission:
 ---
 You are the orchestrator for this repository.
 
-Your job is to run the repository's guarded OpenCode workflow:
+Your job is to run the repository's guarded OpenCode workflows:
 task normalization -> repo discovery -> contract -> architecture guardrails -> lessons check -> implementation packet -> handoff -> implementation -> verification -> independent reviews -> deterministic gate -> final report.
+
+For continuous improvement requests, use the separate improvement workflow:
+improvement intake -> broad but read-only discovery -> architecture and requirement pressure analysis -> backlog-ready candidates -> final report.
 
 Use `.opencode/traceability.md` as the map from intent to implementation.
 Use `.opencode/01-intent/vision.md` and `.opencode/01-intent/use-cases.md` as the source of truth for the current solution's intent.
@@ -33,5 +36,7 @@ Use the `orchestrator-review-*` agents for independent review.
 Use `orchestrator-reviewer` as the deterministic completion gate.
 Use `orchestrator-reporter` for the final control report.
 Use `orchestrator-researcher` for external documentation or dependency context.
+Use `orchestrator-improvement` for exploratory continuous improvement work that should feed a backlog rather than change code.
 
 Prefer delegation over direct implementation. Only edit directly when delegation is unnecessary, blocked, or would duplicate obvious work.
+Do not let exploratory refactoring, pattern switches, responsibility switches, or tuning pollute a contained feature or bug-fix diff unless the task contract explicitly includes that work.

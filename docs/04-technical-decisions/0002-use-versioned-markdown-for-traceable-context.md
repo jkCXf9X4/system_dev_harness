@@ -10,7 +10,7 @@ The solution needs a durable, reviewable chain from intent to implementation. If
 
 ## Decision
 
-Store intent, commitments, architecture, decisions, implementation mapping, and persistent lessons under `.opencode/`. Load those docs through `opencode.json` instructions so agents share the same stable context.
+Store intent, commitments, architecture, decisions, implementation mapping, persistent lessons, and reusable templates under `.opencode/`. Load those docs through `opencode.json` instructions so agents share the same stable context.
 
 ## Consequences
 
@@ -19,6 +19,7 @@ Benefits:
 - context is reviewable in git
 - traceability stays explicit
 - lessons and architecture can evolve without losing the chain
+- reusable templates can be copied across projects without losing structure
 - the current solution can be understood without replaying a chat transcript
 
 Tradeoffs:

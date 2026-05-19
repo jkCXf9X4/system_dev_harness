@@ -6,8 +6,10 @@ The current solution is implemented as repository-local OpenCode configuration a
 
 - `opencode.json` - selects the primary agent and loads the traceability docs and lessons.
 - `.opencode/agents/orchestrator.md` - primary workflow coordinator.
-- `.opencode/agents/orchestrator-*.md` - stage agents for planning, discovery, contract, architecture, lessons, packet, handoff, builder, verifier, review, gate, reporter, and research.
+- `.opencode/agents/orchestrator-*.md` - stage agents for planning, discovery, contract, architecture, lessons, packet, handoff, builder, verifier, review, gate, reporter, research, and improvement discovery.
 - `.opencode/known-mistakes.md` - persistent lesson memory.
+- `.opencode/templates/prompts/*.md` - reusable prompt templates tied to use cases.
+- `.opencode/templates/others/improvement-backlog-template.md` - reusable backlog template for accepted improvement candidates.
 - `.opencode/01-intent/vision.md` - current solution vision.
 - `.opencode/01-intent/use-cases.md` - current solution use cases.
 - `.opencode/02-product-commitments/product-commitments.md` - durable product commitments.
@@ -21,9 +23,10 @@ The current solution is implemented as repository-local OpenCode configuration a
 - `orchestrator-builder` is the only edit-capable stage.
 - `orchestrator-verifier` is shell-capable for focused checks.
 - review agents are read-only and exist to keep approval separate from implementation.
+- `orchestrator-improvement` is read-only and exists to feed backlog candidates, not to implement them.
 
 ## Trace Links
 
 - Implements ADR-0001 through ADR-0004.
-- Satisfies PC-001 through PC-007.
-- Covers UC-001 through UC-010.
+- Satisfies PC-001 through PC-009.
+- Covers UC-001 through UC-012.

@@ -10,6 +10,7 @@ This file maps the current solution from intent to implementation.
 | System Architecture | `.opencode/03-system-architecture/architecture.md` | Describes the control flow, boundaries, and permissions. |
 | Technical Decisions | `.opencode/04-technical-decisions/*.md` | Explains why the current structure exists. |
 | Implementation | `.opencode/05-implementation/implementation.md` | Lists the repository artifacts that realize the solution. |
+| Templates | `.opencode/templates/*` | Reusable prompt and supporting templates shared across projects. |
 
 ## How To Use
 

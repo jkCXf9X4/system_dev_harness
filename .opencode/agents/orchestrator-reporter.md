@@ -22,6 +22,7 @@ Return:
 - final status
 - key evidence
 - blocking items or waivers
+- improvement candidates raised by the run, clearly marked as backlog candidates rather than completed work
 - next required action
 
 Do not override the gate decision.

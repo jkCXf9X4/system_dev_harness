@@ -7,7 +7,9 @@
 - Planner: normalizes the request and defines the work order.
 - Discovery agent: finds the smallest relevant file set and search targets.
 - Contract agent: turns the task into a verifiable requirement contract.
-- Architecture agent: extracts guardrails, boundaries, and forbidden shortcuts.
+- Architecture agent: extracts guardrails, boundaries, design quality goals, and forbidden shortcuts.
+- Architect: protects modularity, simple solutions, readability, and coherent module responsibilities.
+- Improvement agent: explores codebase improvement opportunities and turns them into backlog candidates.
 - Lessons agent: checks the task against persistent mistakes.
 - Packet agent: produces the strict implementation packet.
 - Handoff agent: turns the packet into a paste-ready coding brief.
@@ -241,6 +243,63 @@ Primary value:
 
 - makes the completion state explicit and auditable
 
+## UC-011: Guard Design Quality During Architecture Work
+
+Goal: make the architecture stage actively prefer modularity, simple solutions, and readable codebase evolution.
+
+Input:
+
+- task contract
+- existing module boundaries
+- current code organization
+- relevant implementation patterns
+- architecture constraints
+
+Output:
+
+- modularity expectations
+- simplicity constraints
+- readability checks
+- module responsibility risks
+- design quality review checklist
+
+Primary value:
+
+- prevents architecture review from focusing only on drift while missing unnecessary complexity, poor readability, or weak module boundaries
+
+## UC-012: Drive Continuous Codebase Improvement
+
+Goal: run a separate exploratory workflow that identifies improvement work and feeds a backlog without polluting contained feature implementation.
+
+Input:
+
+- current feature set
+- current requirements
+- implementation evidence
+- reviewer findings
+- known module and pattern friction
+- repository structure and change history
+
+Output:
+
+- refactoring candidates
+- pattern switch candidates
+- module responsibility switch candidates
+- tuning opportunities
+- improvement rationale and priority
+- follow-up contract seeds
+- backlog-ready improvement entries
+
+Primary value:
+
+- turns delivery evidence and requirement pressure into deliberate codebase improvement while keeping feature diffs scoped and verifiable
+
+Workflow boundary:
+
+- continuous improvement discovery is read-only and exploratory
+- candidates must not be implemented inside a contained feature task unless they are explicitly part of that task contract
+- accepted candidates become backlog entries or future task contracts before code changes begin
+
 ## Trace Links
 
-- UC-001 through UC-010 feed `.opencode/02-product-commitments/product-commitments.md`
+- UC-001 through UC-012 feed `.opencode/02-product-commitments/product-commitments.md`
