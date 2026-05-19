@@ -67,11 +67,13 @@ small task handoff:
 - The workflow should remain inspectable without a hidden Python runtime.
 - Persistent lesson memory lives in versioned markdown, not in ephemeral conversation state.
 - Reusable templates live in versioned markdown under `.opencode/templates/` so they can be copied between projects without losing structure.
+- Every artifact touched by the workflow should have a visible place in the information chain, with no orphaned node left behind after a move, rename, or rewrite.
 - Small-task handoff is for low-risk work where the full contract and review chain would add unnecessary overhead. The orchestrator prepares the brief, then the operator switches to OpenCode's `build` primary agent for execution.
 - If a small task grows, it must escalate to the full delivery workflow before implementation starts.
 - Architecture guardrails include modularity, simplicity, readability, and module responsibility fit, not only preservation of the current shape.
 - Improvement discovery is separate from contained implementation. It may inspect broadly, but it must not change code.
 - Improvement candidates must be traceable to current features, requirements, evidence, review findings, or observed module friction.
+- Improvement candidates must not be created as dangling artifacts; each one needs an explicit parent context and follow-up destination.
 - Improvement candidates become implementation work only after they are accepted into the backlog and turned into a task contract.
 
 ## Completion Model

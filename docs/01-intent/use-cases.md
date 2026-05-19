@@ -148,6 +148,7 @@ Input:
 Output:
 
 - changed files
+- cleanup of moved, renamed, or rewritten information
 - verification output
 - implementation evidence
 
@@ -166,6 +167,7 @@ Input:
 - architecture constraints
 - known mistake checks
 - implementation evidence
+- cleanup evidence for moved, renamed, or rewritten information
 
 Output:
 
@@ -174,6 +176,7 @@ Output:
 - QA review
 - completeness review
 - known mistake review
+- stale-reference and duplicate-content findings
 - blocking findings
 
 Primary value:

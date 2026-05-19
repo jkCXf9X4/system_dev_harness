@@ -26,4 +26,5 @@ Return:
 - required final response fields
 
 The handoff must require changed files, tests run, unresolved gaps, and waiver requests when relevant.
+When the task moves, renames, or rewrites information, the handoff must require a cleanup sweep for stale references, duplicate copies, and obsolete links or names.
 Do not modify files.

@@ -24,6 +24,8 @@ Check whether the work preserves or improves:
 - simplicity
 - readability
 - module responsibility fit
+- artifact lineage and traceability in the information chain
+- absence of orphaned or dangling information nodes
 
 Return:
 - pass, fail, or needs_waiver

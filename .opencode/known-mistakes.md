@@ -108,3 +108,31 @@ If sequential order matters, prefer imposing that order at the folder level with
 
 Completion check:
 Reviewers must verify that the repository has a clear folder hierarchy, that each artifact type has one obvious location, and that new files improve readability and findability instead of creating a second path for the same concern.
+
+### KM-007: Clean Up Stale References After Moves Or Rewrites
+
+Pattern:
+Agents may move, rename, or rewrite information but leave behind obsolete links, duplicated copies, stale headings, or references to the old location or name.
+
+Why it matters:
+The repository ends up with conflicting sources of truth, broken navigation, and extra rework when future tasks follow stale references.
+
+Prevention rule:
+After moving or significantly rewriting information, update all in-repo references, remove duplicate or orphaned copies, and verify the old location or name no longer appears where it should not.
+
+Completion check:
+Reviewers must verify that moved or rewritten information has no stale references, obsolete links, or duplicate content left behind in the touched scope.
+
+### KM-008: Avoid Orphaned Information Nodes
+
+Pattern:
+Agents may create or move artifacts without maintaining an obvious parent, child, or trace link in the information chain, leaving loose notes or isolated documents behind.
+
+Why it matters:
+Orphaned nodes are easy to miss, hard to classify, and often become stale because nothing points back to them or forward from them.
+
+Prevention rule:
+When creating, moving, or rewriting an artifact, assign it a clear source, purpose, and next-hop trace link in the chain. Prefer linking backward to the artifact or decision it satisfies and forward to the artifact it enables.
+
+Completion check:
+Reviewers must verify that touched artifacts are traceable to a parent context and that no loose, unlinked, or unowned artifact was introduced in the touched scope.
