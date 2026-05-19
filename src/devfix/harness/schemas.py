@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Literal
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field, field_validator
 
@@ -87,6 +87,91 @@ class ExternalAgentHandoff(BaseModel):
     non_negotiable_constraints: list[str]
     completion_checklist: list[str]
     required_final_response: list[str]
+
+
+class BacklogCandidate(BaseModel):
+    path: str
+    title: str
+    status: str = ""
+    goal: str = ""
+    scope: list[str] = []
+    acceptance_criteria: list[str] = []
+
+
+class TaskResolution(BaseModel):
+    resolution_mode: Literal["direct_prompt", "backlog_selection"]
+    selected_task_title: str
+    selected_task_path: str = ""
+    resolved_task_input: str
+    selection_rationale: str
+
+
+class RepoFileContext(BaseModel):
+    path: str
+    reason: str
+    content: str
+
+
+class RepoDiscoveryPlan(BaseModel):
+    search_queries: list[str]
+    relevant_files: list[str]
+    rationale: str
+
+
+class RepoContext(BaseModel):
+    backlog_overview: list[BacklogCandidate] = []
+    relevant_files: list[str]
+    search_results: list[str]
+    file_contexts: list[RepoFileContext]
+    summary: list[str]
+
+
+class MCPPatch(BaseModel):
+    path: str
+    patch: str
+    rationale: str
+
+
+class MCPExecutionPlan(BaseModel):
+    summary: str
+    needs_external_executor: bool = False
+    fallback_reason: str = ""
+    patches: list[MCPPatch] = []
+    verification_commands: list[str] = []
+
+
+class PatchApplyResult(BaseModel):
+    path: str
+    status: Literal["applied", "failed", "skipped"]
+    detail: str
+
+
+class MCPExecutionResult(BaseModel):
+    status: Literal["applied", "blocked", "fallback_required"]
+    summary: str
+    applied_patches: list[PatchApplyResult]
+    changed_files: list[str]
+    fallback_reason: str = ""
+
+
+class VerificationCommandResult(BaseModel):
+    command: str
+    exit_code: int
+    stdout: str = ""
+    stderr: str = ""
+
+
+class VerificationReport(BaseModel):
+    status: Literal["passed", "failed", "not_run"]
+    summary: str
+    results: list[VerificationCommandResult]
+
+
+class ToolTraceEntry(BaseModel):
+    tool: str
+    arguments: dict[str, Any]
+    outcome: str
+    details: str = ""
 
 
 class EvidenceBundle(BaseModel):

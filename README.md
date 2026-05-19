@@ -6,7 +6,7 @@ A guarded agentic development harness starter that uses:
 - OpenRouter as the OpenAI-compatible model access layer.
 - Role-based support agents for requirement contracts, architecture guardrails, known mistake checks, implementation handoff, and reviewer approval.
 
-The harness is designed to keep agentic development on track. It focuses on preventing shortcuts, partial implementations, lost requirements, architecture drift, and repeated mistakes. It does not edit code directly yet; instead it produces strict implementation packets for external coding agents such as Codex or opencode.
+The harness is designed to keep agentic development on track. It focuses on preventing shortcuts, partial implementations, lost requirements, architecture drift, and repeated mistakes. It now performs governed repository discovery, patch application, and verification through an MCP-style tool layer, with external executors kept as fallbacks.
 
 ## Documentation
 
@@ -73,7 +73,15 @@ devfix \
   --output-dir tmp/devfix-run-output
 ```
 
-Run through an execution adapter:
+Run through the default MCP-backed workflow:
+
+```bash
+devfix \
+  --prompt examples/backlog_item.md \
+  --executor mcp
+```
+
+Run through an external execution adapter instead:
 
 ```bash
 devfix \
@@ -116,7 +124,7 @@ Override the prompt:
 devfix --prompt path/to/PROMPT.md
 ```
 
-Use an execution adapter:
+Use an external execution adapter:
 
 ```bash
 devfix --executor opencode --opencode-agent build
@@ -128,12 +136,16 @@ The command uses `.agents/devfix/` for local storage and creates `.env` from `.e
 
 ```text
 task input
+  -> task resolution
+  -> repo discovery via MCP
   -> requirement contract
   -> architecture context
   -> known mistake check
   -> implementation packet
   -> external agent handoff
-  -> optional execution adapter
+  -> MCP-backed patch execution
+  -> MCP-backed verification
+  -> optional external executor fallback
   -> evidence intake
   -> independent reviewer agents
   -> deterministic completion gate

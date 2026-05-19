@@ -4,13 +4,13 @@ import argparse
 import json
 from pathlib import Path
 
-from devfix.harness.execution import ManualAdapter, OpenCodeAdapter
+from devfix.harness.execution import MCPPolicy, ManualAdapter, OpenCodeAdapter
 from devfix.harness.graph import build_graph, build_packet_graph, build_review_graph
 from devfix.harness.schemas import ExternalAgentHandoff
 
 
 def run_with_executor(args: argparse.Namespace, initial_state: dict, config: dict) -> dict:
-    if args.executor == "none":
+    if args.executor in ("none", "mcp"):
         return build_graph().invoke(initial_state, config=config)
 
     packet_state = build_packet_graph().invoke(initial_state, config=config)
@@ -49,6 +49,10 @@ def build_adapter(args: argparse.Namespace):
     raise ValueError(f"Unknown executor: {args.executor}")
 
 
+def default_mcp_policy() -> dict:
+    return MCPPolicy(allowed_roots=["plans", "docs", "src", ".agents"]).model_dump()
+
+
 def task_title(state: dict) -> str:
     contract = state.get("requirement_contract", {})
     title = str(contract.get("task_objective") or "system-dev-harness task")
@@ -70,9 +74,9 @@ def build_context(user_context: str, context_files: list[Path], *, include_defau
 
     if include_defaults:
         default_paths = [
-            Path("docs/architecture.md"),
-            Path("docs/requirements.md"),
-            *sorted(Path("docs/decisions").glob("*.md")),
+            Path("docs/03-system-architecture/architecture.md"),
+            Path("docs/03-system-architecture/requirements.md"),
+            *sorted(Path("docs/04-technical-decisions").glob("*.md")),
         ]
         for path in default_paths:
             if path.exists():

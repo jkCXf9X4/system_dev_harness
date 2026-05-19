@@ -7,7 +7,7 @@ from uuid import uuid4
 
 from devfix.harness.lessons import parse_lessons
 from devfix.output import export_run_failure, export_run_output
-from devfix.runner import build_context, read_optional, read_waivers, run_with_executor
+from devfix.runner import build_context, default_mcp_policy, read_optional, read_waivers, run_with_executor
 
 DEFAULT_PROMPT = Path(".agents/devfix/PROMPT.md")
 DEFAULT_STORAGE = Path(".agents/devfix")
@@ -21,11 +21,7 @@ def parse_args() -> argparse.Namespace:
         default=DEFAULT_PROMPT,
         help="Prompt file to execute. Defaults to .agents/devfix/PROMPT.md.",
     )
-    parser.add_argument(
-        "--context",
-        default="",
-        help="Optional stakeholder, product, or technical context.",
-    )
+    parser.add_argument("--context", default="", help="Optional stakeholder, product, or technical context.")
     parser.add_argument(
         "--context-file",
         action="append",
@@ -36,19 +32,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--no-default-context",
         action="store_true",
-        help="Disable automatic grounding from docs/architecture.md, docs/requirements.md, and ADRs.",
+        help="Disable automatic grounding from docs/03-system-architecture and docs/04-technical-decisions.",
     )
     parser.add_argument(
         "--lessons",
         type=Path,
-        default=Path("docs/lessons/known-mistakes.md"),
+        default=Path("docs/07-lessons/known-mistakes.md"),
         help="Path to persistent known mistakes and lessons.",
     )
-    parser.add_argument(
-        "--thread-id",
-        default=None,
-        help="Stable LangGraph thread id for checkpointed runs.",
-    )
+    parser.add_argument("--thread-id", default=None, help="Stable LangGraph thread id for checkpointed runs.")
     parser.add_argument("--changed-file", action="append", default=[], help="Changed file evidence.")
     parser.add_argument("--diff", type=Path, default=None, help="Diff or diff summary evidence file.")
     parser.add_argument("--test-output", type=Path, default=None, help="Test/check output evidence file.")
@@ -62,9 +54,9 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--executor",
-        choices=["none", "manual", "opencode"],
-        default="none",
-        help="Execution adapter to run after handoff generation.",
+        choices=["none", "mcp", "manual", "opencode"],
+        default="mcp",
+        help="Execution backend. 'mcp' performs governed in-graph repo access, edits, and verification.",
     )
     parser.add_argument(
         "--execution-mode",
@@ -101,6 +93,8 @@ def main() -> None:
     context = build_context(args.context, args.context_file, include_defaults=not args.no_default_context)
     initial_state = {
         "backlog_item": prompt,
+        "execution_backend": args.executor,
+        "mcp_policy": default_mcp_policy(),
         "stakeholder_context": context,
         "lessons": lessons,
         "changed_files": args.changed_file,
@@ -109,6 +103,7 @@ def main() -> None:
         "agent_output": read_optional(args.agent_output),
         "waiver_requests": read_waivers(args.waivers),
         "artifacts": [],
+        "tool_trace": [],
     }
 
     try:
