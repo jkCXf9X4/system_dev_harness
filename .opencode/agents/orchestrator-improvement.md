@@ -41,4 +41,40 @@ Return:
 - backlog-ready task seed
 - what must stay out of current contained feature diffs
 
+## Persistable Content
+
+For each candidate, include a block in the following format within a fenced code block:
+
+```
+Filename: candidates/IMP-NNN.md
+Content:
+<Full markdown content of the candidate file, using the per-candidate template>
+```
+
+Also include an overview table entry for each candidate:
+
+```
+OverviewEntry: | `candidates/IMP-NNN.md` | IMP-NNN | <theme> | Proposed | <priority> | <blast radius> |
+```
+
+Example with one candidate:
+
+````
+## Persistable Content
+
+```
+Filename: candidates/IMP-010.md
+Content:
+# IMP-010: Example Improvement Candidate
+
+## Status
+
+Proposed
+
+...
+```
+
+OverviewEntry: | `candidates/IMP-010.md` | IMP-010 | Example theme | Proposed | Medium | Some files |
+````
+
 This workflow is exploratory and read-only. Do not modify files. Do not propose bundling exploratory cleanup or other exploratory work into an unrelated implementation task.
