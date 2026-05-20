@@ -200,3 +200,33 @@ def test_information_hygiene_is_workflow_gated(simple_project: Path) -> None:
         assert "stale" in lowered
         assert "duplicate" in lowered
         assert "traceability" in lowered
+
+
+def test_agent_control_policy_closes_escape_hatches(simple_project: Path) -> None:
+    orchestrator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator.md").lower()
+    planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
+    contract_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-contract.md").lower()
+    packet_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-packet.md").lower()
+    handoff_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-handoff.md").lower()
+    builder_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-builder.md").lower()
+    verifier_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-verifier.md").lower()
+    gate_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
+
+    assert "every listed step must run" in orchestrator_prompt
+    assert "not_applicable" in orchestrator_prompt
+    assert "waivers are not approvals" in orchestrator_prompt
+
+    for prompt in (planner_prompt, contract_prompt, packet_prompt):
+        assert "touches_information_artifacts" in prompt
+        assert "touches_product_breakdown" in prompt
+        assert "requires_decision_record" in prompt
+
+    assert "handoff is non-executing guidance" in handoff_prompt
+    assert "builder-equivalent evidence" in handoff_prompt
+    assert "cannot authorize scope expansion" in handoff_prompt
+
+    assert "revised through the guarded workflow" in builder_prompt
+    assert "packet control flags" in verifier_prompt
+    assert "control flags as the source of truth" in gate_prompt
+    assert "explicit user approval" in gate_prompt
+    assert "not `approved`" in gate_prompt

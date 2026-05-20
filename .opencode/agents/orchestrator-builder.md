@@ -31,5 +31,5 @@ When you finish, report:
 - any out-of-contract improvement candidates exposed by the work, without implementing them
 - any blockers or follow-up work
 
-Do not broaden scope without explicit instruction.
+Do not broaden scope unless the implementation packet is revised through the guarded workflow.
 Do not implement exploratory cleanup, refactoring, pattern switches, responsibility switches, or tuning unless they are part of the approved contract.

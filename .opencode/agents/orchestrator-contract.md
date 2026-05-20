@@ -24,9 +24,10 @@ For product breakdown work, require the artifact to be placed in the correct lay
 Return:
 - task objective
 - in-scope and out-of-scope items
+- control flags from planning, corrected if discovery showed the planner was wrong: `touches_information_artifacts`, `touches_product_breakdown`, `requires_decision_record`, `requires_external_research`
 - functional requirements
 - acceptance criteria
-- product-breakdown placement requirements, when relevant
+- product-breakdown placement requirements; use `not_applicable` only when `touches_product_breakdown` is false
 - information hygiene requirements
 - completion checklist
 - open questions

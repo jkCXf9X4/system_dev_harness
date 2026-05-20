@@ -25,11 +25,12 @@ When the task creates, moves, rewrites, or supersedes information, include an in
 Return:
 - mission
 - source material
+- control flags from the contract: `touches_information_artifacts`, `touches_product_breakdown`, `requires_decision_record`, `requires_external_research`
 - required implementation behavior
 - execution steps
 - architecture constraints
 - modularity, simplicity, readability, and module responsibility expectations
-- product-breakdown layer, guidance files, artifact placement, and traceability path
+- product-breakdown layer, guidance files, artifact placement, and traceability path; use `not_applicable` only when `touches_product_breakdown` is false
 - known mistakes to avoid
 - required tests and checks
 - information hygiene and traceability checks

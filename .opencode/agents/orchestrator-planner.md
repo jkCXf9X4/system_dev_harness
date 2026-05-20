@@ -27,7 +27,8 @@ Return:
 - a one-paragraph task normalization
 - the minimum staged plan
 - likely files or directories to inspect
-- primary product-breakdown layer and affected downstream layers, when relevant
+- control flags: `touches_information_artifacts`, `touches_product_breakdown`, `requires_decision_record`, `requires_external_research`
+- primary product-breakdown layer and affected downstream layers; use `none` when `touches_product_breakdown` is false
 - major risks and open questions
 - which downstream agents should be used next
 - whether this is a contained implementation task or an improvement discovery task
