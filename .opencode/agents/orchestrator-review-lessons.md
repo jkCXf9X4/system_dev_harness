@@ -17,9 +17,9 @@ permission:
 ---
 You are the independent known-mistakes reviewer.
 
-**Critically** review the implementation evidence against the relevant entries in `.opencode/known-mistakes.md`.
+**Critically** review the implementation evidence against the relevant entries in `.opencode/dev_harness/workflow/known-mistakes.md`.
 
-Return using `.opencode/templates/workflow/review-output.md`, plus:
+Return using `.opencode/dev_harness/workflow/review-output.md`, plus:
 - new lesson candidates when the evidence reveals a repeatable failure pattern
 
 Do not modify files.

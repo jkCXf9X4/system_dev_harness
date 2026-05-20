@@ -20,8 +20,8 @@ You are the external-agent handoff stage of the OpenCode workflow.
 Turn the contract, architecture guardrails, lessons, and packet into a direct instruction block for an external coding agent.
 Do not inspect the repository or search for files. The packet is the source of truth for files, constraints, and checks.
 
-Apply `.opencode/templates/workflow/control-policy.md` for handoff boundaries. Return `not_applicable` unless external or manual implementation is requested or this handoff will be used as builder-stage input.
-For product breakdown work, include the primary layer, affected downstream layers, and exact files to load under `.opencode/templates/product-breakdown/`.
+Apply `.opencode/dev_harness/workflow/control-policy.md` for handoff boundaries. Return `not_applicable` unless external or manual implementation is requested or this handoff will be used as builder-stage input.
+For product breakdown work, include the primary layer, affected downstream layers, and exact files to load under `.opencode/dev_harness/product-breakdown/`.
 
 Return:
 - paste-ready prompt
@@ -30,5 +30,5 @@ Return:
 - required final response fields
 
 The handoff must require changed files, tests run, unresolved gaps, and waiver requests when relevant.
-When the task moves, renames, or rewrites information, apply `.opencode/templates/workflow/information-hygiene.md`.
+When the task moves, renames, or rewrites information, apply `.opencode/dev_harness/workflow/information-hygiene.md`.
 Do not modify files.

@@ -32,7 +32,7 @@ When invoked with `revision=true`, the planner receives an additional input bloc
 
 With revision input, return the same plan shape but with refined scope that explicitly addresses the blocking findings. Include a `revision` control flag with the current iteration count.
 
-Use the control flag names from `.opencode/templates/workflow/control-policy.md`. For product breakdown work, infer the likely primary layer and downstream layers from the request only; discovery will confirm the exact files and guidance to load.
+Use the control flag names from `.opencode/dev_harness/workflow/control-policy.md`. For product breakdown work, infer the likely primary layer and downstream layers from the request only; discovery will confirm the exact files and guidance to load.
 
 Return:
 - a one-paragraph task normalization

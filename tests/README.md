@@ -42,12 +42,12 @@ It is usually not reasonable to force exact support filenames into verifier, rev
 
 ## Canonical Rule Location
 
-Detailed rules should live in copied runtime context under `.opencode/templates/`.
+Detailed rules should live in copied runtime context under `.opencode/dev_harness/`.
 
 Use:
 
-- `product-breakdown/` for the source documentation and traceability set, and `.opencode/templates/product-breakdown/` for the copied runtime guidance used by agents
-- `.opencode/templates/workflow/` for workflow control, information hygiene, and review-output rules
+- `product-breakdown/` for the source documentation and traceability set, and `.opencode/dev_harness/product-breakdown/` for the copied runtime guidance used by agents
+- `.opencode/dev_harness/workflow/` for workflow control, information hygiene, known-mistakes memory, and review-output rules
 
 Tests should verify those canonical files and then verify that agents reference them.
 

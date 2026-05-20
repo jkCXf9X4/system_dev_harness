@@ -1,6 +1,6 @@
 # Product Breakdown
 
-The source documentation tree stays in `product-breakdown/`. The copied runtime guidance lives in `.opencode/templates/product-breakdown/`.
+The source documentation tree stays in `product-breakdown/`. The copied runtime guidance lives in `.opencode/dev_harness/product-breakdown/`.
 
 ## Source Map
 

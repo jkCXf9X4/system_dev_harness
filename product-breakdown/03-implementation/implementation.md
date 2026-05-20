@@ -7,11 +7,11 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 - `opencode.json` - copy into the target development repo root as the OpenCode config and entrypoint selector.
 - `.opencode/agents/orchestrator.md` - primary workflow coordinator.
 - `.opencode/agents/orchestrator-*.md` - stage agents for planning, discovery, contract, architecture, lessons, packet, handoff, builder, verifier, review, gate, reporter, research, and improvement discovery.
-- `.opencode/known-mistakes.md` - persistent lesson memory.
-- `.opencode/templates/prompts/*.md` - reusable prompt templates tied to use cases.
-- `.opencode/templates/README.md` - package index for the reusable template folder.
-- `.opencode/templates/product-breakdown/` - reusable product breakdown guidance split into small files for copied target-repo agents.
-- `.opencode/templates/workflow/` - shared workflow control, information hygiene, and review-output policies referenced by copied agents.
+- `.opencode/dev_harness/prompts/*.md` - reusable prompt templates tied to use cases.
+- `.opencode/dev_harness/README.md` - package index for the reusable dev harness folder.
+- `.opencode/dev_harness/product-breakdown/` - reusable product breakdown guidance split into small files for copied target-repo agents.
+- `.opencode/dev_harness/workflow/` - shared workflow control, information hygiene, known-mistakes memory, and review-output policies referenced by copied agents.
+- `.opencode/dev_harness/workflow/known-mistakes.md` - persistent lesson memory.
 
 ## Package Documentation
 
@@ -53,30 +53,31 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 
 ## Product Breakdown Context
 
-The product breakdown guidance is implemented as copied agent context under `.opencode/templates/product-breakdown/`.
+The product breakdown guidance is implemented as copied agent context under `.opencode/dev_harness/product-breakdown/`.
 
 | Artifact | Purpose |
 | --- | --- |
-| `.opencode/templates/product-breakdown/README.md` | Entry point, load-on-demand routing table, recommended layered tree, and layer questions. |
-| `.opencode/templates/product-breakdown/layers/*.md` | One small context file per layer. |
-| `.opencode/templates/product-breakdown/decision-placement.md` | Rule for placing distributed decisions near affected artifacts. |
-| `.opencode/templates/product-breakdown/decision-log.md` | Guidance for maintaining the global decision index. |
-| `.opencode/templates/product-breakdown/traceability.md` | Cross-layer traceability chain and checklist. |
-| `.opencode/templates/product-breakdown/naming.md` | Stable ID and filename prefixes. |
-| `.opencode/templates/product-breakdown/templates/decision-template.md` | Reusable decision record template. |
-| `.opencode/templates/product-breakdown/templates/decision-log-entry-template.md` | Reusable compact decision-log entry template. |
-| `.opencode/templates/product-breakdown/templates/improvement-backlog-overview-template.md` | Reusable overview template for improvement backlogs. |
-| `.opencode/templates/product-breakdown/templates/improvement-candidate-template.md` | Reusable per-candidate improvement backlog template. |
+| `.opencode/dev_harness/product-breakdown/README.md` | Entry point, load-on-demand routing table, recommended layered tree, and layer questions. |
+| `.opencode/dev_harness/product-breakdown/layers/*.md` | One small context file per layer. |
+| `.opencode/dev_harness/product-breakdown/decision-placement.md` | Rule for placing distributed decisions near affected artifacts. |
+| `.opencode/dev_harness/product-breakdown/decision-log.md` | Guidance for maintaining the global decision index. |
+| `.opencode/dev_harness/product-breakdown/traceability.md` | Cross-layer traceability chain and checklist. |
+| `.opencode/dev_harness/product-breakdown/naming.md` | Stable ID and filename prefixes. |
+| `.opencode/dev_harness/product-breakdown/templates/decision-template.md` | Reusable decision record template. |
+| `.opencode/dev_harness/product-breakdown/templates/decision-log-entry-template.md` | Reusable compact decision-log entry template. |
+| `.opencode/dev_harness/product-breakdown/templates/improvement-backlog-overview-template.md` | Reusable overview template for improvement backlogs. |
+| `.opencode/dev_harness/product-breakdown/templates/improvement-candidate-template.md` | Reusable per-candidate improvement backlog template. |
 
 ## Workflow Policy Context
 
-Shared workflow policies are implemented as copied agent context under `.opencode/templates/workflow/`.
+Shared workflow policies are implemented as copied agent context under `.opencode/dev_harness/workflow/`.
 
 | Artifact | Purpose |
 | --- | --- |
-| `.opencode/templates/workflow/control-policy.md` | Required stage output, `not_applicable`, handoff boundaries, control flags, and waiver rules. |
-| `.opencode/templates/workflow/information-hygiene.md` | Canonical evidence requirements for changed information artifacts. |
-| `.opencode/templates/workflow/review-output.md` | Shared independent-review return protocol. |
+| `.opencode/dev_harness/workflow/control-policy.md` | Required stage output, `not_applicable`, handoff boundaries, control flags, and waiver rules. |
+| `.opencode/dev_harness/workflow/information-hygiene.md` | Canonical evidence requirements for changed information artifacts. |
+| `.opencode/dev_harness/workflow/known-mistakes.md` | Persistent lesson memory used by the lessons and lessons-review agents. |
+| `.opencode/dev_harness/workflow/review-output.md` | Shared independent-review return protocol. |
 
 ## Trace Links
 

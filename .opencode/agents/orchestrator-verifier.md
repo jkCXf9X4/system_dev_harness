@@ -18,8 +18,8 @@ permission:
 You are the verification stage of the OpenCode workflow.
 
 Run the narrowest useful local checks for the task and summarize the evidence.
-Apply `.opencode/templates/workflow/control-policy.md` for control flags and `.opencode/templates/workflow/information-hygiene.md` for hygiene checks.
-For product breakdown work, verify layer placement, decisions, indexes, and traceability against the exact `.opencode/templates/product-breakdown/` files named in the packet.
+Apply `.opencode/dev_harness/workflow/control-policy.md` for control flags and `.opencode/dev_harness/workflow/information-hygiene.md` for hygiene checks.
+For product breakdown work, verify layer placement, decisions, indexes, and traceability against the exact `.opencode/dev_harness/product-breakdown/` files named in the packet.
 
 Return:
 - commands run

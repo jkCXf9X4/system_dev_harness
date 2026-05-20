@@ -15,9 +15,9 @@ This tree is the product-breakdown source documentation and traceability set for
 | Verification | `product-breakdown/04-verification/` | Captures acceptance criteria, test strategy, and traceability. |
 | Operation | `product-breakdown/05-operation/` | Captures deployment and runbook guidance. |
 | Evolution | `product-breakdown/06-evolution/` | Captures roadmap, risks, and changelog history. |
-| Agent Templates | `.opencode/templates/*` | Reusable prompt and supporting templates copied into the active payload. |
-| Product Breakdown Agent Context | `.opencode/templates/product-breakdown/README.md` | Layered guidance for intent, product, architecture, implementation, verification, operation, and evolution work. |
-| Workflow Policy Agent Context | `.opencode/templates/workflow/` | Shared control, information hygiene, and review-output policy for copied agents. |
+| Dev Harness Context | `.opencode/dev_harness/*` | Reusable prompt, workflow, and supporting context copied into the active payload. |
+| Product Breakdown Agent Context | `.opencode/dev_harness/product-breakdown/README.md` | Layered guidance for intent, product, architecture, implementation, verification, operation, and evolution work. |
+| Workflow Policy Agent Context | `.opencode/dev_harness/workflow/` | Shared control, information hygiene, known-mistakes memory, and review-output policy for copied agents. |
 
 This tree itself is not copied into development repos.
 
@@ -25,9 +25,9 @@ This tree itself is not copied into development repos.
 
 Start at the intent docs, then walk downward through commitments, architecture, decisions, and implementation. Use `product-breakdown/02-architecture/architecture.md` as the canonical workflow policy and `product-breakdown/03-implementation/implementation.md` as the artifact map. Reviewers should verify that changes preserve the chain in both directions: from implementation back to intent, and from intent down to the product-breakdown source docs in this repository.
 
-For product breakdown work in copied target repos, agents should use `.opencode/templates/product-breakdown/` as the runtime guidance because `product-breakdown/` is not copied into target repos.
+For product breakdown work in copied target repos, agents should use `.opencode/dev_harness/product-breakdown/` as the runtime guidance because `product-breakdown/` is not copied into target repos.
 
-For guarded workflow control in copied target repos, agents should use `.opencode/templates/workflow/` as the runtime policy source for stage applicability, waivers, information hygiene, and review output.
+For guarded workflow control in copied target repos, agents should use `.opencode/dev_harness/workflow/` as the runtime policy source for stage applicability, waivers, information hygiene, and review output.
 
 ## Directory Structure
 
@@ -42,4 +42,4 @@ This tree follows the product-breakdown template layer numbering. Each numbered 
 - `product-breakdown/06-evolution/` — How should it change over time?
 - `product-breakdown/decision-log.md` — Index of all decisions across layers
 
-See `.opencode/templates/product-breakdown/README.md` for the full layer definitions.
+See `.opencode/dev_harness/product-breakdown/README.md` for the full layer definitions.

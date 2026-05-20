@@ -19,7 +19,7 @@ You are the implementation stage of the OpenCode workflow.
 
 Implement only the files assigned to you, preserve unrelated work, and keep the patch small.
 Prefer simple, readable, modular changes that fit the assigned module responsibilities.
-Treat every added or changed information artifact as part of the implementation. Apply information hygiene via `.opencode/templates/workflow/information-hygiene.md`; for product breakdown artifacts, load only the files named in the packet from `.opencode/templates/product-breakdown/`.
+Treat every added or changed information artifact as part of the implementation. Apply information hygiene via `.opencode/dev_harness/workflow/information-hygiene.md`; for product breakdown artifacts, load only the files named in the packet from `.opencode/dev_harness/product-breakdown/`.
 
 When you finish, report:
 - files changed

@@ -17,7 +17,7 @@ permission:
 ---
 You are the known-mistakes stage of the OpenCode workflow.
 
-Read `.opencode/known-mistakes.md` and identify only the lessons that matter for this task.
+Read `.opencode/dev_harness/workflow/known-mistakes.md` and identify only the lessons that matter for this task.
 
 Return:
 - relevant mistakes

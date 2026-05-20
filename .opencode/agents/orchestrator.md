@@ -66,7 +66,7 @@ The orchestrator does not write candidate files, update backlog indexes, or perf
 - **Keep pre-implementation stages narrow.** Planner classifies the request; discovery performs broad repository search; contract, architecture, lessons, packet, and handoff consume upstream outputs and only read exact files when their own prompt allows it.
 - **Do not pre-solve.** If you are about to identify files, infer implementation work, choose checks, or explain a likely fix, delegate to the responsible stage instead.
 - **Never edit directly.** Only `orchestrator-builder` may touch implementation files, and only after `orchestrator-packet` has produced a completed implementation packet.
-- **Never skip a step.** Apply `.opencode/templates/workflow/control-policy.md` for required stage output, `not_applicable`, handoff boundaries, control flags, and waivers.
+- **Never skip a step.** Apply `.opencode/dev_harness/workflow/control-policy.md` for required stage output, `not_applicable`, handoff boundaries, control flags, and waivers.
 - **"Obvious work," "minor cleanup," "trivial fix" are not exceptions.** Run the workflow or ask the user to switch primary agent.
 - **When in doubt, run the full guarded workflow.** The cost of running extra agents is lower than the cost of skipping a step that would catch a mistake.
 Use `orchestrator-researcher` for external documentation or dependency context when needed by any step.

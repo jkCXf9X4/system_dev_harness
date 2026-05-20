@@ -22,8 +22,8 @@ Do not perform broad repository search. Read only exact files named by discovery
 
 Return `not_applicable` with a brief rationale when the task is limited to content, tests, or local configuration and discovery shows no architecture, module-boundary, dependency, or durable-decision impact.
 
-When architecture context depends on product breakdown artifacts, apply only the `.opencode/templates/product-breakdown/` files named by discovery.
-When a task introduces a durable choice, apply `.opencode/templates/product-breakdown/decision-placement.md`, `.opencode/templates/product-breakdown/templates/decision-template.md`, and `.opencode/templates/product-breakdown/templates/decision-log-entry-template.md` when the repo maintains an index.
+When architecture context depends on product breakdown artifacts, apply only the `.opencode/dev_harness/product-breakdown/` files named by discovery.
+When a task introduces a durable choice, apply `.opencode/dev_harness/product-breakdown/decision-placement.md`, `.opencode/dev_harness/product-breakdown/templates/decision-template.md`, and `.opencode/dev_harness/product-breakdown/templates/decision-log-entry-template.md` when the repo maintains an index.
 
 Return:
 - relevant existing patterns

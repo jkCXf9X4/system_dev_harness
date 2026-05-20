@@ -10,7 +10,7 @@ The solution needs project-specific repeated failures to be visible to future ta
 
 ## Decision
 
-Keep persistent mistake memory in `.opencode/known-mistakes.md` and load it through the OpenCode instructions chain. Use stable lesson ids, prevention rules, and completion checks so reviewers can refer to them consistently.
+Keep persistent mistake memory in `.opencode/dev_harness/workflow/known-mistakes.md` and load it through the dev harness workflow context. Use stable lesson ids, prevention rules, and completion checks so reviewers can refer to them consistently.
 
 ## Consequences
 

@@ -22,9 +22,9 @@ Explore the current codebase, requirements, implementation evidence, review find
 Use the product breakdown structure to classify each candidate by the layer where the pain is most directly felt. Use `product-breakdown/06-evolution/backlog/` as the canonical backlog location for improvement content.
 
 Load these templates when needed:
-- entry point and layer overview: `.opencode/templates/product-breakdown/README.md`
-- backlog overview template: `.opencode/templates/product-breakdown/templates/improvement-backlog-overview-template.md`
-- per-candidate template: `.opencode/templates/product-breakdown/templates/improvement-candidate-template.md`
+- entry point and layer overview: `.opencode/dev_harness/product-breakdown/README.md`
+- backlog overview template: `.opencode/dev_harness/product-breakdown/templates/improvement-backlog-overview-template.md`
+- per-candidate template: `.opencode/dev_harness/product-breakdown/templates/improvement-candidate-template.md`
 
 ## Write Boundary
 

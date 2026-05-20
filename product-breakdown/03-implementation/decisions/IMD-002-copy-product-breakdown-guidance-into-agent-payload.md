@@ -12,14 +12,14 @@ The guidance also needs to stay small enough for agents to load selectively. A s
 
 ## Decision
 
-Store reusable product breakdown guidance under `.opencode/templates/product-breakdown/` and split it into load-on-demand files:
+Store reusable product breakdown guidance under `.opencode/dev_harness/product-breakdown/` and split it into load-on-demand files:
 
 - an entry README with the structure overview
 - one file per breakdown layer
 - separate decision placement, decision log, traceability, naming, and reusable template files
-- decision, decision-log-entry, improvement-overview, and improvement-candidate templates under `.opencode/templates/product-breakdown/templates/`
+- decision, decision-log-entry, improvement-overview, and improvement-candidate templates under `.opencode/dev_harness/product-breakdown/templates/`
 
-Keep source docs updated to describe this copied agent context, but treat `.opencode/templates/product-breakdown/` as the runtime source available to agents in target repositories.
+Keep source docs updated to describe this copied agent context, but treat `.opencode/dev_harness/product-breakdown/` as the runtime source available to agents in target repositories.
 
 ## Consequences
 
@@ -40,4 +40,4 @@ Tradeoffs:
 
 - Product commitments: PC-006, PC-007
 - Architecture: copied runtime source of truth in `.opencode/`
-- Implementation: `.opencode/templates/product-breakdown/`
+- Implementation: `.opencode/dev_harness/product-breakdown/`

@@ -120,15 +120,15 @@ def test_decision_templates_are_generic_and_referenced(simple_project: Path) -> 
     review_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-architecture.md")
     decision_placement = read_prompt(
         simple_project,
-        ".opencode/templates/product-breakdown/decision-placement.md",
+        ".opencode/dev_harness/product-breakdown/decision-placement.md",
     )
     decision_template = read_prompt(
         simple_project,
-        ".opencode/templates/product-breakdown/templates/decision-template.md",
+        ".opencode/dev_harness/product-breakdown/templates/decision-template.md",
     )
     decision_log_entry = read_prompt(
         simple_project,
-        ".opencode/templates/product-breakdown/templates/decision-log-entry-template.md",
+        ".opencode/dev_harness/product-breakdown/templates/decision-log-entry-template.md",
     )
 
     assert "decision-template.md" in architecture_prompt.lower()
@@ -170,7 +170,7 @@ def test_product_breakdown_usage_is_embedded_in_agent_workflow(simple_project: P
     gate_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
     product_breakdown_readme = read_prompt(
         simple_project,
-        ".opencode/templates/product-breakdown/README.md",
+        ".opencode/dev_harness/product-breakdown/README.md",
     ).lower()
 
     assert "intent, product behavior, architecture, implementation, verification, operation, and evolution" in product_breakdown_readme
@@ -206,7 +206,7 @@ def test_information_hygiene_is_workflow_gated(simple_project: Path) -> None:
     commitments_doc = read_prompt(repo_root, "product-breakdown/01-product/product-commitments.md")
     information_hygiene_policy = read_prompt(
         simple_project,
-        ".opencode/templates/workflow/information-hygiene.md",
+        ".opencode/dev_harness/workflow/information-hygiene.md",
     )
 
     for content in (
@@ -239,7 +239,7 @@ def test_agent_control_policy_closes_escape_hatches(simple_project: Path) -> Non
     builder_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-builder.md").lower()
     verifier_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-verifier.md").lower()
     gate_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
-    control_policy = read_prompt(simple_project, ".opencode/templates/workflow/control-policy.md").lower()
+    control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
 
     assert "control-policy.md" in orchestrator_prompt
     assert "every listed guarded workflow stage must run" in control_policy
@@ -264,7 +264,9 @@ def test_agent_control_policy_closes_escape_hatches(simple_project: Path) -> Non
 
 
 def test_shared_review_output_policy_is_referenced(simple_project: Path) -> None:
-    review_output_policy = read_prompt(simple_project, ".opencode/templates/workflow/review-output.md").lower()
+    review_output_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/review-output.md").lower()
+    known_mistakes = read_prompt(simple_project, ".opencode/dev_harness/workflow/known-mistakes.md").lower()
+    lessons_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-lessons.md").lower()
     review_agents = [
         ".opencode/agents/orchestrator-review-requirements.md",
         ".opencode/agents/orchestrator-review-architecture.md",
@@ -276,6 +278,8 @@ def test_shared_review_output_policy_is_referenced(simple_project: Path) -> None
     assert "pass" in review_output_policy
     assert "fail" in review_output_policy
     assert "needs_waiver" in review_output_policy
+    assert "persistent mistake memory" in known_mistakes
+    assert "dev_harness/workflow/known-mistakes.md" in lessons_prompt
 
     for agent_path in review_agents:
         prompt = read_prompt(simple_project, agent_path).lower()

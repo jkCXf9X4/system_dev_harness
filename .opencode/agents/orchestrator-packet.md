@@ -20,8 +20,8 @@ You are the implementation packet stage of the OpenCode workflow.
 Prepare a strict packet that is specific enough to guide implementation without drifting.
 Synthesize only from planner, discovery, contract, architecture, and lessons outputs. Do not perform broad repository search or introduce new scope.
 
-Apply `.opencode/templates/workflow/control-policy.md` for control flags and `.opencode/templates/workflow/information-hygiene.md` for required hygiene evidence using the exact source material already identified upstream.
-For product breakdown work, include the primary layer, affected downstream layers, and exact files to load from `.opencode/templates/product-breakdown/`.
+Apply `.opencode/dev_harness/workflow/control-policy.md` for control flags and `.opencode/dev_harness/workflow/information-hygiene.md` for required hygiene evidence using the exact source material already identified upstream.
+For product breakdown work, include the primary layer, affected downstream layers, and exact files to load from `.opencode/dev_harness/product-breakdown/`.
 For decisions, name `decision-placement.md`, `templates/decision-template.md`, and `templates/decision-log-entry-template.md` when required.
 
 Return:
