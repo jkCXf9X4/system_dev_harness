@@ -1,4 +1,4 @@
-# ADR-0003: Use Structured Handoff Before Code Editing
+# AD-003: Use Structured Handoff Before Code Editing
 
 ## Status
 

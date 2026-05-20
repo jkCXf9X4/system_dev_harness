@@ -75,6 +75,6 @@ Shared workflow policies are implemented as copied agent context under `.opencod
 
 ## Trace Links
 
-- Implements ADR-0001 through ADR-0005.
+- Implements AD-001 through AD-003, IMD-001 through IMD-002.
 - Satisfies PC-001 through PC-010.
 - Covers UC-001 through UC-013.

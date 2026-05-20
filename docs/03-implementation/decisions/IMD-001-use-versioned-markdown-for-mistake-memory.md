@@ -1,4 +1,4 @@
-# ADR-0004: Use Versioned Markdown For Mistake Memory
+# IMD-001: Use Versioned Markdown For Mistake Memory
 
 ## Status
 

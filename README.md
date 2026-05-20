@@ -31,8 +31,8 @@ The guarded workflow treats new or changed information as part of the deliverabl
 | Reusable cross-project prompts and supporting templates | `.opencode/templates/` |
 | Persistent repeated-failure checks | `.opencode/known-mistakes.md` |
 | Product intent, commitments, architecture, and decisions | `docs/` |
-| Canonical workflow policy and branch rules | `docs/03-system-architecture/architecture.md` |
-| Concrete artifact-to-stage mapping | `docs/05-implementation/implementation.md` |
+| Canonical workflow policy and branch rules | `docs/02-architecture/architecture.md` |
+| Concrete artifact-to-stage mapping | `docs/03-implementation/implementation.md` |
 
 ## Delivery Workflow
 

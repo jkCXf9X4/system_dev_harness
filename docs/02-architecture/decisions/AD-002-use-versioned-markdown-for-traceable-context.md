@@ -1,4 +1,4 @@
-# ADR-0002: Use Versioned Markdown For Traceable Context
+# AD-002: Use Versioned Markdown For Traceable Context
 
 ## Status
 

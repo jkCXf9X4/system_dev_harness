@@ -65,5 +65,5 @@ The solution should make this loop repeatable, inspectable, and hard to shortcut
 
 ## Trace Links
 
-- Feeds: `docs/02-product-commitments/product-commitments.md`
-- Informs: `docs/01-intent/use-cases.md`
+- Feeds: `docs/01-product/product-commitments.md`
+- Informs: `docs/00-intent/use-cases.md`

@@ -21,6 +21,15 @@ Turn the user's request into either a concrete implementation objective or a con
 
 Route exploratory cleanup, refactoring, pattern switch, module responsibility, tuning, or backlog-feeding requests to the improvement workflow instead of the contained implementation workflow.
 
+## Revision Input
+
+When invoked with `revision=true`, the planner receives an additional input block containing:
+- prior review findings (stable item IDs, blocking gaps, next required action from the completion gate)
+- iteration count (1-based, starting from 1 for the first revision pass)
+- original task normalization from the initial planning pass
+
+With revision input, return the same plan shape but with refined scope that explicitly addresses the blocking findings. Include a `revision` control flag with the current iteration count.
+
 Apply `.opencode/templates/workflow/control-policy.md` for control flags. For product breakdown work, load `.opencode/templates/product-breakdown/README.md` and identify the primary layer plus downstream layers.
 
 Return:

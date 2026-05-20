@@ -1,4 +1,4 @@
-# ADR-0005: Copy Product Breakdown Guidance Into Agent Payload
+# IMD-002: Copy Product Breakdown Guidance Into Agent Payload
 
 ## Status
 

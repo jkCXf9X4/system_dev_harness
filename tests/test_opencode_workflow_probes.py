@@ -183,7 +183,7 @@ def test_orchestrator_does_not_route_shortcut_build(simple_project: Path) -> Non
     repo_root = Path(__file__).resolve().parents[1]
     orchestrator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator.md")
     planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md")
-    architecture_doc = read_prompt(repo_root, "docs/03-system-architecture/architecture.md")
+    architecture_doc = read_prompt(repo_root, "docs/02-architecture/architecture.md")
 
     for content in (orchestrator_prompt, planner_prompt, architecture_doc):
         lowered = content.lower()
@@ -200,8 +200,8 @@ def test_information_hygiene_is_workflow_gated(simple_project: Path) -> None:
     verifier_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-verifier.md")
     completeness_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-completeness.md")
     gate_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md")
-    architecture_doc = read_prompt(repo_root, "docs/03-system-architecture/architecture.md")
-    commitments_doc = read_prompt(repo_root, "docs/02-product-commitments/product-commitments.md")
+    architecture_doc = read_prompt(repo_root, "docs/02-architecture/architecture.md")
+    commitments_doc = read_prompt(repo_root, "docs/01-product/product-commitments.md")
     information_hygiene_policy = read_prompt(
         simple_project,
         ".opencode/templates/workflow/information-hygiene.md",

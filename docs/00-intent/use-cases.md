@@ -312,4 +312,4 @@ Workflow boundary:
 
 ## Trace Links
 
-- UC-001 through UC-013 feed `docs/02-product-commitments/product-commitments.md`
+- UC-001 through UC-013 feed `docs/01-product/product-commitments.md`
