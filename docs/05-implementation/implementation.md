@@ -24,7 +24,6 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 - `orchestrator-builder` is the only edit-capable stage.
 - `orchestrator-verifier` is shell-capable for focused checks.
 - review agents are read-only and exist to keep approval separate from implementation.
-- Small bounded tasks are handed off to OpenCode's built-in `build` primary agent instead of a package-specific shortcut agent.
 - `orchestrator-improvement` is read-only and exists to feed backlog candidates, not to implement them.
 
 ## Stage Map
@@ -32,7 +31,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 | Stage | Artifact | Edit | Bash | Responsibility |
 | --- | --- | --- | --- | --- |
 | Entrypoint | `opencode.json` | n/a | n/a | Selects `orchestrator` as the default primary agent. |
-| Orchestration | `.opencode/agents/orchestrator.md` | ask | ask | Chooses guarded delivery, improvement discovery, or small-task handoff. |
+| Orchestration | `.opencode/agents/orchestrator.md` | ask | ask | Chooses guarded delivery or improvement discovery and does not enable shortcut routes that omit workflow stages. |
 | Planning | `.opencode/agents/orchestrator-planner.md` | no | no | Normalizes the request and recommends the workflow branch. |
 | Discovery | `.opencode/agents/orchestrator-discovery.md` | no | no | Finds the smallest relevant repository context. |
 | Contract | `.opencode/agents/orchestrator-contract.md` | no | no | Creates the checklistable requirement contract. |
@@ -47,7 +46,6 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 | Report | `.opencode/agents/orchestrator-reporter.md` | no | no | Produces the final control report. |
 | Research | `.opencode/agents/orchestrator-researcher.md` | no | no | Gathers external documentation or dependency context. |
 | Improvement | `.opencode/agents/orchestrator-improvement.md` | no | no | Produces backlog-ready cleanup, refactoring, pattern, module responsibility, or tuning candidates. |
-| Small tasks | OpenCode built-in `build` primary agent | yes | yes | Executes compact handoffs for small low-risk tasks. |
 
 ## Trace Links
 

@@ -28,11 +28,6 @@ continuous improvement:
     -> pressure analysis
     -> cleanup, refactoring, and other backlog-ready candidates
     -> final report
-
-small task handoff:
-  small bounded task
-    -> compact build handoff
-    -> OpenCode build primary agent
 ```
 
 ## Stable Concepts
@@ -52,7 +47,6 @@ small task handoff:
 | Review agents | Independently review requirements, architecture, QA, completeness, and lessons. |
 | Completion gate | Computes approved, blocked, or waiver-required outcomes. |
 | Final report | Captures the final state, decision, and remaining gaps. |
-| Small task handoff | Sends small bounded tasks to OpenCode's built-in `build` primary agent instead of the full guardrail loop. |
 | Improvement workflow | Separately explores cleanup, refactoring, pattern, module responsibility, and tuning opportunities. |
 | Improvement backlog | Stores accepted improvement candidates before they become scoped implementation tasks. |
 | Reusable templates | Capture cross-project prompt and supporting templates under `.opencode/templates/`. |
@@ -68,8 +62,6 @@ small task handoff:
 - Persistent lesson memory lives in versioned markdown, not in ephemeral conversation state.
 - Reusable templates live in versioned markdown under `.opencode/templates/` so they can be copied between projects without losing structure.
 - Every artifact touched by the workflow should have a visible place in the information chain, with no orphaned node left behind after a move, rename, or rewrite.
-- Small-task handoff is for low-risk work where the full contract and review chain would add unnecessary overhead. The orchestrator prepares the brief, then the operator switches to OpenCode's `build` primary agent for execution.
-- If a small task grows, it must escalate to the full delivery workflow before implementation starts.
 - Architecture guardrails include modularity, simplicity, readability, and module responsibility fit, not only preservation of the current shape.
 - Improvement discovery is separate from contained implementation. It may inspect broadly, but it must not change code.
 - Improvement candidates must be traceable to current features, requirements, evidence, review findings, or observed module friction.
@@ -87,7 +79,6 @@ Independent reviewer nodes evaluate requirements, architecture, QA, completeness
 The repository supports three related workflow branches:
 
 - Delivery workflow: normalize a bounded task, create a contract, implement only the contracted change, verify it, review it, and gate completion.
-- Small-task handoff: normalize a small bounded task, confirm it stays low-risk, and hand it to OpenCode's built-in `build` primary agent.
 - Improvement workflow: explore current features, requirements, implementation evidence, reviewer findings, module friction, and cleanup opportunities to produce backlog-ready improvement candidates.
 
 The delivery workflow may report improvement candidates, but it must not absorb exploratory cleanup, refactoring, or pattern changes unless the contract explicitly includes them. This keeps diffs small, verification focused, and review evidence tied to the requested feature or fix.

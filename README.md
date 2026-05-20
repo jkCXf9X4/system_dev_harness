@@ -2,7 +2,7 @@
 
 This repository is a portable OpenCode workflow package. Its active payload is meant to be copied into a development repo so the target repo can run the guarded workflow without a separate orchestration runtime.
 
-The active payload is `opencode.json` plus `.opencode/`. The entrypoint is the `orchestrator` primary agent in `.opencode/agents/orchestrator.md`. It delegates to hidden subagents for planning, discovery, contract writing, architecture guardrails, lessons checks, implementation packaging, implementation, verification, independent reviews, completion gating, final reporting, and continuous-improvement discovery for cleanup, refactoring, and tuning candidates. Small tasks that do not need the guarded chain are handed off to OpenCode's built-in `build` primary agent.
+The active payload is `opencode.json` plus `.opencode/`. The entrypoint is the `orchestrator` primary agent in `.opencode/agents/orchestrator.md`. It delegates to hidden subagents for planning, discovery, contract writing, architecture guardrails, lessons checks, implementation packaging, implementation, verification, independent reviews, completion gating, final reporting, and continuous-improvement discovery for cleanup, refactoring, and tuning candidates. OpenCode's built-in `build` primary agent remains available for direct operator use, but the orchestrator does not route to it as a shortcut path.
 
 ## Layout
 
@@ -48,12 +48,6 @@ The active payload is `opencode.json` plus `.opencode/`. The entrypoint is the `
 For exploratory cleanup, refactoring, pattern switch, module responsibility, tuning, or backlog-feeding requests, the orchestrator routes to `orchestrator-improvement`.
 
 That workflow is read-only. It produces backlog-ready candidates rather than changing code, so contained feature diffs stay small and verifiable. Use it for exploratory cleanup, refactoring, pattern switches, module responsibility shifts, and tuning.
-
-## Small Task Handoff
-
-For small, low-risk tasks, the orchestrator prepares a compact handoff for OpenCode's built-in `build` primary agent.
-
-That path skips the full contract and architecture chain. The operator switches to `build` to execute the handoff. If the task grows or the risk changes, it escalates back to the delivery workflow before implementation starts.
 
 ## Usage
 

@@ -125,3 +125,16 @@ def test_adr_templates_are_generic_and_referenced(simple_project: Path) -> None:
     assert "ssp_references" not in adr_record
     assert "docs/adr/README.md" not in adr_template
     assert "docs/adr/README.md" not in adr_record
+
+
+def test_orchestrator_does_not_route_shortcut_build(simple_project: Path) -> None:
+    repo_root = Path(__file__).resolve().parents[1]
+    orchestrator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator.md")
+    planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md")
+    architecture_doc = read_prompt(repo_root, "docs/03-system-architecture/architecture.md")
+
+    for content in (orchestrator_prompt, planner_prompt, architecture_doc):
+        lowered = content.lower()
+        assert "small-task handoff" not in lowered
+        assert "compact handoff" not in lowered
+        assert "shortcut path" not in lowered

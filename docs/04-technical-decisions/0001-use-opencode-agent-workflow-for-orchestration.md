@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-The solution needs explicit workflow roles, controlled transitions, review gating, future support for interrupts and replay, direct handoff to OpenCode's built-in build agent for small tasks, and a way to separate exploratory improvement discovery from contained implementation. A hidden runtime would make the process harder to inspect and harder to update.
+The solution needs explicit workflow roles, controlled transitions, review gating, future support for interrupts and replay, and a way to separate exploratory improvement discovery from contained implementation. A hidden runtime would make the process harder to inspect and harder to update.
 
 ## Decision
 

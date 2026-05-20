@@ -14,7 +14,7 @@
 - Packet agent: produces the strict implementation packet.
 - Handoff agent: turns the packet into a paste-ready coding brief.
 - Builder: makes the approved changes.
-- OpenCode build agent: handles small bounded implementation tasks that do not need the full guardrail workflow.
+- OpenCode build agent: handles direct operator-chosen implementation work when invoked explicitly outside the orchestrator path.
 - Verifier: runs focused checks and summarizes evidence.
 - Review agents: independently review requirements, architecture, QA, completeness, and lessons.
 - Completion gate: computes approved, blocked, or waiver-required outcomes.
@@ -308,32 +308,6 @@ Workflow boundary:
 - continuous improvement discovery is read-only and exploratory
 - candidates must not be implemented inside a contained feature task unless they are explicitly part of that task contract
 - accepted candidates become backlog entries or future task contracts before code changes begin
-
-## Small Task Handoff
-
-## UC-013: Hand Off Small Tasks To OpenCode Build
-
-Goal: route small, low-risk tasks directly to OpenCode's built-in `build` primary agent when the full guardrail path would add unnecessary overhead.
-
-Input:
-
-- small bounded request
-- obvious target files
-- low-coupling change
-- minimal verification needs
-
-Output:
-
-- compact task summary
-- narrow file set
-- minimal implementation steps
-- minimum checks
-- stop conditions
-- escalation criteria if the task grows beyond small-task scope
-
-Primary value:
-
-- lets the orchestrator avoid unnecessary ceremony by producing a compact build-agent handoff for trivial or low-risk work
 
 ## Trace Links
 

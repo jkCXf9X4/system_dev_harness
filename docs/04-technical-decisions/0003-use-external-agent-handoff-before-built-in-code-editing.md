@@ -29,7 +29,7 @@ Tradeoffs:
 
 - the workflow still depends on user or agent discipline to collect evidence
 - review quality depends on the completeness of the handoff and artifact set
-- small-task build handoff is an explicit exception that trades ceremony for speed and must remain low-risk
+- direct build-agent use remains an explicit operator choice outside the orchestrator path and must not become a shortcut that omits contract, architecture, or review requirements
 
 ## Traceability
 
