@@ -10,9 +10,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 - `.opencode/known-mistakes.md` - persistent lesson memory.
 - `.opencode/templates/prompts/*.md` - reusable prompt templates tied to use cases.
 - `.opencode/templates/README.md` - package index for the reusable template folder.
-- `.opencode/templates/others/improvement-backlog-template.md` - reusable backlog template for accepted improvement candidates.
-- `.opencode/templates/others/adr-template.md` - reusable ADR template for durable architectural decisions.
-- `.opencode/templates/others/adr_record.md` - reusable ADR record template for compact decision registers.
+- `.opencode/templates/product-breakdown/` - reusable product breakdown guidance split into small files for copied target-repo agents.
 
 ## Package Documentation
 
@@ -47,8 +45,26 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 | Research | `.opencode/agents/orchestrator-researcher.md` | no | no | Gathers external documentation or dependency context. |
 | Improvement | `.opencode/agents/orchestrator-improvement.md` | no | no | Produces backlog-ready cleanup, refactoring, pattern, module responsibility, or tuning candidates. |
 
+## Product Breakdown Context
+
+The product breakdown guidance is implemented as copied agent context under `.opencode/templates/product-breakdown/`.
+
+| Artifact | Purpose |
+| --- | --- |
+| `.opencode/templates/product-breakdown/README.md` | Entry point and load-on-demand routing table. |
+| `.opencode/templates/product-breakdown/structure.md` | Recommended layered tree and layer questions. |
+| `.opencode/templates/product-breakdown/layers/*.md` | One small context file per layer. |
+| `.opencode/templates/product-breakdown/decision-placement.md` | Rule for placing distributed decisions near affected artifacts. |
+| `.opencode/templates/product-breakdown/decision-log.md` | Guidance for maintaining the global decision index. |
+| `.opencode/templates/product-breakdown/traceability.md` | Cross-layer traceability chain and checklist. |
+| `.opencode/templates/product-breakdown/naming.md` | Stable ID and filename prefixes. |
+| `.opencode/templates/product-breakdown/templates/decision-template.md` | Reusable decision record template. |
+| `.opencode/templates/product-breakdown/templates/decision-log-entry-template.md` | Reusable compact decision-log entry template. |
+| `.opencode/templates/product-breakdown/templates/improvement-backlog-overview-template.md` | Reusable overview template for improvement backlogs. |
+| `.opencode/templates/product-breakdown/templates/improvement-candidate-template.md` | Reusable per-candidate improvement backlog template. |
+
 ## Trace Links
 
-- Implements ADR-0001 through ADR-0004.
+- Implements ADR-0001 through ADR-0005.
 - Satisfies PC-001 through PC-010.
 - Covers UC-001 through UC-013.

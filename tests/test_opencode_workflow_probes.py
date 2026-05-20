@@ -106,25 +106,31 @@ def test_improvement_stage_smoke(simple_project: Path, opencode_env: dict[str, s
     assert "backlog-worthy improvement work" in prompt.lower()
 
 
-def test_adr_templates_are_generic_and_referenced(simple_project: Path) -> None:
+def test_decision_templates_are_generic_and_referenced(simple_project: Path) -> None:
     architecture_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-architecture.md")
     packet_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-packet.md")
     review_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-architecture.md")
-    adr_template = read_prompt(simple_project, ".opencode/templates/others/adr-template.md")
-    adr_record = read_prompt(simple_project, ".opencode/templates/others/adr_record.md")
+    decision_template = read_prompt(
+        simple_project,
+        ".opencode/templates/product-breakdown/templates/decision-template.md",
+    )
+    decision_log_entry = read_prompt(
+        simple_project,
+        ".opencode/templates/product-breakdown/templates/decision-log-entry-template.md",
+    )
 
-    assert "adr-template.md" in architecture_prompt.lower()
-    assert "adr_record.md" in architecture_prompt.lower()
-    assert "adr-template.md" in packet_prompt.lower()
-    assert "adr_record.md" in packet_prompt.lower()
-    assert "adr-template.md" in review_prompt.lower()
-    assert "adr_record.md" in review_prompt.lower()
-    assert "architecture decision record" in adr_template.lower()
-    assert "adr record template" in adr_record.lower()
-    assert "ssp_references" not in adr_template
-    assert "ssp_references" not in adr_record
-    assert "docs/adr/README.md" not in adr_template
-    assert "docs/adr/README.md" not in adr_record
+    assert "decision-template.md" in architecture_prompt.lower()
+    assert "decision-log-entry-template.md" in architecture_prompt.lower()
+    assert "decision-template.md" in packet_prompt.lower()
+    assert "decision-log-entry-template.md" in packet_prompt.lower()
+    assert "decision-template.md" in review_prompt.lower()
+    assert "decision-log-entry-template.md" in review_prompt.lower()
+    assert "durable product breakdown decisions" in decision_template.lower()
+    assert "decision log entry template" in decision_log_entry.lower()
+    assert "ssp_references" not in decision_template
+    assert "ssp_references" not in decision_log_entry
+    assert "docs/adr/README.md" not in decision_template
+    assert "docs/adr/README.md" not in decision_log_entry
 
 
 def test_orchestrator_does_not_route_shortcut_build(simple_project: Path) -> None:

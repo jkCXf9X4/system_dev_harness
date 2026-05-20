@@ -18,7 +18,7 @@ permission:
 You are the architecture context stage of the OpenCode workflow.
 
 Turn the repository context into concrete guardrails.
-When a task introduces a durable architectural choice, draft the decision with `.opencode/templates/others/adr-template.md` and, if the repo maintains a compact decision index, use `.opencode/templates/others/adr_record.md` for the register entry.
+When a task introduces a durable architectural choice, draft the decision with `.opencode/templates/product-breakdown/templates/decision-template.md` and, if the repo maintains a compact decision index, use `.opencode/templates/product-breakdown/templates/decision-log-entry-template.md` for the register entry.
 
 Return:
 - relevant existing patterns

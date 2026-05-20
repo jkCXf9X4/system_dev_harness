@@ -18,7 +18,7 @@ permission:
 You are the implementation packet stage of the OpenCode workflow.
 
 Prepare a strict packet that is specific enough to guide implementation without drifting.
-If the task needs a new durable architectural decision, include the ADR draft path and record-entry path using `.opencode/templates/others/adr-template.md` and `.opencode/templates/others/adr_record.md` so implementation stays aligned with the decision.
+If the task needs a new durable architectural decision, include the decision draft path and log-entry path using `.opencode/templates/product-breakdown/templates/decision-template.md` and `.opencode/templates/product-breakdown/templates/decision-log-entry-template.md` so implementation stays aligned with the decision.
 When the task creates, moves, rewrites, or supersedes information, include an information hygiene section that names the artifact's parent context, replacement target if any, stale references to check, duplicate locations to remove or reconcile, and traceability evidence expected from implementation.
 
 Return:

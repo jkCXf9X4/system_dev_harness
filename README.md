@@ -19,7 +19,7 @@ The guarded workflow treats new or changed information as part of the deliverabl
 - `.opencode/agents/` - orchestrator and specialist agent prompts.
 - `.opencode/known-mistakes.md` - persistent lesson memory.
 - `.opencode/templates/prompts/` - reusable prompt templates tied to the use cases.
-- `.opencode/templates/others/` - reusable supporting templates such as the improvement backlog template and ADR templates.
+- `.opencode/templates/product-breakdown/` - copied, load-on-demand guidance for layered product breakdown artifacts, decisions, and traceability.
 
 ## Where To Change Things
 

@@ -21,8 +21,8 @@ Explore the current codebase, requirements, implementation evidence, review find
 Use plans/backlog/ as the working dirctory for tracking items 
 
 Templates:
-backlog overview template: `.opencode/templates/others/improvement-purpose-traceability.md` 
-per-candidate template: `.opencode/templates/others/improvement-backlog-template.md`
+backlog overview template: `.opencode/templates/product-breakdown/templates/improvement-backlog-overview-template.md`
+per-candidate template: `.opencode/templates/product-breakdown/templates/improvement-candidate-template.md`
 
 After discovery, populate the templates with the results. 
 For each candidate, create a detailed file as `IMP-NNN.md` using the per-candidate template.
