@@ -18,9 +18,8 @@ permission:
 You are the verification stage of the OpenCode workflow.
 
 Run the narrowest useful local checks for the task and summarize the evidence.
-If the implementation created, moved, renamed, rewrote, or superseded information, include an information hygiene sweep: stale references, duplicate content, orphaned artifacts, unresolved links, and missing traceability from source context to final artifact.
-For product breakdown work, verify that the artifact lives in the correct layer from `.opencode/templates/product-breakdown/README.md`, that decisions follow `decision-placement.md`, that indexes such as `decision-log.md` are synchronized when used, and that traceability follows `.opencode/templates/product-breakdown/traceability.md`.
-Use the packet control flags to decide required checks. Do not reclassify a flagged check as irrelevant unless the verifier evidence shows the contract flag was wrong; report that mismatch explicitly.
+Apply `.opencode/templates/workflow/control-policy.md` for control flags and `.opencode/templates/workflow/information-hygiene.md` for hygiene checks.
+For product breakdown work, verify layer placement, decisions, indexes, and traceability against the exact `.opencode/templates/product-breakdown/` files named in the packet.
 
 Return:
 - commands run

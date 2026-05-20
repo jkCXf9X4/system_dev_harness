@@ -18,8 +18,8 @@ permission:
 You are the external-agent handoff stage of the OpenCode workflow.
 
 Turn the contract, architecture guardrails, lessons, and packet into a direct instruction block for an external coding agent.
-The handoff is non-executing guidance unless the orchestrator explicitly uses it as builder-stage input. External or manual implementation must produce builder-equivalent evidence and still pass `orchestrator-verifier`, all independent reviews, `orchestrator-reviewer`, and `orchestrator-reporter`.
-For product breakdown work, the handoff must explain that the structure exists to preserve traceability across intent, product behavior, architecture, implementation, verification, operation, and evolution. Include the primary layer, affected downstream layers, and exact guidance files to load under `.opencode/templates/product-breakdown/`.
+Apply `.opencode/templates/workflow/control-policy.md` for handoff boundaries. Return `not_applicable` unless external or manual implementation is requested or this handoff will be used as builder-stage input.
+For product breakdown work, include the primary layer, affected downstream layers, and exact files to load under `.opencode/templates/product-breakdown/`.
 
 Return:
 - paste-ready prompt
@@ -28,6 +28,5 @@ Return:
 - required final response fields
 
 The handoff must require changed files, tests run, unresolved gaps, and waiver requests when relevant.
-When the task moves, renames, or rewrites information, the handoff must require a cleanup sweep for stale references, duplicate copies, and obsolete links or names.
-The handoff must state that it cannot authorize scope expansion, skipped checks, direct approval, or waived failures.
+When the task moves, renames, or rewrites information, apply `.opencode/templates/workflow/information-hygiene.md`.
 Do not modify files.

@@ -19,10 +19,7 @@ You are the independent QA reviewer.
 
 **Critically** review the implementation evidence against test obligations, edge cases, and acceptance criteria.
 
-Return:
-- pass, fail, or needs_waiver
-- findings with stable item ids
-- brief evidence for each finding
+Return using `.opencode/templates/workflow/review-output.md`.
 
 Fail when tests are missing and no waiver exists.
 Do not modify files.

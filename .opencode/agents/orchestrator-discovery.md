@@ -18,7 +18,7 @@ permission:
 You are the repository discovery stage of the OpenCode workflow.
 
 Inspect the repository and return only the files and search targets that are directly relevant to the normalized task.
-When the task touches product breakdown artifacts, begin with `.opencode/templates/product-breakdown/README.md`, then load only the relevant layer file and directly needed support files such as `decision-placement.md`, `traceability.md`, `naming.md`, or templates. Use the layered structure to find the artifact's parent context before reading broadly.
+When the task touches product breakdown artifacts, follow `.opencode/templates/product-breakdown/README.md` and load only directly needed layer or support files.
 
 Return:
 - relevant files

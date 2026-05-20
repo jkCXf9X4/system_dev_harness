@@ -11,6 +11,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 - `.opencode/templates/prompts/*.md` - reusable prompt templates tied to use cases.
 - `.opencode/templates/README.md` - package index for the reusable template folder.
 - `.opencode/templates/product-breakdown/` - reusable product breakdown guidance split into small files for copied target-repo agents.
+- `.opencode/templates/workflow/` - shared workflow control, information hygiene, and review-output policies referenced by copied agents.
 
 ## Package Documentation
 
@@ -36,7 +37,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 | Architecture | `.opencode/agents/orchestrator-architecture.md` | no | no | Extracts boundaries, design quality goals, and guardrails. |
 | Lessons | `.opencode/agents/orchestrator-lessons.md` | no | no | Applies persistent mistake memory to the task. |
 | Packet | `.opencode/agents/orchestrator-packet.md` | no | no | Produces the strict implementation packet. |
-| Handoff | `.opencode/agents/orchestrator-handoff.md` | no | no | Turns the packet into a direct coding brief. |
+| Handoff | `.opencode/agents/orchestrator-handoff.md` | no | no | Turns the packet into a direct coding brief only when external or manual implementation is requested. |
 | Build | `.opencode/agents/orchestrator-builder.md` | yes | yes | Applies approved changes, reconciles new or changed information, removes stale or duplicate artifacts, and reports implementation evidence. |
 | Verify | `.opencode/agents/orchestrator-verifier.md` | no | yes | Runs focused checks, including information hygiene and stale-reference checks when relevant, and summarizes verification evidence. |
 | Review | `.opencode/agents/orchestrator-review-*.md` | no | no | Independently reviews requirements, architecture, QA, completeness, information hygiene, and lessons. |
@@ -61,6 +62,16 @@ The product breakdown guidance is implemented as copied agent context under `.op
 | `.opencode/templates/product-breakdown/templates/decision-log-entry-template.md` | Reusable compact decision-log entry template. |
 | `.opencode/templates/product-breakdown/templates/improvement-backlog-overview-template.md` | Reusable overview template for improvement backlogs. |
 | `.opencode/templates/product-breakdown/templates/improvement-candidate-template.md` | Reusable per-candidate improvement backlog template. |
+
+## Workflow Policy Context
+
+Shared workflow policies are implemented as copied agent context under `.opencode/templates/workflow/`.
+
+| Artifact | Purpose |
+| --- | --- |
+| `.opencode/templates/workflow/control-policy.md` | Required stage output, `not_applicable`, handoff boundaries, control flags, and waiver rules. |
+| `.opencode/templates/workflow/information-hygiene.md` | Canonical evidence requirements for changed information artifacts. |
+| `.opencode/templates/workflow/review-output.md` | Shared independent-review return protocol. |
 
 ## Trace Links
 

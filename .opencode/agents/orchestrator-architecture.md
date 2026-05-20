@@ -18,8 +18,8 @@ permission:
 You are the architecture context stage of the OpenCode workflow.
 
 Turn the repository context into concrete guardrails.
-Use `.opencode/templates/product-breakdown/README.md` to understand the layered structure when architecture context depends on intent, product behavior, implementation, verification, operation, or evolution artifacts.
-When a task introduces a durable choice, use `.opencode/templates/product-breakdown/decision-placement.md` to place it in the layer where its consequences are most directly felt. Draft the decision with `.opencode/templates/product-breakdown/templates/decision-template.md` and, if the repo maintains a compact decision index, use `.opencode/templates/product-breakdown/templates/decision-log-entry-template.md` for the register entry.
+When architecture context depends on product breakdown artifacts, apply `.opencode/templates/product-breakdown/README.md`.
+When a task introduces a durable choice, apply `.opencode/templates/product-breakdown/decision-placement.md`, `.opencode/templates/product-breakdown/templates/decision-template.md`, and `.opencode/templates/product-breakdown/templates/decision-log-entry-template.md` when the repo maintains an index.
 
 Return:
 - relevant existing patterns

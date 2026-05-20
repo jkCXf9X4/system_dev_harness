@@ -1,0 +1,19 @@
+# Review Output Protocol
+
+Use this protocol for independent review stages.
+
+Return exactly one status:
+
+```text
+pass
+fail
+needs_waiver
+```
+
+Include:
+
+- findings with stable item ids
+- brief evidence for each finding
+- waiver request details when status is `needs_waiver`
+
+Use `fail` when evidence is missing, contradictory, or does not prove completion. Use `needs_waiver` only when the implementation is intentionally incomplete or risky and requires explicit user approval under `.opencode/templates/workflow/control-policy.md`.

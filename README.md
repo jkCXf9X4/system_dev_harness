@@ -20,6 +20,7 @@ The guarded workflow treats new or changed information as part of the deliverabl
 - `.opencode/known-mistakes.md` - persistent lesson memory.
 - `.opencode/templates/prompts/` - reusable prompt templates tied to the use cases.
 - `.opencode/templates/product-breakdown/` - copied, load-on-demand guidance for layered product breakdown artifacts, decisions, and traceability.
+- `.opencode/templates/workflow/` - copied workflow control, information hygiene, and review-output policies referenced by agents.
 
 ## Where To Change Things
 
@@ -38,7 +39,7 @@ The guarded workflow treats new or changed information as part of the deliverabl
 1. `orchestrator-planner` turns the request into a concrete task and work order.
 2. `orchestrator-discovery` finds the smallest relevant file set.
 3. `orchestrator-contract`, `orchestrator-architecture`, and `orchestrator-lessons` establish the guardrails.
-4. `orchestrator-packet` and `orchestrator-handoff` prepare the implementation brief.
+4. `orchestrator-packet` prepares the implementation brief; `orchestrator-handoff` adds an external/manual handoff only when needed.
 5. `orchestrator-builder` makes the changes.
 6. `orchestrator-verifier` runs focused checks and captures evidence.
 7. `orchestrator-review-*` agents review the evidence independently.

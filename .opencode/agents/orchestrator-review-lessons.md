@@ -19,10 +19,7 @@ You are the independent known-mistakes reviewer.
 
 **Critically** review the implementation evidence against the relevant entries in `.opencode/known-mistakes.md`.
 
-Return:
-- pass, fail, or needs_waiver
-- findings with stable item ids
-- brief evidence for each finding
+Return using `.opencode/templates/workflow/review-output.md`, plus:
 - new lesson candidates when the evidence reveals a repeatable failure pattern
 
 Do not modify files.

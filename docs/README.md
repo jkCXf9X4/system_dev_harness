@@ -14,6 +14,7 @@ This docs tree is package documentation and source reference for the workflow pa
 | Implementation | `docs/05-implementation/implementation.md` | Lists the repository artifacts that realize the solution. |
 | Agent Templates | `.opencode/templates/*` | Reusable prompt and supporting templates copied into the active payload. |
 | Product Breakdown Agent Context | `.opencode/templates/product-breakdown/README.md` | Layered guidance for intent, product, architecture, implementation, verification, operation, and evolution work. |
+| Workflow Policy Agent Context | `.opencode/templates/workflow/` | Shared control, information hygiene, and review-output policy for copied agents. |
 
 The docs tree itself is not copied into development repos.
 
@@ -22,6 +23,8 @@ The docs tree itself is not copied into development repos.
 Start at the intent docs, then walk downward through commitments, architecture, decisions, and implementation. Use `docs/03-system-architecture/architecture.md` as the canonical workflow policy and `docs/05-implementation/implementation.md` as the artifact map. Reviewers should verify that changes preserve the chain in both directions: from implementation back to intent, and from intent down to the package docs in this repository.
 
 For product breakdown work in copied target repos, agents should use `.opencode/templates/product-breakdown/` as the runtime guidance because `docs/` is not copied into target repos.
+
+For guarded workflow control in copied target repos, agents should use `.opencode/templates/workflow/` as the runtime policy source for stage applicability, waivers, information hygiene, and review output.
 
 ## Layer Mapping
 

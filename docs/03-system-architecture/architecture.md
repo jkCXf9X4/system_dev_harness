@@ -2,7 +2,7 @@
 
 ## Architectural Purpose
 
-The current solution acts as a control layer around agentic development. It separates task definition, architectural grounding, lessons, implementation handoff, execution, independent review, and deterministic completion routing.
+The current solution acts as a control layer around agentic development. It separates task definition, architectural grounding, lessons, implementation packaging, optional external handoff, execution, independent review, and deterministic completion routing.
 
 ## Control Flow
 
@@ -15,7 +15,8 @@ guarded delivery:
     -> planner
     -> discovery
     -> contract, architecture, lessons
-    -> packet and handoff
+    -> packet
+    -> optional handoff when external or manual implementation is requested
     -> builder
     -> verifier
     -> independent reviews
@@ -42,6 +43,7 @@ continuous improvement:
 | Technical decisions | Explain why the current structure exists. |
 | Known mistakes | Provide versioned lesson memory in `.opencode/known-mistakes.md`. |
 | Implementation packet | Packages contract, guardrails, and checks for implementation. |
+| Handoff | Provides an external or manual coding brief only when needed. |
 | Builder | Applies approved changes. |
 | Verifier | Runs focused checks and summarizes evidence. |
 | Review agents | Independently review requirements, architecture, QA, completeness, and lessons. |
@@ -52,6 +54,7 @@ continuous improvement:
 | Improvement backlog | Stores accepted improvement candidates before they become scoped implementation tasks. |
 | Reusable templates | Capture cross-project prompt and supporting templates under `.opencode/templates/`. |
 | Product breakdown guidance | Provides copied, load-on-demand context under `.opencode/templates/product-breakdown/` so target-repo agents can structure layered artifacts without relying on package-only docs. |
+| Workflow policy guidance | Provides copied workflow control, information hygiene, and review-output rules under `.opencode/templates/workflow/` so agents reference shared policy instead of duplicating it. |
 
 ## Boundaries
 
@@ -64,6 +67,7 @@ continuous improvement:
 - Persistent lesson memory lives in versioned markdown, not in ephemeral conversation state.
 - Reusable templates live in versioned markdown under `.opencode/templates/` so they can be copied between projects without losing structure.
 - Product breakdown guidance lives under `.opencode/templates/product-breakdown/` because target repositories receive `.opencode/` but not this package's `docs/` tree.
+- Workflow policy guidance lives under `.opencode/templates/workflow/` because target repositories receive `.opencode/` but not this package's `docs/` tree.
 - Every artifact touched by the workflow should have a visible place in the information chain, with no orphaned node left behind after a creation, move, rename, rewrite, or replacement.
 - New information must either update an existing artifact, replace a superseded artifact, or declare a clear parent context and downstream destination.
 - Completion evidence must cover stale-reference cleanup, duplicate-content reconciliation, and traceability for changed information artifacts.
@@ -95,3 +99,4 @@ The delivery workflow may report improvement candidates, but it must not absorb 
 - Technical decisions justify the OpenCode-native workflow and persistent docs.
 - Implementation artifacts realize the workflow in `opencode.json`, `.opencode/agents/*.md`, `.opencode/known-mistakes.md`, and `.opencode/templates/*.md`.
 - Product breakdown guidance supports PC-006 by giving agents copied context for layered decisions and traceability.
+- Workflow policy guidance keeps repeated control, information hygiene, and review-output rules centralized for copied agents.
