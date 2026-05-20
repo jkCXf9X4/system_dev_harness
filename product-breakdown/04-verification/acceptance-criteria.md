@@ -7,4 +7,4 @@ The workflow package must satisfy these high-level acceptance criteria:
 - Reviewer findings are actionable (blocked findings route back to planner per the revision loop).
 - Stale references, duplicates, and orphaned artifacts are reconciled before completion.
 - Improvement candidates are persisted to the backlog automatically.
-- The `doc/` tree remains aligned with the product-breakdown template structure.
+- The `docs/` tree remains aligned with the operator-facing documentation hierarchy and the product-breakdown source tree.

@@ -10,6 +10,8 @@ pytest -q tests/test_opencode_workflow_probes.py
 
 The fixture copies `opencode.json` and `.opencode/` into a temporary simple project, then runs `opencode run` probes against that copied payload. That means the tests are checking the runtime package as shipped, not the source docs directly.
 
+Expect the suite to take roughly a minute or two because it exercises `opencode run` end to end.
+
 ## Prompt Probe Assertions
 
 Prefer behavior-level assertions over exact prompt wording.

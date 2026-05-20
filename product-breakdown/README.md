@@ -12,6 +12,9 @@ This tree is the product-breakdown source documentation and traceability set for
 | System Architecture | `product-breakdown/02-architecture/architecture.md` | Describes the control flow, boundaries, and permissions. |
 | Technical Decisions | `product-breakdown/decision-log.md` | Index of decisions distributed across per-layer `decisions/` directories. |
 | Implementation | `product-breakdown/03-implementation/implementation.md` | Lists the repository artifacts that realize the solution. |
+| Verification | `product-breakdown/04-verification/` | Captures acceptance criteria, test strategy, and traceability. |
+| Operation | `product-breakdown/05-operation/` | Captures deployment and runbook guidance. |
+| Evolution | `product-breakdown/06-evolution/` | Captures roadmap, risks, and changelog history. |
 | Agent Templates | `.opencode/templates/*` | Reusable prompt and supporting templates copied into the active payload. |
 | Product Breakdown Agent Context | `.opencode/templates/product-breakdown/README.md` | Layered guidance for intent, product, architecture, implementation, verification, operation, and evolution work. |
 | Workflow Policy Agent Context | `.opencode/templates/workflow/` | Shared control, information hygiene, and review-output policy for copied agents. |
@@ -34,8 +37,8 @@ This tree follows the product-breakdown template layer numbering. Each numbered 
 - `product-breakdown/01-product/` — What should it do?
 - `product-breakdown/02-architecture/` — How is it structurally organized? (includes `decisions/` for architecture decisions)
 - `product-breakdown/03-implementation/` — How is it built in code and configuration? (includes `decisions/` for implementation decisions)
-- `product-breakdown/04-verification/` — (to be created)
-- `product-breakdown/05-operation/` — (to be created)
+- `product-breakdown/04-verification/` — How do we know it works?
+- `product-breakdown/05-operation/` — How is it run and supported?
 - `product-breakdown/06-evolution/` — How should it change over time?
 - `product-breakdown/decision-log.md` — Index of all decisions across layers
 

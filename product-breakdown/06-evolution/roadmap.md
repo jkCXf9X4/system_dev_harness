@@ -1,7 +1,7 @@
 # Roadmap
 
 ## Current Focus
-
+- Simplify the operator entrypoint docs and keep the detailed hierarchy under `docs/`.
 
 
 ## Planned
