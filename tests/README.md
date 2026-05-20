@@ -2,6 +2,14 @@
 
 This test suite checks the copied OpenCode workflow payload, especially agent prompts and reusable templates.
 
+Run the suite from the repository root:
+
+```bash
+pytest -q tests/test_opencode_workflow_probes.py
+```
+
+The fixture copies `opencode.json` and `.opencode/` into a temporary simple project, then runs `opencode run` probes against that copied payload. That means the tests are checking the runtime package as shipped, not the source docs directly.
+
 ## Prompt Probe Assertions
 
 Prefer behavior-level assertions over exact prompt wording.
@@ -36,7 +44,14 @@ Detailed rules should live in copied runtime context under `.opencode/templates/
 
 Use:
 
-- `.opencode/templates/product-breakdown/` for product-breakdown structure, decisions, and traceability
+- `product-breakdown/` for the source documentation and traceability set, and `.opencode/templates/product-breakdown/` for the copied runtime guidance used by agents
 - `.opencode/templates/workflow/` for workflow control, information hygiene, and review-output rules
 
 Tests should verify those canonical files and then verify that agents reference them.
+
+## Extending Tests
+
+- Add new smoke coverage in `tests/test_opencode_workflow_probes.py`.
+- Prefer one assertion per behavior rather than one assertion per sentence in a prompt.
+- Use exact paths only when the path is the behavior under test, such as a canonical source file or required runtime template.
+- Avoid asserting full prompt text unless the whole string is the subject of the test.

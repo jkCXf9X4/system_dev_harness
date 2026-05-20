@@ -43,7 +43,7 @@ The solution should make this loop repeatable, inspectable, and hard to shortcut
 - Reviewer agents challenge completeness, requirements, architecture, QA, and mistake avoidance.
 - Completion requires reviewer approval against evidence.
 - Missing contract items require explicit waivers with reason, risk, owner, and follow-up action.
-- The current solution remains traceable through the package `docs/` tree
+- The current solution remains traceable through the package `product-breakdown/` tree
 
 ## Non-Goals
 
@@ -65,5 +65,5 @@ The solution should make this loop repeatable, inspectable, and hard to shortcut
 
 ## Trace Links
 
-- Feeds: `docs/01-product/product-commitments.md`
-- Informs: `docs/00-intent/use-cases.md`
+- Feeds: `product-breakdown/01-product/product-commitments.md`
+- Informs: `product-breakdown/00-intent/use-cases.md`

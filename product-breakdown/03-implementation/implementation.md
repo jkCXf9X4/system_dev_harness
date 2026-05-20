@@ -1,6 +1,6 @@
 # Implementation
 
-The current solution is packaged as copyable OpenCode configuration and prompts. Only `opencode.json` and `.opencode/` are copied into a development repo; the `docs/` tree stays in this repository as package documentation and source references.
+The current solution is packaged as copyable OpenCode configuration and prompts. Only `opencode.json` and `.opencode/` are copied into a development repo; the `product-breakdown/` tree stays in this repository as product-breakdown source documentation and traceability.
 
 ## Implemented Artifacts
 
@@ -15,7 +15,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 
 ## Package Documentation
 
-- `docs/` - package documentation and source references retained in this repository only.
+- `product-breakdown/` - product-breakdown source documentation and traceability retained in this repository only.
 - `README.md` - package overview and copy instructions retained in this repository only.
 
 ## Execution Roles

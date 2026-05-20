@@ -45,7 +45,7 @@ After step 11, route based on the gate result:
 Use ONLY when the user explicitly asks for a proposal, recommendation, or backlog entry — NOT when they ask for actual changes.
 1. `orchestrator-improvement` — explore and prepare backlog-ready candidates.
 2. `orchestrator-reporter` — produce the final report.
-3. `orchestrator-persist` — write candidate files to `docs/06-evolution/candidates/` and update `docs/06-evolution/improvement-backlog.md` by extracting the `## Persistable Content` section from the improvement agent's output. Create `candidates/` if absent. Validate each candidate has a filename and content before writing. Update the Individual Candidates table in the overview, skipping duplicate IDs. Exploration agents never edit files. The orchestrator performs the mechanical persistence step. If the user approves improvement candidates, that approval triggers a new request that runs the full guarded workflow.
+3. `orchestrator-persist` — write candidate files to `product-breakdown/06-evolution/candidates/` and update `product-breakdown/06-evolution/improvement-backlog.md` by extracting the `## Persistable Content` section from the improvement agent's output. Create `candidates/` if absent. Validate each candidate has a filename and content before writing. Update the Individual Candidates table in the overview, skipping duplicate IDs. Exploration agents never edit files. The orchestrator performs the mechanical persistence step. If the user approves improvement candidates, that approval triggers a new request that runs the full guarded workflow.
 
 ## Rules
 - **Start with `orchestrator-planner` on every request.** The planner decides which workflow applies. You do not decide.

@@ -53,21 +53,21 @@ continuous improvement:
 | Improvement workflow | Separately explores cleanup, refactoring, pattern, module responsibility, and tuning opportunities. |
 | Improvement backlog | Stores accepted improvement candidates before they become scoped implementation tasks. |
 | Reusable templates | Capture cross-project prompt and supporting templates under `.opencode/templates/`. |
-| Product breakdown guidance | Provides copied, load-on-demand context under `.opencode/templates/product-breakdown/` so target-repo agents can structure layered artifacts without relying on package-only docs. |
+| Product breakdown guidance | Provides copied, load-on-demand context under `.opencode/templates/product-breakdown/` so target-repo agents can structure layered artifacts without relying on source docs in the package repo. |
 | Workflow policy guidance | Provides copied workflow control, information hygiene, and review-output rules under `.opencode/templates/workflow/` so agents reference shared policy instead of duplicating it. |
 
 ## Boundaries
 
 - Runtime source of truth lives in `.opencode/`.
-- Design and traceability source of truth lives in `docs/`.
+- Design and traceability source of truth lives in `product-breakdown/`.
 - `opencode.json` selects the primary agent and loads the workflow instructions.
 - The builder agent is the only agent meant to edit files.
 - Review agents are read-only.
 - The workflow should remain inspectable without a hidden Python runtime.
 - Persistent lesson memory lives in versioned markdown, not in ephemeral conversation state.
 - Reusable templates live in versioned markdown under `.opencode/templates/` so they can be copied between projects without losing structure.
-- Product breakdown guidance lives under `.opencode/templates/product-breakdown/` because target repositories receive `.opencode/` but not this package's `docs/` tree.
-- Workflow policy guidance lives under `.opencode/templates/workflow/` because target repositories receive `.opencode/` but not this package's `docs/` tree.
+- Product breakdown guidance lives under `.opencode/templates/product-breakdown/` because target repositories receive `.opencode/` but not this package's `product-breakdown/` tree.
+- Workflow policy guidance lives under `.opencode/templates/workflow/` because target repositories receive `.opencode/` but not this package's `product-breakdown/` tree.
 - Every artifact touched by the workflow should have a visible place in the information chain, with no orphaned node left behind after a creation, move, rename, rewrite, or replacement.
 - New information must either update an existing artifact, replace a superseded artifact, or declare a clear parent context and downstream destination.
 - Completion evidence must cover stale-reference cleanup, duplicate-content reconciliation, and traceability for changed information artifacts.
@@ -96,7 +96,7 @@ The delivery workflow may report improvement candidates, but it must not absorb 
 
 - Intent docs feed PC-001 through PC-010.
 - Product commitments constrain the agent roles and permissions.
-- Technical decisions justify the OpenCode-native workflow and persistent docs.
+- Technical decisions justify the OpenCode-native workflow and persistent source docs.
 - Implementation artifacts realize the workflow in `opencode.json`, `.opencode/agents/*.md`, `.opencode/known-mistakes.md`, and `.opencode/templates/*.md`.
 - Product breakdown guidance supports PC-006 by giving agents copied context for layered decisions and traceability.
 - Workflow policy guidance keeps repeated control, information hygiene, and review-output rules centralized for copied agents.

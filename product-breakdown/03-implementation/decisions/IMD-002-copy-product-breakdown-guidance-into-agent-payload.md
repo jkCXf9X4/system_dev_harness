@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-Only `opencode.json` and `.opencode/` are copied into target development repositories. Package documentation under `docs/` remains in this source repository. Product breakdown guidance therefore cannot live only in `docs/` if target-repo agents are expected to use it.
+Only `opencode.json` and `.opencode/` are copied into target development repositories. Package documentation under `product-breakdown/` remains in this source repository. Product breakdown guidance therefore cannot live only in `product-breakdown/` if target-repo agents are expected to use it.
 
 The guidance also needs to stay small enough for agents to load selectively. A single large document would make routine breakdown, decision, and traceability tasks carry unnecessary context.
 
@@ -19,7 +19,7 @@ Store reusable product breakdown guidance under `.opencode/templates/product-bre
 - separate decision placement, decision log, traceability, naming, and reusable template files
 - decision, decision-log-entry, improvement-overview, and improvement-candidate templates under `.opencode/templates/product-breakdown/templates/`
 
-Keep package docs updated to describe this copied agent context, but treat `.opencode/templates/product-breakdown/` as the runtime source available to agents in target repositories.
+Keep source docs updated to describe this copied agent context, but treat `.opencode/templates/product-breakdown/` as the runtime source available to agents in target repositories.
 
 ## Consequences
 
@@ -29,7 +29,7 @@ Benefits:
 - agents can load only the relevant layer or support file
 - distributed decisions remain close to affected artifacts while the global decision log stays an index
 - improvement backlog templates live in the evolution/product-breakdown context instead of a separate generic `others` bucket
-- package docs stay aligned with the copied runtime payload
+- source docs stay aligned with the copied runtime payload
 
 Tradeoffs:
 

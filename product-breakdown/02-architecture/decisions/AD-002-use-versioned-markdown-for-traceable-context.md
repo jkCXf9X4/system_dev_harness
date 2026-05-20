@@ -10,7 +10,7 @@ The solution needs a durable, reviewable chain from intent to implementation. If
 
 ## Decision
 
-Store intent, commitments, architecture, decisions, implementation mapping, persistent lessons, and reusable templates as versioned markdown in the package. Keep the reusable workflow payload under `.opencode/` and keep the traceability chain in `docs/` so the package source stays reviewable even though only the payload is copied into a development repo.
+Store intent, commitments, architecture, decisions, implementation mapping, persistent lessons, and reusable templates as versioned markdown in the package. Keep the reusable workflow payload under `.opencode/` and keep the traceability chain in `product-breakdown/` so the package source stays reviewable even though only the payload is copied into a development repo.
 
 ## Consequences
 

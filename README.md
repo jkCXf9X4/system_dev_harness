@@ -1,17 +1,28 @@
 # OpenCode Workflow Package
 
-This repository is a portable OpenCode workflow package. Its active payload is meant to be copied into a development repo so the target repo can run the guarded workflow without a separate orchestration runtime.
+This repository contains a portable OpenCode workflow package plus the source documentation that explains how it works.
 
 The active payload is `opencode.json` plus `.opencode/`. The entrypoint is the `orchestrator` primary agent in `.opencode/agents/orchestrator.md`. It delegates to hidden subagents for planning, discovery, contract writing, architecture guardrails, lessons checks, implementation packaging, implementation, verification, independent reviews, completion gating, final reporting, and continuous-improvement discovery for cleanup, refactoring, and tuning candidates. OpenCode's built-in `build` primary agent remains available for direct operator use, but the orchestrator does not route to it as a shortcut path.
 
 The guarded workflow treats new or changed information as part of the deliverable. Agents are expected to reconcile stale references, duplicates, superseded artifacts, and orphaned information nodes before completion.
 
-## Layout
+## Quick Start
 
-- `opencode.json` - copy this into the target development repo root as the OpenCode config
-- `.opencode/` - copy this directory into the target development repo root as the workflow payload
-- `docs/` - package documentation and source references retained in this repository only
-- `.opencode/templates/README.md` - index for the reusable template payload
+1. Clone or open this repository.
+2. Make sure `opencode` is available on your `PATH`.
+3. Make sure you can run `pytest` locally.
+4. Run the probe suite from the repository root:
+
+```bash
+pytest -q tests/test_opencode_workflow_probes.py
+```
+
+## How This Repo Is Organized
+
+- `opencode.json` - OpenCode config that selects the default primary agent.
+- `.opencode/` - workflow payload copied into the target development repo.
+- `product-breakdown/` - source documentation and traceability for the workflow package.
+- `tests/` - smoke tests and test guidance for the copied workflow payload.
 
 ## Active Payload
 
@@ -26,13 +37,14 @@ The guarded workflow treats new or changed information as part of the deliverabl
 
 | Concern | Change Here |
 | --- | --- |
-| Package install and copy instructions | `README.md` |
+| Package usage and contributor guidance | `README.md` |
 | Runtime agent behavior copied into projects | `.opencode/agents/` |
 | Reusable cross-project prompts and supporting templates | `.opencode/templates/` |
 | Persistent repeated-failure checks | `.opencode/known-mistakes.md` |
-| Product intent, commitments, architecture, and decisions | `docs/` |
-| Canonical workflow policy and branch rules | `docs/02-architecture/architecture.md` |
-| Concrete artifact-to-stage mapping | `docs/03-implementation/implementation.md` |
+| Product intent, commitments, architecture, decisions, and traceability | `product-breakdown/` |
+| Canonical workflow policy and branch rules | `product-breakdown/02-architecture/architecture.md` |
+| Concrete artifact-to-stage mapping | `product-breakdown/03-implementation/implementation.md` |
+| Smoke tests and prompt-probe guidance | `tests/README.md` |
 
 ## Delivery Workflow
 
@@ -52,13 +64,20 @@ For exploratory cleanup, refactoring, pattern switch, module responsibility, tun
 
 That workflow is read-only. It produces backlog-ready candidates rather than changing code, so contained feature diffs stay small and verifiable. Use it for exploratory cleanup, refactoring, pattern switches, module responsibility shifts, and tuning.
 
-## Usage
+## Developing This Repo
 
-Copy only `opencode.json` and `.opencode/` into the development repo that should use the workflow package.
+When you change the workflow package, keep the source docs and the copied runtime payload in sync:
 
-Do not copy `docs/` or this README. They stay in the package repo as source documentation.
+- Update `product-breakdown/` when the intent, workflow model, decisions, traceability, or implementation mapping changes.
+- Update `.opencode/` when the runtime prompts, control policy, or agent behavior changes.
+- Keep references in agents pointed at the canonical files rather than duplicating policy text.
+- Use the tests to confirm that the prompts still reference the intended source files and that stale paths do not reappear.
 
-Then run OpenCode from that development repo root:
+To use the package in another repository, copy only `opencode.json` and `.opencode/` into the target repo root.
+
+Do not copy `product-breakdown/` or this README. They stay in this repository as source documentation.
+
+Then run OpenCode from the target repository root:
 
 ```bash
 opencode
@@ -72,16 +91,18 @@ opencode run "your task"
 
 Add new agents by creating additional markdown files under `.opencode/agents/` in the package, then copy the updated payload into the development repo.
 
-## Verification Tests
+## Testing
 
-To smoke-test the workflow routing locally, run:
+Run the smoke tests from the repository root:
 
 ```bash
 pytest -q tests/test_opencode_workflow_probes.py
 ```
 
-The pytest suite copies `tests/fixtures/simple_project/` into a temp worktree, overlays the workflow package payload, and checks three `opencode run` probes:
+The suite copies `tests/fixtures/simple_project/` into a temp worktree, overlays `opencode.json` and `.opencode/`, and checks three `opencode run` probes:
 
 - contract stage
 - build stage
 - improvement discovery
+
+If you are changing prompts or template references, also read `tests/README.md` before adding exact string assertions.

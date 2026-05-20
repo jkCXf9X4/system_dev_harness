@@ -10,7 +10,7 @@ The solution needs explicit workflow roles, controlled transitions, review gatin
 
 ## Decision
 
-Use OpenCode's primary-agent and subagent model as the orchestration layer. Represent guarded development roles as markdown agents under `.opencode/agents/`, with repository instructions and the package docs providing shared context.
+Use OpenCode's primary-agent and subagent model as the orchestration layer. Represent guarded development roles as markdown agents under `.opencode/agents/`, with repository instructions and the product-breakdown source docs providing shared context.
 
 ## Consequences
 

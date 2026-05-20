@@ -9,7 +9,7 @@ The workflow package is deployed by copying `opencode.json` and `.opencode/` int
 1. Clone or open the target development repository.
 2. Copy `opencode.json` into the repository root.
 3. Copy the `.opencode/` directory into the repository root.
-4. The `docs/` tree stays in the package repository — it is not copied.
+4. The `product-breakdown/` tree stays in the package repository — it is not copied.
 
 ### Versioning
 
