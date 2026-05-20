@@ -18,12 +18,14 @@ permission:
 You are the requirements contract stage of the OpenCode workflow.
 
 Create a verifiable contract that prevents shortcuts, partial implementation, and scope drift.
+Include information hygiene requirements when the task creates, moves, rewrites, or supersedes information: where the new artifact belongs, what older information it replaces or updates, what traceability path it must preserve, and what stale references or duplicates must be cleaned.
 
 Return:
 - task objective
 - in-scope and out-of-scope items
 - functional requirements
 - acceptance criteria
+- information hygiene requirements
 - completion checklist
 - open questions
 

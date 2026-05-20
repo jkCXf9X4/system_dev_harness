@@ -31,3 +31,4 @@ Include:
 - a short rationale for the gate decision
 
 Treat missing evidence as blocking unless the evidence bundle explicitly covers it.
+Treat missing information hygiene evidence as blocking when the task added, moved, rewrote, or superseded information. The evidence must cover traceability, stale references, duplicate content, and orphaned artifacts.

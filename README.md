@@ -4,6 +4,8 @@ This repository is a portable OpenCode workflow package. Its active payload is m
 
 The active payload is `opencode.json` plus `.opencode/`. The entrypoint is the `orchestrator` primary agent in `.opencode/agents/orchestrator.md`. It delegates to hidden subagents for planning, discovery, contract writing, architecture guardrails, lessons checks, implementation packaging, implementation, verification, independent reviews, completion gating, final reporting, and continuous-improvement discovery for cleanup, refactoring, and tuning candidates. OpenCode's built-in `build` primary agent remains available for direct operator use, but the orchestrator does not route to it as a shortcut path.
 
+The guarded workflow treats new or changed information as part of the deliverable. Agents are expected to reconcile stale references, duplicates, superseded artifacts, and orphaned information nodes before completion.
+
 ## Layout
 
 - `opencode.json` - copy this into the target development repo root as the OpenCode config

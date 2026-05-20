@@ -47,6 +47,7 @@ continuous improvement:
 | Review agents | Independently review requirements, architecture, QA, completeness, and lessons. |
 | Completion gate | Computes approved, blocked, or waiver-required outcomes. |
 | Final report | Captures the final state, decision, and remaining gaps. |
+| Information hygiene | Reconciles new, changed, moved, and superseded information so the workflow does not leave duplicate, stale, or orphaned artifacts. |
 | Improvement workflow | Separately explores cleanup, refactoring, pattern, module responsibility, and tuning opportunities. |
 | Improvement backlog | Stores accepted improvement candidates before they become scoped implementation tasks. |
 | Reusable templates | Capture cross-project prompt and supporting templates under `.opencode/templates/`. |
@@ -61,7 +62,9 @@ continuous improvement:
 - The workflow should remain inspectable without a hidden Python runtime.
 - Persistent lesson memory lives in versioned markdown, not in ephemeral conversation state.
 - Reusable templates live in versioned markdown under `.opencode/templates/` so they can be copied between projects without losing structure.
-- Every artifact touched by the workflow should have a visible place in the information chain, with no orphaned node left behind after a move, rename, or rewrite.
+- Every artifact touched by the workflow should have a visible place in the information chain, with no orphaned node left behind after a creation, move, rename, rewrite, or replacement.
+- New information must either update an existing artifact, replace a superseded artifact, or declare a clear parent context and downstream destination.
+- Completion evidence must cover stale-reference cleanup, duplicate-content reconciliation, and traceability for changed information artifacts.
 - Architecture guardrails include modularity, simplicity, readability, and module responsibility fit, not only preservation of the current shape.
 - Improvement discovery is separate from contained implementation. It may inspect broadly, but it must not change code.
 - Improvement candidates must be traceable to current features, requirements, evidence, review findings, or observed module friction.
@@ -72,7 +75,7 @@ continuous improvement:
 
 The deterministic completion gate produces `approved`, `blocked`, or `waiver_required`.
 
-Independent reviewer nodes evaluate requirements, architecture, QA, completeness, and known mistakes. Architecture review also checks modularity, simplicity, readability, and module responsibility fit when relevant. The gate aggregates review findings and implementation evidence. Reviewer approval cannot silently override missing contract items. Incomplete items require explicit waivers with reason, risk, owner, and follow-up action.
+Independent reviewer nodes evaluate requirements, architecture, QA, completeness, information hygiene, and known mistakes. Architecture review also checks modularity, simplicity, readability, and module responsibility fit when relevant. The gate aggregates review findings and implementation evidence. Reviewer approval cannot silently override missing contract items or missing cleanup evidence. Incomplete items require explicit waivers with reason, risk, owner, and follow-up action.
 
 ## Workflow Split
 

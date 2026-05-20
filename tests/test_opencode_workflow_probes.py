@@ -138,3 +138,31 @@ def test_orchestrator_does_not_route_shortcut_build(simple_project: Path) -> Non
         assert "small-task handoff" not in lowered
         assert "compact handoff" not in lowered
         assert "shortcut path" not in lowered
+
+
+def test_information_hygiene_is_workflow_gated(simple_project: Path) -> None:
+    repo_root = Path(__file__).resolve().parents[1]
+    contract_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-contract.md")
+    packet_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-packet.md")
+    builder_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-builder.md")
+    verifier_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-verifier.md")
+    completeness_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-completeness.md")
+    gate_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md")
+    architecture_doc = read_prompt(repo_root, "docs/03-system-architecture/architecture.md")
+    commitments_doc = read_prompt(repo_root, "docs/02-product-commitments/product-commitments.md")
+
+    for content in (
+        contract_prompt,
+        packet_prompt,
+        builder_prompt,
+        verifier_prompt,
+        completeness_prompt,
+        gate_prompt,
+        architecture_doc,
+        commitments_doc,
+    ):
+        lowered = content.lower()
+        assert "information hygiene" in lowered
+        assert "stale" in lowered
+        assert "duplicate" in lowered
+        assert "traceability" in lowered

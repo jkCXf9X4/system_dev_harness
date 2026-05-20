@@ -13,11 +13,11 @@ They are more stable than implementation plans and more concrete than vision sta
 | PC-003 | The workspace shall use persistent mistake memory to reduce repeated correction loops. | Vision, UC-004, UC-009 |
 | PC-004 | The workspace shall separate execution from approval so coding output is reviewed against evidence. | Vision, UC-006, UC-007, UC-008 |
 | PC-005 | The workspace shall require incomplete work to be blocked or explicitly waived rather than silently accepted. | Vision, UC-008 |
-| PC-006 | The workspace shall keep design rationale and touched artifacts traceable through Intent -> Product Commitments -> System Architecture -> Technical Decisions -> Implementation -> Verification. | Vision, UC-010 |
+| PC-006 | The workspace shall keep design rationale and touched artifacts traceable through Intent -> Product Commitments -> System Architecture -> Technical Decisions -> Implementation -> Verification, and shall reconcile stale, duplicate, superseded, or orphaned information before completion. | Vision, UC-010 |
 | PC-007 | The workspace shall express workflow behavior through repository-local OpenCode agents and config rather than hidden runtime code. | Vision, UC-001, UC-005, UC-006 |
 | PC-008 | The workspace shall require architecture work to evaluate modularity, simplicity, readability, and module responsibility fit. | Vision, UC-003, UC-011 |
 | PC-009 | The workspace shall run continuous improvement as a separate exploratory workflow that feeds backlog candidates without expanding contained feature diffs. | Vision, UC-009, UC-012 |
-| PC-010 | The workspace shall provide a lightweight execution path for small bounded tasks when the full guardrail workflow is unnecessary. | Vision, UC-001, UC-013 |
+| PC-010 | The workspace shall allow direct operator-chosen build execution outside the orchestrator path without letting the orchestrator omit guarded workflow stages. | Vision, UC-001, UC-013 |
 
 ## Trace Links
 
@@ -26,8 +26,8 @@ They are more stable than implementation plans and more concrete than vision sta
 - PC-003 satisfies persistent lesson memory.
 - PC-004 satisfies reviewer approval over self-assessed completion.
 - PC-005 satisfies explicit waivers over silent requirement loss.
-- PC-006 satisfies KM-005 traceability and artifact lineage.
+- PC-006 satisfies KM-005 traceability, artifact lineage, and information hygiene.
 - PC-007 satisfies OpenCode-native workflow definitions.
 - PC-008 satisfies active design quality stewardship during architecture work.
 - PC-009 satisfies deliberate codebase improvement from current delivery pressure while preserving scoped implementation and verification.
-- PC-010 satisfies a lightweight path for trivial or low-risk tasks.
+- PC-010 satisfies explicit direct build use while preserving orchestrator guardrails.

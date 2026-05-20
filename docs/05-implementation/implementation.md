@@ -39,9 +39,9 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 | Lessons | `.opencode/agents/orchestrator-lessons.md` | no | no | Applies persistent mistake memory to the task. |
 | Packet | `.opencode/agents/orchestrator-packet.md` | no | no | Produces the strict implementation packet. |
 | Handoff | `.opencode/agents/orchestrator-handoff.md` | no | no | Turns the packet into a direct coding brief. |
-| Build | `.opencode/agents/orchestrator-builder.md` | yes | yes | Applies approved changes, performs cleanup for moved or altered information, and reports implementation evidence. |
-| Verify | `.opencode/agents/orchestrator-verifier.md` | no | yes | Runs focused checks, including stale-reference cleanup checks when relevant, and summarizes verification evidence. |
-| Review | `.opencode/agents/orchestrator-review-*.md` | no | no | Independently reviews requirements, architecture, QA, completeness, and lessons. |
+| Build | `.opencode/agents/orchestrator-builder.md` | yes | yes | Applies approved changes, reconciles new or changed information, removes stale or duplicate artifacts, and reports implementation evidence. |
+| Verify | `.opencode/agents/orchestrator-verifier.md` | no | yes | Runs focused checks, including information hygiene and stale-reference checks when relevant, and summarizes verification evidence. |
+| Review | `.opencode/agents/orchestrator-review-*.md` | no | no | Independently reviews requirements, architecture, QA, completeness, information hygiene, and lessons. |
 | Gate | `.opencode/agents/orchestrator-reviewer.md` | no | no | Produces `approved`, `blocked`, or `waiver_required`. |
 | Report | `.opencode/agents/orchestrator-reporter.md` | no | no | Produces the final control report. |
 | Research | `.opencode/agents/orchestrator-researcher.md` | no | no | Gathers external documentation or dependency context. |
