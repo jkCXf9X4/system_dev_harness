@@ -133,6 +133,34 @@ def test_decision_templates_are_generic_and_referenced(simple_project: Path) -> 
     assert "docs/adr/README.md" not in decision_log_entry
 
 
+def test_product_breakdown_usage_is_embedded_in_agent_workflow(simple_project: Path) -> None:
+    agents = [
+        ".opencode/agents/orchestrator-planner.md",
+        ".opencode/agents/orchestrator-discovery.md",
+        ".opencode/agents/orchestrator-contract.md",
+        ".opencode/agents/orchestrator-architecture.md",
+        ".opencode/agents/orchestrator-packet.md",
+        ".opencode/agents/orchestrator-builder.md",
+        ".opencode/agents/orchestrator-verifier.md",
+        ".opencode/agents/orchestrator-review-completeness.md",
+        ".opencode/agents/orchestrator-reviewer.md",
+    ]
+
+    for agent_path in agents:
+        prompt = read_prompt(simple_project, agent_path).lower()
+        assert "product breakdown" in prompt or "product-breakdown" in prompt
+        assert "layer" in prompt
+
+    planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
+    packet_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-packet.md").lower()
+    verifier_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-verifier.md").lower()
+
+    assert "intent, product behavior, architecture, implementation, verification, operation, and evolution" in planner_prompt
+    assert "guidance files" in packet_prompt
+    assert "decision-placement.md" in verifier_prompt
+    assert "traceability.md" in verifier_prompt
+
+
 def test_orchestrator_does_not_route_shortcut_build(simple_project: Path) -> None:
     repo_root = Path(__file__).resolve().parents[1]
     orchestrator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator.md")

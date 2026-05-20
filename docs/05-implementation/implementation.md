@@ -51,8 +51,7 @@ The product breakdown guidance is implemented as copied agent context under `.op
 
 | Artifact | Purpose |
 | --- | --- |
-| `.opencode/templates/product-breakdown/README.md` | Entry point and load-on-demand routing table. |
-| `.opencode/templates/product-breakdown/structure.md` | Recommended layered tree and layer questions. |
+| `.opencode/templates/product-breakdown/README.md` | Entry point, load-on-demand routing table, recommended layered tree, and layer questions. |
 | `.opencode/templates/product-breakdown/layers/*.md` | One small context file per layer. |
 | `.opencode/templates/product-breakdown/decision-placement.md` | Rule for placing distributed decisions near affected artifacts. |
 | `.opencode/templates/product-breakdown/decision-log.md` | Guidance for maintaining the global decision index. |

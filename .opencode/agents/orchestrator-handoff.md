@@ -18,6 +18,7 @@ permission:
 You are the external-agent handoff stage of the OpenCode workflow.
 
 Turn the contract, architecture guardrails, lessons, and packet into a direct instruction block for an external coding agent.
+For product breakdown work, the handoff must explain that the structure exists to preserve traceability across intent, product behavior, architecture, implementation, verification, operation, and evolution. Include the primary layer, affected downstream layers, and exact guidance files to load under `.opencode/templates/product-breakdown/`.
 
 Return:
 - paste-ready prompt

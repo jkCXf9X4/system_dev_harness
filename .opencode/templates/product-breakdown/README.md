@@ -8,7 +8,6 @@ Load only the files needed for the current task:
 
 | Need | Load |
 | --- | --- |
-| Choose where an artifact belongs | `structure.md` |
 | Work within one layer | `layers/<layer>.md` |
 | Place or write a decision | `decision-placement.md`, `templates/decision-template.md` |
 | Update decision indexes | `decision-log.md` |

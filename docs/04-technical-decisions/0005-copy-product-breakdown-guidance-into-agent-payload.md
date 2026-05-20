@@ -14,7 +14,7 @@ The guidance also needs to stay small enough for agents to load selectively. A s
 
 Store reusable product breakdown guidance under `.opencode/templates/product-breakdown/` and split it into load-on-demand files:
 
-- an entry README and structure overview
+- an entry README with the structure overview
 - one file per breakdown layer
 - separate decision placement, decision log, traceability, naming, and reusable template files
 - decision, decision-log-entry, improvement-overview, and improvement-candidate templates under `.opencode/templates/product-breakdown/templates/`

@@ -21,10 +21,13 @@ Turn the user's request into either a concrete implementation objective or a con
 
 Route exploratory cleanup, refactoring, pattern switch, module responsibility, tuning, or backlog-feeding requests to the improvement workflow instead of the contained implementation workflow.
 
+Use `.opencode/templates/product-breakdown/README.md` as the runtime entry point for product breakdown work. The product breakdown exists to keep intent, product behavior, architecture, implementation, verification, operation, and evolution in traceable layers. Identify which layer the request primarily touches and name any downstream layers likely to be affected.
+
 Return:
 - a one-paragraph task normalization
 - the minimum staged plan
 - likely files or directories to inspect
+- primary product-breakdown layer and affected downstream layers, when relevant
 - major risks and open questions
 - which downstream agents should be used next
 - whether this is a contained implementation task or an improvement discovery task

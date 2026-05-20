@@ -32,3 +32,4 @@ Include:
 
 Treat missing evidence as blocking unless the evidence bundle explicitly covers it.
 Treat missing information hygiene evidence as blocking when the task added, moved, rewrote, or superseded information. The evidence must cover traceability, stale references, duplicate content, and orphaned artifacts.
+For product breakdown work, treat missing layer-placement evidence, missing decision-placement evidence, or unsynchronized decision-log evidence as blocking when those artifacts were part of the contract.
