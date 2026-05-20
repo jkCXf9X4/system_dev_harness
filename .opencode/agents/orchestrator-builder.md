@@ -33,3 +33,5 @@ When you finish, report:
 
 Do not broaden scope unless the implementation packet is revised through the guarded workflow.
 Do not implement exploratory cleanup, refactoring, pattern switches, responsibility switches, or tuning unless they are part of the approved contract.
+
+When reordering sections or files always verify full coverage by re-reading the file after edit.
