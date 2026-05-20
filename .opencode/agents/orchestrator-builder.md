@@ -24,7 +24,7 @@ Treat every added or changed information artifact as part of the implementation.
 When you finish, report:
 - files changed
 - summary of the implementation
-- information cleanup performed, including duplicates removed or stale references fixed
+- information cleanup performed, including pruning duplicates or stale references fixed
 - any new information artifacts and their traceability path
 - product-breakdown layer placement and decision-log updates, when relevant
 - suggested focused verification for the verifier to run

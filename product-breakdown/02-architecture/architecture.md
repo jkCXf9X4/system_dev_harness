@@ -12,10 +12,10 @@ This document is the canonical policy for workflow branches, boundaries, and exe
 guarded delivery:
   task intake
     -> OpenCode primary orchestrator
-    -> planner
-    -> discovery
-    -> contract, architecture, lessons
-    -> packet
+    -> planner (request classification)
+    -> discovery (broad repository search and context bundle)
+    -> contract, architecture, lessons (upstream context consumers)
+    -> packet (implementation synthesis)
     -> optional handoff when external or manual implementation is requested
     -> builder
     -> verifier
@@ -61,6 +61,9 @@ continuous improvement:
 - Runtime source of truth lives in `.opencode/`.
 - Design and traceability source of truth lives in `product-breakdown/`.
 - `opencode.json` selects the primary agent and loads the workflow instructions.
+- Pre-implementation discovery has a single owner: `orchestrator-discovery`.
+- Planner classifies the request without repository inspection.
+- Contract, architecture, packet, and handoff consume upstream context and avoid broad rediscovery.
 - The builder agent is the only agent meant to edit files.
 - Review agents are read-only.
 - The workflow should remain inspectable without a hidden Python runtime.

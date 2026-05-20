@@ -27,7 +27,7 @@ Run every step in order:
 4. `orchestrator-architecture` — extract architecture guardrails, design quality goals, boundaries, and forbidden shortcuts.
 5. `orchestrator-lessons` — check the task against persistent lesson memory and turn lessons into prevention rules.
 6. `orchestrator-packet` — produce the strict implementation packet used by the builder stage.
-7. `orchestrator-handoff` — create a paste-ready handoff only when external or manual implementation is requested or will be used as builder-stage input.
+7. `orchestrator-handoff` — create a paste-ready handoff only when external or manual implementation is requested or will be used as builder-stage input; otherwise record deterministic `not_applicable` without invoking repository inspection.
 8. `orchestrator-builder` — make changes per the packet.
 9. `orchestrator-verifier` — run focused checks and capture evidence.
 10. `orchestrator-review-*` (requirements, architecture, completeness, lessons, QA) — independent reviews.
@@ -49,6 +49,7 @@ Use ONLY when the user explicitly asks for a proposal, recommendation, or backlo
 
 ## Rules
 - **Start with `orchestrator-planner` on every request.** The planner decides which workflow applies. You do not decide.
+- **Keep pre-implementation stages narrow.** Planner classifies the request; discovery performs broad repository search; contract, architecture, lessons, packet, and handoff consume upstream outputs and only read exact files when their own prompt allows it.
 - **Never edit directly.** You must receive a completed implementation packet from `orchestrator-packet` before you or any builder agent touches a file.
 - **Never skip a step.** Apply `.opencode/templates/workflow/control-policy.md` for required stage output, `not_applicable`, handoff boundaries, control flags, and waivers.
 - **"Obvious work," "minor cleanup," "trivial fix" are not exceptions.** Run the workflow or ask the user to switch primary agent.

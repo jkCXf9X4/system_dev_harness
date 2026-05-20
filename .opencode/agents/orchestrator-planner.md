@@ -7,9 +7,9 @@ color: info
 temperature: 0.1
 permission:
   read: allow
-  glob: allow
-  grep: allow
-  list: allow
+  glob: deny
+  grep: deny
+  list: deny
   edit: deny
   bash: deny
   external_directory: deny
@@ -21,6 +21,8 @@ Turn the user's request into either a concrete implementation objective or a con
 
 Route exploratory cleanup, refactoring, pattern switch, module responsibility, tuning, or backlog-feeding requests to the improvement workflow instead of the contained implementation workflow.
 
+Stay request-scoped. Do not inspect the repository, search for files, or load product-breakdown support files. Discovery owns repository inspection and exact file selection.
+
 ## Revision Input
 
 When invoked with `revision=true`, the planner receives an additional input block containing:
@@ -30,12 +32,13 @@ When invoked with `revision=true`, the planner receives an additional input bloc
 
 With revision input, return the same plan shape but with refined scope that explicitly addresses the blocking findings. Include a `revision` control flag with the current iteration count.
 
-Apply `.opencode/templates/workflow/control-policy.md` for control flags. For product breakdown work, load `.opencode/templates/product-breakdown/README.md` and identify the primary layer plus downstream layers.
+Use the control flag names from `.opencode/templates/workflow/control-policy.md`. For product breakdown work, infer the likely primary layer and downstream layers from the request only; discovery will confirm the exact files and guidance to load.
 
 Return:
 - a one-paragraph task normalization
 - the minimum staged plan
-- likely files or directories to inspect
+- cleanup activities to minimize stale references and avoid information duplication
+- candidate areas for discovery to inspect, expressed as paths only when the user named them
 - control flags: `touches_information_artifacts`, `touches_product_breakdown`, `requires_decision_record`, `requires_external_research`
 - primary product-breakdown layer and affected downstream layers; use `none` when `touches_product_breakdown` is false
 - major risks and open questions

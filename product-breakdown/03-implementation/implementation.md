@@ -21,6 +21,9 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 ## Execution Roles
 
 - `orchestrator-builder` is the only edit-capable stage.
+- `orchestrator-discovery` is the only broad repository search stage before implementation.
+- `orchestrator-planner` classifies the request and sets initial flags without repository inspection.
+- `orchestrator-contract`, `orchestrator-architecture`, `orchestrator-packet`, and `orchestrator-handoff` consume upstream context and read only exact files when their prompt allows it.
 - `orchestrator-verifier` is shell-capable for focused checks.
 - review agents are read-only and exist to keep approval separate from implementation.
 - `orchestrator-improvement` is read-only and exists to feed backlog candidates, not to implement them.
@@ -31,13 +34,13 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 | --- | --- | --- | --- | --- |
 | Entrypoint | `opencode.json` | n/a | n/a | Selects `orchestrator` as the default primary agent. |
 | Orchestration | `.opencode/agents/orchestrator.md` | ask | ask | Chooses guarded delivery or improvement discovery and does not enable shortcut routes that omit workflow stages. |
-| Planning | `.opencode/agents/orchestrator-planner.md` | no | no | Normalizes the request and recommends the workflow branch. |
-| Discovery | `.opencode/agents/orchestrator-discovery.md` | no | no | Finds the smallest relevant repository context. |
-| Contract | `.opencode/agents/orchestrator-contract.md` | no | no | Creates the checklistable requirement contract. |
-| Architecture | `.opencode/agents/orchestrator-architecture.md` | no | no | Extracts boundaries, design quality goals, and guardrails. |
+| Planning | `.opencode/agents/orchestrator-planner.md` | no | no | Normalizes the request, recommends the workflow branch, and sets initial flags without repository inspection. |
+| Discovery | `.opencode/agents/orchestrator-discovery.md` | no | no | Performs the broad pre-implementation repository search and returns the compact context bundle. |
+| Contract | `.opencode/agents/orchestrator-contract.md` | no | no | Creates the checklistable requirement contract from planner and discovery output. |
+| Architecture | `.opencode/agents/orchestrator-architecture.md` | no | no | Extracts boundaries, design quality goals, and guardrails from the discovery bundle and contract, or returns `not_applicable`. |
 | Lessons | `.opencode/agents/orchestrator-lessons.md` | no | no | Applies persistent mistake memory to the task. |
-| Packet | `.opencode/agents/orchestrator-packet.md` | no | no | Produces the strict implementation packet. |
-| Handoff | `.opencode/agents/orchestrator-handoff.md` | no | no | Turns the packet into a direct coding brief only when external or manual implementation is requested. |
+| Packet | `.opencode/agents/orchestrator-packet.md` | no | no | Synthesizes upstream outputs into the strict implementation packet without rediscovery. |
+| Handoff | `.opencode/agents/orchestrator-handoff.md` | no | no | Turns the packet into a direct coding brief only when external or manual implementation is requested or needed as builder input. |
 | Build | `.opencode/agents/orchestrator-builder.md` | yes | yes | Applies approved changes, reconciles new or changed information, removes stale or duplicate artifacts, and reports implementation evidence. |
 | Verify | `.opencode/agents/orchestrator-verifier.md` | no | yes | Runs focused checks, including information hygiene and stale-reference checks when relevant, and summarizes verification evidence. |
 | Review | `.opencode/agents/orchestrator-review-*.md` | no | no | Independently reviews requirements, architecture, QA, completeness, information hygiene, and lessons. |
