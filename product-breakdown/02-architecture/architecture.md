@@ -23,11 +23,12 @@ guarded delivery:
     -> deterministic gate routing
     -> final control report
 
-continuous improvement:
+  continuous improvement:
   improvement intake
     -> read-only discovery
     -> pressure analysis
     -> cleanup, refactoring, and other backlog-ready candidates
+    -> persist candidate files under product-breakdown/06-evolution/backlog/
     -> final report
 ```
 
@@ -36,7 +37,7 @@ continuous improvement:
 | Concept | Responsibility |
 | --- | --- |
 | OpenCode config | Selects the primary agent and loads repository instructions. |
-| Orchestrator | Coordinates the workflow and delegates to specialist agents. |
+| Orchestrator | Routes stage execution, passes prior outputs forward, and applies gate routing without doing specialist stage work directly. |
 | Intent docs | Define the current solution's vision and use cases. |
 | Product commitments | Capture durable promises that should survive implementation changes. |
 | Architecture docs | Record control-flow boundaries, permissions, evidence expectations, and design quality goals. |
@@ -50,8 +51,8 @@ continuous improvement:
 | Completion gate | Computes approved, blocked, or waiver-required outcomes. |
 | Final report | Captures the final state, decision, and remaining gaps. |
 | Information hygiene | Reconciles new, changed, moved, and superseded information so the workflow does not leave duplicate, stale, or orphaned artifacts. |
-| Improvement workflow | Separately explores cleanup, refactoring, pattern, module responsibility, and tuning opportunities. |
-| Improvement backlog | Stores accepted improvement candidates before they become scoped implementation tasks. |
+| Improvement workflow | Separately explores cleanup, refactoring, pattern, module responsibility, and tuning opportunities, then persists backlog candidates. |
+| Improvement backlog | Stores proposed or accepted improvement candidates before they become scoped implementation tasks. |
 | Reusable templates | Capture cross-project prompt and supporting templates under `.opencode/templates/`. |
 | Product breakdown guidance | Provides copied, load-on-demand context under `.opencode/templates/product-breakdown/` so target-repo agents can structure layered artifacts without relying on source docs in the package repo. |
 | Workflow policy guidance | Provides copied workflow control, information hygiene, and review-output rules under `.opencode/templates/workflow/` so agents reference shared policy instead of duplicating it. |
@@ -62,6 +63,7 @@ continuous improvement:
 - Design and traceability source of truth lives in `product-breakdown/`.
 - `opencode.json` selects the primary agent and loads the workflow instructions.
 - Pre-implementation discovery has a single owner: `orchestrator-discovery`.
+- The orchestrator is not a preliminary implementation or discovery layer.
 - Planner classifies the request without repository inspection.
 - Contract, architecture, packet, and handoff consume upstream context and avoid broad rediscovery.
 - The builder agent is the only agent meant to edit files.
@@ -76,6 +78,7 @@ continuous improvement:
 - Completion evidence must cover stale-reference cleanup, duplicate-content reconciliation, and traceability for changed information artifacts.
 - Architecture guardrails include modularity, simplicity, readability, and module responsibility fit, not only preservation of the current shape.
 - Improvement discovery is separate from contained implementation. It may inspect broadly, but it must not change code.
+- Improvement discovery may write only improvement backlog files under `product-breakdown/06-evolution/backlog/`.
 - Improvement candidates must be traceable to current features, requirements, evidence, review findings, or observed module friction.
 - Improvement candidates must not be created as dangling artifacts; each one needs an explicit parent context and follow-up destination.
 - Improvement candidates become implementation work only after they are accepted into the backlog and turned into a task contract.

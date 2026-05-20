@@ -8,5 +8,5 @@
   - Created verification layer (`04-verification/`) and operation layer (`05-operation/`)
   - Added root `decision-log.md` and `traceability-map.md`
   - Added revision loop to guarded workflow (blocked gate → planner re-scoping)
-  - Added automatic persistence for improvement candidates
+  - Added improvement candidate persistence under `product-breakdown/06-evolution/backlog/`
   - Established backlog infrastructure under `06-evolution/`

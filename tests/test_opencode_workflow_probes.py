@@ -99,7 +99,7 @@ def test_improvement_stage_smoke(simple_project: Path, opencode_env: dict[str, s
         opencode_env,
         agent="orchestrator-improvement",
         title="improvement_stage",
-        prompt="Find backlog-ready improvement candidates in this workflow package. Do not edit files.",
+        prompt="Find and persist backlog-ready improvement candidates in this workflow package.",
         timeout=60,
     )
 
@@ -109,6 +109,8 @@ def test_improvement_stage_smoke(simple_project: Path, opencode_env: dict[str, s
     assert "continuous improvement discovery stage" in prompt.lower()
     assert "backlog-worthy improvement work" in prompt.lower()
     assert "product-breakdown/06-evolution/backlog/" in prompt
+    assert "edit: allow" in prompt
+    assert "may edit only improvement backlog artifacts" in prompt.lower()
     assert "plans/backlog" not in prompt
 
 

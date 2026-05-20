@@ -25,6 +25,7 @@ Return:
 - key evidence
 - blocking items or waivers
 - improvement candidates raised by the run, clearly marked as backlog candidates rather than completed work
+- improvement backlog files written or updated, when the improvement workflow ran
 - product-breakdown decision status or follow-up, if relevant
 - next required action
 

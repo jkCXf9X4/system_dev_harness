@@ -306,7 +306,7 @@ Primary value:
 
 Workflow boundary:
 
-- continuous improvement discovery is read-only and exploratory
+- continuous improvement discovery may persist backlog entries, but must not edit implementation files
 - candidates must not be implemented inside a contained feature task unless they are explicitly part of that task contract
 - accepted candidates become backlog entries or future task contracts before code changes begin
 

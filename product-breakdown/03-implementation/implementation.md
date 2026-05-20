@@ -20,20 +20,22 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 
 ## Execution Roles
 
-- `orchestrator-builder` is the only edit-capable stage.
+- `orchestrator-builder` is the only stage that may edit implementation files.
+- `orchestrator-improvement` may edit only improvement backlog result files under `product-breakdown/06-evolution/backlog/`.
+- `orchestrator` is a dispatcher and gate router only; it does not perform preliminary planning, discovery, implementation, verification, shell checks, or edits.
 - `orchestrator-discovery` is the only broad repository search stage before implementation.
 - `orchestrator-planner` classifies the request and sets initial flags without repository inspection.
 - `orchestrator-contract`, `orchestrator-architecture`, `orchestrator-packet`, and `orchestrator-handoff` consume upstream context and read only exact files when their prompt allows it.
 - `orchestrator-verifier` is shell-capable for focused checks.
 - review agents are read-only and exist to keep approval separate from implementation.
-- `orchestrator-improvement` is read-only and exists to feed backlog candidates, not to implement them.
+- `orchestrator-improvement` exists to explore improvement opportunities and persist backlog candidates, not to implement them.
 
 ## Stage Map
 
 | Stage | Artifact | Edit | Bash | Responsibility |
 | --- | --- | --- | --- | --- |
 | Entrypoint | `opencode.json` | n/a | n/a | Selects `orchestrator` as the default primary agent. |
-| Orchestration | `.opencode/agents/orchestrator.md` | ask | ask | Chooses guarded delivery or improvement discovery and does not enable shortcut routes that omit workflow stages. |
+| Orchestration | `.opencode/agents/orchestrator.md` | no | no | Routes guarded delivery or improvement discovery stages without doing specialist stage work directly. |
 | Planning | `.opencode/agents/orchestrator-planner.md` | no | no | Normalizes the request, recommends the workflow branch, and sets initial flags without repository inspection. |
 | Discovery | `.opencode/agents/orchestrator-discovery.md` | no | no | Performs the broad pre-implementation repository search and returns the compact context bundle. |
 | Contract | `.opencode/agents/orchestrator-contract.md` | no | no | Creates the checklistable requirement contract from planner and discovery output. |
@@ -47,7 +49,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 | Gate | `.opencode/agents/orchestrator-reviewer.md` | no | no | Produces `approved`, `blocked`, or `waiver_required`. |
 | Report | `.opencode/agents/orchestrator-reporter.md` | no | no | Produces the final control report. |
 | Research | `.opencode/agents/orchestrator-researcher.md` | no | no | Gathers external documentation or dependency context. |
-| Improvement | `.opencode/agents/orchestrator-improvement.md` | no | no | Produces backlog-ready cleanup, refactoring, pattern, module responsibility, or tuning candidates. |
+| Improvement | `.opencode/agents/orchestrator-improvement.md` | yes | no | Produces and persists backlog-ready cleanup, refactoring, pattern, module responsibility, or tuning candidates under the evolution backlog only. |
 
 ## Product Breakdown Context
 
