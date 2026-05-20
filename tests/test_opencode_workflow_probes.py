@@ -4,6 +4,10 @@ import subprocess
 from pathlib import Path
 
 
+# Keep prompt assertions behavior-oriented. See tests/README.md before adding
+# exact string checks against agent prompts.
+
+
 def as_text(value: str | bytes | None) -> str:
     if isinstance(value, bytes):
         return value.decode("utf-8", "replace")
@@ -112,6 +116,10 @@ def test_decision_templates_are_generic_and_referenced(simple_project: Path) -> 
     architecture_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-architecture.md")
     packet_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-packet.md")
     review_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-architecture.md")
+    decision_placement = read_prompt(
+        simple_project,
+        ".opencode/templates/product-breakdown/decision-placement.md",
+    )
     decision_template = read_prompt(
         simple_project,
         ".opencode/templates/product-breakdown/templates/decision-template.md",
@@ -125,8 +133,9 @@ def test_decision_templates_are_generic_and_referenced(simple_project: Path) -> 
     assert "decision-log-entry-template.md" in architecture_prompt.lower()
     assert "decision-template.md" in packet_prompt.lower()
     assert "decision-log-entry-template.md" in packet_prompt.lower()
-    assert "decision-template.md" in review_prompt.lower()
-    assert "decision-log-entry-template.md" in review_prompt.lower()
+    assert "durable choice" in review_prompt.lower()
+    assert "product-breakdown/" in review_prompt.lower()
+    assert "where its consequences are most directly felt" in decision_placement.lower()
     assert "durable product breakdown decisions" in decision_template.lower()
     assert "decision log entry template" in decision_log_entry.lower()
     assert "ssp_references" not in decision_template
@@ -151,11 +160,12 @@ def test_product_breakdown_usage_is_embedded_in_agent_workflow(simple_project: P
     for agent_path in agents:
         prompt = read_prompt(simple_project, agent_path).lower()
         assert "product breakdown" in prompt or "product-breakdown" in prompt
-        assert "layer" in prompt
 
     planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
     packet_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-packet.md").lower()
     verifier_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-verifier.md").lower()
+    completeness_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-completeness.md").lower()
+    gate_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
     product_breakdown_readme = read_prompt(
         simple_project,
         ".opencode/templates/product-breakdown/README.md",
@@ -164,8 +174,9 @@ def test_product_breakdown_usage_is_embedded_in_agent_workflow(simple_project: P
     assert "intent, product behavior, architecture, implementation, verification, operation, and evolution" in product_breakdown_readme
     assert "primary layer" in planner_prompt
     assert "exact files to load" in packet_prompt
-    assert "decision-placement.md" in verifier_prompt
     assert "product-breakdown/" in verifier_prompt
+    assert "product-breakdown/" in completeness_prompt
+    assert "product breakdown evidence" in gate_prompt
 
 
 def test_orchestrator_does_not_route_shortcut_build(simple_project: Path) -> None:
@@ -209,9 +220,9 @@ def test_information_hygiene_is_workflow_gated(simple_project: Path) -> None:
     ):
         lowered = content.lower()
         assert "information hygiene" in lowered or "information-hygiene" in lowered
-        assert "traceability" in lowered
 
     policy = information_hygiene_policy.lower()
+    assert "traceability" in policy
     assert "stale references" in policy
     assert "duplicate content" in policy
     assert "orphaned artifacts" in policy
