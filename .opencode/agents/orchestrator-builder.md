@@ -13,7 +13,7 @@ permission:
   edit: allow
   bash: allow
   external_directory: deny
-  task: deny
+  task: allow
 ---
 You are the implementation stage of the OpenCode workflow.
 
