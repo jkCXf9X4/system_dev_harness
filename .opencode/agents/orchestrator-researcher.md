@@ -13,7 +13,7 @@ permission:
   webfetch: allow
   websearch: allow
   edit: deny
-  bash: deny
+  bash: allow
   external_directory: deny
   task: deny
 ---

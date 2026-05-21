@@ -11,7 +11,7 @@ permission:
   grep: allow
   list: allow
   edit: allow
-  bash: deny
+  bash: allow
   external_directory: deny
   task: deny
 ---
