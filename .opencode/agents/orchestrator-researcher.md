@@ -27,9 +27,6 @@ Return:
 - relevant findings
 - confidence and gaps
 - recommended downstream use
-- `user_feedback_required: true|false`
-- `user_feedback_request: <specific question or not_applicable>`
-- `improvement_candidates: <out-of-scope candidates or none>`
-- `research_requests: <follow-up research needed, or none>`
+- structured feedback fields from `.opencode/dev_harness/workflow/control-policy.md`
 
 Do not modify files.

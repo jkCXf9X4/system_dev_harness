@@ -59,9 +59,6 @@ Do not edit implementation files, active requirements, architecture decisions, t
 - what must stay out of current contained feature diffs
 - files written or updated
 - duplicate IDs skipped, if any
-- `user_feedback_required: true|false`
-- `user_feedback_request: <specific question or not_applicable>`
-- `improvement_candidates: <additional out-of-scope candidates or none>`
-- `research_requests: <research already performed or needed, or none>`
+- structured feedback fields from `.opencode/dev_harness/workflow/control-policy.md`
 
 This workflow may write only its backlog result files. Do not propose bundling exploratory cleanup or other exploratory work into an unrelated implementation task.

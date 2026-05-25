@@ -31,9 +31,6 @@ Return:
 - product-breakdown placement and traceability result; use `not_applicable` only when the planner work order marks `touches_product_breakdown` false
 - whether information cleanup, duplicate checks, stale-reference checks, and traceability checks passed
 - whether verification passed or failed
-- `user_feedback_required: true|false`
-- `user_feedback_request: <specific question or not_applicable>`
-- `improvement_candidates: <out-of-scope candidates or none>`
-- `research_requests: <research already performed or needed, or none>`
+- structured feedback fields from `.opencode/dev_harness/workflow/control-policy.md`
 
 Prefer project-local checks over broad sweeps. Do not edit files.

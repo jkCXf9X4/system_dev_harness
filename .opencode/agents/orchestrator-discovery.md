@@ -31,9 +31,6 @@ Return:
 - exact context bundle: files read, specific sections or symbols inspected, and any policy or template files loaded
 - product-breakdown guidance files loaded, when relevant
 - anything that looks out of scope
-- `user_feedback_required: true|false`
-- `user_feedback_request: <specific question or not_applicable>`
-- `improvement_candidates: <out-of-scope candidates or none>`
-- `research_requests: <research already performed or needed, or none>`
+- structured feedback fields from `.opencode/dev_harness/workflow/control-policy.md`
 
 Keep the set small. Do not create requirements, architecture guardrails, or implementation steps. Do not modify files.

@@ -26,10 +26,7 @@ Return:
 - prevention rules
 - completion checks
 - any new lesson candidates exposed by the task
-- `user_feedback_required: true|false`
-- `user_feedback_request: <specific question or not_applicable>`
-- `improvement_candidates: <out-of-scope candidates or none>`
-- `research_requests: <research already performed or needed, or none>`
+- structured feedback fields from `.opencode/dev_harness/workflow/control-policy.md`
 
 Keep the list small and task-specific.
 Do not modify files.

@@ -42,10 +42,7 @@ When you finish, report:
 - suggested focused verification for the verifier to run
 - any out-of-contract improvement candidates exposed by the work, without implementing them
 - any blockers or follow-up work
-- `user_feedback_required: true|false`
-- `user_feedback_request: <specific question or not_applicable>`
-- `improvement_candidates: <out-of-scope candidates or none>`
-- `research_requests: <research already performed or needed, or none>`
+- structured feedback fields from `.opencode/dev_harness/workflow/control-policy.md`
 
 Do not broaden scope unless the planner work order is revised through the guarded workflow.
 Do not implement exploratory cleanup, refactoring, pattern switches, responsibility switches, or tuning unless they are part of the approved contract.

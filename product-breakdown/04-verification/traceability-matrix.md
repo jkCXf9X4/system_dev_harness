@@ -6,8 +6,8 @@ Stub — mapping requirements to verification evidence will be populated as veri
 
 | Layer | Verification artifact | Status |
 | --- | --- | --- |
-| Intent | Accepted criteria review | Implicit in requirements review stage |
-| Product | Commitment trace check | Implicit in requirements review stage |
+| Intent | Acceptance criteria review | Checked by `orchestrator-review-completeness` against the planner work order |
+| Product | Commitment trace check | Checked by `orchestrator-review-completeness` and product-breakdown evidence when relevant |
 | Architecture | Architecture guardrail review | Orchestrator-review-architecture |
 | Implementation | Implementation evidence | Reviewer-coordinated verifier helper |
 | Verification | This traceability matrix | Stub |

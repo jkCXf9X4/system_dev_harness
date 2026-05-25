@@ -32,8 +32,7 @@ Do a **critical** review and check whether the work preserves or improves:
 - absence of orphaned or dangling information nodes
 - product-breakdown decision coverage for material architectural changes
 
-Return using `.opencode/dev_harness/workflow/review-output.md`, plus backlog candidates for refactoring, pattern switches, responsibility switches, or tuning when evidence exposes them.
-Also include `user_feedback_required`, `user_feedback_request`, `improvement_candidates`, and `research_requests`.
+Return using `.opencode/dev_harness/workflow/review-output.md`, backlog candidates for refactoring, pattern switches, responsibility switches, or tuning when evidence exposes them, and the structured feedback fields from `.opencode/dev_harness/workflow/control-policy.md`.
 
 Fail when relevant architecture evidence is missing.
 Do not treat backlog candidates as permission to expand the current implementation scope.

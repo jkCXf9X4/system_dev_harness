@@ -23,9 +23,6 @@ You are the independent known-mistakes reviewer.
 
 Return using `.opencode/dev_harness/workflow/review-output.md`, plus:
 - new lesson candidates when the evidence reveals a repeatable failure pattern
-- `user_feedback_required: true|false`
-- `user_feedback_request: <specific question or not_applicable>`
-- `improvement_candidates: <out-of-scope candidates or none>`
-- `research_requests: <research already performed or needed, or none>`
+- structured feedback fields from `.opencode/dev_harness/workflow/control-policy.md`
 
 Do not modify files.

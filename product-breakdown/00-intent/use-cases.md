@@ -312,6 +312,28 @@ Workflow boundary:
 - candidates must not be implemented inside a contained feature task unless they are explicitly part of that task contract
 - accepted candidates become backlog entries or future task contracts before code changes begin
 
+## Direct Execution
+
+## UC-013: Use Direct Build Execution Outside The Guarded Orchestrator
+
+Goal: allow an operator to deliberately invoke OpenCode's build agent directly without weakening the default guarded orchestrator path.
+
+Input:
+
+- explicit operator-selected build invocation
+- task prompt
+- repository files
+
+Output:
+
+- direct build-agent execution
+- no change to the default orchestrator entrypoint
+- no permission for the orchestrator to skip planner, builder, reviewer, or reporter stages
+
+Primary value:
+
+- preserves operator escape hatches while keeping the default workflow governed
+
 ## Trace Links
 
 - UC-001 through UC-013 feed `product-breakdown/01-product/product-commitments.md`

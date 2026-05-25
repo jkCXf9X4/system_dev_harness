@@ -26,14 +26,11 @@ Return:
 - final status
 - key evidence
 - blocking items or waivers
-- `user_feedback_required: true|false`
-- `user_feedback_request: <requested or resolved feedback, waiver request, or not_applicable>`
 - improvement candidates raised by the run, clearly marked as backlog candidates rather than completed work
 - improvement backlog files written or updated, when the improvement workflow ran
-- `improvement_candidates: <out-of-scope candidates or none>`
-- `research_requests: <research performed or still needed, or none>`
 - product-breakdown decision status or follow-up, if relevant
 - next required action
+- structured feedback fields from `.opencode/dev_harness/workflow/control-policy.md`
 
 Do not override the gate decision.
 Do not modify files.

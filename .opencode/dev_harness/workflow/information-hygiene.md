@@ -17,7 +17,7 @@ Information hygiene evidence must cover:
 ## Stage Responsibilities
 
 - Planner-owned work order declares whether the task touches information artifacts and what hygiene evidence is required.
-- Planning helpers carry the required checks and affected artifacts to implementation.
+- Planner-owned work order carries the required checks and affected artifacts to implementation, using helper output when helpers were selected.
 - Builder performs cleanup and reports what changed.
 - Reviewer-coordinated verifier checks the evidence against the work order control flags.
 - Review helpers fail missing, partial, or contradictory evidence.

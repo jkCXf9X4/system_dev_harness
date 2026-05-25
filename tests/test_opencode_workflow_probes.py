@@ -270,10 +270,11 @@ def test_top_level_flow_and_directed_helpers_are_explicit(simple_project: Path) 
     assert "\"orchestrator-discovery\": allow" not in orchestrator_prompt
     assert "\"orchestrator-contract\": allow" not in orchestrator_prompt
     assert "\"orchestrator-verifier\": allow" not in orchestrator_prompt
+    assert "\"orchestrator-researcher\": allow" not in orchestrator_prompt
 
     for helper in (
         "orchestrator-architecture",
-        "test obligations",
+        "test planning",
         "product-breakdown placement",
     ):
         assert helper in planner_prompt
@@ -324,12 +325,11 @@ def test_structured_feedback_protocol_is_shared(simple_project: Path) -> None:
         "research_requests",
     ):
         assert field in control_policy
-        for agent_path in agent_paths:
-            prompt = read_prompt(simple_project, agent_path).lower()
-            if agent_path.endswith("orchestrator-reporter.md") and field == "research_requests":
-                assert "research performed" in prompt
-            else:
-                assert field in prompt
+
+    for agent_path in agent_paths:
+        prompt = read_prompt(simple_project, agent_path).lower()
+        assert "structured feedback fields" in prompt
+        assert "control-policy.md" in prompt
 
 
 def test_directed_agents_can_use_researcher(simple_project: Path) -> None:
@@ -354,7 +354,12 @@ def test_adaptive_risk_triggers_drive_helper_selection(simple_project: Path) -> 
     planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
     reviewer_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
 
-    for content in (control_policy, planner_prompt, reviewer_prompt):
+    for content in (planner_prompt, reviewer_prompt):
+        assert "adaptive risk triggers" in content
+        assert "control-policy.md" in content
+        assert "helper_not_used" in content
+
+    for content in (control_policy,):
         assert "adaptive" in content
         assert "triggers" in content
         assert "code changes require" in content
@@ -366,14 +371,14 @@ def test_adaptive_risk_triggers_drive_helper_selection(simple_project: Path) -> 
 
     assert "orchestrator-discovery" in planner_prompt
     assert "orchestrator-contract" in planner_prompt
-    assert "test obligations" in planner_prompt
+    assert "test obligations" in control_policy
     assert "product-breakdown placement" in planner_prompt
-    assert "requires_external_research: true" in planner_prompt
+    assert "requires_external_research: true" in control_policy
 
     assert "orchestrator-verifier" in reviewer_prompt
     assert "orchestrator-review-completeness" in reviewer_prompt
     assert "acceptance criteria" in reviewer_prompt
-    assert "do not approve external claims without cited researcher evidence or a waiver" in reviewer_prompt
+    assert "may not approve external claims without cited researcher evidence or a waiver" in control_policy
 
 
 def test_shared_review_output_policy_is_referenced(simple_project: Path) -> None:
