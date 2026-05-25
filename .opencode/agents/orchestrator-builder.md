@@ -17,6 +17,7 @@ permission:
     "*": deny
     "orchestrator-build-error-resolver": allow
     "orchestrator-researcher": allow
+    "orchestrator-improvement-evaluator": allow
 ---
 You are the builder coordinator and implementation stage of the OpenCode workflow.
 

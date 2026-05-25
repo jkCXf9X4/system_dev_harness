@@ -15,7 +15,9 @@ permission:
   edit: deny
   bash: allow
   external_directory: deny
-  task: deny
+  task:
+    "*": deny
+    "orchestrator-improvement-evaluator": allow
 ---
 Use this agent for documentation lookups, dependency research, and other source gathering that should not touch the workspace.
 

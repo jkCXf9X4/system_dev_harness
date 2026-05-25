@@ -20,6 +20,7 @@ permission:
     "orchestrator-review-completeness": allow
     "orchestrator-review-lessons": allow
     "orchestrator-researcher": allow
+    "orchestrator-improvement-evaluator": allow
 ---
 You are the review coordinator and completion gate of the OpenCode workflow.
 

@@ -20,6 +20,7 @@ permission:
     "orchestrator-architecture": allow
     "orchestrator-lessons": allow
     "orchestrator-researcher": allow
+    "orchestrator-improvement-evaluator": allow
 ---
 You are the planning coordinator of the OpenCode workflow.
 

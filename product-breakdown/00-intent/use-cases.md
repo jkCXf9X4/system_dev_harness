@@ -309,6 +309,7 @@ Primary value:
 Workflow boundary:
 
 - continuous improvement discovery may persist backlog entries, but must not edit implementation files
+- focused improvement evaluation may persist backlog entries for one concrete finding raised by a working agent
 - candidates must not be implemented inside a contained feature task unless they are explicitly part of that task contract
 - accepted candidates become backlog entries or future task contracts before code changes begin
 

@@ -46,6 +46,7 @@ guarded delivery:
 | Final report | Captures the final state, decision, and remaining gaps. |
 | Information hygiene | Reconciles new, changed, moved, and superseded information so the workflow does not leave duplicate, stale, or orphaned artifacts. |
 | Improvement workflow | Separately explores cleanup, refactoring, pattern, module responsibility, and tuning opportunities, then persists backlog candidates. |
+| Focused improvement evaluator | Evaluates one noteworthy finding raised during normal work and persists it only when evidence, impact, and a scoped future task seed are present. |
 | Improvement backlog | Stores proposed or accepted improvement candidates before they become scoped implementation tasks. |
 | Dev harness context | Captures cross-project prompts, workflow policy, product-breakdown guidance, and supporting templates under `.opencode/dev_harness/`. |
 | Product breakdown guidance | Provides copied, load-on-demand context under `.opencode/dev_harness/product-breakdown/` so target-repo agents can structure layered artifacts without relying on source docs in the package repo. |
@@ -75,6 +76,7 @@ guarded delivery:
 - Architecture guardrails include modularity, simplicity, readability, and module responsibility fit, not only preservation of the current shape.
 - Improvement discovery is separate from contained implementation. It may inspect broadly, but it must not change code.
 - Improvement discovery may write only improvement backlog files under `product-breakdown/06-evolution/backlog/`.
+- Focused improvement evaluation may be triggered by working agents for one concrete finding; it may write only improvement backlog files and cannot expand the current task.
 - Improvement candidates must be traceable to current features, requirements, evidence, review findings, or observed module friction.
 - Improvement candidates must not be created as dangling artifacts; each one needs an explicit parent context and follow-up destination.
 - Improvement candidates become implementation work only after they are accepted into the backlog and turned into a task contract.
@@ -91,6 +93,7 @@ The repository supports three related workflow branches:
 
 - Delivery workflow: normalize a bounded task, create a planner-owned work order, implement only the contracted change, review and verify it, and gate completion.
 - Improvement workflow: explore current features, requirements, implementation evidence, reviewer findings, module friction, and cleanup opportunities to produce backlog-ready improvement candidates.
+- Focused improvement evaluation: evaluate one concrete finding raised during delivery or improvement work and persist it only when it meets the evidence-plus-impact threshold.
 
 The delivery workflow may report improvement candidates, but it must not absorb exploratory cleanup, refactoring, or pattern changes unless the contract explicitly includes them. This keeps diffs small, verification focused, and review evidence tied to the requested feature or fix.
 

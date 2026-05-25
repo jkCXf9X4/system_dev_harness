@@ -6,5 +6,6 @@ The workflow package must satisfy these high-level acceptance criteria:
 - Every change is independently reviewed before completion.
 - Reviewer findings are actionable (blocked findings route back to planner per the revision loop).
 - Stale references, duplicates, and orphaned artifacts are reconciled before completion.
-- Improvement candidates are persisted to `product-breakdown/06-evolution/backlog/` by the improvement workflow without changing implementation files.
+- Improvement candidates are persisted to `product-breakdown/06-evolution/backlog/` by the improvement workflow or focused evaluator without changing implementation files.
+- Working agents can trigger focused improvement evaluation, while the primary orchestrator cannot invoke the focused evaluator directly.
 - The `docs/` tree remains aligned with the operator-facing documentation hierarchy and the product-breakdown source tree.

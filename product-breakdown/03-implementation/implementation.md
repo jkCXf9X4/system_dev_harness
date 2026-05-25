@@ -28,6 +28,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 - `orchestrator-reviewer` owns verifier, review helper, researcher, and deterministic gate routing; helper use follows adaptive risk triggers and may be lightweight for low-risk tasks.
 - review agents are read-only and exist to keep approval separate from implementation.
 - `orchestrator-improvement` exists to explore improvement opportunities and persist backlog candidates, not to implement them.
+- `orchestrator-improvement-evaluator` evaluates focused findings raised by working agents and persists qualifying backlog candidates without expanding the current task.
 
 ## Stage Map
 
@@ -44,6 +45,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 | Report | `.opencode/agents/orchestrator-reporter.md` | no | no | Produces the final control report. |
 | Research | `.opencode/agents/orchestrator-researcher.md` | no | no | Gathers external documentation or dependency context. |
 | Improvement | `.opencode/agents/orchestrator-improvement.md` | yes | no | Produces and persists backlog-ready cleanup, refactoring, pattern, module responsibility, or tuning candidates under the evolution backlog only. |
+| Focused improvement evaluation | `.opencode/agents/orchestrator-improvement-evaluator.md` | yes | yes | Evaluates one noteworthy finding raised by a working agent and persists it only when it has evidence, impact, and a scoped future task seed. |
 
 ## Product Breakdown Context
 

@@ -50,7 +50,7 @@ After step 3, route based on the reviewer gate result:
 
 4. `orchestrator-reporter` — produce the final control report, including iteration count, waiver status, requested user feedback, and improvement candidates when applicable.
 
-## Improvement Workflow (for exploratory cleanup/backlog work)
+## Improvement Workflow
 Use ONLY when the user explicitly asks for a proposal, recommendation, or backlog entry — NOT when they ask for actual changes.
 1. `orchestrator-improvement` — explore, prepare, and persist backlog-ready candidates under `product-breakdown/06-evolution/backlog/`.
 2. `orchestrator-reporter` — produce the final report with the backlog files written by the improvement agent.

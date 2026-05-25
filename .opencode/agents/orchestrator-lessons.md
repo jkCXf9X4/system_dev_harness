@@ -16,6 +16,7 @@ permission:
   task:
     "*": deny
     "orchestrator-researcher": allow
+    "orchestrator-improvement-evaluator": allow
 ---
 You are the known-mistakes stage of the OpenCode workflow.
 

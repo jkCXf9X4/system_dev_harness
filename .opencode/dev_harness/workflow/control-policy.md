@@ -38,6 +38,19 @@ research_requests: <research already performed or needed, or none>
 
 When `user_feedback_required` is true, the orchestrator pauses and requests the user decision before continuing. Improvement candidates are backlog candidates only; they do not authorize scope expansion in the current task. Research requests are handled by `orchestrator-researcher` when source material is needed for the current stage.
 
+## Focused Improvement Evaluation
+
+Any working stage or directed helper may invoke `orchestrator-improvement-evaluator` when it finds a noteworthy improvement opportunity during its assigned work.
+
+Use the evaluator for focused findings only, not broad improvement discovery. A finding is backlog-worthy only when it has all of:
+
+- concrete evidence from the current work
+- meaningful impact, risk, maintenance cost, architecture pressure, or verification gap
+
+The evaluator may persist qualifying candidates directly under `product-breakdown/06-evolution/backlog/`. Evaluator persistence is backlog capture only; it does not authorize scope expansion, current-task implementation, direct approval, or skipped checks.
+
+When evidence is missing or the finding duplicates an existing candidate, the evaluator returns `needs_more_evidence` or `rejected` instead of writing a candidate.
+
 ## Adaptive Risk Triggers
 
 Use helper agents based on task risk instead of forcing the full helper set for every task. A top-level stage may handle a task itself only when no trigger below applies, or when it returns an explicit `helper_not_used` rationale for each applicable-but-waived helper.

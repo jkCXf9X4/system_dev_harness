@@ -114,6 +114,25 @@ def test_improvement_stage_smoke(simple_project: Path, opencode_env: dict[str, s
     assert "plans/backlog" not in prompt
 
 
+def test_focused_improvement_evaluator_is_scoped(simple_project: Path) -> None:
+    prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-improvement-evaluator.md").lower()
+    control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
+
+    assert "focused improvement evaluator" in prompt
+    assert "one specific improvement finding" in prompt
+    assert "product-breakdown/06-evolution/backlog/" in prompt
+    assert "improvement-backlog-overview-template.md" in prompt
+    assert "improvement-candidate-template.md" in prompt
+    assert "edit: allow" in prompt
+    assert "do not edit implementation files" in prompt
+    assert "persisted" in prompt
+    assert "rejected" in prompt
+    assert "needs_more_evidence" in prompt
+    assert "evidence, impact, and scoped future task seed" in prompt
+    assert "focused improvement evaluation" in control_policy
+    assert "backlog capture only" in control_policy
+
+
 def test_decision_templates_are_generic_and_referenced(simple_project: Path) -> None:
     architecture_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-architecture.md")
     review_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-architecture.md")
@@ -271,6 +290,7 @@ def test_top_level_flow_and_directed_helpers_are_explicit(simple_project: Path) 
     assert "\"orchestrator-contract\": allow" not in orchestrator_prompt
     assert "\"orchestrator-verifier\": allow" not in orchestrator_prompt
     assert "\"orchestrator-researcher\": allow" not in orchestrator_prompt
+    assert "\"orchestrator-improvement-evaluator\": allow" not in orchestrator_prompt
 
     for helper in (
         "orchestrator-architecture",
@@ -347,6 +367,35 @@ def test_directed_agents_can_use_researcher(simple_project: Path) -> None:
     for agent_path in agent_paths:
         prompt = read_prompt(simple_project, agent_path).lower()
         assert "orchestrator-researcher" in prompt
+
+
+def test_working_agents_can_trigger_focused_improvement_evaluation(simple_project: Path) -> None:
+    agent_paths = [
+        ".opencode/agents/orchestrator-planner.md",
+        ".opencode/agents/orchestrator-builder.md",
+        ".opencode/agents/orchestrator-reviewer.md",
+        ".opencode/agents/orchestrator-reporter.md",
+        ".opencode/agents/orchestrator-researcher.md",
+        ".opencode/agents/orchestrator-discovery.md",
+        ".opencode/agents/orchestrator-contract.md",
+        ".opencode/agents/orchestrator-architecture.md",
+        ".opencode/agents/orchestrator-lessons.md",
+        ".opencode/agents/orchestrator-build-error-resolver.md",
+        ".opencode/agents/orchestrator-verifier.md",
+        ".opencode/agents/orchestrator-review-architecture.md",
+        ".opencode/agents/orchestrator-review-completeness.md",
+        ".opencode/agents/orchestrator-review-lessons.md",
+        ".opencode/agents/orchestrator-improvement.md",
+    ]
+
+    for agent_path in agent_paths:
+        prompt = read_prompt(simple_project, agent_path)
+        assert '"orchestrator-improvement-evaluator": allow' in prompt
+
+    orchestrator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator.md")
+    evaluator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-improvement-evaluator.md")
+    assert '"orchestrator-improvement-evaluator": allow' not in orchestrator_prompt
+    assert '"orchestrator-researcher": allow' in evaluator_prompt
 
 
 def test_adaptive_risk_triggers_drive_helper_selection(simple_project: Path) -> None:

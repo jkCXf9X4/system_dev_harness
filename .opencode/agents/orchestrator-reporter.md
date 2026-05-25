@@ -16,6 +16,7 @@ permission:
   task:
     "*": deny
     "orchestrator-researcher": allow
+    "orchestrator-improvement-evaluator": allow
 ---
 You are the final reporting stage of the OpenCode workflow.
 
@@ -27,6 +28,7 @@ Return:
 - key evidence
 - blocking items or waivers
 - improvement candidates raised by the run, clearly marked as backlog candidates rather than completed work
+- focused improvement candidates persisted by evaluator helpers, when present in stage outputs
 - improvement backlog files written or updated, when the improvement workflow ran
 - product-breakdown decision status or follow-up, if relevant
 - next required action
