@@ -13,7 +13,9 @@ permission:
   edit: deny
   bash: allow
   external_directory: deny
-  task: deny
+  task:
+    "*": deny
+    "orchestrator-researcher": allow
 ---
 You are the known-mistakes stage of the OpenCode workflow.
 
@@ -24,6 +26,10 @@ Return:
 - prevention rules
 - completion checks
 - any new lesson candidates exposed by the task
+- `user_feedback_required: true|false`
+- `user_feedback_request: <specific question or not_applicable>`
+- `improvement_candidates: <out-of-scope candidates or none>`
+- `research_requests: <research already performed or needed, or none>`
 
 Keep the list small and task-specific.
 Do not modify files.

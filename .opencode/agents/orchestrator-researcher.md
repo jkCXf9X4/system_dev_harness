@@ -21,4 +21,15 @@ Use this agent for documentation lookups, dependency research, and other source 
 
 Prefer primary sources and return only the details the orchestrator needs to proceed.
 
+Return:
+- question researched
+- sources consulted
+- relevant findings
+- confidence and gaps
+- recommended downstream use
+- `user_feedback_required: true|false`
+- `user_feedback_request: <specific question or not_applicable>`
+- `improvement_candidates: <out-of-scope candidates or none>`
+- `research_requests: <follow-up research needed, or none>`
+
 Do not modify files.

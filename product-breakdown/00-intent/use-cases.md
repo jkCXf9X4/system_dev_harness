@@ -4,20 +4,17 @@
 
 - Requester: provides the task, bug report, or improvement idea.
 - Orchestrator: coordinates the workflow and routes work to specialist agents.
-- Planner: normalizes the request and defines the work order.
-- Discovery agent: finds the smallest relevant file set and search targets.
-- Contract agent: turns the task into a verifiable requirement contract.
-- Architecture agent: extracts guardrails, boundaries, design quality goals, and forbidden shortcuts.
-- Architect: protects modularity, simple solutions, readability, and coherent module responsibilities.
+- Planner: normalizes the request, resolves uncertainty, coordinates planning helpers, and defines the work order.
+- Planning helpers: find relevant files, create checklistable requirements, and extract architecture guardrails when needed. The planner records test strategy and product-breakdown placement directly in the work order.
+- Software architect: protects modularity, simple solutions, readability, and coherent module responsibilities.
+- Test architect: defines focused verification strategy and expected evidence.
+- Product architect: protects product behavior, product-breakdown placement, durable decisions, and traceability.
 - Improvement agent: explores codebase improvement opportunities and turns them into backlog candidates.
-- Lessons agent: checks the task against persistent mistakes.
-- Packet agent: produces the strict implementation packet.
-- Handoff agent: turns the packet into a paste-ready coding brief.
-- Builder: makes the approved changes.
+- Builder: makes the approved changes and coordinates build-error, cleanup, documentation, and research helpers when needed.
 - OpenCode build agent: handles direct operator-chosen implementation work when invoked explicitly outside the orchestrator path.
-- Verifier: runs focused checks and summarizes evidence.
-- Review agents: independently review requirements, architecture, QA, completeness, and lessons.
-- Completion gate: computes approved, blocked, or waiver-required outcomes.
+- Reviewer: coordinates verification, independent review helpers, and the completion gate.
+- Review helpers: independently review contract completeness, verification adequacy, code quality, architecture, cleanliness, information hygiene, and lessons learned.
+- Completion gate: computes approved, blocked, or waiver-required outcomes inside reviewer.
 - Reporter: produces the final control report.
 - Researcher: gathers external documentation or dependency context when needed.
 - Human operator: approves waivers or re-runs tasks when the gate blocks completion.
@@ -45,9 +42,9 @@ Primary value:
 
 - prevents ambiguity at the start of the workflow
 
-## UC-002: Create A Requirement Contract
+## UC-002: Create A Planner-Owned Work Order
 
-Goal: turn the task into a binding, checklistable contract.
+Goal: turn the task into a binding, checklistable work order.
 
 Input:
 
@@ -63,6 +60,7 @@ Output:
 - acceptance criteria
 - completion checklist
 - waiver rules
+- structured user-feedback and improvement-candidate fields
 
 Primary value:
 
@@ -112,15 +110,16 @@ Primary value:
 
 - reduces repeated correction loops
 
-## UC-005: Produce An Implementation Packet And Handoff
+## UC-005: Produce A Builder Work Order
 
-Goal: generate a strict packet that a coding agent can implement from.
+Goal: generate strict builder instructions that a coding agent can implement from.
 
 Input:
 
 - requirement contract
 - architecture context
 - known mistake checks
+- test obligations and product-breakdown guidance
 
 Output:
 
@@ -135,14 +134,14 @@ Primary value:
 
 - improves coding-agent reliability without embedding code editing in the control docs
 
-## UC-006: Implement Changes And Verify
+## UC-006: Implement Changes
 
-Goal: carry out the approved changes and collect focused evidence.
+Goal: carry out the approved changes and collect implementation evidence.
 
 Input:
 
-- implementation packet
-- handoff brief
+- builder work order
+- handoff section when external or manual implementation is requested
 - relevant files
 
 Output:
@@ -150,8 +149,8 @@ Output:
 - changed files
 - cleanup of created, moved, renamed, rewritten, replaced, or superseded information
 - traceability path for new information artifacts
-- verification output
 - implementation evidence
+- deferred improvement candidates
 
 Primary value:
 
@@ -163,7 +162,7 @@ Goal: get independent support-agent feedback before treating work as complete.
 
 Input:
 
-- implementation packet
+- builder work order
 - requirement contract
 - architecture constraints
 - known mistake checks
@@ -172,9 +171,12 @@ Input:
 
 Output:
 
-- requirements review
+- focused verification output
+- contract and acceptance review
+- test adequacy review
 - architecture review
-- QA review
+- code quality review
+- cleanliness review
 - completeness review
 - known mistake review
 - stale-reference, duplicate-content, orphaned-artifact, and traceability findings

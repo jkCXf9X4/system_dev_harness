@@ -27,7 +27,7 @@ Vision.md (00-intent)
 | Architecture | Architecture.md — Control Flow, Stable Concepts, Boundaries |
 | Decisions | AD-001 (agent workflow), AD-003 (handoff structure) |
 | Implementation | orchestrator.md, orchestrator-*.md agents |
-| Verification | Verifier stage, review agents, completion gate |
+| Verification | Reviewer-coordinated verifier helper, review helpers, completion gate |
 
 ### Continuous Improvement
 
@@ -49,7 +49,7 @@ Vision.md (00-intent)
 | Architecture | Architecture.md — Information hygiene, Boundaries |
 | Decisions | AD-002 (versioned markdown) |
 | Implementation | information-hygiene.md, orchestrator-verifier.md |
-| Verification | Information hygiene checks in verifier + completeness review |
+| Verification | Information hygiene checks in reviewer-coordinated verifier + cleanliness/completeness review |
 
 ## Maintenance
 

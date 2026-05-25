@@ -11,7 +11,7 @@ pytest -q tests/test_opencode_workflow_probes.py
 ## What It Checks
 
 - The copied `opencode.json` and `.opencode/` payload still loads in a temporary fixture project.
-- The orchestrator routes the contract, build, and improvement probes.
+- The orchestrator routes the cleaner planner-builder-reviewer-reporter flow and improvement probes.
 - Prompt references still point at the intended canonical template and policy files.
 
 ## What To Expect

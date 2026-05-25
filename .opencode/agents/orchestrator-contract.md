@@ -13,7 +13,9 @@ permission:
   edit: deny
   bash: allow
   external_directory: deny
-  task: deny
+  task:
+    "*": deny
+    "orchestrator-researcher": allow
 ---
 You are the requirements contract stage of the OpenCode workflow.
 
@@ -34,6 +36,10 @@ Return:
 - completion checklist
 - discovery gaps that must route back to discovery before implementation, if any
 - open questions
+- `user_feedback_required: true|false`
+- `user_feedback_request: <specific question or not_applicable>`
+- `improvement_candidates: <out-of-scope candidates or none>`
+- `research_requests: <research already performed or needed, or none>`
 
 Every checklistable item must be testable or reviewable.
 Do not modify files.

@@ -13,7 +13,9 @@ permission:
   edit: deny
   bash: allow
   external_directory: deny
-  task: deny
+  task:
+    "*": deny
+    "orchestrator-researcher": allow
 ---
 You are the independent known-mistakes reviewer.
 
@@ -21,5 +23,9 @@ You are the independent known-mistakes reviewer.
 
 Return using `.opencode/dev_harness/workflow/review-output.md`, plus:
 - new lesson candidates when the evidence reveals a repeatable failure pattern
+- `user_feedback_required: true|false`
+- `user_feedback_request: <specific question or not_applicable>`
+- `improvement_candidates: <out-of-scope candidates or none>`
+- `research_requests: <research already performed or needed, or none>`
 
 Do not modify files.

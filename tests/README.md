@@ -28,7 +28,7 @@ Avoid brittle assertions:
 - requiring every downstream agent to repeat a specific support filename
 - requiring all agents to use the same word for a concept, such as `layer`
 - duplicating long policy text in prompt assertions
-- testing verifier or reviewer prompts for files that should come from the packet
+- testing verifier or reviewer prompts for files that should come from the planner work order
 
 ## File Naming Assertions
 
@@ -36,9 +36,9 @@ It is reasonable to assert exact paths when the path is the behavior under test,
 
 - canonical backlog location: `product-breakdown/06-evolution/backlog/`
 - shared workflow policies: `workflow/control-policy.md`, `workflow/information-hygiene.md`, `workflow/review-output.md`
-- packet-producing stages naming required implementation inputs
+- work-order-producing stages naming required implementation inputs
 
-It is usually not reasonable to force exact support filenames into verifier, reviewer, or gate prompts. Those stages should validate control flags and packet-selected files rather than hard-coding every possible product-breakdown support file.
+It is usually not reasonable to force exact support filenames into verifier, reviewer, or gate prompts. Those stages should validate control flags and work-order-selected files rather than hard-coding every possible product-breakdown support file.
 
 ## Canonical Rule Location
 

@@ -8,7 +8,7 @@ They are more stable than implementation plans and more concrete than vision sta
 
 | ID | Commitment | Trace |
 | --- | --- | --- |
-| PC-001 | The workspace shall keep development anchored to an explicit task contract. | Vision, UC-001, UC-002 |
+| PC-001 | The workspace shall keep development anchored to an explicit planner-owned task contract or work order. | Vision, UC-001, UC-002 |
 | PC-002 | The workspace shall make architecture and requirement drift visible before work is considered complete. | Vision, UC-003, UC-007, UC-008 |
 | PC-003 | The workspace shall use persistent mistake memory to reduce repeated correction loops. | Vision, UC-004, UC-009 |
 | PC-004 | The workspace shall separate execution from approval so coding output is reviewed against evidence. | Vision, UC-006, UC-007, UC-008 |
@@ -21,7 +21,7 @@ They are more stable than implementation plans and more concrete than vision sta
 
 ## Trace Links
 
-- PC-001 satisfies the governed contract loop in the vision.
+- PC-001 satisfies the governed planner-to-reviewer loop in the vision.
 - PC-002 satisfies architecture preservation and visible drift detection.
 - PC-003 satisfies persistent lesson memory.
 - PC-004 satisfies reviewer approval over self-assessed completion.

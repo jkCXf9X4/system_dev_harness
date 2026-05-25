@@ -116,7 +116,6 @@ def test_improvement_stage_smoke(simple_project: Path, opencode_env: dict[str, s
 
 def test_decision_templates_are_generic_and_referenced(simple_project: Path) -> None:
     architecture_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-architecture.md")
-    packet_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-packet.md")
     review_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-architecture.md")
     decision_placement = read_prompt(
         simple_project,
@@ -133,8 +132,6 @@ def test_decision_templates_are_generic_and_referenced(simple_project: Path) -> 
 
     assert "decision-template.md" in architecture_prompt.lower()
     assert "decision-log-entry-template.md" in architecture_prompt.lower()
-    assert "decision-template.md" in packet_prompt.lower()
-    assert "decision-log-entry-template.md" in packet_prompt.lower()
     assert "durable choice" in review_prompt.lower()
     assert "product-breakdown/" in review_prompt.lower()
     assert "where its consequences are most directly felt" in decision_placement.lower()
@@ -152,7 +149,6 @@ def test_product_breakdown_usage_is_embedded_in_agent_workflow(simple_project: P
         ".opencode/agents/orchestrator-discovery.md",
         ".opencode/agents/orchestrator-contract.md",
         ".opencode/agents/orchestrator-architecture.md",
-        ".opencode/agents/orchestrator-packet.md",
         ".opencode/agents/orchestrator-builder.md",
         ".opencode/agents/orchestrator-verifier.md",
         ".opencode/agents/orchestrator-review-completeness.md",
@@ -164,7 +160,6 @@ def test_product_breakdown_usage_is_embedded_in_agent_workflow(simple_project: P
         assert "product breakdown" in prompt or "product-breakdown" in prompt
 
     planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
-    packet_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-packet.md").lower()
     verifier_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-verifier.md").lower()
     completeness_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-completeness.md").lower()
     gate_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
@@ -175,7 +170,7 @@ def test_product_breakdown_usage_is_embedded_in_agent_workflow(simple_project: P
 
     assert "intent, product behavior, architecture, implementation, verification, operation, and evolution" in product_breakdown_readme
     assert "primary layer" in planner_prompt
-    assert "exact files to load" in packet_prompt
+    assert "planner work order" in verifier_prompt
     assert "product-breakdown/" in verifier_prompt
     assert "product-breakdown/" in completeness_prompt
     assert "product breakdown evidence" in gate_prompt
@@ -197,7 +192,6 @@ def test_orchestrator_does_not_route_shortcut_build(simple_project: Path) -> Non
 def test_information_hygiene_is_workflow_gated(simple_project: Path) -> None:
     repo_root = Path(__file__).resolve().parents[1]
     contract_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-contract.md")
-    packet_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-packet.md")
     builder_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-builder.md")
     verifier_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-verifier.md")
     completeness_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-completeness.md")
@@ -211,7 +205,6 @@ def test_information_hygiene_is_workflow_gated(simple_project: Path) -> None:
 
     for content in (
         contract_prompt,
-        packet_prompt,
         builder_prompt,
         verifier_prompt,
         completeness_prompt,
@@ -234,25 +227,22 @@ def test_agent_control_policy_closes_escape_hatches(simple_project: Path) -> Non
     orchestrator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator.md").lower()
     planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
     contract_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-contract.md").lower()
-    packet_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-packet.md").lower()
-    handoff_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-handoff.md").lower()
     builder_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-builder.md").lower()
     verifier_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-verifier.md").lower()
     gate_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
     control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
 
     assert "control-policy.md" in orchestrator_prompt
-    assert "every listed guarded workflow stage must run" in control_policy
+    assert "every listed top-level guarded workflow stage must run" in control_policy
     assert "not_applicable" in control_policy
     assert "waivers are not approvals" in control_policy
 
-    for prompt in (planner_prompt, contract_prompt, packet_prompt):
+    for prompt in (planner_prompt, contract_prompt):
         assert "touches_information_artifacts" in prompt
         assert "touches_product_breakdown" in prompt
         assert "requires_decision_record" in prompt
 
-    assert "not_applicable" in handoff_prompt
-    assert "builder-stage input" in handoff_prompt
+    assert "handoff_required" in planner_prompt
     assert "builder-equivalent evidence" in control_policy
     assert "cannot authorize scope expansion" in control_policy
 
@@ -263,15 +253,136 @@ def test_agent_control_policy_closes_escape_hatches(simple_project: Path) -> Non
     assert "not `approved`" in control_policy
 
 
+def test_top_level_flow_and_directed_helpers_are_explicit(simple_project: Path) -> None:
+    orchestrator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator.md").lower()
+    planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
+    builder_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-builder.md").lower()
+    reviewer_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
+    implementation_doc = read_prompt(
+        simple_project,
+        ".opencode/dev_harness/workflow/control-policy.md",
+    ).lower()
+
+    assert "orchestrator-planner" in orchestrator_prompt
+    assert "orchestrator-builder" in orchestrator_prompt
+    assert "orchestrator-reviewer" in orchestrator_prompt
+    assert "orchestrator-reporter" in orchestrator_prompt
+    assert "\"orchestrator-discovery\": allow" not in orchestrator_prompt
+    assert "\"orchestrator-contract\": allow" not in orchestrator_prompt
+    assert "\"orchestrator-verifier\": allow" not in orchestrator_prompt
+
+    for helper in (
+        "orchestrator-architecture",
+        "test obligations",
+        "product-breakdown placement",
+    ):
+        assert helper in planner_prompt
+
+    for helper in (
+        "orchestrator-build-error-resolver",
+        "orchestrator-researcher",
+    ):
+        assert helper in builder_prompt
+
+    for helper in (
+        "acceptance criteria",
+        "orchestrator-review-architecture",
+        "orchestrator-review-completeness",
+    ):
+        assert helper in reviewer_prompt
+
+    for removed_helper in (
+        "orchestrator-plan-test-architect",
+        "orchestrator-plan-product-architect",
+        "orchestrator-review-qa",
+        "orchestrator-review-requirements",
+    ):
+        assert removed_helper not in planner_prompt
+        assert removed_helper not in reviewer_prompt
+        assert not (simple_project / ".opencode" / "agents" / f"{removed_helper}.md").exists()
+
+    assert "planner-owned" in implementation_doc
+    assert "reviewer-coordinated verification" in implementation_doc
+
+
+def test_structured_feedback_protocol_is_shared(simple_project: Path) -> None:
+    control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
+    agent_paths = [
+        ".opencode/agents/orchestrator-planner.md",
+        ".opencode/agents/orchestrator-builder.md",
+        ".opencode/agents/orchestrator-reviewer.md",
+        ".opencode/agents/orchestrator-reporter.md",
+        ".opencode/agents/orchestrator-researcher.md",
+        ".opencode/agents/orchestrator-build-error-resolver.md",
+        ".opencode/agents/orchestrator-review-architecture.md",
+    ]
+
+    for field in (
+        "user_feedback_required",
+        "user_feedback_request",
+        "improvement_candidates",
+        "research_requests",
+    ):
+        assert field in control_policy
+        for agent_path in agent_paths:
+            prompt = read_prompt(simple_project, agent_path).lower()
+            if agent_path.endswith("orchestrator-reporter.md") and field == "research_requests":
+                assert "research performed" in prompt
+            else:
+                assert field in prompt
+
+
+def test_directed_agents_can_use_researcher(simple_project: Path) -> None:
+    agent_paths = [
+        ".opencode/agents/orchestrator-planner.md",
+        ".opencode/agents/orchestrator-builder.md",
+        ".opencode/agents/orchestrator-reviewer.md",
+        ".opencode/agents/orchestrator-discovery.md",
+        ".opencode/agents/orchestrator-contract.md",
+        ".opencode/agents/orchestrator-architecture.md",
+        ".opencode/agents/orchestrator-verifier.md",
+        ".opencode/agents/orchestrator-review-completeness.md",
+    ]
+
+    for agent_path in agent_paths:
+        prompt = read_prompt(simple_project, agent_path).lower()
+        assert "orchestrator-researcher" in prompt
+
+
+def test_adaptive_risk_triggers_drive_helper_selection(simple_project: Path) -> None:
+    control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
+    planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
+    reviewer_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
+
+    for content in (control_policy, planner_prompt, reviewer_prompt):
+        assert "adaptive" in content
+        assert "triggers" in content
+        assert "code changes require" in content
+        assert "behavior changes require" in content
+        assert "product-breakdown" in content
+        assert "external dependency, api, framework, standard, version, or documentation uncertainty requires" in content
+        assert "low-risk documentation, formatting, wording, or metadata-only tasks" in content
+        assert "helper_not_used" in content
+
+    assert "orchestrator-discovery" in planner_prompt
+    assert "orchestrator-contract" in planner_prompt
+    assert "test obligations" in planner_prompt
+    assert "product-breakdown placement" in planner_prompt
+    assert "requires_external_research: true" in planner_prompt
+
+    assert "orchestrator-verifier" in reviewer_prompt
+    assert "orchestrator-review-completeness" in reviewer_prompt
+    assert "acceptance criteria" in reviewer_prompt
+    assert "do not approve external claims without cited researcher evidence or a waiver" in reviewer_prompt
+
+
 def test_shared_review_output_policy_is_referenced(simple_project: Path) -> None:
     review_output_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/review-output.md").lower()
     known_mistakes = read_prompt(simple_project, ".opencode/dev_harness/workflow/known-mistakes.md").lower()
     lessons_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-lessons.md").lower()
     review_agents = [
-        ".opencode/agents/orchestrator-review-requirements.md",
         ".opencode/agents/orchestrator-review-architecture.md",
         ".opencode/agents/orchestrator-review-completeness.md",
-        ".opencode/agents/orchestrator-review-qa.md",
         ".opencode/agents/orchestrator-review-lessons.md",
     ]
 

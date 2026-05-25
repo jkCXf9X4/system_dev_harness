@@ -1,6 +1,6 @@
 # Implementation Review Prompt
 
-Use this template when reviewing an existing diff, branch, PR, or completed implementation packet.
+Use this template when reviewing an existing diff, branch, PR, or completed planner work order.
 
 ```text
 Review [branch, PR number, commit range, or changed files] for correctness and regressions.

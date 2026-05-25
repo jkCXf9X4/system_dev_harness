@@ -2,23 +2,19 @@
 
 ## Product Vision
 
-The current solution is an OpenCode workspace that provides a guarded agentic development control system. It uses repository-local agents and versioned markdown to turn a request into a contract, preserve architecture, apply lessons, package handoffs, and gate completion through independent review.
+The current solution is an OpenCode workspace that provides a guarded agentic development control system. It uses repository-local agents and versioned markdown to turn a request into a planner-owned work order, implement it through a builder stage, and gate completion through reviewer-coordinated verification and independent review helpers.
 
-It is not intended to be another unconstrained coding agent. It is intended to be the control layer around agentic development: define the task contract, preserve architectural intent, inject known lessons, create an implementation packet, and require reviewer approval before work is considered ready to execute or complete.
+It is not intended to be another unconstrained coding agent. It is intended to be the control layer around agentic development: define the task contract, preserve architectural intent, inject known lessons, create a builder work order, and require reviewer approval before work is considered ready to execute or complete.
 
 ## Core Thesis
 
 ```text
 task input
   -> orchestrator
-  -> requirement contract
-  -> architecture context
-  -> known mistake check
-  -> implementation packet
-  -> external or builder handoff
-  -> implementation evidence intake
-  -> independent reviewer agents
-  -> deterministic completion gate
+  -> planner with directed planning helpers
+  -> builder with directed build helpers
+  -> reviewer with directed verification and review helpers
+  -> deterministic completion gate inside reviewer
   -> revise / waive / approve route
   -> final control report
 ```
@@ -36,11 +32,11 @@ The solution should make this loop repeatable, inspectable, and hard to shortcut
 
 ## Desired Outcomes
 
-- Every task has a checklistable requirement contract.
+- Every task has a checklistable planner-owned work order.
 - Architecture and integration constraints are explicit before coding starts.
 - Known repeated mistakes are checked for every task.
-- Handoffs are strict, reviewable, and traceable.
-- Reviewer agents challenge completeness, requirements, architecture, QA, and mistake avoidance.
+- Handoffs and builder work orders are strict, reviewable, and traceable.
+- Reviewer helpers challenge contract completeness, acceptance criteria, test adequacy, architecture, code quality, cleanliness, information hygiene, and mistake avoidance.
 - Completion requires reviewer approval against evidence.
 - Missing contract items require explicit waivers with reason, risk, owner, and follow-up action.
 - The current solution remains traceable through the package `product-breakdown/` tree
@@ -55,7 +51,7 @@ The solution should make this loop repeatable, inspectable, and hard to shortcut
 
 ## Guiding Principles
 
-- Contract completeness over plausible partial output.
+- Work-order completeness over plausible partial output.
 - Architecture preservation over locally convenient implementation.
 - Persistent mistake memory over repeating the same correction loop.
 - Reviewer approval over self-assessed completion.

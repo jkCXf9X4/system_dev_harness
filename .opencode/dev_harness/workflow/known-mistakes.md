@@ -33,7 +33,7 @@ Why it matters:
 The result looks complete but creates hidden follow-up work and repeated review cycles.
 
 Prevention rule:
-Every implementation packet must include a completion checklist tied to the requirement contract.
+Every planner work order must include a completion checklist tied to the requirement contract.
 
 Completion check:
 Reviewers must verify each contract item is complete, explicitly waived, or blocking.

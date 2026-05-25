@@ -4,9 +4,9 @@
 
 Verification is distributed across multiple workflow stages:
 
-1. **Verifier stage** (`orchestrator-verifier`): Runs focused checks against the implementation packet and captures evidence. Shell-capable, edit-incapable. Verifies file content, permission integrity, and information hygiene.
+1. **Reviewer-coordinated verifier helper** (`orchestrator-verifier`): Runs focused checks against the planner work order and implementation evidence. Shell-capable, edit-incapable. Verifies file content, permission integrity, and information hygiene.
 
-2. **Independent review stages** (`orchestrator-review-*`): Five reviewers independently evaluate requirements, architecture, completeness, lessons, and QA. Read-only. Structured findings with stable item IDs.
+2. **Independent review helpers** (`orchestrator-review-*`): Reviewers independently evaluate the domains triggered by task risk: contract satisfaction, acceptance criteria, test adequacy, architecture, code quality, cleanliness, completeness, information hygiene, and lessons. Read-only. Structured findings with stable item IDs.
 
 3. **Completion gate** (`orchestrator-reviewer`): Aggregates all review findings with verifier evidence. Produces `approved`, `blocked`, or `waiver_required`. The revision loop routes `blocked` back to planner.
 

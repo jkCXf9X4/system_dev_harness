@@ -2,7 +2,7 @@
 
 ## Architectural Purpose
 
-The current solution acts as a control layer around agentic development. It separates task definition, architectural grounding, lessons, implementation packaging, optional external handoff, execution, independent review, and deterministic completion routing.
+The current solution acts as a control layer around agentic development. It separates top-level planning, implementation, reviewer-coordinated verification, deterministic completion routing, and final reporting while allowing each stage to use directed helper agents.
 
 ## Control Flow
 
@@ -12,15 +12,9 @@ This document is the canonical policy for workflow branches, boundaries, and exe
 guarded delivery:
   task intake
     -> OpenCode primary orchestrator
-    -> planner (request classification)
-    -> discovery (broad repository search and context bundle)
-    -> contract, architecture, lessons (upstream context consumers)
-    -> packet (implementation synthesis)
-    -> optional handoff when external or manual implementation is requested
-    -> builder
-    -> verifier
-    -> independent reviews
-    -> deterministic gate routing
+    -> planner (request classification, uncertainty resolution, directed planning helpers)
+    -> builder (implementation, directed build helpers)
+    -> reviewer (verification, independent review helpers, deterministic gate routing)
     -> final control report
 
   continuous improvement:
@@ -43,12 +37,12 @@ guarded delivery:
 | Architecture docs | Record control-flow boundaries, permissions, evidence expectations, and design quality goals. |
 | Technical decisions | Explain why the current structure exists. |
 | Known mistakes | Provide versioned lesson memory in `.opencode/dev_harness/workflow/known-mistakes.md`. |
-| Implementation packet | Packages contract, guardrails, and checks for implementation. |
-| Handoff | Provides an external or manual coding brief only when needed. |
-| Builder | Applies approved changes. |
-| Verifier | Runs focused checks and summarizes evidence. |
-| Review agents | Independently review requirements, architecture, QA, completeness, and lessons. |
-| Completion gate | Computes approved, blocked, or waiver-required outcomes. |
+| Planning work order | Packages contract, guardrails, checks, feedback needs, and deferred improvement candidates for implementation. |
+| Handoff section | Provides an external or manual coding brief inside the planner work order only when needed. |
+| Builder | Applies approved changes and may use directed helpers for build errors, scoped cleanup, documentation updates, and research. |
+| Reviewer | Coordinates focused checks, independent review helpers, and the completion gate. |
+| Review helpers | Independently review contract completeness, verification adequacy, architecture, code quality, cleanliness, information hygiene, and lessons. |
+| Completion gate | Computes approved, blocked, or waiver-required outcomes inside the reviewer stage. |
 | Final report | Captures the final state, decision, and remaining gaps. |
 | Information hygiene | Reconciles new, changed, moved, and superseded information so the workflow does not leave duplicate, stale, or orphaned artifacts. |
 | Improvement workflow | Separately explores cleanup, refactoring, pattern, module responsibility, and tuning opportunities, then persists backlog candidates. |
@@ -62,12 +56,14 @@ guarded delivery:
 - Runtime source of truth lives in `.opencode/`.
 - Design and traceability source of truth lives in `product-breakdown/`.
 - `opencode.json` selects the primary agent and loads the workflow instructions.
-- Pre-implementation discovery has a single owner: `orchestrator-discovery`.
+- Pre-implementation discovery is a directed helper owned by `orchestrator-planner`.
 - The orchestrator is not a preliminary implementation or discovery layer.
-- Planner classifies the request without repository inspection.
-- Contract, architecture, packet, and handoff consume upstream context and avoid broad rediscovery.
-- The builder agent is the only agent meant to edit files.
-- Review agents are read-only.
+- Planner classifies the request, resolves uncertainty, and decides whether to plan directly or invoke directed planning helpers using adaptive risk triggers.
+- Contract, architecture, and lessons prompts are planner-owned helpers and avoid broad rediscovery unless their prompt explicitly allows focused reads.
+- Test obligations, product-breakdown placement, traceability, and durable product behavior impact are planner-owned work-order sections rather than separate planning-agent handoffs.
+- The builder agent and builder-owned edit helpers are the only agents meant to edit implementation files.
+- Reviewer selects read-only review helpers using adaptive risk triggers; low-risk tasks may be reviewed directly with an explicit rationale.
+- Every top-level stage and directed helper can request user feedback, report out-of-scope improvement candidates, and use the researcher when external source material is needed. Dependency, API, framework, standard, version, or documentation uncertainty requires researcher evidence before approval unless waived.
 - The workflow should remain inspectable without a hidden Python runtime.
 - Persistent lesson memory lives in versioned markdown, not in ephemeral conversation state.
 - Dev harness context lives in versioned markdown under `.opencode/dev_harness/` so it can be copied between projects without losing structure.
@@ -87,13 +83,13 @@ guarded delivery:
 
 The deterministic completion gate produces `approved`, `blocked`, or `waiver_required`.
 
-Independent reviewer nodes evaluate requirements, architecture, QA, completeness, information hygiene, and known mistakes. Architecture review also checks modularity, simplicity, readability, and module responsibility fit when relevant. The gate aggregates review findings and implementation evidence. Reviewer approval cannot silently override missing contract items or missing cleanup evidence. Incomplete items require explicit waivers with reason, risk, owner, and follow-up action.
+The reviewer stage coordinates focused verification and independent reviewer nodes for the risks present in the task: contract satisfaction, acceptance criteria, test adequacy, architecture, code quality, cleanliness, completeness, information hygiene, and known mistakes. Architecture and code-quality checks also cover modularity, simplicity, readability, and module responsibility fit when relevant. The gate aggregates review findings and implementation evidence. Reviewer approval cannot silently override missing contract items, missing cleanup evidence, or missing required researcher evidence. Incomplete items require explicit waivers with reason, risk, owner, and follow-up action.
 
 ## Workflow Split
 
 The repository supports three related workflow branches:
 
-- Delivery workflow: normalize a bounded task, create a contract, implement only the contracted change, verify it, review it, and gate completion.
+- Delivery workflow: normalize a bounded task, create a planner-owned work order, implement only the contracted change, review and verify it, and gate completion.
 - Improvement workflow: explore current features, requirements, implementation evidence, reviewer findings, module friction, and cleanup opportunities to produce backlog-ready improvement candidates.
 
 The delivery workflow may report improvement candidates, but it must not absorb exploratory cleanup, refactoring, or pattern changes unless the contract explicitly includes them. This keeps diffs small, verification focused, and review evidence tied to the requested feature or fix.

@@ -13,7 +13,9 @@ permission:
   edit: deny
   bash: allow
   external_directory: deny
-  task: deny
+  task:
+    "*": deny
+    "orchestrator-researcher": allow
 ---
 You are the final reporting stage of the OpenCode workflow.
 
@@ -24,8 +26,12 @@ Return:
 - final status
 - key evidence
 - blocking items or waivers
+- `user_feedback_required: true|false`
+- `user_feedback_request: <requested or resolved feedback, waiver request, or not_applicable>`
 - improvement candidates raised by the run, clearly marked as backlog candidates rather than completed work
 - improvement backlog files written or updated, when the improvement workflow ran
+- `improvement_candidates: <out-of-scope candidates or none>`
+- `research_requests: <research performed or still needed, or none>`
 - product-breakdown decision status or follow-up, if relevant
 - next required action
 

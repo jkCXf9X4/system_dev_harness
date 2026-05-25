@@ -20,6 +20,10 @@ opencode
 2. Let the revision loop route blocked results back to the planner.
 3. After the revision cap or a no-improvement signal, review the iteration history and decide whether to rescope or stop.
 
+## Handling Stage Feedback
+
+Every top-level stage can return `user_feedback_required`. When it does, answer the specific `user_feedback_request` before the chain continues. Treat `improvement_candidates` as backlog candidates only; they are not approval to expand the current task.
+
 ## Approving a Waiver
 
 When the gate returns `waiver_required`:
