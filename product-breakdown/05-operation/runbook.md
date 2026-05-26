@@ -1,36 +1,24 @@
-# Runbook
+# Operational Product Requirements
 
-## Common Operational Tasks
+This artifact captures durable operational behavior for the workflow package. Runnable operator steps live in [docs/operation.md](../../docs/operation.md).
 
-### Running the Workflow
+## Requirements
 
-OpenCode in the target repository root:
+- Operators must be able to run the workflow from a target repository after copying the runtime payload.
+- Blocked work must preserve gate findings, stable gap identifiers, and the next required action for planner re-scoping.
+- Revision loops must stop at the configured cap or no-improvement signal and return the decision to the human operator.
+- Waiver handling must expose the named risk, waiver scope, follow-up or expiry condition, and user decision before completion.
+- Stage feedback must be explicit when user input is required before continuing.
+- Stage failures or unexpected output must have a conservative recovery path that preserves the guarded workflow contract.
 
-```
-opencode run "your task"
-```
+## Product Boundaries
 
-Or run interactively:
+- The product does not support arbitrary individual stage reruns as an approved completion path.
+- Improvement candidates reported during operation are backlog candidates only; they do not authorize current-task scope expansion.
+- Operator escape hatches must not weaken the default planner-builder-reviewer-reporter path.
 
-```
-opencode
-```
+## Trace Links
 
-### Handling a Blocked Task
-
-1. Read the gate output for blocking gaps and next required action.
-2. The revision loop routes blocked results back to the planner automatically (up to 3 iterations).
-3. After 3 iterations (or no-improvement detection), the human operator reviews the iteration history and decides next steps.
-
-### Approving a Waiver
-
-When the gate returns `waiver_required`:
-
-1. Review the waiver request: named risk, waiver scope, follow-up/expiry condition.
-2. Accept or reject the waiver in the conversation.
-3. If accepted, the workflow completes with the waiver attached to the final report.
-4. If rejected, the workflow routes as `blocked`.
-
-### Re-running a Stage
-
-If a stage fails or produces unexpected output, re-run the full workflow from the beginning. Individual stage re-runs are not supported — the workflow is designed to run end-to-end.
+- Operator-facing runbook: [docs/operation.md](../../docs/operation.md)
+- Workflow control policy: [.opencode/dev_harness/workflow/control-policy.md](../../.opencode/dev_harness/workflow/control-policy.md)
+- Architecture completion model: [product-breakdown/02-architecture/architecture.md](../02-architecture/architecture.md)

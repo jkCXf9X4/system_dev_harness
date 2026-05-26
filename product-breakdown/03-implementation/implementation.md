@@ -16,6 +16,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 ## Package Documentation
 
 - `product-breakdown/` - product-breakdown source documentation and traceability retained in this repository only.
+- `docs/` - operator and maintainer guidance for install, deploy, usage, verification commands, troubleshooting, and contributor workflow.
 - `README.md` - package overview and copy instructions retained in this repository only.
 
 ## Execution Roles

@@ -2,6 +2,10 @@
 
 The source documentation tree stays in `product-breakdown/`. The copied runtime guidance lives in `.opencode/dev_harness/product-breakdown/`.
 
+Use product-breakdown pages for product facts, scope, stable decisions, traceability, acceptance criteria, operational constraints, and evolution direction. Use the rest of `docs/` for runnable instructions, command examples, install and deploy steps, contributor workflow, and troubleshooting.
+
+If an operator guide needs product context, link to these product-breakdown pages. If a product-breakdown page needs practical steps, link back to the relevant guide instead of copying the procedure.
+
 ## Source Map
 
 - [Intent](../product-breakdown/00-intent/vision.md)

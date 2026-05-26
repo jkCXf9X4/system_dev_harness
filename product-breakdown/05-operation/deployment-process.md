@@ -1,22 +1,23 @@
-# Deployment Process
+# Deployment Product Requirements
 
-## Package Deployment
+This artifact captures the product-level deployment model. Runnable copy and refresh steps live in [docs/install-and-deploy.md](../../docs/install-and-deploy.md).
 
-The workflow package is deployed by copying `opencode.json` and `.opencode/` into a target development repository.
+## Requirements
 
-### Steps
+- The package must remain deployable by copying only `opencode.json` and `.opencode/` into a target development repository.
+- The package `product-breakdown/` tree must remain source documentation for this repository and must not be required at runtime in target repositories.
+- The copied payload must include the agent prompts, workflow policy, reusable prompt templates, product-breakdown guidance for agents, and package-local runtime dependency metadata needed by OpenCode.
+- Target repositories must be able to refresh the workflow payload from a newer package commit without overwriting repo-local workflow memory under `.opencode/dev_harness_memories/`.
+- Deployment updates should be reviewable as ordinary repository diffs in the target repository.
 
-1. Clone or open the target development repository.
-2. Copy `opencode.json` into the repository root.
-3. Copy the `.opencode/` directory into the repository root.
-4. The `product-breakdown/` tree stays in the package repository — it is not copied.
+## Product Boundaries
 
-### Versioning
+- The package does not provide a registry, installer, or release server.
+- The package does not manage target-repository source control operations.
+- The package does not copy this repository's `product-breakdown/` tree into target repositories.
 
-The package is versioned by git commit in this repository. There is no separate package registry. Update the target repo's copy by re-copying the files from a newer commit.
+## Trace Links
 
-### Update Process
-
-1. Pull latest changes from this package repository.
-2. Re-copy `opencode.json` and `.opencode/` into the target repository.
-3. Review `git diff` in the target repo to verify only the intended changes were applied.
+- Operator-facing deployment steps: [docs/install-and-deploy.md](../../docs/install-and-deploy.md)
+- Runtime artifact map: [product-breakdown/03-implementation/implementation.md](../03-implementation/implementation.md)
+- Repo-local memory decision: [IMD-003](../03-implementation/decisions/IMD-003-use-repo-local-workflow-memory.md)

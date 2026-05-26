@@ -196,6 +196,40 @@ def test_product_breakdown_usage_is_embedded_in_agent_workflow(simple_project: P
     assert "product breakdown evidence" in gate_prompt
 
 
+def test_docs_and_product_breakdown_boundaries_are_explicit(simple_project: Path) -> None:
+    repo_root = Path(__file__).resolve().parents[1]
+    docs_readme = read_prompt(repo_root, "docs/README.md").lower()
+    docs_product_breakdown = read_prompt(repo_root, "docs/product-breakdown.md").lower()
+    product_breakdown_readme = read_prompt(repo_root, "product-breakdown/README.md").lower()
+    operation_requirements = read_prompt(repo_root, "product-breakdown/05-operation/runbook.md").lower()
+    deployment_requirements = read_prompt(repo_root, "product-breakdown/05-operation/deployment-process.md").lower()
+    copied_guidance = read_prompt(
+        simple_project,
+        ".opencode/dev_harness/product-breakdown/README.md",
+    ).lower()
+
+    assert "runnable guidance" in docs_readme
+    assert "command examples" in docs_readme
+    assert "link to them for product context" in docs_readme
+
+    assert "product facts" in docs_product_breakdown
+    assert "runnable instructions" in docs_product_breakdown
+    assert "link to these product-breakdown pages" in docs_product_breakdown
+
+    assert "product source information" in product_breakdown_readme
+    assert "use `docs/` for runnable" in product_breakdown_readme
+    assert "do not duplicate" in product_breakdown_readme
+
+    assert "use `docs/` for runnable guidance" in copied_guidance
+    assert "usage guides" in copied_guidance
+
+    for product_doc in (operation_requirements, deployment_requirements):
+        assert "runnable" in product_doc
+        assert "requirements" in product_doc
+        assert "```" not in product_doc
+        assert "opencode run" not in product_doc
+
+
 def test_orchestrator_does_not_route_shortcut_build(simple_project: Path) -> None:
     repo_root = Path(__file__).resolve().parents[1]
     orchestrator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator.md")

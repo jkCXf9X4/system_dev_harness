@@ -1,27 +1,29 @@
 # 05 Operation Layer
 
-The operation layer describes how the system is deployed, monitored, supported, and recovered in production or production-like environments.
+The operation layer describes durable operational behavior, support constraints, deployment constraints, monitoring expectations, and recovery expectations.
+
+Runnable procedures, command examples, install steps, usage walkthroughs, and contributor workflow belong in `docs/`. Operation-layer artifacts may link to those guides, but should not copy their step-by-step instructions.
 
 ## Typical Artifacts
 
 
 
 ```text
-runbook.md           - explains how to operate and recover the system
-monitoring.md        - documents metrics, alerts, and dashboards
-deployment-process.md - describes release and deployment procedures
-incident-response.md  - defines incident handling and escalation steps
+runbook.md           - captures operational requirements and recovery constraints
+monitoring.md        - captures metrics, alerts, and observability expectations
+deployment-process.md - captures release and deployment product constraints
+incident-response.md  - captures incident handling and escalation expectations
 support-model.md      - captures support responsibilities and expectations
 decisions/           - stores operational decisions and rationale
 ```
 
 ## Questions Answered
 
-- How is the system deployed?
-- How is it monitored?
-- How are incidents handled?
+- What deployment constraints must the product satisfy?
+- What monitoring and recovery expectations exist?
+- What incident handling behavior is required?
 - What operational responsibilities exist?
-- What support processes are needed?
+- What support processes are product requirements rather than guide steps?
 - How are releases controlled?
 
 ## Example Decisions

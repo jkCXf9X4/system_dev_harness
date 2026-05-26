@@ -1,7 +1,7 @@
 # Roadmap
 
 ## Current Focus
-- Simplify the operator entrypoint docs and keep the detailed hierarchy under `docs/`.
+- Keep product source information and traceability in `product-breakdown/` while keeping runnable usage, install, verification, and contributor guidance in `docs/`.
 
 
 ## Planned
