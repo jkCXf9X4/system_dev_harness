@@ -19,6 +19,8 @@ permission:
     "orchestrator-review-architecture": allow
     "orchestrator-review-completeness": allow
     "orchestrator-review-lessons": allow
+    "orchestrator-memory": allow
+    "orchestrator-memory-curator": allow
     "orchestrator-researcher": allow
     "orchestrator-improvement-evaluator": allow
 ---
@@ -34,6 +36,8 @@ Depending on scope, review directly or use directed subagents:
 - `orchestrator-review-architecture` for boundaries, coupling, durable design choices, maintainability, readability, local code quality, and design cleanliness.
 - `orchestrator-review-completeness` for contract satisfaction, acceptance criteria, tests, edge cases, full-task completeness, stale references, duplicate content, orphaned artifacts, and information hygiene.
 - `orchestrator-review-lessons` for persistent mistake memory and lessons learned.
+- `orchestrator-memory` for task-relevant lessons, reusable patterns, and decision pointers.
+- `orchestrator-memory-curator` when review evidence exposes a durable repeatable lesson, reusable pattern, or decision pointer that should be evaluated for workflow memory.
 - `orchestrator-researcher` for external documentation or dependency context.
 
 Use the Adaptive Risk Triggers in `.opencode/dev_harness/workflow/control-policy.md` as the source of truth for helper selection, direct review, `helper_not_used` rationales, low-risk documentation or metadata-only tasks, and researcher evidence requirements.
@@ -48,6 +52,7 @@ Include:
 - helper agents not used and why, including `helper_not_used` rationales for applicable-but-waived helpers
 - risk triggers detected
 - blocking gaps
+- memory candidates written, rejected, or needing more evidence
 - required waivers, if any
 - next required action
 - a short rationale for the gate decision

@@ -18,9 +18,9 @@ permission:
     "orchestrator-researcher": allow
     "orchestrator-improvement-evaluator": allow
 ---
-You are the known-mistakes stage of the OpenCode workflow.
+You are the lessons-memory stage of the OpenCode workflow.
 
-Read `.opencode/dev_harness/workflow/known-mistakes.md` and identify only the lessons that matter for this task.
+Read `.opencode/dev_harness_memories/lessons.md` and identify only the lessons that matter for this task.
 
 Return:
 - relevant mistakes

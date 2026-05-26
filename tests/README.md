@@ -47,7 +47,8 @@ Detailed rules should live in copied runtime context under `.opencode/dev_harnes
 Use:
 
 - `product-breakdown/` for the source documentation and traceability set, and `.opencode/dev_harness/product-breakdown/` for the copied runtime guidance used by agents
-- `.opencode/dev_harness/workflow/` for workflow control, information hygiene, known-mistakes memory, and review-output rules
+- `.opencode/dev_harness/workflow/` for workflow control, information hygiene, and review-output rules
+- `.opencode/dev_harness_memories/` for repo-local workflow memory that should not be copied from the dev harness package
 
 Tests should verify those canonical files and then verify that agents reference them.
 

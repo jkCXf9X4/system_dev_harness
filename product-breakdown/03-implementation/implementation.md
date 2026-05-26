@@ -10,8 +10,8 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 - `.opencode/dev_harness/prompts/*.md` - reusable prompt templates tied to use cases.
 - `.opencode/dev_harness/README.md` - package index for the reusable dev harness folder.
 - `.opencode/dev_harness/product-breakdown/` - reusable product breakdown guidance split into small files for copied target-repo agents.
-- `.opencode/dev_harness/workflow/` - shared workflow control, information hygiene, known-mistakes memory, and review-output policies referenced by copied agents.
-- `.opencode/dev_harness/workflow/known-mistakes.md` - persistent lesson memory.
+- `.opencode/dev_harness/workflow/` - shared workflow control, information hygiene, and review-output policies referenced by copied agents.
+- `.opencode/dev_harness_memories/` - canonical repo-local versioned memory for lessons, reusable patterns, and decision pointers.
 
 ## Package Documentation
 
@@ -27,6 +27,8 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 - `orchestrator-builder` owns implementation, scoped cleanup, documentation/product-breakdown updates, build-error resolution, and research helper routing.
 - `orchestrator-reviewer` owns verifier, review helper, researcher, and deterministic gate routing; helper use follows adaptive risk triggers and may be lightweight for low-risk tasks.
 - review agents are read-only and exist to keep approval separate from implementation.
+- `orchestrator-memory` retrieves task-relevant workflow memory without editing it.
+- `orchestrator-memory-curator` may edit only workflow memory files and only for evidenced durable memory candidates.
 - `orchestrator-improvement` exists to explore improvement opportunities and persist backlog candidates, not to implement them.
 - `orchestrator-improvement-evaluator` evaluates focused findings raised by working agents and persists qualifying backlog candidates without expanding the current task.
 
@@ -37,13 +39,14 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 | Entrypoint | `opencode.json` | n/a | n/a | Selects `orchestrator` as the default primary agent. |
 | Orchestration | `.opencode/agents/orchestrator.md` | no | no | Routes planner, builder, reviewer, reporter, or improvement discovery without doing specialist stage work directly. |
 | Planning | `.opencode/agents/orchestrator-planner.md` | no | yes | Normalizes the request, resolves uncertainty, coordinates planning helpers, and emits the builder work order. |
-| Planning helpers | `.opencode/agents/orchestrator-discovery.md`, `orchestrator-contract.md`, `orchestrator-architecture.md`, `orchestrator-lessons.md` | no | yes | Provide directed discovery, requirements, architecture, and lessons support. Planner handles test obligations and product-breakdown placement in the work order. |
+| Planning helpers | `.opencode/agents/orchestrator-discovery.md`, `orchestrator-contract.md`, `orchestrator-architecture.md`, `orchestrator-lessons.md`, `orchestrator-memory.md` | no | yes | Provide directed discovery, requirements, architecture, lessons, and memory support. Planner handles test obligations and product-breakdown placement in the work order. |
 | Build | `.opencode/agents/orchestrator-builder.md` | yes | yes | Applies approved changes, coordinates builder helpers, reconciles changed information, removes stale or duplicate artifacts, and reports implementation evidence. |
 | Build helpers | `.opencode/agents/orchestrator-build-error-resolver.md` | yes | yes | Resolves assigned build, test, type-check, or dependency failures when isolated diagnosis is useful. |
 | Review and gate | `.opencode/agents/orchestrator-reviewer.md` | no | yes | Coordinates verification and review helpers, then produces `approved`, `blocked`, or `waiver_required`. |
-| Review helpers | `.opencode/agents/orchestrator-verifier.md`, `.opencode/agents/orchestrator-review-*.md` | no | yes | Independently verify checks and review contract completeness, acceptance criteria, test adequacy, architecture, code quality, cleanliness, information hygiene, and lessons. |
+| Review helpers | `.opencode/agents/orchestrator-verifier.md`, `.opencode/agents/orchestrator-review-*.md`, `.opencode/agents/orchestrator-memory.md` | no | yes | Independently verify checks and review contract completeness, acceptance criteria, test adequacy, architecture, code quality, cleanliness, information hygiene, lessons, and relevant workflow memory. |
 | Report | `.opencode/agents/orchestrator-reporter.md` | no | no | Produces the final control report. |
 | Research | `.opencode/agents/orchestrator-researcher.md` | no | no | Gathers external documentation or dependency context. |
+| Memory curation | `.opencode/agents/orchestrator-memory-curator.md` | yes | yes | Evaluates evidenced repeatable findings and persists only durable workflow memory under `.opencode/dev_harness_memories/`. |
 | Improvement | `.opencode/agents/orchestrator-improvement.md` | yes | no | Produces and persists backlog-ready cleanup, refactoring, pattern, module responsibility, or tuning candidates under the evolution backlog only. |
 | Focused improvement evaluation | `.opencode/agents/orchestrator-improvement-evaluator.md` | yes | yes | Evaluates one noteworthy finding raised by a working agent and persists it only when it has evidence, impact, and a scoped future task seed. |
 
@@ -72,7 +75,9 @@ Shared workflow policies are implemented as copied agent context under `.opencod
 | --- | --- |
 | `.opencode/dev_harness/workflow/control-policy.md` | Required stage output, `not_applicable`, handoff boundaries, control flags, and waiver rules. |
 | `.opencode/dev_harness/workflow/information-hygiene.md` | Canonical evidence requirements for changed information artifacts. |
-| `.opencode/dev_harness/workflow/known-mistakes.md` | Persistent lesson memory used by the lessons and lessons-review agents. |
+| `.opencode/dev_harness_memories/lessons.md` | Persistent lesson memory used by the lessons and lessons-review agents. |
+| `.opencode/dev_harness_memories/patterns.md` | Reusable planning, implementation, review, documentation, and improvement patterns. |
+| `.opencode/dev_harness_memories/decisions-index.md` | Lightweight pointers to durable workflow decisions. |
 | `.opencode/dev_harness/workflow/review-output.md` | Shared independent-review return protocol. |
 
 ## Trace Links

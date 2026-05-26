@@ -1,6 +1,6 @@
-# Known Mistakes
+# Lessons Memory
 
-This file is persistent mistake memory for the OpenCode workflow. Add project-specific repeated failures here so future tasks can check against them.
+This file is repo-local workflow memory. It is intentionally stored outside the copied dev-harness tree so package updates do not overwrite it.
 
 Each lesson should be concrete enough to become a review check.
 

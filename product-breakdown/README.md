@@ -17,7 +17,7 @@ This tree is the product-breakdown source documentation and traceability set for
 | Evolution | `product-breakdown/06-evolution/` | Captures roadmap, risks, and changelog history. |
 | Dev Harness Context | `.opencode/dev_harness/*` | Reusable prompt, workflow, and supporting context copied into the active payload. |
 | Product Breakdown Agent Context | `.opencode/dev_harness/product-breakdown/README.md` | Layered guidance for intent, product, architecture, implementation, verification, operation, and evolution work. |
-| Workflow Policy Agent Context | `.opencode/dev_harness/workflow/` | Shared control, information hygiene, known-mistakes memory, and review-output policy for copied agents. |
+| Workflow Policy Agent Context | `.opencode/dev_harness/workflow/` | Shared control, information hygiene, workflow memory, and review-output policy for copied agents. |
 
 This tree itself is not copied into development repos.
 

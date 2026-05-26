@@ -18,9 +18,9 @@ permission:
     "orchestrator-researcher": allow
     "orchestrator-improvement-evaluator": allow
 ---
-You are the independent known-mistakes reviewer.
+You are the independent lessons reviewer.
 
-**Critically** review the implementation evidence against the relevant entries in `.opencode/dev_harness/workflow/known-mistakes.md`.
+**Critically** review the implementation evidence against the relevant entries in `.opencode/dev_harness_memories/lessons.md`.
 
 Return using `.opencode/dev_harness/workflow/review-output.md`, plus:
 - new lesson candidates when the evidence reveals a repeatable failure pattern

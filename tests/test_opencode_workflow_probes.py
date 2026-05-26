@@ -129,6 +129,7 @@ def test_focused_improvement_evaluator_is_scoped(simple_project: Path) -> None:
     assert "rejected" in prompt
     assert "needs_more_evidence" in prompt
     assert "evidence, impact, and scoped future task seed" in prompt
+    assert '"orchestrator-memory-curator": allow' in prompt
     assert "focused improvement evaluation" in control_policy
     assert "backlog capture only" in control_policy
 
@@ -290,10 +291,13 @@ def test_top_level_flow_and_directed_helpers_are_explicit(simple_project: Path) 
     assert "\"orchestrator-contract\": allow" not in orchestrator_prompt
     assert "\"orchestrator-verifier\": allow" not in orchestrator_prompt
     assert "\"orchestrator-researcher\": allow" not in orchestrator_prompt
+    assert "\"orchestrator-memory\": allow" not in orchestrator_prompt
+    assert "\"orchestrator-memory-curator\": allow" not in orchestrator_prompt
     assert "\"orchestrator-improvement-evaluator\": allow" not in orchestrator_prompt
 
     for helper in (
         "orchestrator-architecture",
+        "orchestrator-memory",
         "test planning",
         "product-breakdown placement",
     ):
@@ -307,6 +311,7 @@ def test_top_level_flow_and_directed_helpers_are_explicit(simple_project: Path) 
 
     for helper in (
         "acceptance criteria",
+        "orchestrator-memory",
         "orchestrator-review-architecture",
         "orchestrator-review-completeness",
     ):
@@ -334,6 +339,8 @@ def test_structured_feedback_protocol_is_shared(simple_project: Path) -> None:
         ".opencode/agents/orchestrator-reviewer.md",
         ".opencode/agents/orchestrator-reporter.md",
         ".opencode/agents/orchestrator-researcher.md",
+        ".opencode/agents/orchestrator-memory.md",
+        ".opencode/agents/orchestrator-memory-curator.md",
         ".opencode/agents/orchestrator-build-error-resolver.md",
         ".opencode/agents/orchestrator-review-architecture.md",
     ]
@@ -385,6 +392,8 @@ def test_working_agents_can_trigger_focused_improvement_evaluation(simple_projec
         ".opencode/agents/orchestrator-review-architecture.md",
         ".opencode/agents/orchestrator-review-completeness.md",
         ".opencode/agents/orchestrator-review-lessons.md",
+        ".opencode/agents/orchestrator-memory.md",
+        ".opencode/agents/orchestrator-memory-curator.md",
         ".opencode/agents/orchestrator-improvement.md",
     ]
 
@@ -396,6 +405,49 @@ def test_working_agents_can_trigger_focused_improvement_evaluation(simple_projec
     evaluator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-improvement-evaluator.md")
     assert '"orchestrator-improvement-evaluator": allow' not in orchestrator_prompt
     assert '"orchestrator-researcher": allow' in evaluator_prompt
+    assert '"orchestrator-memory-curator": allow' in evaluator_prompt
+
+
+def test_workflow_memory_layer_is_versioned_and_scoped(simple_project: Path) -> None:
+    lessons = read_prompt(simple_project, ".opencode/dev_harness_memories/lessons.md").lower()
+    patterns = read_prompt(simple_project, ".opencode/dev_harness_memories/patterns.md").lower()
+    decisions = read_prompt(simple_project, ".opencode/dev_harness_memories/decisions-index.md").lower()
+    memory_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-memory.md").lower()
+    curator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-memory-curator.md").lower()
+    planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
+    reviewer_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
+    reporter_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reporter.md").lower()
+    evaluator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-improvement-evaluator.md").lower()
+    control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
+
+    assert "repo-local workflow memory" in lessons
+    assert "km-001" in lessons
+    assert "pat-000" in patterns
+    assert "decision pointers" in decisions
+
+    assert "edit: deny" in memory_prompt
+    assert "dev_harness_memories/lessons.md" in memory_prompt
+    assert "dev_harness_memories/patterns.md" in memory_prompt
+    assert "dev_harness_memories/decisions-index.md" in memory_prompt
+    assert "memory candidates" in memory_prompt
+
+    assert "edit: allow" in curator_prompt
+    assert "dev_harness_memories/lessons.md" in curator_prompt
+    assert "dev_harness_memories/patterns.md" in curator_prompt
+    assert "dev_harness_memories/decisions-index.md" in curator_prompt
+    assert "current task state" in curator_prompt
+    assert "backlog candidates" in curator_prompt
+    assert not (simple_project / ".opencode/dev_harness/workflow/memory/lessons.md").exists()
+    assert not (simple_project / ".opencode/dev_harness/workflow/memory/patterns.md").exists()
+    assert not (simple_project / ".opencode/dev_harness/workflow/memory/decisions-index.md").exists()
+
+    assert '"orchestrator-memory": allow' in planner_prompt
+    assert '"orchestrator-memory": allow' in reviewer_prompt
+    assert '"orchestrator-memory-curator": allow' in reviewer_prompt
+    assert '"orchestrator-memory-curator": allow' in reporter_prompt
+    assert '"orchestrator-memory-curator": allow' in evaluator_prompt
+    assert "workflow memory" in control_policy
+    assert "current task state" in control_policy
 
 
 def test_adaptive_risk_triggers_drive_helper_selection(simple_project: Path) -> None:
@@ -417,22 +469,25 @@ def test_adaptive_risk_triggers_drive_helper_selection(simple_project: Path) -> 
         assert "external dependency, api, framework, standard, version, or documentation uncertainty requires" in content
         assert "low-risk documentation, formatting, wording, or metadata-only tasks" in content
         assert "helper_not_used" in content
+        assert "workflow memory" in content
 
     assert "orchestrator-discovery" in planner_prompt
     assert "orchestrator-contract" in planner_prompt
+    assert "orchestrator-memory" in planner_prompt
     assert "test obligations" in control_policy
     assert "product-breakdown placement" in planner_prompt
     assert "requires_external_research: true" in control_policy
 
     assert "orchestrator-verifier" in reviewer_prompt
     assert "orchestrator-review-completeness" in reviewer_prompt
+    assert "orchestrator-memory-curator" in reviewer_prompt
     assert "acceptance criteria" in reviewer_prompt
     assert "may not approve external claims without cited researcher evidence or a waiver" in control_policy
 
 
 def test_shared_review_output_policy_is_referenced(simple_project: Path) -> None:
     review_output_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/review-output.md").lower()
-    known_mistakes = read_prompt(simple_project, ".opencode/dev_harness/workflow/known-mistakes.md").lower()
+    lessons_memory = read_prompt(simple_project, ".opencode/dev_harness_memories/lessons.md").lower()
     lessons_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-lessons.md").lower()
     review_agents = [
         ".opencode/agents/orchestrator-review-architecture.md",
@@ -443,8 +498,8 @@ def test_shared_review_output_policy_is_referenced(simple_project: Path) -> None
     assert "pass" in review_output_policy
     assert "fail" in review_output_policy
     assert "needs_waiver" in review_output_policy
-    assert "persistent mistake memory" in known_mistakes
-    assert "dev_harness/workflow/known-mistakes.md" in lessons_prompt
+    assert "repo-local workflow memory" in lessons_memory
+    assert "dev_harness_memories/lessons.md" in lessons_prompt
 
     for agent_path in review_agents:
         prompt = read_prompt(simple_project, agent_path).lower()

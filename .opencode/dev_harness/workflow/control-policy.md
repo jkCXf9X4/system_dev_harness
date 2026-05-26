@@ -51,6 +51,14 @@ The evaluator may persist qualifying candidates directly under `product-breakdow
 
 When evidence is missing or the finding duplicates an existing candidate, the evaluator returns `needs_more_evidence` or `rejected` instead of writing a candidate.
 
+## Workflow Memory
+
+Any owning stage may request task-relevant workflow memory from `orchestrator-memory` when lessons, reusable patterns, or decision pointers could reduce repeated work or review misses.
+
+The reviewer, reporter, and focused improvement evaluator may invoke `orchestrator-memory-curator` when evidenced findings reveal a durable lesson, reusable pattern, or decision pointer worth evaluating for memory. Curation is workflow memory capture only; it does not authorize scope expansion, current-task implementation, direct approval, or improvement backlog persistence.
+
+Workflow memory lives under `.opencode/dev_harness_memories/`. Current task state, temporary investigation notes, implementation evidence, and backlog candidates do not belong in memory.
+
 ## Adaptive Risk Triggers
 
 Use helper agents based on task risk instead of forcing the full helper set for every task. A top-level stage may handle a task itself only when no trigger below applies, or when it returns an explicit `helper_not_used` rationale for each applicable-but-waived helper.
@@ -62,6 +70,7 @@ Planner triggers:
 - Product-breakdown or durable product behavior changes require planner-owned product placement, traceability, and decision-record obligations in the work order.
 - Architecture, module-boundary, dependency-shape, or responsibility changes require `orchestrator-architecture`.
 - Known repeated mistake risk or revision input requires `orchestrator-lessons`.
+- Durable lesson, pattern, or decision uncertainty requires `orchestrator-memory`.
 - External dependency, API, framework, standard, version, or documentation uncertainty requires `orchestrator-researcher` and `requires_external_research: true`.
 - External/manual implementation requests are represented as a `handoff_required` section in the planner work order.
 
@@ -72,6 +81,7 @@ Reviewer triggers:
 - Product-breakdown or information-artifact changes require `orchestrator-review-completeness`; durable decision changes also require `orchestrator-review-architecture`.
 - Architecture, module-boundary, dependency-shape, or responsibility changes require `orchestrator-review-architecture`.
 - Known repeated mistake risk or revision input requires `orchestrator-review-lessons`.
+- Durable lesson, pattern, or decision uncertainty requires `orchestrator-memory`; evidenced repeatable memory candidates may use `orchestrator-memory-curator`.
 - External dependency, API, framework, standard, version, or documentation uncertainty requires `orchestrator-researcher`; reviewer may not approve external claims without cited researcher evidence or a waiver.
 
 Low-risk documentation, formatting, wording, or metadata-only tasks may be planned or reviewed directly when the stage records why no risk trigger applies.

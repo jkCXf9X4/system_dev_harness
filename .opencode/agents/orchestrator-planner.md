@@ -19,6 +19,7 @@ permission:
     "orchestrator-contract": allow
     "orchestrator-architecture": allow
     "orchestrator-lessons": allow
+    "orchestrator-memory": allow
     "orchestrator-researcher": allow
     "orchestrator-improvement-evaluator": allow
 ---
@@ -37,6 +38,7 @@ Use only the helpers needed for the task:
 - `orchestrator-contract` for checklistable requirements.
 - `orchestrator-architecture` for software architecture guardrails, module boundaries, durable design choices, and design-quality risks.
 - `orchestrator-lessons` for persistent mistake memory.
+- `orchestrator-memory` for task-relevant lessons, reusable patterns, and decision pointers.
 - `orchestrator-researcher` for external documentation or dependency context.
 
 Own test planning, product-breakdown placement, durable product behavior impact, traceability obligations, and decision-record obligations directly in the work order. Do not create extra planning helper handoffs for those topics.
@@ -61,6 +63,7 @@ Return:
 - the minimum staged plan
 - helper agents used and why, or `none`
 - helper agents not used and why, including `helper_not_used` rationales for applicable-but-waived helpers
+- workflow memory entries applied, or `none`
 - risk triggers detected
 - consolidated implementation work order for the builder
 - `handoff_required: true|false` and paste-ready handoff notes when external/manual implementation was requested
