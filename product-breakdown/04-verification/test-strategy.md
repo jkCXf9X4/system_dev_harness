@@ -16,5 +16,5 @@ Verification is distributed across multiple workflow stages:
 
 - **Structural verification**: agent prompt content, permission blocks, template references
 - **Workflow verification**: route correctness, gate behavior, revision loop routing
-- **Information hygiene**: stale references, duplicate content, orphaned artifacts
+- **Information hygiene**: stale references, status trackers, duplicate content, orphaned artifacts, unresolved links, and traceability cleanup
 - **Traceability**: decision records, layer placement, cross-layer links

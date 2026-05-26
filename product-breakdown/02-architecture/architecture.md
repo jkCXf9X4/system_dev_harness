@@ -39,7 +39,8 @@ guarded delivery:
 | Workflow memory | Provide versioned lessons, reusable patterns, and decision pointers under `.opencode/dev_harness_memories/`. |
 | Planning work order | Packages contract, guardrails, checks, feedback needs, and deferred improvement candidates for implementation. |
 | Handoff section | Provides an external or manual coding brief inside the planner work order only when needed. |
-| Builder | Applies approved changes and may use directed helpers for build errors, scoped cleanup, documentation updates, and research. |
+| Builder | Applies approved changes and may use directed helpers for build errors, scoped cleanup, documentation updates, information hygiene, and research. |
+| Cleanup helper | Performs builder-owned cleanup passes for references, trackers, duplicate or superseded content, orphaned artifacts, links, and traceability inside the approved scope. |
 | Reviewer | Coordinates focused checks, independent review helpers, and the completion gate. |
 | Review helpers | Independently review contract completeness, verification adequacy, architecture, code quality, cleanliness, information hygiene, and lessons. |
 | Completion gate | Computes approved, blocked, or waiver-required outcomes inside the reviewer stage. |
@@ -66,6 +67,7 @@ guarded delivery:
 - Contract, architecture, and lessons prompts are planner-owned helpers and avoid broad rediscovery unless their prompt explicitly allows focused reads.
 - Test obligations, product-breakdown placement, traceability, and durable product behavior impact are planner-owned work-order sections rather than separate planning-agent handoffs.
 - The builder agent and builder-owned edit helpers are the only agents meant to edit implementation files.
+- `orchestrator-cleanup` is a builder-owned edit helper for cleanup caused by the approved change; it may patch references, update status trackers and indexes, reconcile duplicates or superseded content, remove orphaned artifacts, and report cleanup evidence without expanding scope.
 - Reviewer selects read-only review helpers using adaptive risk triggers; low-risk tasks may be reviewed directly with an explicit rationale.
 - Every top-level stage and directed helper can request user feedback, report out-of-scope improvement candidates, and use the researcher when external source material is needed. Dependency, API, framework, standard, version, or documentation uncertainty requires researcher evidence before approval unless waived.
 - The workflow should remain inspectable without a hidden Python runtime.
@@ -77,7 +79,7 @@ guarded delivery:
 - Workflow policy guidance lives under `.opencode/dev_harness/workflow/` because target repositories receive `.opencode/` but not this package's `product-breakdown/` tree.
 - Every artifact touched by the workflow should have a visible place in the information chain, with no orphaned node left behind after a creation, move, rename, rewrite, or replacement.
 - New information must either update an existing artifact, replace a superseded artifact, or declare a clear parent context and downstream destination.
-- Completion evidence must cover stale-reference cleanup, duplicate-content reconciliation, and traceability for changed information artifacts.
+- Completion evidence must cover stale-reference cleanup, status tracker updates, duplicate-content reconciliation, orphaned-artifact handling, and traceability for changed information artifacts.
 - Architecture guardrails include modularity, simplicity, readability, and module responsibility fit, not only preservation of the current shape.
 - Improvement discovery is separate from contained implementation. It may inspect broadly, but it must not change code.
 - Improvement discovery may write only improvement backlog files under `product-breakdown/06-evolution/backlog/`.

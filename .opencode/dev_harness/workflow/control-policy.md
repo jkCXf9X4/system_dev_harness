@@ -74,6 +74,13 @@ Planner triggers:
 - External dependency, API, framework, standard, version, or documentation uncertainty requires `orchestrator-researcher` and `requires_external_research: true`.
 - External/manual implementation requests are represented as a `handoff_required` section in the planner work order.
 
+Builder triggers:
+
+- Build, test, type-check, or dependency failures that need isolated diagnosis may use `orchestrator-build-error-resolver`.
+- Created, moved, renamed, rewritten, replaced, deleted, or superseded artifacts that require reference patching, tracker/index updates, duplicate reconciliation, orphan cleanup, link checks, or traceability cleanup may use `orchestrator-cleanup`.
+- External dependency, API, framework, standard, version, or documentation uncertainty during implementation may use `orchestrator-researcher`.
+- Noteworthy cleanup or information-hygiene findings outside the approved scope may use `orchestrator-improvement-evaluator` for backlog evaluation instead of expanding the current task.
+
 Reviewer triggers:
 
 - Code changes require `orchestrator-verifier` plus `orchestrator-review-completeness`; architecture review is added when architecture triggers apply.

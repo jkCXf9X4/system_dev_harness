@@ -354,6 +354,7 @@ def test_top_level_flow_and_directed_helpers_are_explicit(simple_project: Path) 
         "orchestrator-memory",
         "orchestrator-memory-curator",
         "orchestrator-build-error-resolver",
+        "orchestrator-cleanup",
         "orchestrator-verifier",
         "orchestrator-review-architecture",
         "orchestrator-review-completeness",
@@ -373,6 +374,7 @@ def test_top_level_flow_and_directed_helpers_are_explicit(simple_project: Path) 
 
     for helper in (
         "orchestrator-build-error-resolver",
+        "orchestrator-cleanup",
         "orchestrator-researcher",
     ):
         assert helper in builder_prompt
@@ -399,6 +401,42 @@ def test_top_level_flow_and_directed_helpers_are_explicit(simple_project: Path) 
     assert "reviewer-coordinated verification" in implementation_doc
 
 
+def test_builder_cleanup_helper_is_scoped_and_wired(simple_project: Path) -> None:
+    builder_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-builder.md").lower()
+    cleanup_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-cleanup.md").lower()
+    information_hygiene = read_prompt(
+        simple_project,
+        ".opencode/dev_harness/workflow/information-hygiene.md",
+    ).lower()
+    architecture_doc = read_prompt(
+        Path(__file__).resolve().parents[1],
+        "product-breakdown/02-architecture/architecture.md",
+    ).lower()
+    implementation_doc = read_prompt(
+        Path(__file__).resolve().parents[1],
+        "product-breakdown/03-implementation/implementation.md",
+    ).lower()
+
+    assert '"orchestrator-cleanup": allow' in builder_prompt
+    assert "focused cleanup after implementation" in builder_prompt
+    assert "cleanup helper result" in builder_prompt
+
+    assert "cleanup helper for the builder stage" in cleanup_prompt
+    assert "approved builder work order" in cleanup_prompt
+    assert "status trackers" in cleanup_prompt
+    assert "duplicate, superseded, contradictory, or orphaned information" in cleanup_prompt
+    assert "preserve the `docs/` versus `product-breakdown/` boundary" in cleanup_prompt
+    assert "orchestrator-improvement-evaluator" in cleanup_prompt
+    assert "structured feedback fields" in cleanup_prompt
+    assert "do not broaden scope" in cleanup_prompt
+
+    assert "orchestrator-cleanup" in information_hygiene
+    assert "status tracker updates" in information_hygiene
+    assert "traceability cleanup" in information_hygiene
+    assert "cleanup helper" in architecture_doc
+    assert "orchestrator-cleanup.md" in implementation_doc
+
+
 def test_structured_feedback_protocol_is_shared(simple_project: Path) -> None:
     control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
     agent_paths = [
@@ -410,6 +448,7 @@ def test_structured_feedback_protocol_is_shared(simple_project: Path) -> None:
         ".opencode/agents/orchestrator-memory.md",
         ".opencode/agents/orchestrator-memory-curator.md",
         ".opencode/agents/orchestrator-build-error-resolver.md",
+        ".opencode/agents/orchestrator-cleanup.md",
         ".opencode/agents/orchestrator-review-architecture.md",
     ]
 
@@ -437,6 +476,7 @@ def test_directed_agents_can_use_researcher(simple_project: Path) -> None:
         ".opencode/agents/orchestrator-architecture.md",
         ".opencode/agents/orchestrator-verifier.md",
         ".opencode/agents/orchestrator-review-completeness.md",
+        ".opencode/agents/orchestrator-cleanup.md",
     ]
 
     for agent_path in agent_paths:
@@ -456,6 +496,7 @@ def test_working_agents_can_trigger_focused_improvement_evaluation(simple_projec
         ".opencode/agents/orchestrator-architecture.md",
         ".opencode/agents/orchestrator-lessons.md",
         ".opencode/agents/orchestrator-build-error-resolver.md",
+        ".opencode/agents/orchestrator-cleanup.md",
         ".opencode/agents/orchestrator-verifier.md",
         ".opencode/agents/orchestrator-review-architecture.md",
         ".opencode/agents/orchestrator-review-completeness.md",

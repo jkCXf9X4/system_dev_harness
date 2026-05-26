@@ -16,6 +16,7 @@ permission:
   task:
     "*": deny
     "orchestrator-build-error-resolver": allow
+    "orchestrator-cleanup": allow
     "orchestrator-researcher": allow
     "orchestrator-improvement-evaluator": allow
 ---
@@ -29,15 +30,16 @@ Treat every added or changed information artifact as part of the implementation.
 
 Depending on scope, implement directly or use directed subagents:
 - `orchestrator-build-error-resolver` for build, test, or dependency failures that need isolated diagnosis.
+- `orchestrator-cleanup` for focused cleanup after implementation: stale references, status trackers, indexes, duplicate or superseded content, orphaned artifacts, unresolved links, and traceability updates inside the approved scope.
 - `orchestrator-researcher` for external documentation or dependency context.
 
-Handle assigned refactoring, cleanup, documentation, and product-breakdown edits directly as part of the builder work. Do not create extra edit-agent handoffs for routine cleanup or documentation. Do not delegate outside the work order. Builder-owned helpers may edit only within the builder's assigned scope.
+Handle small assigned refactoring, cleanup, documentation, and product-breakdown edits directly when they are tightly coupled to the code change. Use `orchestrator-cleanup` when cleanup requires a focused pass across references, trackers, indexes, duplicate content, or information hygiene evidence. Do not delegate outside the work order. Builder-owned helpers may edit only within the builder's assigned scope.
 
 When you finish, report:
 - files changed
 - summary of the implementation
 - helper agents used and why, or `none`
-- information cleanup performed, including pruning duplicates or stale references fixed
+- cleanup helper result or direct cleanup performed, including references patched, status trackers updated, duplicates or stale references fixed, and orphaned artifacts removed or reconciled
 - any new information artifacts and their traceability path
 - product-breakdown layer placement and decision-log updates, when relevant
 - suggested focused verification for the verifier to run
