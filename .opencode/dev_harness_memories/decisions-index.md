@@ -2,7 +2,7 @@
 
 This file points agents to durable decisions that are relevant to workflow behavior. It is an index, not a duplicate decision log. Keep rationale and full status in the source decision records.
 
-Do not store current task state, temporary investigation notes, backlog candidates, or replacement copies of decision records here.
+Backlog candidates must not be stored here — see `.opencode/dev_harness/workflow/control-policy.md` "Workflow Memory" section.
 
 ## Decision Pointers
 

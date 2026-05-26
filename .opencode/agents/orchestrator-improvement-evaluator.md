@@ -59,4 +59,4 @@ Include:
 - rejection or missing-evidence rationale, when relevant
 - structured feedback fields from `.opencode/dev_harness/workflow/control-policy.md`
 
-Persisted candidates are backlog capture only. They are not implementation approval and must not expand the current task scope.
+Persistence is governance-controlled — see `.opencode/dev_harness/workflow/control-policy.md` "Focused Improvement Evaluation" section for the binding constraint.

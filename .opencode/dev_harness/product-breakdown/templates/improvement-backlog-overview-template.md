@@ -12,11 +12,7 @@ Each candidate is proposed. None is approved for implementation until it has a s
 
 ## Lifecycle
 
-Improvements follow a three-stage lifecycle:
-
-1. **Candidate** (`candidates/`): Proposed improvements not yet selected for development.
-2. **Selected** (`selected/`): Improvements approved and waiting or being implemented.
-3. **Done** (`done/`): Completed improvements tracked for historical reference.
+Improvements follow the three-stage lifecycle described in [06-evolution/README.md](../../../../product-breakdown/06-evolution/README.md). Summary: Candidate → Selected → Done.
 
 See `product-breakdown/06-evolution/README.md` for the full lifecycle model.
 

@@ -1,5 +1,7 @@
 # Changelog
 
+## 2026-05-26 — Consolidation: removed self-duplicate imp.md, added @see references to centralize governance rules (control-policy.md) and lifecycle docs (06-evolution/README.md)
+
 ## 2026-05-26
 
 - Migrated improvement lifecycle from `backlog/` to three-stage folder structure: `candidates/`, `selected/`, `done/`

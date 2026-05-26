@@ -2,7 +2,7 @@
 
 This file stores reusable workflow patterns that are broader than a single mistake lesson but concrete enough to guide future planning, implementation, or review.
 
-Do not store current task state, temporary investigation notes, backlog candidates, or one-off observations here.
+Backlog candidates must not be stored here — see `.opencode/dev_harness/workflow/control-policy.md` "Workflow Memory" section.
 
 ## Template
 

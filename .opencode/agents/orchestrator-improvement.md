@@ -45,7 +45,7 @@ Do not edit implementation files, active requirements, architecture decisions, t
 3. Create or update `product-breakdown/06-evolution/README.md` as the overview using the overview template.
 4. Add an Individual Candidates table entry for each new candidate.
 5. Skip duplicate candidate IDs instead of overwriting unrelated content.
-6. Keep every candidate proposed; persistence is not implementation approval.
+6. Persistence is governance-controlled — see `.opencode/dev_harness/workflow/control-policy.md` "Focused Improvement Evaluation" section for the binding constraint.
 7. When a candidate is selected for implementation, move the file from `candidates/` to `selected/` and update its Lifecycle Stage field to "Selected".
 8. When implementation is verified complete, move the file from `selected/` to `done/` and update its Lifecycle Stage, Completed Date, and Implementation Reference fields.
 
