@@ -11,7 +11,7 @@ This document is the canonical policy for workflow branches, boundaries, and exe
 ```text
 guarded delivery:
   task intake
-    -> OpenCode primary orchestrator
+    -> OpenCode primary orchestrator (routing only)
     -> planner (request classification, uncertainty resolution, directed planning helpers)
     -> builder (implementation, directed build helpers)
     -> reviewer (verification, independent review helpers, deterministic gate routing)
@@ -31,7 +31,7 @@ guarded delivery:
 | Concept | Responsibility |
 | --- | --- |
 | OpenCode config | Selects the primary agent and loads repository instructions. |
-| Orchestrator | Routes stage execution, passes prior outputs forward, and applies gate routing without doing specialist stage work directly. |
+| Orchestrator | Routes stage execution, passes prior outputs forward, and applies gate routing without repository inspection, request classification, or specialist stage work. |
 | Intent docs | Define the current solution's vision and use cases. |
 | Product commitments | Capture durable promises that should survive implementation changes. |
 | Architecture docs | Record control-flow boundaries, permissions, evidence expectations, and design quality goals. |
@@ -60,7 +60,8 @@ guarded delivery:
 - Design and traceability source of truth lives in `product-breakdown/`.
 - `opencode.json` selects the primary agent and loads the workflow instructions.
 - Pre-implementation discovery is a directed helper owned by `orchestrator-planner`.
-- The orchestrator is not a preliminary implementation or discovery layer.
+- The orchestrator is not a preliminary implementation, discovery, classification, planning, or evaluation layer.
+- The primary orchestrator has no file read, search, list, edit, or shell permissions; it may invoke only top-level planner, builder, reviewer, reporter, and improvement entrypoint agents.
 - Planner classifies the request, resolves uncertainty, and decides whether to plan directly or invoke directed planning helpers using adaptive risk triggers.
 - Contract, architecture, and lessons prompts are planner-owned helpers and avoid broad rediscovery unless their prompt explicitly allows focused reads.
 - Test obligations, product-breakdown placement, traceability, and durable product behavior impact are planner-owned work-order sections rather than separate planning-agent handoffs.

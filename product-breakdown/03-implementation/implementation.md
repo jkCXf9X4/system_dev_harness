@@ -5,7 +5,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 ## Implemented Artifacts
 
 - `opencode.json` - copy into the target development repo root as the OpenCode config and entrypoint selector.
-- `.opencode/agents/orchestrator.md` - primary workflow coordinator.
+- `.opencode/agents/orchestrator.md` - primary workflow router.
 - `.opencode/agents/orchestrator-*.md` - top-level agents for planning, building, reviewing, reporting, research, and improvement discovery plus directed helper agents owned by planner, builder, and reviewer.
 - `.opencode/dev_harness/prompts/*.md` - reusable prompt templates tied to use cases.
 - `.opencode/dev_harness/README.md` - package index for the reusable dev harness folder.
@@ -22,7 +22,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 
 - `orchestrator-builder` and builder-owned edit helpers are the only stages that may edit implementation files.
 - `orchestrator-improvement` may edit only improvement backlog result files under `product-breakdown/06-evolution/backlog/`.
-- `orchestrator` is a dispatcher and gate router only; it invokes only planner, builder, reviewer, reporter, and the improvement entrypoint. Directed helpers such as researcher are invoked by their owning top-level stage.
+- `orchestrator` is a dispatcher and gate router only; it has no file read, search, list, edit, or shell permissions, does not classify requests, and invokes only planner, builder, reviewer, reporter, and the improvement entrypoint. Directed helpers such as researcher are invoked by their owning top-level stage.
 - `orchestrator-planner` owns discovery, contract, architecture, lessons, research helper routing, inline test obligations, product-breakdown placement, durable product behavior impact, and final work-order synthesis; helper use follows adaptive risk triggers.
 - `orchestrator-builder` owns implementation, scoped cleanup, documentation/product-breakdown updates, build-error resolution, and research helper routing.
 - `orchestrator-reviewer` owns verifier, review helper, researcher, and deterministic gate routing; helper use follows adaptive risk triggers and may be lightweight for low-risk tasks.
@@ -37,7 +37,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 | Stage | Artifact | Edit | Bash | Responsibility |
 | --- | --- | --- | --- | --- |
 | Entrypoint | `opencode.json` | n/a | n/a | Selects `orchestrator` as the default primary agent. |
-| Orchestration | `.opencode/agents/orchestrator.md` | no | no | Routes planner, builder, reviewer, reporter, or improvement discovery without doing specialist stage work directly. |
+| Orchestration | `.opencode/agents/orchestrator.md` | no | no | Routes planner, builder, reviewer, reporter, or improvement discovery without repository inspection, request classification, or specialist stage work. |
 | Planning | `.opencode/agents/orchestrator-planner.md` | no | yes | Normalizes the request, resolves uncertainty, coordinates planning helpers, and emits the builder work order. |
 | Planning helpers | `.opencode/agents/orchestrator-discovery.md`, `orchestrator-contract.md`, `orchestrator-architecture.md`, `orchestrator-lessons.md`, `orchestrator-memory.md` | no | yes | Provide directed discovery, requirements, architecture, lessons, and memory support. Planner handles test obligations and product-breakdown placement in the work order. |
 | Build | `.opencode/agents/orchestrator-builder.md` | yes | yes | Applies approved changes, coordinates builder helpers, reconciles changed information, removes stale or duplicate artifacts, and reports implementation evidence. |

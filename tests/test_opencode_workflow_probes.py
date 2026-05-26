@@ -252,7 +252,27 @@ def test_agent_control_policy_closes_escape_hatches(simple_project: Path) -> Non
     gate_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
     control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
 
-    assert "control-policy.md" in orchestrator_prompt
+    assert "control-policy.md" not in orchestrator_prompt
+    assert "temperature: 0.0" in orchestrator_prompt
+    assert '"*": deny' in orchestrator_prompt
+    for denied_permission in (
+        "read: deny",
+        "glob: deny",
+        "grep: deny",
+        "list: deny",
+        "edit: deny",
+        "bash: deny",
+    ):
+        assert denied_permission in orchestrator_prompt
+
+    assert "do not inspect repository files" in orchestrator_prompt
+    assert "do not classify the request" in orchestrator_prompt
+    assert "planner decides workflow type" in orchestrator_prompt
+    assert "do not evaluate implementation evidence" in orchestrator_prompt
+    assert "do not invoke directed helpers" in orchestrator_prompt
+    assert "use only prior stage outputs, reviewer gate labels, and user decisions" in orchestrator_prompt
+    assert "call `orchestrator-improvement` only when planner output explicitly declares `workflow_type: improvement`" in orchestrator_prompt
+
     assert "every listed top-level guarded workflow stage must run" in control_policy
     assert "not_applicable" in control_policy
     assert "waivers are not approvals" in control_policy
@@ -283,17 +303,31 @@ def test_top_level_flow_and_directed_helpers_are_explicit(simple_project: Path) 
         ".opencode/dev_harness/workflow/control-policy.md",
     ).lower()
 
-    assert "orchestrator-planner" in orchestrator_prompt
-    assert "orchestrator-builder" in orchestrator_prompt
-    assert "orchestrator-reviewer" in orchestrator_prompt
-    assert "orchestrator-reporter" in orchestrator_prompt
-    assert "\"orchestrator-discovery\": allow" not in orchestrator_prompt
-    assert "\"orchestrator-contract\": allow" not in orchestrator_prompt
-    assert "\"orchestrator-verifier\": allow" not in orchestrator_prompt
-    assert "\"orchestrator-researcher\": allow" not in orchestrator_prompt
-    assert "\"orchestrator-memory\": allow" not in orchestrator_prompt
-    assert "\"orchestrator-memory-curator\": allow" not in orchestrator_prompt
-    assert "\"orchestrator-improvement-evaluator\": allow" not in orchestrator_prompt
+    for top_level_stage in (
+        "orchestrator-planner",
+        "orchestrator-builder",
+        "orchestrator-reviewer",
+        "orchestrator-reporter",
+        "orchestrator-improvement",
+    ):
+        assert f'"{top_level_stage}": allow' in orchestrator_prompt
+
+    for directed_helper in (
+        "orchestrator-discovery",
+        "orchestrator-contract",
+        "orchestrator-architecture",
+        "orchestrator-lessons",
+        "orchestrator-memory",
+        "orchestrator-memory-curator",
+        "orchestrator-build-error-resolver",
+        "orchestrator-verifier",
+        "orchestrator-review-architecture",
+        "orchestrator-review-completeness",
+        "orchestrator-review-lessons",
+        "orchestrator-researcher",
+        "orchestrator-improvement-evaluator",
+    ):
+        assert f'"{directed_helper}": allow' not in orchestrator_prompt
 
     for helper in (
         "orchestrator-architecture",
