@@ -26,8 +26,6 @@ Evaluate evidenced memory candidates raised by another stage and write only dura
 This stage may edit only:
 - `.opencode/dev_harness_memories/lessons.md`
 - `.opencode/dev_harness_memories/patterns.md`
-- `.opencode/dev_harness_memories/decisions-index.md`
-
 Do not edit implementation files, active requirements, product-breakdown backlog files, runtime prompts, or tests.
 Use `orchestrator-improvement-evaluator` only when memory curation exposes a separate backlog-worthy improvement opportunity. Do not invoke it for the same memory candidate being curated.
 

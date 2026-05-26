@@ -520,7 +520,6 @@ def test_working_agents_can_trigger_focused_improvement_evaluation(simple_projec
 def test_workflow_memory_layer_is_versioned_and_scoped(simple_project: Path) -> None:
     lessons = read_prompt(simple_project, ".opencode/dev_harness_memories/lessons.md").lower()
     patterns = read_prompt(simple_project, ".opencode/dev_harness_memories/patterns.md").lower()
-    decisions = read_prompt(simple_project, ".opencode/dev_harness_memories/decisions-index.md").lower()
     memory_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-memory.md").lower()
     curator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-memory-curator.md").lower()
     planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
@@ -532,18 +531,15 @@ def test_workflow_memory_layer_is_versioned_and_scoped(simple_project: Path) -> 
     assert "repo-local workflow memory" in lessons
     assert "km-001" in lessons
     assert "pat-000" in patterns
-    assert "decision pointers" in decisions
 
     assert "edit: deny" in memory_prompt
     assert "dev_harness_memories/lessons.md" in memory_prompt
     assert "dev_harness_memories/patterns.md" in memory_prompt
-    assert "dev_harness_memories/decisions-index.md" in memory_prompt
     assert "memory candidates" in memory_prompt
 
     assert "edit: allow" in curator_prompt
     assert "dev_harness_memories/lessons.md" in curator_prompt
     assert "dev_harness_memories/patterns.md" in curator_prompt
-    assert "dev_harness_memories/decisions-index.md" in curator_prompt
     assert "current task state" in curator_prompt
     assert "backlog candidates" in curator_prompt
     assert not (simple_project / ".opencode/dev_harness/workflow/memory/lessons.md").exists()

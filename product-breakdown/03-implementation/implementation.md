@@ -78,7 +78,7 @@ Shared workflow policies are implemented as copied agent context under `.opencod
 | `.opencode/dev_harness/workflow/information-hygiene.md` | Canonical evidence requirements for changed information artifacts. |
 | `.opencode/dev_harness_memories/lessons.md` | Persistent lesson memory used by the lessons and lessons-review agents. |
 | `.opencode/dev_harness_memories/patterns.md` | Reusable planning, implementation, review, documentation, and improvement patterns. |
-| `.opencode/dev_harness_memories/decisions-index.md` | Lightweight pointers to durable workflow decisions. |
+
 | `.opencode/dev_harness/workflow/review-output.md` | Shared independent-review return protocol. |
 
 ## Trace Links
