@@ -28,18 +28,20 @@ Use `orchestrator-memory-curator` only when the focused finding also exposes a d
 ## Write Boundary
 
 This stage may edit only improvement backlog artifacts:
-- `product-breakdown/06-evolution/backlog/improvement-backlog.md`
-- `product-breakdown/06-evolution/backlog/candidates/IMP-NNN.md`
+- `product-breakdown/06-evolution/candidates/IMP-NNN.md`
+- `product-breakdown/06-evolution/selected/IMP-NNN.md` (when a candidate is selected)
+- `product-breakdown/06-evolution/done/IMP-NNN.md` (when a completed improvement is moved to done)
 
 Do not edit implementation files, active requirements, architecture decisions, tests, runtime prompts, or unrelated documentation.
 
 ## Persistence Rules
 
 1. Load `.opencode/dev_harness/product-breakdown/templates/improvement-backlog-overview-template.md` and `.opencode/dev_harness/product-breakdown/templates/improvement-candidate-template.md` when persistence is needed.
-2. Create `product-breakdown/06-evolution/backlog/` and `product-breakdown/06-evolution/backlog/candidates/` when missing.
+2. Create `product-breakdown/06-evolution/candidates/`, `product-breakdown/06-evolution/selected/`, and `product-breakdown/06-evolution/done/` when missing.
 3. Use the next available `IMP-NNN` from existing candidate files.
 4. Skip duplicate or substantially equivalent findings instead of writing another candidate.
-5. Update `product-breakdown/06-evolution/backlog/improvement-backlog.md` with the candidate table entry when writing a new candidate.
+5. Update `product-breakdown/06-evolution/README.md` with the candidate table entry when writing a new candidate.
+6. When evidence supports it, the evaluator may also accept a recurring pattern across multiple tasks as a trigger (in addition to focused findings only).
 
 Return one of:
 - `persisted`

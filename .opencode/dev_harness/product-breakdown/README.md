@@ -72,7 +72,7 @@ Each layer may contain a local `decisions/` directory.
 | `03-implementation/` | Capture code structure, modules, interfaces, configuration, and environments. |
 | `04-verification/` | Capture acceptance criteria, test strategy, test cases, and traceability. |
 | `05-operation/` | Capture operational requirements, support constraints, incident expectations, and deployment constraints; runnable procedures belong in `docs/`. |
-| `06-evolution/` | Capture roadmap, backlog, risks, changelog, and future change. |
+| `06-evolution/` | Capture roadmap, candidates, selected improvements, completed improvements, risks, changelog, and future change. |
 
 ## Agent Usage
 

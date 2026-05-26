@@ -22,7 +22,7 @@ guarded delivery:
     -> read-only discovery
     -> pressure analysis
     -> cleanup, refactoring, and other backlog-ready candidates
-    -> persist candidate files under product-breakdown/06-evolution/backlog/
+    -> persist candidate files under product-breakdown/06-evolution/candidates/
     -> final report
 ```
 
@@ -82,7 +82,7 @@ guarded delivery:
 - Completion evidence must cover stale-reference cleanup, status tracker updates, duplicate-content reconciliation, orphaned-artifact handling, and traceability for changed information artifacts.
 - Architecture guardrails include modularity, simplicity, readability, and module responsibility fit, not only preservation of the current shape.
 - Improvement discovery is separate from contained implementation. It may inspect broadly, but it must not change code.
-- Improvement discovery may write only improvement backlog files under `product-breakdown/06-evolution/backlog/`.
+- Improvement discovery may write only improvement backlog files under `product-breakdown/06-evolution/candidates/`.
 - Focused improvement evaluation may be triggered by working agents for one concrete finding; it may write only improvement backlog files and cannot expand the current task.
 - Memory curation may be triggered for one evidenced memory candidate; it may write only workflow memory files and cannot expand the current task or replace improvement backlog persistence.
 - Improvement candidates must be traceable to current features, requirements, evidence, review findings, or observed module friction.

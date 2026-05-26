@@ -22,7 +22,7 @@ Do not duplicate the same example, command, or policy text in both places. When 
 | Implementation | `product-breakdown/03-implementation/implementation.md` | Lists the repository artifacts that realize the solution. |
 | Verification | `product-breakdown/04-verification/` | Captures acceptance criteria, test strategy, and traceability. |
 | Operation | `product-breakdown/05-operation/` | Captures operational product requirements and support constraints; runnable steps live in `docs/`. |
-| Evolution | `product-breakdown/06-evolution/` | Captures roadmap, risks, and changelog history. |
+| Evolution | `product-breakdown/06-evolution/` | Captures roadmap, candidates, selected improvements, completed improvements, risks, and changelog history. |
 | Dev Harness Context | `.opencode/dev_harness/*` | Reusable prompt, workflow, and supporting context copied into the active payload. |
 | Product Breakdown Agent Context | `.opencode/dev_harness/product-breakdown/README.md` | Layered guidance for intent, product, architecture, implementation, verification, operation, and evolution work. |
 | Workflow Policy Agent Context | `.opencode/dev_harness/workflow/` | Shared control, information hygiene, and review-output policy for copied agents. |

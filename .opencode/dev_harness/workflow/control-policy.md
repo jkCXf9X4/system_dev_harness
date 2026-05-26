@@ -47,7 +47,7 @@ Use the evaluator for focused findings only, not broad improvement discovery. A 
 - concrete evidence from the current work
 - meaningful impact, risk, maintenance cost, architecture pressure, or verification gap
 
-The evaluator may persist qualifying candidates directly under `product-breakdown/06-evolution/backlog/`. Evaluator persistence is backlog capture only; it does not authorize scope expansion, current-task implementation, direct approval, or skipped checks.
+The evaluator may persist qualifying candidates directly under `product-breakdown/06-evolution/candidates/`. Evaluator persistence is backlog capture only; it does not authorize scope expansion, current-task implementation, direct approval, or skipped checks.
 
 When evidence is missing or the finding duplicates an existing candidate, the evaluator returns `needs_more_evidence` or `rejected` instead of writing a candidate.
 

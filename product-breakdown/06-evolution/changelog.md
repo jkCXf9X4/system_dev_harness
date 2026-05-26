@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-05-26
+
+- Migrated improvement lifecycle from `backlog/` to three-stage folder structure: `candidates/`, `selected/`, `done/`
+- Added `06-evolution/README.md` documenting the lifecycle model
+- Updated all agent and template references to use new paths
+
 ## 2026-05-20
 
 - Implemented IMP-001 through IMP-009 improvements:

@@ -4,6 +4,10 @@ Use this template for one backlog-ready improvement candidate.
 
 An improvement candidate is not implementation approval. It needs a scoped task contract before code or documentation changes begin.
 
+## Lifecycle Stage
+
+Candidate
+
 ## Status
 
 Proposed
@@ -39,6 +43,18 @@ Describe what could break, which modules or workflows are affected, and how larg
 ## Suggested Priority
 
 Low | Medium | High
+
+## Selected Date
+
+<!-- Date when this candidate was selected for implementation, or N/A -->
+
+## Completed Date
+
+<!-- Date when implementation was verified complete, or N/A -->
+
+## Implementation Reference
+
+<!-- Link to task contract, PR, or changelog entry when moved to done -->
 
 ## Task Contract Seed
 

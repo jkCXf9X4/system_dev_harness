@@ -4,14 +4,14 @@ The evolution layer describes how the product and system are expected to change 
 
 ## Typical Artifacts
 
-
-
 ```text
-roadmap.md   - outlines planned future work and sequencing
-backlog.md   - captures deferred or unscheduled work items
-risks.md     - records known risks, tradeoffs, and open concerns
-changelog.md - summarizes notable changes over time
-decisions/   - stores evolution-level decisions and rationale
+roadmap.md     - outlines planned future work and sequencing
+candidates/    - proposed improvements not yet selected for development
+selected/      - improvements approved and waiting or being implemented
+done/          - historical tracking of completed improvements
+risks.md       - records known risks, tradeoffs, and open concerns
+changelog.md   - summarizes notable changes over time
+decisions/     - stores evolution-level decisions and rationale
 ```
 
 ## Questions Answered

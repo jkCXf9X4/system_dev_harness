@@ -22,7 +22,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 ## Execution Roles
 
 - `orchestrator-builder` and builder-owned edit helpers are the only stages that may edit implementation files.
-- `orchestrator-improvement` may edit only improvement backlog result files under `product-breakdown/06-evolution/backlog/`.
+- `orchestrator-improvement` may edit only improvement backlog result files under `product-breakdown/06-evolution/candidates/`.
 - `orchestrator` is a dispatcher and gate router only; it has no file read, search, list, edit, or shell permissions, does not classify requests, and invokes only planner, builder, reviewer, reporter, and the improvement entrypoint. Directed helpers such as researcher are invoked by their owning top-level stage.
 - `orchestrator-planner` owns discovery, contract, architecture, lessons, research helper routing, inline test obligations, product-breakdown placement, durable product behavior impact, and final work-order synthesis; helper use follows adaptive risk triggers.
 - `orchestrator-builder` owns implementation, scoped cleanup, documentation/product-breakdown updates, build-error resolution, cleanup-helper routing, and research helper routing.
