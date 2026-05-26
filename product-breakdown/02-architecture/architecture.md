@@ -52,7 +52,7 @@ guarded delivery:
 | Improvement backlog | Stores proposed or accepted improvement candidates before they become scoped implementation tasks. |
 | Dev harness context | Captures cross-project prompts, workflow policy, product-breakdown guidance, and supporting templates under `.opencode/dev_harness/`. |
 | Product breakdown guidance | Provides copied, load-on-demand context under `.opencode/dev_harness/product-breakdown/` so target-repo agents can structure layered artifacts without relying on source docs in the package repo. |
-| Workflow policy guidance | Provides copied workflow control, information hygiene, workflow memory, and review-output rules under `.opencode/dev_harness/workflow/` so agents reference shared policy instead of duplicating it. |
+| Workflow policy guidance | Provides copied workflow control, information hygiene, and review-output rules under `.opencode/dev_harness/workflow/` so agents reference shared policy instead of duplicating it. |
 
 ## Boundaries
 
@@ -109,4 +109,4 @@ The delivery workflow may report improvement candidates, but it must not absorb 
 - Technical decisions justify the OpenCode-native workflow and persistent source docs.
 - Implementation artifacts realize the workflow in `opencode.json`, `.opencode/agents/*.md`, and `.opencode/dev_harness/**/*.md`.
 - Product breakdown guidance supports PC-006 by giving agents copied context for layered decisions and traceability.
-- Workflow policy guidance keeps repeated control, information hygiene, workflow memory, and review-output rules centralized for copied agents.
+- Workflow policy guidance keeps repeated control, information hygiene, and review-output rules centralized for copied agents.

@@ -8,9 +8,9 @@ This map documents the cross-layer traceability chain for the workflow package. 
 Vision.md (00-intent)
   -> Product Commitments PC-001 through PC-010 (01-product)
     -> Use Cases UC-001 through UC-013 (00-intent)
-      -> Architecture (02-architecture)
+  -> Architecture (02-architecture)
         -> Decisions AD-001 through AD-003 (02-architecture/decisions/)
-        -> Decisions IMD-001 through IMD-002 (03-implementation/decisions/)
+        -> Decisions IMD-001 through IMD-003 (03-implementation/decisions/)
           -> Implementation Artifacts (03-implementation)
             -> Verification (04-verification)
               -> Operation (05-operation)
@@ -39,6 +39,17 @@ Vision.md (00-intent)
 | Decisions | IMD-002 (product breakdown guidance in payload) |
 | Implementation | orchestrator-improvement.md |
 | Verification | Improvement smoke test |
+
+### Repo-Local Workflow Memory
+
+| Step | Trace |
+| --- | --- |
+| Intent | Vision.md — Core Thesis, Desired Outcomes |
+| Product | PC-003, PC-006, PC-007 |
+| Architecture | Architecture.md — Workflow memory, Memory helper, Memory curator |
+| Decisions | IMD-001 (versioned lessons), IMD-003 (repo-local workflow memory) |
+| Implementation | orchestrator-memory.md, orchestrator-memory-curator.md, `.opencode/dev_harness_memories/` |
+| Verification | Workflow memory probe coverage, review/helper routing checks |
 
 ### Traceability & Information Hygiene
 

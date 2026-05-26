@@ -17,7 +17,8 @@ This tree is the product-breakdown source documentation and traceability set for
 | Evolution | `product-breakdown/06-evolution/` | Captures roadmap, risks, and changelog history. |
 | Dev Harness Context | `.opencode/dev_harness/*` | Reusable prompt, workflow, and supporting context copied into the active payload. |
 | Product Breakdown Agent Context | `.opencode/dev_harness/product-breakdown/README.md` | Layered guidance for intent, product, architecture, implementation, verification, operation, and evolution work. |
-| Workflow Policy Agent Context | `.opencode/dev_harness/workflow/` | Shared control, information hygiene, workflow memory, and review-output policy for copied agents. |
+| Workflow Policy Agent Context | `.opencode/dev_harness/workflow/` | Shared control, information hygiene, and review-output policy for copied agents. |
+| Repo-Local Workflow Memory | `.opencode/dev_harness_memories/` | Durable lessons, reusable patterns, and decision pointers that should not be copied from the dev harness package. |
 
 This tree itself is not copied into development repos.
 
@@ -28,6 +29,8 @@ Start at the intent docs, then walk downward through commitments, architecture, 
 For product breakdown work in copied target repos, agents should use `.opencode/dev_harness/product-breakdown/` as the runtime guidance because `product-breakdown/` is not copied into target repos.
 
 For guarded workflow control in copied target repos, agents should use `.opencode/dev_harness/workflow/` as the runtime policy source for stage applicability, waivers, information hygiene, and review output.
+
+For durable workflow memory in this repository, agents should use `.opencode/dev_harness_memories/`. That directory is intentionally repo-local and is not part of the copied payload.
 
 ## Directory Structure
 
