@@ -566,6 +566,9 @@ def test_workflow_memory_layer_is_versioned_and_scoped(simple_project: Path) -> 
     assert "repo-local workflow memory" in lessons
     assert "km-001" in lessons
     assert "pat-000" in patterns
+    assert "pat-001: surgical goal-driven changes" in patterns
+    assert "every changed line traces to the work order" in patterns
+    assert "unrelated cleanup becomes an improvement candidate" in patterns
 
     assert "edit: deny" in memory_prompt
     assert "dev_harness_memories/lessons.md" in memory_prompt
@@ -588,6 +591,35 @@ def test_workflow_memory_layer_is_versioned_and_scoped(simple_project: Path) -> 
     assert '"orchestrator-memory-curator": allow' in evaluator_prompt
     assert "workflow memory" in control_policy
     assert "current task state" in control_policy
+
+
+def test_surgical_goal_driven_pattern_is_embedded_in_workflow_roles(simple_project: Path) -> None:
+    planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
+    builder_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-builder.md").lower()
+    cleanup_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-cleanup.md").lower()
+    completeness_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-completeness.md").lower()
+    architecture_review_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-architecture.md").lower()
+
+    for prompt in (
+        planner_prompt,
+        builder_prompt,
+        cleanup_prompt,
+        completeness_prompt,
+        architecture_review_prompt,
+    ):
+        assert "pat-001" in prompt
+        assert ".opencode/dev_harness_memories/patterns.md" in prompt
+
+    assert "state assumptions" in planner_prompt
+    assert "success criteria" in planner_prompt
+    assert "every changed line should trace to the work order" in builder_prompt
+    assert "no speculative abstractions" in builder_prompt
+    assert "cleanup only stale artifacts caused by the current change" in cleanup_prompt
+    assert "unrelated cleanup into an improvement candidate" in cleanup_prompt
+    assert "every changed line traces to the work order" in completeness_prompt
+    assert "speculative flexibility" in completeness_prompt
+    assert "speculative abstractions" in architecture_review_prompt
+    assert "complexity not required by the work order" in architecture_review_prompt
 
 
 def test_adaptive_risk_triggers_drive_helper_selection(simple_project: Path) -> None:

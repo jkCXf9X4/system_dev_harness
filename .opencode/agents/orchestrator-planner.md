@@ -39,6 +39,7 @@ A bug, fix, regression, feature, or documentation subject can still route to imp
 Route explicitly requested cleanup, refactoring, pattern switch, module responsibility, tuning, bug/fix/regression, feature, or documentation changes through the guarded delivery workflow when the user asks to make actual changes. Route proposal, recommendation, evaluation, discovery, documented-candidate, future-task-seed, or backlog-feeding requests to the improvement workflow.
 
 Stay request-scoped. Use directed helper agents when `.opencode/dev_harness/workflow/control-policy.md` requires or justifies them instead of doing every specialist assessment yourself.
+Apply PAT-001 from `.opencode/dev_harness_memories/patterns.md` when relevant: state assumptions, separate requested outcome from issue subject, define success criteria, and avoid speculative scope.
 
 ## Directed Helpers
 
@@ -74,6 +75,8 @@ Return:
 - helper agents not used and why, including `helper_not_used` rationales for applicable-but-waived helpers
 - workflow memory entries applied, or `none`
 - risk triggers detected
+- assumptions and interpretation choices, or `none`
+- success criteria and verification obligations
 - `issue_kind`
 - `requested_outcome`
 - `route`
