@@ -99,11 +99,13 @@ The reviewer stage coordinates focused verification and independent reviewer nod
 
 The repository supports three related workflow branches:
 
-- Delivery workflow: normalize a bounded task, create a planner-owned work order, implement only the contracted change, review and verify it, and gate completion.
-- Improvement workflow: explore current features, requirements, implementation evidence, reviewer findings, module friction, and cleanup opportunities to produce backlog-ready improvement candidates.
+- Delivery workflow: normalize a bounded task, create a planner-owned work order, implement only the contracted change, review and verify it, and gate completion. Use this when the requested outcome is actual change now.
+- Improvement workflow: explore current features, requirements, implementation evidence, reviewer findings, module friction, bug/fix/regression subjects requested as candidate capture, and cleanup opportunities to produce backlog-ready improvement candidates. Use this when the requested outcome is proposal, recommendation, evaluation, discovery, documented candidate, future task seed, or backlog item.
 - Focused improvement evaluation: evaluate one concrete finding raised during delivery or improvement work and persist it only when it meets the evidence-plus-impact threshold.
 
 The delivery workflow may report improvement candidates, but it must not absorb exploratory cleanup, refactoring, or pattern changes unless the contract explicitly includes them. This keeps diffs small, verification focused, and review evidence tied to the requested feature or fix.
+
+Route selection is based on requested outcome, not only issue subject. A bug, fix, regression, feature, or documentation subject can route to improvement when the user asks to capture a candidate instead of implementing the change.
 
 ## Trace Links
 

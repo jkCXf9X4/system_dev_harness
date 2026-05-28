@@ -7,9 +7,9 @@ color: accent
 temperature: 0.1
 permission:
   read: allow
-  glob: deny
+  glob: allow
   grep: allow
-  list: deny
+  list: allow
   edit: deny
   bash: allow
   external_directory: deny

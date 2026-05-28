@@ -25,6 +25,20 @@ evidence_inputs_inspected: <inputs reviewed before declaring not applicable>
 
 Missing stage output or unjustified `not_applicable` blocks completion.
 
+## Route Selection
+
+Planner output separates the subject from the requested outcome:
+
+```text
+issue_kind: bug|fix|regression|feature|docs|cleanup|refactor|tuning|architecture|workflow|other
+requested_outcome: implement_now|capture_candidate
+route: delivery|improvement
+```
+
+Route to `delivery` when the user asks for actual changes now. Route to `improvement` when the user asks for a proposal, recommendation, evaluation, discovery, documented candidate, future task seed, or backlog item.
+
+Bug, fix, regression, feature, documentation, cleanup, and refactoring subjects can all route to `improvement` when the requested outcome is candidate capture. Do not use the subject alone to block improvement routing.
+
 ## Structured Stage Feedback
 
 Every top-level stage and directed helper returns these fields:

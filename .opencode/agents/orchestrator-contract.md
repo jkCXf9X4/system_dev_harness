@@ -7,7 +7,7 @@ color: info
 temperature: 0.1
 permission:
   read: allow
-  glob: deny
+  glob: allow
   grep: allow
   list: deny
   edit: deny

@@ -324,7 +324,10 @@ def test_agent_control_policy_closes_escape_hatches(simple_project: Path) -> Non
     assert "do not evaluate implementation evidence" in orchestrator_prompt
     assert "do not invoke directed helpers" in orchestrator_prompt
     assert "use only prior stage outputs, reviewer gate labels, and user decisions" in orchestrator_prompt
-    assert "call `orchestrator-improvement` only when planner output explicitly declares `workflow_type: improvement`" in orchestrator_prompt
+    assert "call `orchestrator-improvement` when planner output explicitly declares `route: improvement`" in orchestrator_prompt
+    assert "requested_outcome: capture_candidate" in orchestrator_prompt
+    assert "workflow_type: improvement" not in orchestrator_prompt
+    assert "call `orchestrator-planner` again with the corrected outcome" in orchestrator_prompt
 
     assert "every listed top-level guarded workflow stage must run" in control_policy
     assert "not_applicable" in control_policy
@@ -344,6 +347,19 @@ def test_agent_control_policy_closes_escape_hatches(simple_project: Path) -> Non
     assert "control-policy.md" in gate_prompt
     assert "explicit user approval" in control_policy
     assert "not `approved`" in control_policy
+
+
+def test_planner_routes_candidate_capture_by_requested_outcome(simple_project: Path) -> None:
+    planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
+
+    assert "separate the subject from the requested outcome" in planner_prompt
+    assert "`issue_kind`: bug, fix, regression" in planner_prompt
+    assert "`requested_outcome`: `implement_now`" in planner_prompt
+    assert "`requested_outcome`: `capture_candidate`" in planner_prompt
+    assert "`route`: `delivery`" in planner_prompt
+    assert "`route`: `improvement`" in planner_prompt
+    assert "a bug, fix, regression, feature, or documentation subject can still route to improvement" in planner_prompt
+    assert "do not classify a candidate/backlog request as delivery only because the subject is a bug or fix" in planner_prompt
 
 
 def test_top_level_flow_and_directed_helpers_are_explicit(simple_project: Path) -> None:

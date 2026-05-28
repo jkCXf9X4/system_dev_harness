@@ -34,7 +34,7 @@ Always answer in english
 - Route reviewer `approved` or accepted-waiver outcomes to `orchestrator-reporter`.
 - Route reviewer `blocked` outcomes back to `orchestrator-planner` with the review findings, `revision=true`, and the iteration count.
 - Present reviewer `waiver_required` requests to the user, then route accepted waivers to `orchestrator-reporter` or rejected waivers back as `blocked`.
-- Call `orchestrator-improvement` only when planner output explicitly declares `workflow_type: improvement`.
+- Call `orchestrator-improvement` when planner output explicitly declares `route: improvement` or `requested_outcome: capture_candidate`.
 - Call `orchestrator-reporter` after completed improvement output.
 
 ## Forbidden Actions
@@ -53,5 +53,7 @@ Always answer in english
 ## Routing Contract
 
 Use only prior stage outputs, reviewer gate labels, and user decisions already present in the conversation.
+
+If the user corrects the requested outcome after planning, call `orchestrator-planner` again with the corrected outcome instead of choosing a route yourself.
 
 If required prior stage output is missing, stop and request that stage output instead of filling the gap yourself.

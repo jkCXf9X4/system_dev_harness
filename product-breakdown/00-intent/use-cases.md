@@ -284,6 +284,8 @@ Goal: run a separate exploratory workflow that identifies improvement work and f
 
 Input:
 
+- bug, fix, regression, feature, documentation, cleanup, refactoring, pattern, module, or workflow subject
+- explicit request for proposal, recommendation, evaluation, discovery, documented candidate, future task seed, or backlog item
 - current feature set
 - current requirements
 - implementation evidence
@@ -310,6 +312,7 @@ Workflow boundary:
 
 - continuous improvement discovery may persist backlog entries, but must not edit implementation files
 - focused improvement evaluation may persist backlog entries for one concrete finding raised by a working agent
+- route selection is based on requested outcome, so a bug/fix/regression subject still uses improvement routing when the user asks for candidate capture rather than implementation
 - candidates must not be implemented inside a contained feature task unless they are explicitly part of that task contract
 - accepted candidates become backlog entries or future task contracts before code changes begin
 
