@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import subprocess
 from pathlib import Path
 
@@ -93,6 +94,20 @@ def test_build_stage_smoke(simple_project: Path, opencode_env: dict[str, str]) -
     assert_output_contains(output, "agent=build mode=primary")
 
 
+def test_direct_build_agent_does_not_inherit_orchestrator_prompt(simple_project: Path) -> None:
+    config = json.loads(read_prompt(simple_project, "opencode.json"))
+    instructions = config.get("instructions", [])
+    package_instructions = read_prompt(simple_project, ".opencode/instructions.md").lower()
+
+    assert config["default_agent"] == "orchestrator"
+    assert ".opencode/instructions.md" in instructions
+    assert ".opencode/agents/orchestrator.md" not in instructions
+    assert "currently selected agent" in package_instructions
+    assert "normal `build` agent" in package_instructions
+    assert "outside the guarded orchestrator path" in package_instructions
+    assert "do not invoke planner, builder, reviewer, reporter" in package_instructions
+
+
 def test_improvement_stage_smoke(simple_project: Path, opencode_env: dict[str, str]) -> None:
     status, output = run_opencode(
         simple_project,
@@ -108,7 +123,9 @@ def test_improvement_stage_smoke(simple_project: Path, opencode_env: dict[str, s
     prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-improvement.md")
     assert "continuous improvement discovery stage" in prompt.lower()
     assert "backlog-worthy improvement work" in prompt.lower()
-    assert "product-breakdown/06-evolution/backlog/" in prompt
+    assert "product-breakdown/06-evolution/candidates/" in prompt
+    assert "product-breakdown/06-evolution/selected/" in prompt
+    assert "product-breakdown/06-evolution/done/" in prompt
     assert "edit: allow" in prompt
     assert "may edit only improvement backlog artifacts" in prompt.lower()
     assert "plans/backlog" not in prompt
@@ -120,7 +137,9 @@ def test_focused_improvement_evaluator_is_scoped(simple_project: Path) -> None:
 
     assert "focused improvement evaluator" in prompt
     assert "one specific improvement finding" in prompt
-    assert "product-breakdown/06-evolution/backlog/" in prompt
+    assert "product-breakdown/06-evolution/candidates/" in prompt
+    assert "product-breakdown/06-evolution/selected/" in prompt
+    assert "product-breakdown/06-evolution/done/" in prompt
     assert "improvement-backlog-overview-template.md" in prompt
     assert "improvement-candidate-template.md" in prompt
     assert "edit: allow" in prompt

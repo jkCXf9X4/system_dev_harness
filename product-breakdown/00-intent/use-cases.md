@@ -329,6 +329,7 @@ Output:
 
 - direct build-agent execution
 - no change to the default orchestrator entrypoint
+- no inherited orchestrator prompt when the normal build agent is explicitly selected
 - no permission for the orchestrator to skip planner, builder, reviewer, or reporter stages
 
 Primary value:
