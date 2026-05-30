@@ -16,9 +16,14 @@ Use peer-reviewed or arXiv research as the primary source material. Do not add p
 
 1. Start with `principles.md` for the compact design guidance.
 2. Use `subject-overview.md` to browse the research by topic.
-3. Use `knowledge-map.md` to connect a workflow concept to supporting claims.
-4. Open the relevant `claims/AK-NNN-*.md` file for evidence, limits, and trace targets.
-5. Cite the claim ID, not the full research summary, from future decisions or reviews.
+3. Use `source-notes/extracted-reference-notes.md` when an agent needs source-level context without opening the papers.
+4. Use `knowledge-map.md` to connect a workflow concept to supporting claims.
+5. Open the relevant `claims/AK-NNN-*.md` file for evidence, limits, and trace targets.
+6. Cite the claim ID, not the full research summary, from future decisions or reviews.
+
+## Source Text Policy
+
+Do not vendor full paper text into this repository. Keep local reference material as metadata, paraphrased notes, topic mappings, and short trace pointers. If full text is needed, use the canonical source URLs in `source-index.md` or `source-notes/source-manifest.json`.
 
 ## ID Scheme
 
