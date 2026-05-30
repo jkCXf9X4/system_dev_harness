@@ -7,6 +7,7 @@
 | AD-003 | Use Structured Handoff Before Code Editing | Architecture | Accepted | `product-breakdown/02-architecture/decisions/AD-003-use-structured-handoff-before-code-editing.md` | PC-001, PC-004, PC-005, UC-005, UC-006, UC-007, UC-008 |
 | IMD-001 | Use Versioned Markdown For Mistake Memory | Implementation | Accepted | `product-breakdown/03-implementation/decisions/IMD-001-use-versioned-markdown-for-mistake-memory.md` | PC-003, PC-006, UC-004, UC-009 |
 | IMD-002 | Copy Product Breakdown Guidance Into Agent Payload | Implementation | Accepted | `product-breakdown/03-implementation/decisions/IMD-002-copy-product-breakdown-guidance-into-agent-payload.md` | PC-006, PC-007 |
+| ED-001 | Use Evolution Backlog For Improvement Candidates | Evolution | Accepted | `product-breakdown/06-evolution/decisions/ED-001-use-evolution-backlog-for-improvement-candidates.md` | PC-006, PC-009, UC-012, `product-breakdown/06-evolution/backlog/`, `product-breakdown/06-evolution/roadmap.md`, `product-breakdown/06-evolution/risks.md` |
 
 ## Maintenance
 

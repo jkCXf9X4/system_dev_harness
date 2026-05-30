@@ -1,7 +1,8 @@
 # Roadmap
 
 ## Current Focus
-- Simplify the operator entrypoint docs and keep the detailed hierarchy under `docs/`.
+- Keep the source product-breakdown tree, the copied runtime payload, and the current agent prompts aligned.
+- Keep improvement backlog candidates, evolution decisions, and traceability references current as the workflow evolves.
 
 
 ## Planned

@@ -310,6 +310,33 @@ Workflow boundary:
 - candidates must not be implemented inside a contained feature task unless they are explicitly part of that task contract
 - accepted candidates become backlog entries or future task contracts before code changes begin
 
+## UC-013: Execute Direct Operator-Chosen Build Work
+
+Goal: let a human operator use the direct OpenCode build path for a bounded task outside the orchestrator workflow while still respecting explicit constraints and evidence expectations.
+
+Input:
+
+- operator-chosen task
+- target repository state
+- any direct-build constraints or reference material supplied by the operator
+
+Output:
+
+- changed files
+- implementation evidence
+- verification output
+- unresolved gaps and waiver requests when relevant
+
+Primary value:
+
+- supports explicit direct build use without letting the orchestrator bypass the guarded workflow for normal delivery work
+
+Workflow boundary:
+
+- direct build work is operator-chosen and outside the guarded orchestrator path
+- it must still respect repository-local configuration and the current solution's explicit constraints
+- it must not be used to bypass contract, architecture, review, or gate requirements for guarded delivery tasks
+
 ## Trace Links
 
 - UC-001 through UC-013 feed `product-breakdown/01-product/product-commitments.md`

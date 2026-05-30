@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-The solution needs explicit workflow roles, controlled transitions, review gating, future support for interrupts and replay, and a way to separate exploratory improvement discovery from contained implementation. A hidden runtime would make the process harder to inspect and harder to update.
+The solution needs explicit workflow roles, controlled transitions, review gating, a guarded revision loop, and a way to separate exploratory improvement discovery from contained implementation while still allowing an explicit operator-chosen direct build path outside the orchestrator. A hidden runtime would make the process harder to inspect and harder to update.
 
 ## Decision
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-05-30
+
+- Refreshed the source product-breakdown docs to match the current agent set and the backlog-oriented evolution layer.
+- Added UC-013 for direct operator-chosen build work and ED-001 for the canonical evolution backlog location.
+- Replaced the verification traceability stub with a concrete matrix tied to the current smoke and review coverage.
+- Updated the source traceability map and operator-facing evolution docs to include the evolution/backlog path.
+
 ## 2026-05-20
 
 - Implemented IMP-001 through IMP-009 improvements:

@@ -9,4 +9,4 @@ This folder is the operator-facing entrypoint. The source traceability docs stay
 - [Operation](operation.md) - blocked runs, waivers, and reruns.
 - [Verification](verification.md) - smoke test guidance and expected runtime.
 - [Product Breakdown](product-breakdown.md) - the source documentation hierarchy and traceability map.
-- [Evolution](evolution.md) - roadmap, risks, and change history.
+- [Evolution](evolution.md) - roadmap, backlog, decisions, risks, and change history.
