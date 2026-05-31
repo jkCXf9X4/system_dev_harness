@@ -12,7 +12,6 @@ This directory hosts the three-stage improvement lifecycle for continuous improv
   changelog.md  — Notable changes over time
   risks.md      — Known risks, tradeoffs, and open concerns
   roadmap.md    — Planned future work and sequencing
-  imp.md        — Improvement tracking index
 ```
 
 ## Lifecycle

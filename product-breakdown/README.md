@@ -38,6 +38,8 @@ For install, build, usage, verification command, and contributor workflow instru
 
 For product breakdown work in copied target repos, agents should use `.opencode/dev_harness/product-breakdown/` as the runtime guidance because `product-breakdown/` is not copied into target repos.
 
+When improvement work is active, `product-breakdown/06-evolution/candidates/` is the landing zone for backlog candidates before they become implementation work.
+
 For guarded workflow control in copied target repos, agents should use `.opencode/dev_harness/workflow/` as the runtime policy source for stage applicability, waivers, information hygiene, and review output.
 
 For durable workflow memory in this repository, agents should use `.opencode/dev_harness_memories/`. That directory is intentionally repo-local and is not part of the copied payload.

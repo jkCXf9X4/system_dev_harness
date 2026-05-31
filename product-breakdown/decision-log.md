@@ -9,6 +9,7 @@
 | IMD-001 | Use Versioned Markdown For Mistake Memory | Implementation | Accepted | `product-breakdown/03-implementation/decisions/IMD-001-use-versioned-markdown-for-mistake-memory.md` | PC-003, PC-006, UC-004, UC-009 |
 | IMD-002 | Copy Product Breakdown Guidance Into Agent Payload | Implementation | Accepted | `product-breakdown/03-implementation/decisions/IMD-002-copy-product-breakdown-guidance-into-agent-payload.md` | PC-006, PC-007 |
 | IMD-003 | Use Repo-Local Workflow Memory For Durable Lessons | Implementation | Accepted | `product-breakdown/03-implementation/decisions/IMD-003-use-repo-local-workflow-memory.md` | PC-003, PC-006, PC-007, UC-004, UC-009 |
+| ED-001 | Use Evolution Backlog For Improvement Candidates | Evolution | Accepted | `product-breakdown/06-evolution/decisions/ED-001-use-evolution-backlog-for-improvement-candidates.md` | PC-006, PC-009, UC-012, `product-breakdown/06-evolution/candidates/`, `product-breakdown/06-evolution/roadmap.md`, `product-breakdown/06-evolution/risks.md` |
 
 ## Maintenance
 

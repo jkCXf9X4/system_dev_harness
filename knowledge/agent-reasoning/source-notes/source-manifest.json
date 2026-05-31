@@ -1,0 +1,93 @@
+{
+  "policy": {
+    "full_text_vendored": false,
+    "local_material": "Paraphrased source notes, metadata, subject tags, and claim mappings only.",
+    "canonical_source_file": "../source-index.md"
+  },
+  "sources": [
+    {
+      "id": "SRC-001",
+      "title": "A Survey on Large Language Model based Autonomous Agents",
+      "url": "https://arxiv.org/abs/2308.11432",
+      "subjects": ["agent architecture", "memory", "evaluation", "open challenges"],
+      "claims": ["AK-001", "AK-002", "AK-004", "AK-005", "AK-008"]
+    },
+    {
+      "id": "SRC-002",
+      "title": "The Rise and Potential of Large Language Model Based Agents: A Survey",
+      "url": "https://arxiv.org/abs/2309.07864",
+      "subjects": ["agent framework", "multi-agent cooperation", "human-agent cooperation"],
+      "claims": ["AK-001", "AK-005", "AK-007"]
+    },
+    {
+      "id": "SRC-003",
+      "title": "Large Language Model based Multi-Agents: A Survey of Progress and Challenges",
+      "url": "https://arxiv.org/abs/2402.01680",
+      "subjects": ["multi-agent systems", "agent profiling", "communication", "benchmarks"],
+      "claims": ["AK-001", "AK-004", "AK-007", "AK-008"]
+    },
+    {
+      "id": "SRC-004",
+      "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+      "url": "https://arxiv.org/abs/2210.03629",
+      "subjects": ["reasoning", "acting", "tool use", "environment feedback"],
+      "claims": ["AK-002", "AK-003", "AK-006"]
+    },
+    {
+      "id": "SRC-005",
+      "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models",
+      "url": "https://arxiv.org/abs/2201.11903",
+      "subjects": ["multi-step reasoning", "task decomposition", "prompt examples"],
+      "claims": ["AK-002", "AK-007"]
+    },
+    {
+      "id": "SRC-006",
+      "title": "Reflexion: Language Agents with Verbal Reinforcement Learning",
+      "url": "https://arxiv.org/abs/2303.11366",
+      "subjects": ["reflection", "feedback", "episodic memory", "coding tasks"],
+      "claims": ["AK-004", "AK-005", "AK-008"]
+    },
+    {
+      "id": "SRC-007",
+      "title": "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering",
+      "url": "https://arxiv.org/abs/2405.15793",
+      "subjects": ["software agents", "agent-computer interface", "repository navigation", "testing"],
+      "claims": ["AK-002", "AK-003", "AK-006", "AK-008"]
+    },
+    {
+      "id": "SRC-008",
+      "title": "LLM-Based Multi-Agent Systems for Software Engineering: Literature Review, Vision and the Road Ahead",
+      "url": "https://arxiv.org/abs/2404.04834",
+      "subjects": ["software engineering", "multi-agent systems", "SDLC", "trustworthy automation"],
+      "claims": ["AK-001", "AK-007", "AK-008"]
+    },
+    {
+      "id": "SRC-009",
+      "title": "Understanding the planning of LLM agents: A survey",
+      "url": "https://arxiv.org/abs/2402.02716",
+      "subjects": ["planning", "task decomposition", "plan selection", "reflection", "memory"],
+      "claims": ["AK-002", "AK-003", "AK-005", "AK-008"]
+    },
+    {
+      "id": "SRC-010",
+      "title": "A Review of Prominent Paradigms for LLM-Based Agents: Tool Use (Including RAG), Planning, and Feedback Learning",
+      "url": "https://arxiv.org/abs/2406.05804",
+      "subjects": ["tool use", "retrieval", "planning", "feedback learning", "evaluators"],
+      "claims": ["AK-001", "AK-003", "AK-004", "AK-007"]
+    },
+    {
+      "id": "SRC-011",
+      "title": "Survey on Evaluation of LLM-based Agents",
+      "url": "https://arxiv.org/abs/2503.16416",
+      "subjects": ["evaluation", "benchmarks", "robustness", "safety", "cost"],
+      "claims": ["AK-004", "AK-008"]
+    },
+    {
+      "id": "SRC-012",
+      "title": "A Systematic Survey of Prompt Engineering in Large Language Models: Techniques and Applications",
+      "url": "https://arxiv.org/abs/2402.07927",
+      "subjects": ["prompt engineering", "task-specific instructions", "taxonomy", "limitations"],
+      "claims": ["AK-001", "AK-002", "AK-007", "AK-008"]
+    }
+  ]
+}

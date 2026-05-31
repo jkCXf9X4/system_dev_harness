@@ -2,6 +2,8 @@
 
 ## Current Focus
 - Keep product source information and traceability in `product-breakdown/` while keeping runnable usage, install, verification, and contributor guidance in `docs/`.
+- Keep the source product-breakdown tree, the copied runtime payload, and the current agent prompts aligned.
+- Keep improvement backlog candidates, evolution decisions, and traceability references current as the workflow evolves.
 
 
 ## Planned

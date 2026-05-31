@@ -111,7 +111,7 @@ Route selection is based on requested outcome, not only issue subject. A bug, fi
 
 - Intent docs feed PC-001 through PC-010.
 - Product commitments constrain the agent roles and permissions.
-- Technical decisions justify the OpenCode-native workflow and persistent source docs.
+- Technical and evolution decisions justify the OpenCode-native workflow and persistent source docs.
 - Implementation artifacts realize the workflow in `opencode.json`, `.opencode/agents/*.md`, and `.opencode/dev_harness/**/*.md`.
 - Product breakdown guidance supports PC-006 by giving agents copied context for layered decisions and traceability.
 - Workflow policy guidance keeps repeated control, information hygiene, and review-output rules centralized for copied agents.

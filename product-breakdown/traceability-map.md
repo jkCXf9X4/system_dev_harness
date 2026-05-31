@@ -1,6 +1,6 @@
 # Traceability Map
 
-This map documents the cross-layer traceability chain for the workflow package. Each capability traces from intent through product commitments, architecture, decisions, implementation, and verification.
+This map documents the cross-layer traceability chain for the workflow package. Each capability traces from intent through product commitments, architecture, decisions, implementation, verification, operation, and evolution.
 
 ## Core Trace Chain
 
@@ -14,6 +14,7 @@ Vision.md (00-intent)
           -> Implementation Artifacts (03-implementation)
             -> Verification (04-verification)
               -> Operation (05-operation)
+                -> Evolution (06-evolution)
 ```
 
 ## Per-Capability Traces
@@ -36,9 +37,10 @@ Vision.md (00-intent)
 | Intent | Vision.md — UC-012 |
 | Product | PC-009 |
 | Architecture | Architecture.md — Improvement workflow |
-| Decisions | IMD-002 (product breakdown guidance in payload) |
+| Decisions | ED-001 (backlog location), IMD-002 (product breakdown guidance in payload) |
 | Implementation | orchestrator-improvement.md |
-| Verification | Improvement smoke test |
+| Verification | Improvement smoke test and backlog path assertions |
+| Evolution | `product-breakdown/06-evolution/` when present, plus `candidates/`, `selected/`, `done/`, `decisions/`, `roadmap.md`, `risks.md`, and `changelog.md` |
 
 ### Repo-Local Workflow Memory
 
