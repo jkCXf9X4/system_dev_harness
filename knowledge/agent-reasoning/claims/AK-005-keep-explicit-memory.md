@@ -8,6 +8,8 @@ Persistent, inspectable memory helps agents reuse feedback and avoid repeated fa
 
 Known mistakes should be stored as versioned artifacts with stable IDs, prevention rules, and completion checks. Prompt stages should load only task-relevant lessons to avoid noisy context.
 
+For memory that affects current action, pair this claim with `AK-009`: persistent memory should remain explicit, but it should still be treated as reviewable evidence rather than permanent truth.
+
 ## Applies To
 
 - Lessons stage
@@ -20,6 +22,7 @@ Known mistakes should be stored as versioned artifacts with stable IDs, preventi
 - SRC-006 uses verbal feedback as memory for later attempts by language agents.
 - SRC-001 discusses memory as a core part of autonomous-agent construction.
 - SRC-002 frames LLM agents as systems that can incorporate internal state and external context.
+- SRC-013 treats memory quality, hygiene, and trust as harness-level design concerns.
 
 ## Trace Targets
 

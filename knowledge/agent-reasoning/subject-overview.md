@@ -104,11 +104,13 @@ Relevant sources:
 - SRC-006: verbal feedback and reflection as reusable memory.
 - SRC-009: reflection and memory as planning-support categories.
 - SRC-010: feedback learning as a central LLM-agent paradigm.
+- SRC-013: trustworthy memory as a harness-level bottleneck, with precision, durability, retrievability, and verifiability as quality axes.
 
 Relevant claims:
 
 - AK-004: review feedback loops.
 - AK-005: explicit reviewable memory.
+- AK-009: runtime-verified memory trust.
 
 Use for:
 
@@ -116,6 +118,8 @@ Use for:
 - lesson review prompts
 - improvement backlog reasoning
 - deciding when feedback becomes persistent memory
+- deciding when memory-derived assumptions must be rechecked against the current repository or environment
+- separating durable memory from searchable history, procedural patterns, and backlog candidates
 
 ## 6. Review, Verification, And Evaluation
 
@@ -196,12 +200,14 @@ Relevant sources:
 - SRC-008: trustworthy software-engineering automation remains an open research direction.
 - SRC-011: agent evaluation still has gaps around robustness, safety, cost-efficiency, and scalability.
 - SRC-012: prompt-engineering methods have context-specific strengths and limits.
+- SRC-013: harness-level evaluation should include memory hygiene, context efficiency, communication fidelity, verification cost, and safe evolution.
 
 Relevant claims:
 
 - AK-004: feedback loops need stable findings.
 - AK-005: memory can become stale.
 - AK-008: weak checks do not prove completion.
+- AK-009: retrieved memory can be stale, over-generalized, polluted, or unverifiable.
 
 Use for:
 

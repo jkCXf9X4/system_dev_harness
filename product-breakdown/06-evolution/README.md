@@ -27,6 +27,17 @@ This directory hosts the three-stage improvement lifecycle for continuous improv
 | `candidates/` → `selected/` | A task contract is created for the candidate | Planner / improvement workflow |
 | `selected/` → `done/` | Implementation is verified complete | Reviewer / verifier |
 
+## Candidates
+
+| File | ID | Theme | Status | Priority | Blast radius |
+| --- | --- | --- | --- | --- | --- |
+| `candidates/IMP-001.md` | IMP-001 | Memory trust metadata and revalidation | Proposed | High | Medium |
+| `candidates/IMP-002.md` | IMP-002 | Memory save/skip and rejection reasons | Proposed | Medium | Low to medium |
+| `candidates/IMP-003.md` | IMP-003 | Durable memory versus searchable task history | Proposed | Medium | Medium |
+| `candidates/IMP-004.md` | IMP-004 | Memory hygiene checks in review and reporting | Proposed | High | Low to medium |
+| `candidates/IMP-005.md` | IMP-005 | Procedural patterns versus factual memory | Proposed | Medium | Low |
+| `candidates/IMP-006.md` | IMP-006 | Initial clarification gate for ambiguous requests | Proposed | High | Low to medium |
+
 ## Related Files
 
 - Improvement overview template: `.opencode/dev_harness/product-breakdown/templates/improvement-backlog-overview-template.md`

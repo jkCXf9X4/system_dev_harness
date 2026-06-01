@@ -372,3 +372,42 @@ Mapped claims:
 - AK-002
 - AK-007
 - AK-008
+
+## SRC-013: From Model Scaling to System Scaling: Scaling the Harness in Agentic AI
+
+Canonical source: https://arxiv.org/abs/2605.26112
+
+Primary subjects:
+
+- agent harness design
+- context governance
+- trustworthy memory
+- dynamic skill routing
+- verification and governance
+- safe agent evolution
+
+Agent-relevant extract:
+
+- The paper argues that agent performance emerges from the interaction between the foundation model and the surrounding harness: memory, context construction, skill routing, orchestration, and verification/governance.
+- It frames trustworthy memory as a systems bottleneck, not just a storage problem.
+- Memory quality is described through precision, durability, retrievability, and verifiability.
+- The key memory failure mode is stale-but-confident use: a relevant memory entry can remain retrievable while its target has drifted after environment changes.
+- The proposed system move is to re-establish trust at retrieval time and periodically verify memory against the live environment.
+- The paper separates prompt, skill, and memory as temporal layers: prompt controls the current task, skill controls reusable procedures, and memory controls what should survive over time.
+- Harness-level evaluation should include process and longitudinal measures such as memory hygiene, context efficiency, communication fidelity, verification cost, and safe evolution.
+
+Useful for:
+
+- memory-curator rules
+- deciding when memory-derived assumptions require live verification
+- separating durable memory, procedural patterns, and improvement candidates
+- evaluating workflow memory quality across repeated runs
+- reviewing whether prompt changes treat memory as evidence rather than permanent truth
+
+Mapped claims:
+
+- AK-005
+- AK-006
+- AK-007
+- AK-008
+- AK-009

@@ -88,6 +88,13 @@
       "url": "https://arxiv.org/abs/2402.07927",
       "subjects": ["prompt engineering", "task-specific instructions", "taxonomy", "limitations"],
       "claims": ["AK-001", "AK-002", "AK-007", "AK-008"]
+    },
+    {
+      "id": "SRC-013",
+      "title": "From Model Scaling to System Scaling: Scaling the Harness in Agentic AI",
+      "url": "https://arxiv.org/abs/2605.26112",
+      "subjects": ["agent harness", "context governance", "trustworthy memory", "skill routing", "verification", "safe evolution"],
+      "claims": ["AK-005", "AK-006", "AK-007", "AK-008", "AK-009"]
     }
   ]
 }

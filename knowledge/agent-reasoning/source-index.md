@@ -14,6 +14,7 @@
 | SRC-010 | Li, "A Review of Prominent Paradigms for LLM-Based Agents: Tool Use (Including RAG), Planning, and Feedback Learning", arXiv:2406.05804, https://arxiv.org/abs/2406.05804 | Survey | Unified view of tool use, planning, feedback learning, policy roles, evaluators, and workflow designs. |
 | SRC-011 | Yehudai et al., "Survey on Evaluation of LLM-based Agents", arXiv:2503.16416, https://arxiv.org/abs/2503.16416 | Survey | Evaluation of agent capabilities, benchmarks, frameworks, robustness, safety, and cost-efficiency. |
 | SRC-012 | Sahoo et al., "A Systematic Survey of Prompt Engineering in Large Language Models: Techniques and Applications", arXiv:2402.07927, https://arxiv.org/abs/2402.07927 | Survey | Prompt-engineering taxonomy, task-specific instruction design, strengths, limitations, and application areas. |
+| SRC-013 | Gu, "From Model Scaling to System Scaling: Scaling the Harness in Agentic AI", arXiv:2605.26112, https://arxiv.org/abs/2605.26112 | Position paper / framework | Harness-level design, context governance, trustworthy memory, dynamic skill routing, verification, and safe evolution. |
 
 ## Maintenance
 
