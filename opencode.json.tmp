@@ -1,0 +1,22 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "orchestrator",
+  "share": "disabled",
+  "instructions": [
+    ".opencode/instructions.md"
+  ],
+  "provider": {
+    "openrouter": {
+      "models": {
+        "deepseek/deepseek-v4-flash": {
+          "options": {
+            "provider": {
+              "order": ["deepseek"],
+              "allow_fallbacks": false
+            }
+          }
+        }
+      }
+    }
+  }
+}

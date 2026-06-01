@@ -102,9 +102,30 @@ When evidence is missing or the finding duplicates an existing candidate, the ev
 
 Any owning stage may request task-relevant workflow memory from `orchestrator-memory` when lessons, reusable patterns, or decision pointers could reduce repeated work or review misses.
 
-The reviewer, reflection stage, and focused improvement evaluator may invoke `orchestrator-memory-curator` when evidenced findings reveal a durable lesson, reusable pattern, or decision pointer worth evaluating for memory. Final memory-incorporation ownership belongs to `orchestrator-reflection`. Curation is workflow memory capture only; it does not authorize scope expansion, current-task implementation, direct approval, or improvement backlog persistence.
+The reviewer may identify memory candidates and stale or conflicting memory evidence, but does not own final memory incorporation. The reflection stage owns final memory-incorporation triage for completed workflows and may invoke `orchestrator-memory-curator` when evidenced findings reveal a durable lesson, reusable pattern, or decision pointer worth evaluating for memory. The focused improvement evaluator may invoke the curator only when a focused backlog finding also exposes a separate durable memory candidate. Curation is workflow memory capture only; it does not authorize scope expansion, current-task implementation, direct approval, or improvement backlog persistence.
 
-Workflow memory lives under `.opencode/dev_harness_memories/`. Current task state, temporary investigation notes, implementation evidence, and backlog candidates do not belong in memory.
+Workflow memory lives under `.opencode/dev_harness_memories/`. Current task state, temporary investigation notes, implementation evidence, backlog candidates, and broad run history do not belong in memory.
+
+Use this destination matrix when deciding what memory should contain:
+
+- stable fact or decision pointer -> memory entry
+- repeated failure or prevention rule -> lesson
+- reusable operating procedure -> pattern
+- broad future work -> improvement candidate
+- one-off task evidence -> report or task history, not memory
+
+Memory curation returns one of the following decision taxonomies and should preserve trust metadata when it writes or updates an entry:
+
+- `accepted: durable lesson`
+- `accepted: reusable pattern`
+- `accepted: decision pointer`
+- `rejected: duplicate`
+- `rejected: one-off or task-local`
+- `rejected: vague or not actionable`
+- `rejected: rediscoverable`
+- `rejected: unsafe or untrusted content`
+- `rejected: belongs in improvement backlog`
+- `needs_more_evidence`
 
 ## Final Reflection
 
@@ -121,6 +142,8 @@ no_memory_action
 
 Reflection may invoke `orchestrator-memory-curator` only for evidenced repeatable findings that are task-independent and useful for future planning or review. It may invoke `orchestrator-improvement-evaluator` only when reflection exposes a separate backlog-worthy workflow problem.
 
+When memory is relevant, reflection owns the memory hygiene summary: retrieved entries, trust metadata, revalidation status, stale or conflicting memory, memory decisions made, and whether memory influenced approval, blocking, or waiver outcomes.
+
 Reflection must not:
 
 - override the reviewer gate
@@ -128,7 +151,7 @@ Reflection must not:
 - store current task state, implementation evidence, temporary investigation notes, or full transcripts as memory
 - expand the current task scope
 
-The reporter includes the reflection result and any memory IDs written, rejected candidates, missing-evidence rationale, or no-memory-action rationale in the final report.
+The reporter relays the reflection-owned memory hygiene summary and any memory IDs written, rejected candidates, missing-evidence rationale, or no-memory-action rationale. The reporter must not synthesize new memory decisions or invoke memory curation.
 
 ## Adaptive Risk Triggers
 
@@ -159,7 +182,7 @@ Reviewer triggers:
 - Product-breakdown or information-artifact changes require `orchestrator-review-completeness`; durable decision changes also require `orchestrator-review-architecture`.
 - Architecture, module-boundary, dependency-shape, or responsibility changes require `orchestrator-review-architecture`.
 - Known repeated mistake risk or revision input requires `orchestrator-review-lessons`.
-- Durable lesson, pattern, or decision uncertainty requires `orchestrator-memory`; evidenced repeatable memory candidates may use `orchestrator-memory-curator`.
+- Durable lesson, pattern, or decision uncertainty requires `orchestrator-memory`; evidenced repeatable memory candidates are reported to `orchestrator-reflection` for final memory triage.
 - External dependency, API, framework, standard, version, or documentation uncertainty requires `orchestrator-researcher`; reviewer may not approve external claims without cited researcher evidence or a waiver.
 
 Low-risk documentation, formatting, wording, or metadata-only tasks may be planned or reviewed directly when the stage records why no risk trigger applies.

@@ -559,38 +559,69 @@ def test_workflow_memory_layer_is_versioned_and_scoped(simple_project: Path) -> 
     curator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-memory-curator.md").lower()
     planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
     reviewer_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
+    reflection_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reflection.md").lower()
     reporter_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reporter.md").lower()
     evaluator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-improvement-evaluator.md").lower()
     control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
+    review_output = read_prompt(simple_project, ".opencode/dev_harness/workflow/review-output.md").lower()
+    memories_readme = read_prompt(simple_project, ".opencode/dev_harness_memories/README.md").lower()
 
     assert "repo-local workflow memory" in lessons
     assert "km-001" in lessons
+    assert "metadata:" in lessons
+    assert "revalidation trigger:" in lessons
     assert "pat-000" in patterns
     assert "pat-001: surgical goal-driven changes" in patterns
+    assert "metadata:" in patterns
+    assert "decision pointer:" in patterns
     assert "every changed line traces to the work order" in patterns
     assert "unrelated cleanup becomes an improvement candidate" in patterns
+
+    for metadata_field in (
+        "`scope`",
+        "`source`",
+        "`last_verified`",
+        "`confidence`",
+        "`revalidation_trigger`",
+        "`environment_notes`",
+    ):
+        assert metadata_field in memories_readme
 
     assert "edit: deny" in memory_prompt
     assert "dev_harness_memories/lessons.md" in memory_prompt
     assert "dev_harness_memories/patterns.md" in memory_prompt
     assert "memory candidates" in memory_prompt
+    assert "treat retrieved memory as a hypothesis" in memory_prompt
 
     assert "edit: allow" in curator_prompt
     assert "dev_harness_memories/lessons.md" in curator_prompt
     assert "dev_harness_memories/patterns.md" in curator_prompt
     assert "current task state" in curator_prompt
     assert "backlog candidates" in curator_prompt
+    assert "accepted: durable lesson" in curator_prompt
+    assert "rejected: duplicate" in curator_prompt
+    assert "rejected: belongs in improvement backlog" in curator_prompt
     assert not (simple_project / ".opencode/dev_harness/workflow/memory/lessons.md").exists()
     assert not (simple_project / ".opencode/dev_harness/workflow/memory/patterns.md").exists()
     assert not (simple_project / ".opencode/dev_harness/workflow/memory/decisions-index.md").exists()
 
     assert '"orchestrator-memory": allow' in planner_prompt
     assert '"orchestrator-memory": allow' in reviewer_prompt
-    assert '"orchestrator-memory-curator": allow' in reviewer_prompt
-    assert '"orchestrator-memory-curator": allow' in reporter_prompt
+    assert '"orchestrator-memory-curator": allow' not in reviewer_prompt
+    assert '"orchestrator-memory-curator": allow' in reflection_prompt
+    assert '"orchestrator-memory-curator": allow' not in reporter_prompt
     assert '"orchestrator-memory-curator": allow' in evaluator_prompt
+    assert "memory candidates identified for reflection" in reviewer_prompt
+    assert "memory hygiene input evidence" in reviewer_prompt
+    assert "memory hygiene input evidence" in review_output
+    assert "durable memory incorporation triage" in reflection_prompt
+    assert "memory hygiene summary" in reflection_prompt
+    assert "owner of final memory incorporation and memory hygiene synthesis" in reporter_prompt
+    assert "reflection-owned memory hygiene summary" in reporter_prompt
     assert "workflow memory" in control_policy
     assert "current task state" in control_policy
+    assert "reflection owns the memory hygiene summary" in control_policy
+    assert "reporter relays the reflection-owned memory hygiene summary" in control_policy
 
 
 def test_surgical_goal_driven_pattern_is_embedded_in_workflow_roles(simple_project: Path) -> None:
@@ -652,7 +683,7 @@ def test_adaptive_risk_triggers_drive_helper_selection(simple_project: Path) -> 
 
     assert "orchestrator-verifier" in reviewer_prompt
     assert "orchestrator-review-completeness" in reviewer_prompt
-    assert "orchestrator-memory-curator" in reviewer_prompt
+    assert "memory candidates identified for reflection" in reviewer_prompt
     assert "acceptance criteria" in reviewer_prompt
     assert "may not approve external claims without cited researcher evidence or a waiver" in control_policy
 

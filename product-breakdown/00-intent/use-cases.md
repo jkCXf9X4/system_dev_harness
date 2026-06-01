@@ -228,6 +228,7 @@ Output:
 - new known mistake candidate
 - prevention rule
 - future check wording
+- trust metadata or revalidation cue when the lesson is sensitive to drift
 - accepted, rejected, deferred, or no-action memory decision
 
 Primary value:

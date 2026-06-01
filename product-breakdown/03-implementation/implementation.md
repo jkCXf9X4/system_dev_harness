@@ -12,7 +12,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 - `.opencode/dev_harness/README.md` - package index for the reusable dev harness folder.
 - `.opencode/dev_harness/product-breakdown/` - reusable product breakdown guidance split into small files for copied target-repo agents.
 - `.opencode/dev_harness/workflow/` - shared workflow control, information hygiene, and review-output policies referenced by copied agents.
-- `.opencode/dev_harness_memories/` - canonical repo-local versioned memory for lessons, reusable patterns, and decision pointers.
+- `.opencode/dev_harness_memories/` - canonical repo-local versioned memory for lessons, reusable patterns, decision pointers, and trust metadata.
 
 ## Package Documentation
 
@@ -81,13 +81,13 @@ Shared workflow policies are implemented as copied agent context under `.opencod
 | --- | --- |
 | `.opencode/dev_harness/workflow/control-policy.md` | Required stage output, `not_applicable`, handoff boundaries, control flags, and waiver rules. |
 | `.opencode/dev_harness/workflow/information-hygiene.md` | Canonical evidence requirements for changed information artifacts. |
-| `.opencode/dev_harness_memories/lessons.md` | Persistent lesson memory used by the lessons and lessons-review agents. |
-| `.opencode/dev_harness_memories/patterns.md` | Reusable planning, implementation, review, documentation, and improvement patterns. |
+| `.opencode/dev_harness_memories/lessons.md` | Persistent lesson memory used by the lessons and lessons-review agents, including trust metadata and decision pointers. |
+| `.opencode/dev_harness_memories/patterns.md` | Reusable planning, implementation, review, documentation, and improvement patterns with trust metadata and decision pointers. |
 
 | `.opencode/dev_harness/workflow/review-output.md` | Shared independent-review return protocol. |
 
 ## Trace Links
 
-- Implements AD-001 through AD-003, ED-001, IMD-001 through IMD-002.
+- Implements AD-001 through AD-003, ED-001, IMD-001 through IMD-003, and IMP-001 through IMP-007.
 - Satisfies PC-001 through PC-010.
 - Covers UC-001 through UC-013.

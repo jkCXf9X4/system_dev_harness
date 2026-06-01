@@ -2,6 +2,7 @@
 
 ## 2026-06-01
 
+- Implemented IMP-001 through IMP-005 by adding workflow-memory trust metadata, curation taxonomy, durable-memory boundaries, memory hygiene reporting, and procedural-pattern guidance.
 - Implemented IMP-007 by adding a final reflection stage that owns memory-incorporation triage before final reporting.
 - Implemented IMP-006 by adding an initial clarification gate to planner and workflow policy, plus orchestrator routing behavior for planner-requested clarification.
 

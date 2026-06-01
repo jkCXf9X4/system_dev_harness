@@ -12,6 +12,16 @@ Backlog candidates must not be stored here — see `.opencode/dev_harness/workfl
 Type:
 planning | implementation | review | documentation | improvement
 
+Metadata:
+Scope:
+Source:
+Last verified:
+Confidence:
+Revalidation trigger:
+Environment notes:
+
+Decision pointer:
+
 Source evidence:
 Where did this pattern come from?
 
@@ -28,6 +38,16 @@ How should reviewers confirm the pattern was applied correctly?
 ## Current Patterns
 
 ### PAT-001: Surgical Goal-Driven Changes
+
+Metadata:
+Scope: planning, implementation, review, and documentation
+Source: repeated workflow tuning and revision loops
+Last verified: 2026-06-01
+Confidence: high
+Revalidation trigger: whenever a task can drift into speculative scope, related cleanup, or hidden assumptions
+Environment notes: applies to bounded change requests in any repository
+
+Decision pointer: Separate assumptions, issue kind, requested outcome, and success criteria before editing.
 
 Type:
 planning | implementation | review

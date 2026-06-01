@@ -29,18 +29,17 @@ This directory hosts the three-stage improvement lifecycle for continuous improv
 
 ## Candidates
 
-| File | ID | Theme | Status | Priority | Blast radius |
-| --- | --- | --- | --- | --- | --- |
-| `candidates/IMP-001.md` | IMP-001 | Memory trust metadata and revalidation | Proposed | High | Medium |
-| `candidates/IMP-002.md` | IMP-002 | Memory save/skip and rejection reasons | Proposed | Medium | Low to medium |
-| `candidates/IMP-003.md` | IMP-003 | Durable memory versus searchable task history | Proposed | Medium | Medium |
-| `candidates/IMP-004.md` | IMP-004 | Memory hygiene checks in review and reporting | Proposed | High | Low to medium |
-| `candidates/IMP-005.md` | IMP-005 | Procedural patterns versus factual memory | Proposed | Medium | Low |
+No active candidates remain.
 
 ## Done
 
 | File | ID | Theme | Completed Date | Implementation Reference |
 | --- | --- | --- | --- | --- |
+| `done/IMP-001.md` | IMP-001 | Memory trust metadata and revalidation | 2026-06-01 | `.opencode/dev_harness_memories/README.md`, `.opencode/dev_harness_memories/lessons.md`, `.opencode/dev_harness_memories/patterns.md`, `.opencode/agents/orchestrator-memory.md`, `.opencode/agents/orchestrator-memory-curator.md`, `.opencode/dev_harness/workflow/control-policy.md` |
+| `done/IMP-002.md` | IMP-002 | Memory save/skip and rejection reasons | 2026-06-01 | `.opencode/agents/orchestrator-memory-curator.md`, `.opencode/dev_harness/workflow/control-policy.md`, `.opencode/agents/orchestrator-reporter.md` |
+| `done/IMP-003.md` | IMP-003 | Durable memory versus searchable task history | 2026-06-01 | `.opencode/dev_harness_memories/README.md`, `.opencode/agents/orchestrator-memory.md`, `.opencode/agents/orchestrator-memory-curator.md`, `.opencode/dev_harness/workflow/control-policy.md`, `.opencode/agents/orchestrator-reporter.md` |
+| `done/IMP-004.md` | IMP-004 | Memory hygiene checks in review and reporting | 2026-06-01 | `.opencode/agents/orchestrator-reviewer.md`, `.opencode/agents/orchestrator-review-lessons.md`, `.opencode/agents/orchestrator-reporter.md`, `.opencode/dev_harness/workflow/review-output.md`, `.opencode/dev_harness/workflow/control-policy.md` |
+| `done/IMP-005.md` | IMP-005 | Procedural patterns versus factual memory | 2026-06-01 | `.opencode/dev_harness_memories/README.md`, `.opencode/dev_harness_memories/patterns.md`, `.opencode/agents/orchestrator-memory-curator.md`, `.opencode/dev_harness/workflow/control-policy.md` |
 | `done/IMP-006.md` | IMP-006 | Initial clarification gate for ambiguous requests | 2026-06-01 | `.opencode/agents/orchestrator.md`, `.opencode/agents/orchestrator-planner.md`, `.opencode/dev_harness/workflow/control-policy.md` |
 | `done/IMP-007.md` | IMP-007 | Final reflection stage for memory incorporation ownership | 2026-06-01 | `.opencode/agents/orchestrator-reflection.md`, `.opencode/dev_harness/workflow/control-policy.md` |
 

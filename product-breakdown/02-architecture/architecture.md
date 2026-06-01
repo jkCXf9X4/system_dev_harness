@@ -38,7 +38,7 @@ guarded delivery:
 | Product commitments | Capture durable promises that should survive implementation changes. |
 | Architecture docs | Record control-flow boundaries, permissions, evidence expectations, and design quality goals. |
 | Technical decisions | Explain why the current structure exists. |
-| Workflow memory | Provide versioned lessons, reusable patterns, and decision pointers under `.opencode/dev_harness_memories/`. |
+| Workflow memory | Provide versioned lessons, reusable patterns, decision pointers, and trust metadata under `.opencode/dev_harness_memories/`. |
 | Planning work order | Packages contract, guardrails, checks, feedback needs, and deferred improvement candidates for implementation. |
 | Handoff section | Provides an external or manual coding brief inside the planner work order only when needed. |
 | Builder | Applies approved changes and may use directed helpers for build errors, scoped cleanup, documentation updates, information hygiene, and research. |
@@ -52,7 +52,7 @@ guarded delivery:
 | Improvement workflow | Separately explores cleanup, refactoring, pattern, module responsibility, and tuning opportunities, then persists backlog candidates. |
 | Focused improvement evaluator | Evaluates one noteworthy finding raised during normal work and persists it only when evidence, impact, and a scoped future task seed are present. |
 | Memory helper | Retrieves task-relevant workflow memory without editing it. |
-| Memory curator | Evaluates evidenced repeatable findings and persists only durable workflow memory when invoked by reflection or another owning stage. |
+| Memory curator | Evaluates evidenced repeatable findings and persists only durable workflow memory when invoked by reflection or the focused improvement evaluator. |
 | Improvement backlog | Stores proposed or accepted improvement candidates before they become scoped implementation tasks. |
 | Dev harness context | Captures cross-project prompts, workflow policy, product-breakdown guidance, and supporting templates under `.opencode/dev_harness/`. |
 | Product breakdown guidance | Provides copied, load-on-demand context under `.opencode/dev_harness/product-breakdown/` so target-repo agents can structure layered artifacts without relying on source docs in the package repo. |
@@ -75,8 +75,8 @@ guarded delivery:
 - Every top-level stage and directed helper can request user feedback, report out-of-scope improvement candidates, and use the researcher when external source material is needed. Dependency, API, framework, standard, version, or documentation uncertainty requires researcher evidence before approval unless waived.
 - The workflow should remain inspectable without a hidden Python runtime.
 - Persistent lesson memory lives in versioned markdown, not in ephemeral conversation state.
-- Workflow memory is versioned markdown under `.opencode/dev_harness_memories/`; it captures durable lessons, reusable patterns, and decision pointers, not current task state or backlog candidates.
-- `orchestrator-memory` is read-only and may be used by planner or reviewer stages for focused recall. `orchestrator-reflection` owns final memory-incorporation triage before reporting. `orchestrator-memory-curator` may be used by reflection or another owning stage to persist durable memory candidates.
+- Workflow memory is versioned markdown under `.opencode/dev_harness_memories/`; it captures durable lessons, reusable patterns, and decision pointers with trust metadata, not current task state, backlog candidates, or broad run history.
+- `orchestrator-memory` is read-only and may be used by planner or reviewer stages for focused recall. `orchestrator-reflection` owns final memory-incorporation triage before reporting. `orchestrator-memory-curator` may be used by reflection or the focused improvement evaluator to persist durable memory candidates.
 - Dev harness context lives in versioned markdown under `.opencode/dev_harness/` so it can be copied between projects without losing structure.
 - Product breakdown guidance lives under `.opencode/dev_harness/product-breakdown/` because target repositories receive `.opencode/` but not this package's `product-breakdown/` tree.
 - Workflow policy guidance lives under `.opencode/dev_harness/workflow/` because target repositories receive `.opencode/` but not this package's `product-breakdown/` tree.
@@ -98,7 +98,7 @@ The deterministic completion gate produces `approved`, `blocked`, or `waiver_req
 
 The reviewer stage coordinates focused verification and independent reviewer nodes for the risks present in the task: contract satisfaction, acceptance criteria, test adequacy, architecture, code quality, cleanliness, completeness, information hygiene, and known mistakes. Architecture and code-quality checks also cover modularity, simplicity, readability, and module responsibility fit when relevant. The gate aggregates review findings and implementation evidence. Reviewer approval cannot silently override missing contract items, missing cleanup evidence, or missing required researcher evidence. Incomplete items require explicit waivers with reason, risk, owner, and follow-up action.
 
-After approval, accepted waiver, or completed improvement discovery, the reflection stage reviews the run for durable memory candidates before final reporting. Reflection can invoke memory curation for evidenced repeatable lessons or patterns, but it cannot override the gate, expand scope, or store task-local evidence as memory.
+After approval, accepted waiver, or completed improvement discovery, the reflection stage reviews the run for durable memory candidates before final reporting. Reflection can invoke memory curation for evidenced repeatable lessons or patterns, but it cannot override the gate, expand scope, or store task-local evidence, backlog candidates, or broad run history as memory.
 
 ## Workflow Split
 
@@ -117,6 +117,7 @@ Route selection is based on requested outcome, not only issue subject. A bug, fi
 - Intent docs feed PC-001 through PC-010.
 - Product commitments constrain the agent roles and permissions.
 - Technical and evolution decisions justify the OpenCode-native workflow and persistent source docs.
-- Implementation artifacts realize the workflow in `opencode.json`, `.opencode/agents/*.md`, and `.opencode/dev_harness/**/*.md`.
+- Implementation artifacts realize the workflow in `opencode.json`, `.opencode/agents/*.md`, and `.opencode/dev_harness/**/*.md`, including the repo-local workflow memory schema and memory hygiene guidance.
 - Product breakdown guidance supports PC-006 by giving agents copied context for layered decisions and traceability.
 - Workflow policy guidance keeps repeated control, information hygiene, and review-output rules centralized for copied agents.
+- IMP-001 through IMP-005 harden the workflow-memory and review/report boundary, while IMP-006 and IMP-007 harden clarification and reflection routing.

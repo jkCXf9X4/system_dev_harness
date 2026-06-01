@@ -31,6 +31,7 @@ Inspect the stage outputs for:
 - verifier and reviewer findings
 - waivers, blocked iterations, and revision outcomes
 - repeated mistakes or successful reusable patterns
+- memory trust metadata, revalidation needs, and whether retrieved entries still look applicable
 - improvement candidates raised or persisted during the run
 - memory entries used, contradicted, written, rejected, or deferred during the run
 
@@ -47,6 +48,7 @@ Return one of:
 Include:
 - reflection status
 - memory candidates evaluated, or `none`
+- memory hygiene summary when memory was relevant, including retrieved entries, stale or conflicting memory, and whether memory influenced the run
 - evidence source for each memory decision
 - curator helpers used and why, or `none`
 - durable lesson or pattern IDs written or updated, or `not_applicable`
