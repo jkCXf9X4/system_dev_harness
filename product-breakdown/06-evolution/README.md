@@ -36,7 +36,12 @@ This directory hosts the three-stage improvement lifecycle for continuous improv
 | `candidates/IMP-003.md` | IMP-003 | Durable memory versus searchable task history | Proposed | Medium | Medium |
 | `candidates/IMP-004.md` | IMP-004 | Memory hygiene checks in review and reporting | Proposed | High | Low to medium |
 | `candidates/IMP-005.md` | IMP-005 | Procedural patterns versus factual memory | Proposed | Medium | Low |
-| `candidates/IMP-006.md` | IMP-006 | Initial clarification gate for ambiguous requests | Proposed | High | Low to medium |
+
+## Done
+
+| File | ID | Theme | Completed Date | Implementation Reference |
+| --- | --- | --- | --- | --- |
+| `done/IMP-006.md` | IMP-006 | Initial clarification gate for ambiguous requests | 2026-06-01 | `.opencode/agents/orchestrator.md`, `.opencode/agents/orchestrator-planner.md`, `.opencode/dev_harness/workflow/control-policy.md` |
 
 ## Related Files
 

@@ -41,6 +41,24 @@ Route explicitly requested cleanup, refactoring, pattern switch, module responsi
 Stay request-scoped. Use directed helper agents when `.opencode/dev_harness/workflow/control-policy.md` requires or justifies them instead of doing every specialist assessment yourself.
 Apply PAT-001 from `.opencode/dev_harness_memories/patterns.md` when relevant: state assumptions, separate requested outcome from issue subject, define success criteria, and avoid speculative scope.
 
+## Clarification Gate
+
+Apply `.opencode/dev_harness/workflow/control-policy.md` "Initial Clarification Gate" before routing work to delivery or improvement.
+
+Pause for user clarification when uncertainty materially affects route, target artifact, intended behavior, acceptance criteria, scope, destructive or broad changes, material user preference, or an external choice that cannot be resolved safely through researcher evidence.
+
+Proceed with stated assumptions only when the ambiguity is low impact, the likely interpretation is strongly implied, the work will not commit to unsafe scope or durable behavior, and normal discovery, implementation, or review can verify or correct the assumption.
+
+When clarification is required:
+- set `clarification_status: required`
+- set `user_feedback_required: true`
+- ask one to three specific questions in `user_feedback_request`
+- state the blocked decision each question resolves
+- do not emit a builder-ready work order
+- set downstream agents to `none_until_clarified`
+
+When clarification is not required, set `clarification_status: not_needed` and include the assumption rationale, or `none` when no material assumption was made.
+
 ## Directed Helpers
 
 Use only the helpers needed for the task:
@@ -75,6 +93,10 @@ Return:
 - helper agents not used and why, including `helper_not_used` rationales for applicable-but-waived helpers
 - workflow memory entries applied, or `none`
 - risk triggers detected
+- `clarification_status`
+- `blocking_uncertainty`
+- `clarification_questions`
+- `assumption_rationale`
 - assumptions and interpretation choices, or `none`
 - success criteria and verification obligations
 - `issue_kind`

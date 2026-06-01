@@ -52,6 +52,38 @@ research_requests: <research already performed or needed, or none>
 
 When `user_feedback_required` is true, the orchestrator pauses and requests the user decision before continuing. Improvement candidates are backlog candidates only; they do not authorize scope expansion in the current task. Research requests are handled by `orchestrator-researcher` when source material is needed for the current stage.
 
+## Initial Clarification Gate
+
+The planner must distinguish harmless assumptions from blocking uncertainty before routing work to delivery or improvement.
+
+Set `user_feedback_required: true` and ask the user for clarification when uncertainty materially affects any of:
+
+- requested outcome: implement now versus capture candidate
+- target artifact, module, feature, or document
+- intended behavior, acceptance criteria, or success definition
+- scope boundary or out-of-scope work
+- destructive, broad, irreversible, or high-blast-radius changes
+- user preference that would materially change the solution
+- external dependency, API, framework, standard, version, or documentation choice that cannot be resolved safely through researcher evidence
+
+The planner may proceed with stated assumptions when all of these are true:
+
+- the ambiguity is low impact
+- the likely interpretation is strongly implied by the user's wording or repository context
+- proceeding will not edit unrelated files, commit to durable product behavior, or perform destructive work
+- the assumption can be verified or corrected by normal discovery, implementation, or review
+
+Planner output must include:
+
+```text
+clarification_status: not_needed|required
+blocking_uncertainty: <decision that cannot be made safely, or none>
+clarification_questions: <one to three specific questions, or none>
+assumption_rationale: <why assumptions are safe, or not_applicable>
+```
+
+Open questions alone do not require a pause. Only questions that materially change route, scope, acceptance, safety, or durable behavior should block the workflow.
+
 ## Focused Improvement Evaluation
 
 Any working stage or directed helper may invoke `orchestrator-improvement-evaluator` when it finds a noteworthy improvement opportunity during its assigned work.
