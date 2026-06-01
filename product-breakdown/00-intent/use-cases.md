@@ -15,6 +15,7 @@
 - Reviewer: coordinates verification, independent review helpers, and the completion gate.
 - Review helpers: independently review contract completeness, verification adequacy, code quality, architecture, cleanliness, information hygiene, and lessons learned.
 - Completion gate: computes approved, blocked, or waiver-required outcomes inside reviewer.
+- Reflection agent: reviews completed runs for durable memory candidates before final reporting.
 - Reporter: produces the final control report.
 - Researcher: gathers external documentation or dependency context when needed.
 - Human operator: approves waivers or re-runs tasks when the gate blocks completion.
@@ -212,7 +213,7 @@ Primary value:
 
 ## UC-009: Capture New Lessons
 
-Goal: update persistent mistake memory after a failed or corrected task.
+Goal: update persistent mistake memory after a failed, corrected, or completed task exposes durable learning.
 
 Input:
 
@@ -220,16 +221,18 @@ Input:
 - failed tests
 - human feedback
 - repeated correction pattern
+- final reflection output
 
 Output:
 
 - new known mistake candidate
 - prevention rule
 - future check wording
+- accepted, rejected, deferred, or no-action memory decision
 
 Primary value:
 
-- turns mistakes into future guardrails
+- turns mistakes and reusable workflow learning into future guardrails without storing task-local state as memory
 
 ## UC-010: Produce A Final Control Report
 
@@ -239,12 +242,14 @@ Input:
 
 - structured artifacts
 - gate decision
+- final reflection result
 - evidence bundle
 
 Output:
 
 - final status
 - key evidence
+- reflection and memory-incorporation result
 - blocking items or waivers
 - next required action
 
@@ -333,7 +338,7 @@ Output:
 - direct build-agent execution
 - no change to the default orchestrator entrypoint
 - no inherited orchestrator prompt when the normal build agent is explicitly selected
-- no permission for the orchestrator to skip planner, builder, reviewer, or reporter stages
+- no permission for the orchestrator to skip planner, builder, reviewer, reflection, or reporter stages
 
 Primary value:
 

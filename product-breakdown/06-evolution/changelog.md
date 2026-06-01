@@ -2,6 +2,7 @@
 
 ## 2026-06-01
 
+- Implemented IMP-007 by adding a final reflection stage that owns memory-incorporation triage before final reporting.
 - Implemented IMP-006 by adding an initial clarification gate to planner and workflow policy, plus orchestrator routing behavior for planner-requested clarification.
 
 ## 2026-05-26 — Consolidation: removed self-duplicate imp.md, added @see references to centralize governance rules (control-policy.md) and lifecycle docs (06-evolution/README.md)

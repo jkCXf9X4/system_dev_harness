@@ -15,7 +15,7 @@ This artifact captures durable operational behavior for the workflow package. Ru
 
 - The product does not support arbitrary individual stage reruns as an approved completion path.
 - Improvement candidates reported during operation are backlog candidates only; they do not authorize current-task scope expansion.
-- Operator escape hatches must not weaken the default planner-builder-reviewer-reporter path.
+- Operator escape hatches must not weaken the default planner-builder-reviewer-reflection-reporter path.
 
 ## Trace Links
 

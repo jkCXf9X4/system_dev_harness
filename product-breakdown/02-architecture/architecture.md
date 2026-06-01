@@ -2,7 +2,7 @@
 
 ## Architectural Purpose
 
-The current solution acts as a control layer around agentic development. It separates top-level planning, implementation, reviewer-coordinated verification, deterministic completion routing, and final reporting while allowing each stage to use directed helper agents.
+The current solution acts as a control layer around agentic development. It separates top-level planning, implementation, reviewer-coordinated verification, deterministic completion routing, final reflection, and final reporting while allowing each stage to use directed helper agents.
 
 ## Control Flow
 
@@ -15,6 +15,7 @@ guarded delivery:
     -> planner (request classification, uncertainty resolution, directed planning helpers)
     -> builder (implementation, directed build helpers)
     -> reviewer (verification, independent review helpers, deterministic gate routing)
+    -> reflection (memory incorporation triage)
     -> final control report
 
   continuous improvement:
@@ -23,6 +24,7 @@ guarded delivery:
     -> pressure analysis
     -> cleanup, refactoring, and other backlog-ready candidates
     -> persist candidate files under product-breakdown/06-evolution/candidates/
+    -> reflection (memory incorporation triage)
     -> final report
 ```
 
@@ -44,12 +46,13 @@ guarded delivery:
 | Reviewer | Coordinates focused checks, independent review helpers, and the completion gate. |
 | Review helpers | Independently review contract completeness, verification adequacy, architecture, code quality, cleanliness, information hygiene, and lessons. |
 | Completion gate | Computes approved, blocked, or waiver-required outcomes inside the reviewer stage. |
+| Reflection | Reviews the completed run and owns final durable-memory incorporation triage before reporting. |
 | Final report | Captures the final state, decision, and remaining gaps. |
 | Information hygiene | Reconciles new, changed, moved, and superseded information so the workflow does not leave duplicate, stale, or orphaned artifacts. |
 | Improvement workflow | Separately explores cleanup, refactoring, pattern, module responsibility, and tuning opportunities, then persists backlog candidates. |
 | Focused improvement evaluator | Evaluates one noteworthy finding raised during normal work and persists it only when evidence, impact, and a scoped future task seed are present. |
 | Memory helper | Retrieves task-relevant workflow memory without editing it. |
-| Memory curator | Evaluates evidenced repeatable findings and persists only durable workflow memory. |
+| Memory curator | Evaluates evidenced repeatable findings and persists only durable workflow memory when invoked by reflection or another owning stage. |
 | Improvement backlog | Stores proposed or accepted improvement candidates before they become scoped implementation tasks. |
 | Dev harness context | Captures cross-project prompts, workflow policy, product-breakdown guidance, and supporting templates under `.opencode/dev_harness/`. |
 | Product breakdown guidance | Provides copied, load-on-demand context under `.opencode/dev_harness/product-breakdown/` so target-repo agents can structure layered artifacts without relying on source docs in the package repo. |
@@ -62,7 +65,7 @@ guarded delivery:
 - `opencode.json` selects the primary agent and loads the workflow instructions.
 - Pre-implementation discovery is a directed helper owned by `orchestrator-planner`.
 - The orchestrator is not a preliminary implementation, discovery, classification, planning, or evaluation layer.
-- The primary orchestrator has no file read, search, list, edit, or shell permissions; it may invoke only top-level planner, builder, reviewer, reporter, and improvement entrypoint agents.
+- The primary orchestrator has no file read, search, list, edit, or shell permissions; it may invoke only top-level planner, builder, reviewer, reflection, reporter, and improvement entrypoint agents.
 - Planner classifies the request, resolves uncertainty, and decides whether to plan directly or invoke directed planning helpers using adaptive risk triggers.
 - Contract, architecture, and lessons prompts are planner-owned helpers and avoid broad rediscovery unless their prompt explicitly allows focused reads.
 - Test obligations, product-breakdown placement, traceability, and durable product behavior impact are planner-owned work-order sections rather than separate planning-agent handoffs.
@@ -73,7 +76,7 @@ guarded delivery:
 - The workflow should remain inspectable without a hidden Python runtime.
 - Persistent lesson memory lives in versioned markdown, not in ephemeral conversation state.
 - Workflow memory is versioned markdown under `.opencode/dev_harness_memories/`; it captures durable lessons, reusable patterns, and decision pointers, not current task state or backlog candidates.
-- `orchestrator-memory` is read-only and may be used by planner or reviewer stages for focused recall. `orchestrator-memory-curator` may be used by reviewer, reporter, or the focused improvement evaluator to persist durable memory candidates.
+- `orchestrator-memory` is read-only and may be used by planner or reviewer stages for focused recall. `orchestrator-reflection` owns final memory-incorporation triage before reporting. `orchestrator-memory-curator` may be used by reflection or another owning stage to persist durable memory candidates.
 - Dev harness context lives in versioned markdown under `.opencode/dev_harness/` so it can be copied between projects without losing structure.
 - Product breakdown guidance lives under `.opencode/dev_harness/product-breakdown/` because target repositories receive `.opencode/` but not this package's `product-breakdown/` tree.
 - Workflow policy guidance lives under `.opencode/dev_harness/workflow/` because target repositories receive `.opencode/` but not this package's `product-breakdown/` tree.
@@ -94,6 +97,8 @@ guarded delivery:
 The deterministic completion gate produces `approved`, `blocked`, or `waiver_required`.
 
 The reviewer stage coordinates focused verification and independent reviewer nodes for the risks present in the task: contract satisfaction, acceptance criteria, test adequacy, architecture, code quality, cleanliness, completeness, information hygiene, and known mistakes. Architecture and code-quality checks also cover modularity, simplicity, readability, and module responsibility fit when relevant. The gate aggregates review findings and implementation evidence. Reviewer approval cannot silently override missing contract items, missing cleanup evidence, or missing required researcher evidence. Incomplete items require explicit waivers with reason, risk, owner, and follow-up action.
+
+After approval, accepted waiver, or completed improvement discovery, the reflection stage reviews the run for durable memory candidates before final reporting. Reflection can invoke memory curation for evidenced repeatable lessons or patterns, but it cannot override the gate, expand scope, or store task-local evidence as memory.
 
 ## Workflow Split
 

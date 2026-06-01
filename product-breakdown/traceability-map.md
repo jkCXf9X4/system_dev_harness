@@ -28,7 +28,7 @@ Vision.md (00-intent)
 | Architecture | Architecture.md — Control Flow, Stable Concepts, Boundaries |
 | Decisions | AD-001 (agent workflow), AD-003 (handoff structure) |
 | Implementation | orchestrator.md, orchestrator-*.md agents |
-| Verification | Reviewer-coordinated verifier helper, review helpers, completion gate |
+| Verification | Reviewer-coordinated verifier helper, review helpers, completion gate, final reflection |
 
 ### Continuous Improvement
 
@@ -48,10 +48,10 @@ Vision.md (00-intent)
 | --- | --- |
 | Intent | Vision.md — Core Thesis, Desired Outcomes |
 | Product | PC-003, PC-006, PC-007 |
-| Architecture | Architecture.md — Workflow memory, Memory helper, Memory curator |
+| Architecture | Architecture.md — Workflow memory, Memory helper, Memory curator, Reflection |
 | Decisions | IMD-001 (versioned lessons), IMD-003 (repo-local workflow memory) |
-| Implementation | orchestrator-memory.md, orchestrator-memory-curator.md, `.opencode/dev_harness_memories/` |
-| Verification | Workflow memory probe coverage, review/helper routing checks |
+| Implementation | orchestrator-memory.md, orchestrator-memory-curator.md, orchestrator-reflection.md, `.opencode/dev_harness_memories/` |
+| Verification | Workflow memory probe coverage, review/helper routing checks, final reflection output |
 
 ### Traceability & Information Hygiene
 

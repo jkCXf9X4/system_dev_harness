@@ -42,6 +42,7 @@ This directory hosts the three-stage improvement lifecycle for continuous improv
 | File | ID | Theme | Completed Date | Implementation Reference |
 | --- | --- | --- | --- | --- |
 | `done/IMP-006.md` | IMP-006 | Initial clarification gate for ambiguous requests | 2026-06-01 | `.opencode/agents/orchestrator.md`, `.opencode/agents/orchestrator-planner.md`, `.opencode/dev_harness/workflow/control-policy.md` |
+| `done/IMP-007.md` | IMP-007 | Final reflection stage for memory incorporation ownership | 2026-06-01 | `.opencode/agents/orchestrator-reflection.md`, `.opencode/dev_harness/workflow/control-policy.md` |
 
 ## Related Files
 

@@ -7,7 +7,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 - `opencode.json` - copy into the target development repo root as the OpenCode config and entrypoint selector.
 - `.opencode/instructions.md` - package-level neutral instructions that preserve the selected agent boundary.
 - `.opencode/agents/orchestrator.md` - primary workflow router.
-- `.opencode/agents/orchestrator-*.md` - top-level agents for planning, building, reviewing, reporting, research, and improvement discovery plus directed helper agents owned by planner, builder, and reviewer.
+- `.opencode/agents/orchestrator-*.md` - top-level agents for planning, building, reviewing, reflection, reporting, research, and improvement discovery plus directed helper agents owned by planner, builder, reviewer, and reflection.
 - `.opencode/dev_harness/prompts/*.md` - reusable prompt templates tied to use cases.
 - `.opencode/dev_harness/README.md` - package index for the reusable dev harness folder.
 - `.opencode/dev_harness/product-breakdown/` - reusable product breakdown guidance split into small files for copied target-repo agents.
@@ -25,11 +25,12 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 - `orchestrator-builder` and builder-owned edit helpers are the only stages that may edit implementation files.
 - `orchestrator-improvement` may edit only improvement backlog result files under `product-breakdown/06-evolution/candidates/`.
 - Direct operator-selected `build` execution is outside the guarded orchestrator path and must not inherit the orchestrator prompt through global instructions.
-- `orchestrator` is a dispatcher and gate router only; it has no file read, search, list, edit, or shell permissions, does not classify requests, and invokes only planner, builder, reviewer, reporter, and the improvement entrypoint. Directed helpers such as researcher are invoked by their owning top-level stage.
+- `orchestrator` is a dispatcher and gate router only; it has no file read, search, list, edit, or shell permissions, does not classify requests, and invokes only planner, builder, reviewer, reflection, reporter, and the improvement entrypoint. Directed helpers such as researcher are invoked by their owning top-level stage.
 - `orchestrator-planner` owns discovery, contract, architecture, lessons, research helper routing, inline test obligations, product-breakdown placement, durable product behavior impact, and final work-order synthesis; helper use follows adaptive risk triggers.
 - `orchestrator-builder` owns implementation, scoped cleanup, documentation/product-breakdown updates, build-error resolution, cleanup-helper routing, and research helper routing.
 - `orchestrator-reviewer` owns verifier, review helper, researcher, and deterministic gate routing; helper use follows adaptive risk triggers and may be lightweight for low-risk tasks.
 - review agents are read-only and exist to keep approval separate from implementation.
+- `orchestrator-reflection` owns final memory-incorporation triage before reporting and may invoke the memory curator for evidenced durable memory candidates.
 - `orchestrator-memory` retrieves task-relevant workflow memory without editing it.
 - `orchestrator-memory-curator` may edit only workflow memory files and only for evidenced durable memory candidates.
 - `orchestrator-improvement` exists to explore improvement opportunities and persist backlog candidates, not to implement them.
@@ -41,13 +42,14 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 | --- | --- | --- | --- | --- |
 | Entrypoint | `opencode.json` | n/a | n/a | Selects `orchestrator` as the default primary agent. |
 | Package instructions | `.opencode/instructions.md` | no | no | Keeps global instructions neutral so explicitly selected non-orchestrator agents do not inherit the guarded workflow. |
-| Orchestration | `.opencode/agents/orchestrator.md` | no | no | Routes planner, builder, reviewer, reporter, or improvement discovery without repository inspection, request classification, or specialist stage work. |
+| Orchestration | `.opencode/agents/orchestrator.md` | no | no | Routes planner, builder, reviewer, reflection, reporter, or improvement discovery without repository inspection, request classification, or specialist stage work. |
 | Planning | `.opencode/agents/orchestrator-planner.md` | no | yes | Normalizes the request, resolves uncertainty, coordinates planning helpers, and emits the builder work order. |
 | Planning helpers | `.opencode/agents/orchestrator-discovery.md`, `orchestrator-contract.md`, `orchestrator-architecture.md`, `orchestrator-lessons.md`, `orchestrator-memory.md` | no | yes | Provide directed discovery, requirements, architecture, lessons, and memory support. Planner handles test obligations and product-breakdown placement in the work order. |
 | Build | `.opencode/agents/orchestrator-builder.md` | yes | yes | Applies approved changes, coordinates builder helpers, reconciles changed information, removes stale or duplicate artifacts, and reports implementation evidence. |
 | Build helpers | `.opencode/agents/orchestrator-build-error-resolver.md`, `.opencode/agents/orchestrator-cleanup.md` | yes | yes | Resolve assigned build/test/type-check failures and run focused cleanup passes for references, trackers, indexes, duplicate or superseded content, orphaned artifacts, links, and traceability inside the approved scope. |
 | Review and gate | `.opencode/agents/orchestrator-reviewer.md` | no | yes | Coordinates verification and review helpers, then produces `approved`, `blocked`, or `waiver_required`. |
 | Review helpers | `.opencode/agents/orchestrator-verifier.md`, `.opencode/agents/orchestrator-review-*.md`, `.opencode/agents/orchestrator-memory.md` | no | yes | Independently verify checks and review contract completeness, acceptance criteria, test adequacy, architecture, code quality, cleanliness, information hygiene, lessons, and relevant workflow memory. |
+| Reflection | `.opencode/agents/orchestrator-reflection.md` | no | yes | Reviews completed workflow evidence and owns final memory incorporation triage before reporting. |
 | Report | `.opencode/agents/orchestrator-reporter.md` | no | no | Produces the final control report. |
 | Research | `.opencode/agents/orchestrator-researcher.md` | no | no | Gathers external documentation or dependency context. |
 | Memory curation | `.opencode/agents/orchestrator-memory-curator.md` | yes | yes | Evaluates evidenced repeatable findings and persists only durable workflow memory under `.opencode/dev_harness_memories/`. |

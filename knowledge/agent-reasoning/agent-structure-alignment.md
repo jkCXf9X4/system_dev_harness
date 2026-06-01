@@ -20,6 +20,7 @@ Runtime prompts:
 - `.opencode/agents/orchestrator-verifier.md`
 - `.opencode/agents/orchestrator-review-*.md`
 - `.opencode/agents/orchestrator-reviewer.md`
+- `.opencode/agents/orchestrator-reflection.md`
 - `.opencode/agents/orchestrator-reporter.md`
 - `.opencode/agents/orchestrator-improvement.md`
 - `.opencode/agents/orchestrator-improvement-evaluator.md`
@@ -45,6 +46,7 @@ orchestrator
   -> planner, with directed planning helpers
   -> builder, with directed implementation helpers
   -> reviewer, with directed verification and review helpers
+  -> reflection, with memory-curation ownership
   -> reporter
 ```
 
@@ -56,7 +58,7 @@ The strongest alignment is still with:
 - agent-computer interface boundaries through permissions, helper ownership, and write boundaries (`AK-006`)
 - structured communication through work orders, control flags, structured feedback fields, and final reports (`AK-007`)
 
-The redistributed structure improves responsibility placement, especially around planner-owned synthesis, builder-owned cleanup, reviewer-owned verification, focused improvement evaluation, and durable memory curation. It also introduces new failure modes:
+The redistributed structure improves responsibility placement, especially around planner-owned synthesis, builder-owned cleanup, reviewer-owned verification, final reflection, focused improvement evaluation, and durable memory curation. It also introduces new failure modes:
 
 - top-level agents can now under-delegate when a helper trigger applies
 - some boundaries are policy-enforced rather than permission-enforced
@@ -70,13 +72,13 @@ The architecture is directionally research-aligned, but the previous claim of un
 
 | Research-backed claim | Current alignment | Evidence in current solution | Critical assessment |
 | --- | --- | --- | --- |
-| AK-001: role specialization | Strong, with coordination risk | The orchestrator is routing-only. Planner, builder, reviewer, reporter, improvement, researcher, evaluator, memory, cleanup, verifier, and review helpers have explicit roles, permissions, non-goals, and output fields. | Responsibility is better distributed than before. The risk has shifted from monolithic prompts to helper selection, helper output preservation, and overlapping capture roles. |
+| AK-001: role specialization | Strong, with coordination risk | The orchestrator is routing-only. Planner, builder, reviewer, reflection, reporter, improvement, researcher, evaluator, memory, cleanup, verifier, and review helpers have explicit roles, permissions, non-goals, and output fields. | Responsibility is better distributed than before. The risk has shifted from monolithic prompts to helper selection, helper output preservation, and overlapping capture roles. |
 | AK-002: ground synthesis in prior discovery | Moderate | `orchestrator-discovery` remains the broad repository inspection helper. Planner is instructed to use it for code changes and to produce the work order from selected helper outputs. | This is no longer a hard permission boundary. Planner has read/search/list/bash permissions, so discovery-first discipline is enforced mainly by policy and prompt text. The claim should not be described as "planner cannot inspect the repository." |
 | AK-003: connect reasoning with tool and environment actions | Moderate to strong | Discovery reports searches and files read. Builder reports files changed, cleanup, and verification suggestions. Verifier reports commands, exit status, stdout/stderr excerpts, changed files, placement, cleanup, and pass/fail. | Verifier evidence is now structured enough for review. Builder and helper evidence would still benefit from a uniform command/evidence schema and explicit "evidence changed the plan" fields for revisions. |
 | AK-004: review feedback loops | Strong | Reviewer coordinates verifier, architecture review, completeness review, lessons review, memory recall, memory curation, researcher, and focused improvement evaluation. Blocked outcomes route back to planner with revision context. | The loop is stronger after moving review orchestration into the reviewer. The main risk is skipped helpers or weak `helper_not_used` rationales on tasks where adaptive triggers should require independent review. |
-| AK-005: explicit reviewable memory | Stronger than before | `orchestrator-memory` retrieves relevant lessons and patterns. `orchestrator-memory-curator` writes only durable lessons and patterns under `.opencode/dev_harness_memories/` with rejection rules and duplicate checks. | The earlier gap about missing promotion policy is mostly resolved. The remaining issue is governance: curator invocation depends on owning stages recognizing repeatable findings and not confusing memory with backlog candidates. |
+| AK-005: explicit reviewable memory | Stronger than before | `orchestrator-memory` retrieves relevant lessons and patterns. `orchestrator-reflection` owns final memory-incorporation triage. `orchestrator-memory-curator` writes only durable lessons and patterns under `.opencode/dev_harness_memories/` with rejection rules and duplicate checks. | The earlier gap about missing promotion ownership is mostly resolved. The remaining issue is governance: reflection and curator outputs must reject one-off task state and keep memory distinct from backlog candidates. |
 | AK-006: agent-computer interface design | Moderate to strong | The primary orchestrator has no file or shell permissions. Builder, cleanup, build-error resolver, improvement, improvement evaluator, and memory curator are edit-capable but have narrow write boundaries. Verifier and reviewers are read-only. | The interface is explicit, but edit authority is now distributed across more helpers. That is acceptable only if write boundaries stay precise and reviewer evidence checks cover helper edits. |
-| AK-007: structured communication | Moderate to strong | The planner-owned work order replaces the old packet stage. Control flags, structured feedback fields, `handoff_required`, helper-not-used rationales, reviewer decisions, and reporter summaries preserve state across agents. | Structured communication is still present, but the center of gravity is now the work order and control feedback, not packet and handoff agents. The risk is information loss when many helper outputs are collapsed into one work order or review decision. |
+| AK-007: structured communication | Moderate to strong | The planner-owned work order replaces the old packet stage. Control flags, structured feedback fields, `handoff_required`, helper-not-used rationales, reviewer decisions, reflection results, and reporter summaries preserve state across agents. | Structured communication is still present, but the center of gravity is now the work order and control feedback, not packet and handoff agents. The risk is information loss when many helper outputs are collapsed into one work order, reflection decision, or final report. |
 | AK-008: evaluate against evidence | Strong | Review output uses pass/fail/needs_waiver. The reviewer blocks on missing evidence. Verifier has explicit command and cleanup evidence fields. Waivers require named risk, scope, and follow-up or expiry. | The evidence model is strong for task-local completion. The remaining weakness is aggregate evaluation: the workflow does not yet track blocked reasons, waiver frequency, helper skip frequency, or repeated verification gaps across runs. |
 
 ## Research-To-Structure Fit
@@ -92,17 +94,18 @@ The current agent set maps to four top-level delivery responsibilities plus spec
 - `discovery`, `contract`, `architecture`, `lessons`, `memory`, and `researcher` are planner-directed helpers.
 - `builder` implements the approved work order and may use `build-error-resolver`, `cleanup`, and `researcher`.
 - `reviewer` coordinates verifier, independent review helpers, memory recall, memory curation, researcher, and the completion gate.
+- `reflection` reviews completed run evidence and owns final durable-memory incorporation triage.
 - `reporter` preserves the final status and selected evidence.
 - `improvement` runs broad candidate discovery when the requested outcome is candidate capture.
 - `improvement-evaluator` captures one focused backlog-worthy finding raised by another stage.
-- `memory-curator` captures durable task-independent workflow memory.
+- `memory-curator` captures durable task-independent workflow memory when invoked by reflection or another owning stage.
 
 This is a strong fit for multi-agent research because roles are explicit and coordination is visible in versioned prompts. It also reflects a more realistic agent system than the earlier fixed pipeline: top-level stages own judgment and call helpers when risk requires them.
 
 The main architectural risk is role overlap:
 
 - `orchestrator-improvement` and `orchestrator-improvement-evaluator` both write improvement candidates, but one is broad discovery and the other is focused finding evaluation.
-- `orchestrator-memory`, `orchestrator-lessons`, `orchestrator-review-lessons`, and `orchestrator-memory-curator` all touch lesson concerns, but only the curator writes durable memory.
+- `orchestrator-memory`, `orchestrator-lessons`, `orchestrator-review-lessons`, `orchestrator-reflection`, and `orchestrator-memory-curator` all touch lesson concerns, but reflection owns final triage and only the curator writes durable memory.
 - `orchestrator-cleanup` can fix information hygiene inside builder scope, while `orchestrator-improvement-evaluator` captures out-of-scope cleanup opportunities.
 
 The prompts mostly separate these roles, but future changes should preserve the distinctions. Adding agents should require a clear ownership reason, a non-overlap statement, and a write boundary when the agent can edit.
@@ -137,7 +140,7 @@ The current permission model is nuanced:
 
 - The primary orchestrator has no read, search, list, edit, or shell permission.
 - Planner can read, search, list, and run shell commands, but cannot edit.
-- Discovery, contract, architecture, lessons, memory, verifier, reviewer, review helpers, reporter, and researcher cannot edit.
+- Discovery, contract, architecture, lessons, memory, verifier, reviewer, review helpers, reflection, reporter, and researcher cannot edit.
 - Builder, build-error resolver, cleanup, improvement, improvement evaluator, and memory curator can edit within narrower write boundaries.
 - External research is isolated in `orchestrator-researcher`.
 
@@ -147,7 +150,7 @@ Risks:
 
 - More edit-capable agents means more places where scope control can fail.
 - The cleanup helper can safely reduce stale references only if it stays tied to the approved builder work order.
-- The improvement evaluator and memory curator can write durable artifacts during normal work, so reviewer and reporter evidence must make those side effects visible.
+- The improvement evaluator and memory curator can write durable artifacts during normal work, so reviewer, reflection, and reporter evidence must make those side effects visible.
 - Bash-enabled planning and review agents can gather evidence, but prompts should continue to prefer narrow, project-local checks.
 
 ### Prompt Design And Instruction Structure
@@ -181,9 +184,10 @@ The current memory model is substantially stronger than the earlier alignment do
 - `orchestrator-memory` retrieves task-relevant lessons, patterns, and decision pointers without editing them.
 - `orchestrator-lessons` turns persistent lesson memory into prevention checks for planning.
 - `orchestrator-review-lessons` independently checks implementation evidence against relevant lessons.
+- `orchestrator-reflection` reviews completed run evidence and owns the final decision about whether memory candidates should be curated, rejected, deferred, or marked not applicable.
 - `orchestrator-memory-curator` evaluates durable memory candidates and writes only lessons or patterns when the finding is repeatable, task-independent, and useful for future planning or review.
 
-This addresses the earlier gap about lesson promotion. The remaining risk is not the absence of a policy; it is trigger reliability and evidence quality. A one-off task note should not become memory, and a repeated workflow failure should not be left only as a backlog candidate.
+This addresses the earlier gap about lesson promotion ownership. The remaining risk is evidence quality. A one-off task note should not become memory, and a repeated workflow failure should not be left only as a backlog candidate.
 
 The boundary between memory and improvement backlog is important:
 
@@ -229,6 +233,7 @@ The old packet and handoff stages are no longer the center of communication. Cur
 - review-output protocol
 - revision input with blocking finding IDs
 - optional `handoff_required` section for external or manual implementation
+- reflection result with memory incorporation status
 - reporter final control report
 
 This still aligns with AK-007, but the mechanism has changed. The work order is now the main handoff between planning and building. The optional handoff section is for external or manual implementation, not a mandatory runtime stage.
@@ -243,7 +248,8 @@ The current structure separates three related capture mechanisms:
 
 - broad improvement discovery via `orchestrator-improvement`
 - focused backlog evaluation via `orchestrator-improvement-evaluator`
-- durable workflow memory via `orchestrator-memory-curator`
+- final memory-incorporation triage via `orchestrator-reflection`
+- durable workflow memory writes via `orchestrator-memory-curator`
 
 This is a useful design: exploratory improvement work is kept out of contained delivery, while focused findings from normal work can still be captured without expanding scope.
 
@@ -288,7 +294,7 @@ Add an optional operations or evolution artifact that records recurring blocked 
 
 6. Add side-effect reporting for capture helpers.
 
-Reviewer and reporter outputs should clearly list improvement candidates and memory entries written, rejected, or needing more evidence. This keeps focused evaluation and memory curation visible rather than hidden as helper side effects.
+Reflection and reporter outputs should clearly list improvement candidates and memory entries written, rejected, or needing more evidence. This keeps focused evaluation and memory curation visible rather than hidden as helper side effects.
 
 7. Preserve strict write boundaries for edit-capable helpers.
 

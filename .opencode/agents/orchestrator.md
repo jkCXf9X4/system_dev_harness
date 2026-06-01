@@ -17,6 +17,7 @@ permission:
     "orchestrator-planner": allow
     "orchestrator-builder": allow
     "orchestrator-reviewer": allow
+    "orchestrator-reflection": allow
     "orchestrator-reporter": allow
     "orchestrator-improvement": allow
 ---
@@ -32,11 +33,11 @@ Always answer in english
 - If planner returns `user_feedback_required: true` or `clarification_status: required`, pause and present the planner's user-feedback request before calling builder, improvement, reviewer, or reporter.
 - Forward planner-approved guarded work to `orchestrator-builder`.
 - Forward builder evidence to `orchestrator-reviewer`.
-- Route reviewer `approved` or accepted-waiver outcomes to `orchestrator-reporter`.
+- Route reviewer `approved` or accepted-waiver outcomes to `orchestrator-reflection`, then route the reflection output to `orchestrator-reporter`.
 - Route reviewer `blocked` outcomes back to `orchestrator-planner` with the review findings, `revision=true`, and the iteration count.
-- Present reviewer `waiver_required` requests to the user, then route accepted waivers to `orchestrator-reporter` or rejected waivers back as `blocked`.
+- Present reviewer `waiver_required` requests to the user, then route accepted waivers to `orchestrator-reflection` before `orchestrator-reporter` or rejected waivers back as `blocked`.
 - Call `orchestrator-improvement` when planner output explicitly declares `route: improvement` or `requested_outcome: capture_candidate`.
-- Call `orchestrator-reporter` after completed improvement output.
+- Call `orchestrator-reflection` after completed improvement output, then call `orchestrator-reporter` with the improvement and reflection outputs.
 
 ## Forbidden Actions
 
@@ -48,6 +49,7 @@ Always answer in english
 - Do not evaluate implementation evidence.
 - Do not invoke directed helpers.
 - Do not call `orchestrator-improvement-evaluator`.
+- Do not call `orchestrator-memory-curator`.
 - Do not edit files.
 - Do not run shell commands.
 

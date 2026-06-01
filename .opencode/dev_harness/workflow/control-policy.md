@@ -10,6 +10,7 @@ Every listed top-level guarded workflow stage must run:
 orchestrator-planner
 orchestrator-builder
 orchestrator-reviewer
+orchestrator-reflection
 orchestrator-reporter
 ```
 
@@ -101,9 +102,33 @@ When evidence is missing or the finding duplicates an existing candidate, the ev
 
 Any owning stage may request task-relevant workflow memory from `orchestrator-memory` when lessons, reusable patterns, or decision pointers could reduce repeated work or review misses.
 
-The reviewer, reporter, and focused improvement evaluator may invoke `orchestrator-memory-curator` when evidenced findings reveal a durable lesson, reusable pattern, or decision pointer worth evaluating for memory. Curation is workflow memory capture only; it does not authorize scope expansion, current-task implementation, direct approval, or improvement backlog persistence.
+The reviewer, reflection stage, and focused improvement evaluator may invoke `orchestrator-memory-curator` when evidenced findings reveal a durable lesson, reusable pattern, or decision pointer worth evaluating for memory. Final memory-incorporation ownership belongs to `orchestrator-reflection`. Curation is workflow memory capture only; it does not authorize scope expansion, current-task implementation, direct approval, or improvement backlog persistence.
 
 Workflow memory lives under `.opencode/dev_harness_memories/`. Current task state, temporary investigation notes, implementation evidence, and backlog candidates do not belong in memory.
+
+## Final Reflection
+
+Every completed guarded delivery or improvement workflow must run `orchestrator-reflection` before `orchestrator-reporter`.
+
+Reflection owns final memory-incorporation triage. It reviews the completed run and returns one of:
+
+```text
+memory_written
+memory_rejected
+needs_more_evidence
+no_memory_action
+```
+
+Reflection may invoke `orchestrator-memory-curator` only for evidenced repeatable findings that are task-independent and useful for future planning or review. It may invoke `orchestrator-improvement-evaluator` only when reflection exposes a separate backlog-worthy workflow problem.
+
+Reflection must not:
+
+- override the reviewer gate
+- treat backlog candidates as durable memory
+- store current task state, implementation evidence, temporary investigation notes, or full transcripts as memory
+- expand the current task scope
+
+The reporter includes the reflection result and any memory IDs written, rejected candidates, missing-evidence rationale, or no-memory-action rationale in the final report.
 
 ## Adaptive Risk Triggers
 
