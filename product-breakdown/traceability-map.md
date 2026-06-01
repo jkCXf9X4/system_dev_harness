@@ -48,7 +48,7 @@ Vision.md (00-intent)
 | --- | --- |
 | Intent | Vision.md — Core Thesis, Desired Outcomes |
 | Product | PC-003, PC-006, PC-007 |
-| Architecture | Architecture.md — Workflow memory, Memory helper, Memory curator, Reflection |
+| Architecture | Architecture.md — Workflow memory, Memory helper, Memory curator, Reflection, Persistence And Context Mechanisms |
 | Decisions | IMD-001 (versioned lessons), IMD-003 (repo-local workflow memory) |
 | Implementation | orchestrator-memory.md, orchestrator-memory-curator.md, orchestrator-reflection.md, `.opencode/dev_harness_memories/` |
 | Verification | Workflow memory probe coverage, review/helper routing checks, final reflection output |
@@ -59,9 +59,9 @@ Vision.md (00-intent)
 | --- | --- |
 | Intent | Vision.md — PC-006 |
 | Product | PC-006 |
-| Architecture | Architecture.md — Information hygiene, Boundaries |
+| Architecture | Architecture.md — Information hygiene, Boundaries, Persistence And Context Mechanisms |
 | Decisions | AD-002 (versioned markdown) |
-| Implementation | information-hygiene.md, orchestrator-verifier.md |
+| Implementation | information-hygiene.md, orchestrator-verifier.md, Mechanism Storage Rules |
 | Verification | Information hygiene checks in reviewer-coordinated verifier + cleanliness/completeness review |
 
 ## Maintenance

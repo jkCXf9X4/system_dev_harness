@@ -20,6 +20,23 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 - `docs/` - operator and maintainer guidance for install, deploy, usage, verification commands, troubleshooting, and contributor workflow.
 - `README.md` - package overview and copy instructions retained in this repository only.
 
+## Mechanism Storage Rules
+
+The implementation keeps each persistence mechanism in one canonical place so copied runtime policy, package source documentation, memory, skills, and backlog data do not drift into parallel stores.
+
+| Information Type | Store In | Update Through |
+| --- | --- | --- |
+| Product source rationale, commitments, architecture, decisions, verification expectations, operation requirements, and traceability | `product-breakdown/` | Product-breakdown updates in guarded delivery or improvement work. |
+| Runnable install, deploy, usage, verification, troubleshooting, and contributor procedures | `docs/` | Documentation updates; link to product-breakdown context instead of copying it. |
+| Agent roles, permissions, workflow-stage prompts, helper routing, and copied runtime behavior | `.opencode/agents/*.md`, `.opencode/instructions.md`, `.opencode/dev_harness/` | Package prompt and workflow-policy edits. |
+| Repo-local lessons, reusable patterns, decision pointers, trust metadata, and revalidation cues | `.opencode/dev_harness_memories/` | `orchestrator-reflection` triage and `orchestrator-memory-curator` writes. |
+| Improvement candidates and future work seeds | `product-breakdown/06-evolution/candidates/`, then selected/done evolution files | `orchestrator-improvement` or `orchestrator-improvement-evaluator`. |
+| Current task evidence, work orders, verification output, review findings, waivers, and final reports | Active stage outputs; reconcile durable facts into the owning artifact before completion | Owning stage for the active run. |
+| External research claims and source notes | `knowledge/agent-reasoning/` plus cited decisions in `product-breakdown/` | Research-backed product work. |
+| Skills, plugins, and connector capabilities | Operator environment unless an accepted product decision changes the package | Product decisions only; do not add agent `SKILLS` declarations without superseding AD-004. |
+
+If a change creates information that crosses these boundaries, update the owning artifact instead of duplicating the same content in multiple mechanisms.
+
 ## Execution Roles
 
 - `orchestrator-builder` and builder-owned edit helpers are the only stages that may edit implementation files.
@@ -83,7 +100,6 @@ Shared workflow policies are implemented as copied agent context under `.opencod
 | `.opencode/dev_harness/workflow/information-hygiene.md` | Canonical evidence requirements for changed information artifacts. |
 | `.opencode/dev_harness_memories/lessons.md` | Persistent lesson memory used by the lessons and lessons-review agents, including trust metadata and decision pointers. |
 | `.opencode/dev_harness_memories/patterns.md` | Reusable planning, implementation, review, documentation, and improvement patterns with trust metadata and decision pointers. |
-
 | `.opencode/dev_harness/workflow/review-output.md` | Shared independent-review return protocol. |
 
 ## Trace Links
@@ -91,3 +107,4 @@ Shared workflow policies are implemented as copied agent context under `.opencod
 - Implements AD-001 through AD-003, ED-001, IMD-001 through IMD-003, and IMP-001 through IMP-007.
 - Satisfies PC-001 through PC-010.
 - Covers UC-001 through UC-013.
+- Implements the architecture-level persistence and context mechanism boundaries through the mechanism storage rules above.

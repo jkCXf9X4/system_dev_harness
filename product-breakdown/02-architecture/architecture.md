@@ -112,6 +112,31 @@ The delivery workflow may report improvement candidates, but it must not absorb 
 
 Route selection is based on requested outcome, not only issue subject. A bug, fix, regression, feature, or documentation subject can route to improvement when the user asks to capture a candidate instead of implementing the change.
 
+## Persistence And Context Mechanisms
+
+The workflow uses different storage mechanisms for different kinds of information. The storage location is part of the architecture, not an implementation detail, because each mechanism has a different lifecycle, owner, and review expectation.
+
+| Mechanism | Stores | Does Not Store | Canonical Location | Owner |
+| --- | --- | --- | --- | --- |
+| Product-breakdown source | Durable product intent, commitments, architecture, decisions, implementation maps, verification expectations, operation requirements, evolution state, and traceability. | Runnable how-to steps, transient task notes, copied target-repo runtime policy, or raw run history. | `product-breakdown/` | Maintainers through guarded delivery or improvement work. |
+| Operator documentation | Install, deploy, usage, verification commands, troubleshooting, and contributor-facing procedures. | Stable product rationale that belongs in product-breakdown source docs. | `docs/` | Maintainers through documentation work. |
+| Runtime agent prompts | Agent role definitions, permissions, stage responsibilities, helper-routing rules, and copied workflow behavior. | Product source rationale, repo-local memory, or target-specific task state. | `.opencode/agents/*.md`, `.opencode/instructions.md` | Package maintainers; copied into target repos. |
+| Dev harness context | Reusable prompt templates, product-breakdown guidance, workflow policy, information hygiene rules, and review-output protocols. | Repo-local memory, improvement backlog candidates, or package-only product source docs. | `.opencode/dev_harness/` | Package maintainers; copied into target repos. |
+| Workflow memory | Durable lessons, reusable procedural patterns, decision pointers, trust metadata, and revalidation cues that should survive future runs in the same repo. | Current task state, broad transcripts, searchable history, unresolved improvement ideas, or facts that cannot be scoped and revalidated. | `.opencode/dev_harness_memories/` | Reflection plus memory curator, with reviewer visibility when memory influences the task. |
+| Improvement backlog | Cleanup, refactoring, pattern, module-responsibility, tuning, or future-task candidates that are evidenced but not part of the current delivery contract. | Durable memory lessons, task transcripts, or implementation changes. | `product-breakdown/06-evolution/candidates/`, then selected/done evolution files. | Improvement workflow or focused improvement evaluator. |
+| Task-local evidence | The current work order, implementation evidence, verification results, review findings, waivers, and final report for one run. | Durable product rationale unless reconciled into the product breakdown; durable memory unless accepted by reflection and curator. | Stage outputs during the active run; reconciled only into the relevant source artifact when durable. | Current stage owner. |
+| Skills and plugins | External Codex capabilities, local procedures, or connector workflows selected by the operator environment. | Primary-agent responsibilities or repo runtime policy. The workflow package does not persist agent `SKILLS` declarations. | Outside the copied payload unless represented as an explicit product decision or runtime prompt change. | Operator environment; package maintainers only document accepted or declined use. |
+| External research | Source references, claims, and implementation notes that justify workflow behavior. | Unverified web excerpts, dependency state without retrieval date, or task-local browsing notes. | `knowledge/agent-reasoning/` and cited product-breakdown decisions. | Maintainers through research-backed product work. |
+
+When information could fit more than one mechanism, choose the narrowest durable owner:
+
+- Store stable product rationale in `product-breakdown/`, not in runtime prompts.
+- Store executable workflow behavior in `.opencode/`, not only in product-breakdown docs.
+- Store repeated, revalidated lessons in workflow memory, not in the improvement backlog.
+- Store future work in the improvement backlog, not in memory.
+- Store operator procedures in `docs/`, not in product-breakdown source docs.
+- Treat skills and plugins as environment capabilities unless the package explicitly adopts or declines them through a decision.
+
 ## Trace Links
 
 - Intent docs feed PC-001 through PC-010.
@@ -120,4 +145,5 @@ Route selection is based on requested outcome, not only issue subject. A bug, fi
 - Implementation artifacts realize the workflow in `opencode.json`, `.opencode/agents/*.md`, and `.opencode/dev_harness/**/*.md`, including the repo-local workflow memory schema and memory hygiene guidance.
 - Product breakdown guidance supports PC-006 by giving agents copied context for layered decisions and traceability.
 - Workflow policy guidance keeps repeated control, information hygiene, and review-output rules centralized for copied agents.
+- Persistence and context mechanism boundaries support PC-006 and PC-007 by keeping product rationale, runtime behavior, workflow memory, improvement candidates, skills/plugins, and research in distinct owners.
 - IMP-001 through IMP-005 harden the workflow-memory and review/report boundary, while IMP-006 and IMP-007 harden clarification and reflection routing.

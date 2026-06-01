@@ -4,5 +4,21 @@
   "share": "disabled",
   "instructions": [
     ".opencode/instructions.md"
-  ]
+  ],
+  "provider": {
+    "openrouter": {
+      "models": {
+        "deepseek/deepseek-v4-flash": {
+          "options": {
+            "provider": {
+              "ignore": [
+                "gmicloud", "SiliconFlow"
+              ],
+              "allow_fallbacks": false
+            }
+          }
+        }
+      }
+    }
+  }
 }

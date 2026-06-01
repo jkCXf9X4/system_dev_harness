@@ -7,6 +7,7 @@ The workflow package must satisfy these high-level acceptance criteria:
 - Every completed guarded workflow run performs final reflection before reporting so durable memory incorporation is explicitly accepted, rejected, deferred, or marked not applicable.
 - Workflow memory includes trust metadata, revalidation cues, and an explicit boundary between durable memory, task-local evidence, run history, and improvement backlog items.
 - Memory curation reports a concrete decision taxonomy, and review/report outputs surface memory hygiene whenever memory influenced the task.
+- Product-breakdown source docs define the canonical storage mechanism for product rationale, runtime prompts, dev harness context, workflow memory, improvement backlog items, task-local evidence, skills/plugins, and external research.
 - Reviewer findings are actionable (blocked findings route back to planner per the revision loop).
 - Stale references, status trackers, duplicates, superseded content, unresolved links, traceability, and orphaned artifacts are reconciled before completion.
 - Improvement candidates are persisted to `product-breakdown/06-evolution/candidates/` by the improvement workflow or focused evaluator without changing implementation files.
