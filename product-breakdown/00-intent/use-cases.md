@@ -309,6 +309,7 @@ Output:
 - improvement rationale and priority
 - follow-up contract seeds
 - backlog-ready improvement entries
+- rejected or deferred evaluation records for suggestions that should be remembered but not accepted as candidates yet
 
 Primary value:
 
@@ -317,7 +318,7 @@ Primary value:
 Workflow boundary:
 
 - continuous improvement discovery may persist backlog entries, but must not edit implementation files
-- focused improvement evaluation may persist backlog entries for one concrete finding raised by a working agent
+- focused improvement evaluation must give each non-empty improvement suggestion a disk-backed disposition: accepted candidate, rejected evaluation, or needs-more-evidence evaluation
 - route selection is based on requested outcome, so a bug/fix/regression subject still uses improvement routing when the user asks for candidate capture rather than implementation
 - candidates must not be implemented inside a contained feature task unless they are explicitly part of that task contract
 - accepted candidates become backlog entries or future task contracts before code changes begin

@@ -31,17 +31,20 @@ This stage may edit only improvement backlog artifacts:
 - `product-breakdown/06-evolution/candidates/IMP-NNN.md`
 - `product-breakdown/06-evolution/selected/IMP-NNN.md` (when a candidate is selected)
 - `product-breakdown/06-evolution/done/IMP-NNN.md` (when a completed improvement is moved to done)
+- `product-breakdown/06-evolution/evaluations/EVAL-YYYY-MM-DD-NNN.md` (when a finding is rejected or needs more evidence)
 
 Do not edit implementation files, active requirements, architecture decisions, tests, runtime prompts, or unrelated documentation.
 
 ## Persistence Rules
 
-1. Load `.opencode/dev_harness/product-breakdown/templates/improvement-backlog-overview-template.md` and `.opencode/dev_harness/product-breakdown/templates/improvement-candidate-template.md` when persistence is needed.
-2. Create `product-breakdown/06-evolution/candidates/`, `product-breakdown/06-evolution/selected/`, and `product-breakdown/06-evolution/done/` when missing.
+1. Load `.opencode/dev_harness/product-breakdown/templates/improvement-backlog-overview-template.md`, `.opencode/dev_harness/product-breakdown/templates/improvement-candidate-template.md`, and `.opencode/dev_harness/product-breakdown/templates/improvement-evaluation-template.md` when persistence is needed.
+2. Create `product-breakdown/06-evolution/candidates/`, `product-breakdown/06-evolution/selected/`, `product-breakdown/06-evolution/done/`, and `product-breakdown/06-evolution/evaluations/` when missing.
 3. Use the next available `IMP-NNN` from existing candidate files.
 4. Skip duplicate or substantially equivalent findings instead of writing another candidate.
 5. Update `product-breakdown/06-evolution/README.md` with the candidate table entry when writing a new candidate.
 6. When evidence supports it, the evaluator may also accept a recurring pattern across multiple tasks as a trigger (in addition to focused findings only).
+7. For `rejected` and `needs_more_evidence`, write an evaluation record to `product-breakdown/06-evolution/evaluations/EVAL-YYYY-MM-DD-NNN.md` using the evaluation template.
+8. Update `product-breakdown/06-evolution/README.md` with the evaluation record entry when writing a rejected or deferred disposition.
 
 Return one of:
 - `persisted`
@@ -55,6 +58,7 @@ Include:
 - duplicate check result
 - files written or updated, or `none`
 - candidate ID, or `not_applicable`
+- evaluation ID and evaluation file path for `rejected` or `needs_more_evidence`, or `not_applicable`
 - memory candidates written, rejected, or needing more evidence, when curator helpers were used
 - rejection or missing-evidence rationale, when relevant
 - structured feedback fields from `.opencode/dev_harness/workflow/control-policy.md`

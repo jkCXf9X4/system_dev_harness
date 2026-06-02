@@ -133,6 +133,7 @@ def test_improvement_stage_smoke(simple_project: Path, opencode_env: dict[str, s
 
 def test_focused_improvement_evaluator_is_scoped(simple_project: Path) -> None:
     prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-improvement-evaluator.md").lower()
+    reporter_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reporter.md").lower()
     control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
 
     assert "focused improvement evaluator" in prompt
@@ -140,17 +141,26 @@ def test_focused_improvement_evaluator_is_scoped(simple_project: Path) -> None:
     assert "product-breakdown/06-evolution/candidates/" in prompt
     assert "product-breakdown/06-evolution/selected/" in prompt
     assert "product-breakdown/06-evolution/done/" in prompt
+    assert "product-breakdown/06-evolution/evaluations/" in prompt
     assert "improvement-backlog-overview-template.md" in prompt
     assert "improvement-candidate-template.md" in prompt
+    assert "improvement-evaluation-template.md" in prompt
     assert "edit: allow" in prompt
     assert "do not edit implementation files" in prompt
     assert "persisted" in prompt
     assert "rejected" in prompt
     assert "needs_more_evidence" in prompt
+    assert "evaluation record" in prompt
     assert "evidence, impact, and scoped future task seed" in prompt
     assert '"orchestrator-memory-curator": allow' in prompt
     assert "focused improvement evaluation" in control_policy
     assert "backlog capture only" in control_policy
+    assert "disk-backed disposition" in control_policy
+    assert "product-breakdown/06-evolution/evaluations/" in control_policy
+    assert "evaluation records are future-reference artifacts" in control_policy
+    assert "without an evaluator disposition" in reporter_prompt
+    assert "rejected evaluation record" in reporter_prompt
+    assert "needs-more-evidence evaluation record" in reporter_prompt
 
 
 def test_decision_templates_are_generic_and_referenced(simple_project: Path) -> None:

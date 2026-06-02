@@ -8,4 +8,4 @@
 
 ## Use This Page For
 
-Use this page when you need the current backlog direction, backlog candidates under `product-breakdown/06-evolution/candidates/`, evolution decisions, known risks, or the history of recent documentation and workflow changes.
+Use this page when you need the current backlog direction, backlog candidates under `product-breakdown/06-evolution/candidates/`, rejected or deferred evaluations under `product-breakdown/06-evolution/evaluations/`, evolution decisions, known risks, or the history of recent documentation and workflow changes.

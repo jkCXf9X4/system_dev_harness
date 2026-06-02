@@ -89,6 +89,8 @@ Open questions alone do not require a pause. Only questions that materially chan
 
 Any working stage or directed helper may invoke `orchestrator-improvement-evaluator` when it finds a noteworthy improvement opportunity during its assigned work.
 
+Any non-`none` `improvement_candidates` value in a stage output must receive a disk-backed disposition before final reporting. The owning stage should invoke `orchestrator-improvement-evaluator` before returning the candidate when the finding is concrete enough to evaluate. If a candidate reaches final reporting without a disposition, the reporter must return `user_feedback_required: true` and request evaluator disposition instead of treating the suggestion as complete.
+
 Use the evaluator for focused findings only, not broad improvement discovery. A finding is backlog-worthy only when it has all of:
 
 - concrete evidence from the current work
@@ -96,7 +98,13 @@ Use the evaluator for focused findings only, not broad improvement discovery. A 
 
 The evaluator may persist qualifying candidates directly under `product-breakdown/06-evolution/candidates/`. Evaluator persistence is backlog capture only; it does not authorize scope expansion, current-task implementation, direct approval, or skipped checks.
 
-When evidence is missing or the finding duplicates an existing candidate, the evaluator returns `needs_more_evidence` or `rejected` instead of writing a candidate.
+When evidence is missing or the finding duplicates an existing candidate, the evaluator returns `needs_more_evidence` or `rejected` instead of writing a candidate file, but it must still write an evaluation record under `product-breakdown/06-evolution/evaluations/EVAL-YYYY-MM-DD-NNN.md`. Evaluation records are future-reference artifacts, not candidate backlog approval.
+
+Every evaluator disposition must include one of:
+
+- `persisted` with candidate ID and candidate file path
+- `rejected` with evaluation ID, evaluation file path, and rejection reason
+- `needs_more_evidence` with evaluation ID, evaluation file path, and missing-evidence rationale
 
 ## Workflow Memory
 

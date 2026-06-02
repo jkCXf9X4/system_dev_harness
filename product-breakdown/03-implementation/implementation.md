@@ -30,7 +30,7 @@ The implementation keeps each persistence mechanism in one canonical place so co
 | Runnable install, deploy, usage, verification, troubleshooting, and contributor procedures | `docs/` | Documentation updates; link to product-breakdown context instead of copying it. |
 | Agent roles, permissions, workflow-stage prompts, helper routing, and copied runtime behavior | `.opencode/agents/*.md`, `.opencode/instructions.md`, `.opencode/dev_harness/` | Package prompt and workflow-policy edits. |
 | Repo-local lessons, reusable patterns, decision pointers, trust metadata, and revalidation cues | `.opencode/dev_harness_memories/` | `orchestrator-reflection` triage and `orchestrator-memory-curator` writes. |
-| Improvement candidates and future work seeds | `product-breakdown/06-evolution/candidates/`, then selected/done evolution files | `orchestrator-improvement` or `orchestrator-improvement-evaluator`. |
+| Improvement candidates and future work seeds | Accepted candidates in `product-breakdown/06-evolution/candidates/`, then selected/done evolution files; rejected or deferred suggestions in `product-breakdown/06-evolution/evaluations/` | `orchestrator-improvement` or `orchestrator-improvement-evaluator`. |
 | Current task evidence, work orders, verification output, review findings, waivers, and final reports | Active stage outputs; reconcile durable facts into the owning artifact before completion | Owning stage for the active run. |
 | External research claims and source notes | `knowledge/agent-reasoning/` plus cited decisions in `product-breakdown/` | Research-backed product work. |
 | Skills, plugins, and connector capabilities | Operator environment unless an accepted product decision changes the package | Product decisions only; do not add agent `SKILLS` declarations without superseding AD-004. |
@@ -51,7 +51,7 @@ If a change creates information that crosses these boundaries, update the owning
 - `orchestrator-memory` retrieves task-relevant workflow memory without editing it.
 - `orchestrator-memory-curator` may edit only workflow memory files and only for evidenced durable memory candidates.
 - `orchestrator-improvement` exists to explore improvement opportunities and persist backlog candidates, not to implement them.
-- `orchestrator-improvement-evaluator` evaluates focused findings raised by working agents and persists qualifying backlog candidates without expanding the current task.
+- `orchestrator-improvement-evaluator` evaluates focused findings raised by working agents, persists qualifying backlog candidates, and writes rejected or deferred dispositions to evaluation records without expanding the current task.
 
 ## Stage Map
 
@@ -71,7 +71,7 @@ If a change creates information that crosses these boundaries, update the owning
 | Research | `.opencode/agents/orchestrator-researcher.md` | no | no | Gathers external documentation or dependency context. |
 | Memory curation | `.opencode/agents/orchestrator-memory-curator.md` | yes | yes | Evaluates evidenced repeatable findings and persists only durable workflow memory under `.opencode/dev_harness_memories/`. |
 | Improvement | `.opencode/agents/orchestrator-improvement.md` | yes | no | Produces and persists backlog-ready cleanup, refactoring, pattern, module responsibility, or tuning candidates under the evolution backlog only. |
-| Focused improvement evaluation | `.opencode/agents/orchestrator-improvement-evaluator.md` | yes | yes | Evaluates one noteworthy finding raised by a working agent and persists it only when it has evidence, impact, and a scoped future task seed. |
+| Focused improvement evaluation | `.opencode/agents/orchestrator-improvement-evaluator.md` | yes | yes | Evaluates one noteworthy finding raised by a working agent, persists qualifying candidates, and writes rejected or deferred evaluation records. |
 
 ## Product Breakdown Context
 

@@ -24,9 +24,11 @@ Place the overview at the repository's chosen evolution location:
 product-breakdown/06-evolution/candidates/   — proposed candidates
 product-breakdown/06-evolution/selected/     — selected for implementation
 product-breakdown/06-evolution/done/         — completed improvements
+product-breakdown/06-evolution/evaluations/  — rejected or deferred suggestions
 ```
 
 Each candidate lives in its own file under the appropriate lifecycle folder.
+Rejected or deferred suggestions live as evaluation records, not candidates.
 
 ## Candidates (Proposed)
 
@@ -45,6 +47,12 @@ Each candidate lives in its own file under the appropriate lifecycle folder.
 | File | ID | Theme | Completed Date | Implementation Reference |
 | --- | --- | --- | --- | --- |
 | `done/IMP-NNN.md` | IMP-NNN | <theme> | <date> | <changelog or PR link> |
+
+## Evaluations (Rejected / Deferred)
+
+| File | ID | Finding | Disposition | Reason |
+| --- | --- | --- | --- | --- |
+| `evaluations/EVAL-YYYY-MM-DD-NNN.md` | EVAL-YYYY-MM-DD-NNN | <finding> | Rejected / Needs More Evidence | <reason> |
 
 ## Summary
 

@@ -9,6 +9,7 @@ This directory hosts the three-stage improvement lifecycle for continuous improv
   candidates/   — Proposed improvements not yet selected for development
   selected/     — Improvements approved and waiting or being implemented
   done/         — Historical tracking of completed improvements
+  evaluations/  — Rejected or deferred improvement suggestions kept for future reference
   changelog.md  — Notable changes over time
   risks.md      — Known risks, tradeoffs, and open concerns
   roadmap.md    — Planned future work and sequencing
@@ -20,6 +21,8 @@ This directory hosts the three-stage improvement lifecycle for continuous improv
 2. **Selected** (`selected/`): A candidate that has been approved for implementation via a scoped task contract. The candidate file is added here (or symlinked/moved) when contract creation triggers the transition.
 3. **Done** (`done/`): An improvement whose implementation is verified complete. The file is moved here for historical tracking.
 
+Rejected or deferred suggestions are stored under `evaluations/` so future agents can inspect why a suggestion did not become a candidate without polluting the candidate backlog.
+
 ## Transition Triggers
 
 | Transition | Trigger | Responsible Stage |
@@ -30,6 +33,10 @@ This directory hosts the three-stage improvement lifecycle for continuous improv
 ## Candidates
 
 No active candidates remain.
+
+## Evaluations
+
+No rejected or deferred evaluations are currently recorded.
 
 ## Done
 
@@ -47,3 +54,4 @@ No active candidates remain.
 
 - Improvement overview template: `.opencode/dev_harness/product-breakdown/templates/improvement-backlog-overview-template.md`
 - Per-candidate template: `.opencode/dev_harness/product-breakdown/templates/improvement-candidate-template.md`
+- Evaluation template: `.opencode/dev_harness/product-breakdown/templates/improvement-evaluation-template.md`

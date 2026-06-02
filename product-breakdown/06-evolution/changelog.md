@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-06-02
+
+- Added disk-backed focused improvement dispositions: accepted findings remain candidates, while rejected or needs-more-evidence suggestions are recorded under `product-breakdown/06-evolution/evaluations/`.
+
 ## 2026-06-01
 
 - Implemented IMP-001 through IMP-005 by adding workflow-memory trust metadata, curation taxonomy, durable-memory boundaries, memory hygiene reporting, and procedural-pattern guidance.
