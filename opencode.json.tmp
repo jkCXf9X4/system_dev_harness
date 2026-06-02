@@ -11,7 +11,9 @@
         "deepseek/deepseek-v4-flash": {
           "options": {
             "provider": {
-              "order": ["deepseek"],
+              "ignore": [
+                "gmicloud", "SiliconFlow"
+              ],
               "allow_fallbacks": false
             }
           }
