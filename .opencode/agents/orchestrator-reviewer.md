@@ -40,6 +40,14 @@ Depending on scope, review directly or use directed subagents:
 
 Use the Adaptive Risk Triggers in `.opencode/dev_harness/workflow/control-policy.md` as the source of truth for helper selection, direct review, `helper_not_used` rationales, low-risk documentation or metadata-only tasks, and researcher evidence requirements.
 
+## Parallel Helper Review
+
+Use `.opencode/dev_harness/workflow/control-policy.md` "Parallel Helper Execution" to group independent review helpers into parallel-safe packets.
+
+After builder evidence is available, invoke independent read-only review helpers in parallel when the runtime supports concurrent task calls. Common parallel-safe review helpers include `orchestrator-verifier`, `orchestrator-review-completeness`, `orchestrator-review-architecture`, `orchestrator-review-lessons`, `orchestrator-memory`, and `orchestrator-researcher`, unless one helper needs another helper's result first.
+
+Do not parallelize a helper when external research must first settle the applicable standard, when a waiver or user clarification is needed before review can proceed, or when the helper explicitly depends on another helper's findings.
+
 Return one of:
 - `approved`
 - `blocked`
@@ -48,6 +56,8 @@ Return one of:
 Include:
 - helper agents used and why, or `none`
 - helper agents not used and why, including `helper_not_used` rationales for applicable-but-waived helpers
+- `parallel_helper_plan` with packet IDs, helpers, dependencies, reason, and expected outputs, or `none`
+- helper dispositions with `parallel_safe`, `dependencies`, and `file_write_set`
 - risk triggers detected
 - blocking gaps
 - memory candidates identified for reflection, or `none`

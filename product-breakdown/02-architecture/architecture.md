@@ -39,11 +39,11 @@ guarded delivery:
 | Architecture docs | Record control-flow boundaries, permissions, evidence expectations, and design quality goals. |
 | Technical decisions | Explain why the current structure exists. |
 | Workflow memory | Provide versioned lessons, reusable patterns, decision pointers, and trust metadata under `.opencode/dev_harness_memories/`. |
-| Planning work order | Packages contract, guardrails, checks, feedback needs, and deferred improvement candidates for implementation. |
+| Planning work order | Packages contract, guardrails, checks, feedback needs, parallel-safe helper packet evidence, and deferred improvement candidates for implementation. |
 | Handoff section | Provides an external or manual coding brief inside the planner work order only when needed. |
 | Builder | Applies approved changes and may use directed helpers for build errors, scoped cleanup, documentation updates, information hygiene, and research. |
 | Cleanup helper | Performs builder-owned cleanup passes for references, trackers, duplicate or superseded content, orphaned artifacts, links, and traceability inside the approved scope. |
-| Reviewer | Coordinates focused checks, independent review helpers, and the completion gate. |
+| Reviewer | Coordinates focused checks, independent review helpers, parallel-safe review packets, and the completion gate. |
 | Review helpers | Independently review contract completeness, verification adequacy, architecture, code quality, cleanliness, information hygiene, and lessons. |
 | Completion gate | Computes approved, blocked, or waiver-required outcomes inside the reviewer stage. |
 | Reflection | Reviews the completed run and owns final durable-memory incorporation triage before reporting. |
@@ -66,12 +66,12 @@ guarded delivery:
 - Pre-implementation discovery is a directed helper owned by `orchestrator-planner`.
 - The orchestrator is not a preliminary implementation, discovery, classification, planning, or evaluation layer.
 - The primary orchestrator has no file read, search, list, edit, or shell permissions; it may invoke only top-level planner, builder, reviewer, reflection, reporter, and improvement entrypoint agents.
-- Planner classifies the request, resolves uncertainty, and decides whether to plan directly or invoke directed planning helpers using adaptive risk triggers.
+- Planner classifies the request, resolves uncertainty, and decides whether to plan directly or invoke directed planning helpers using adaptive risk triggers. Independent planner helpers should be grouped into parallel-safe packets when their inputs are available and their outputs do not depend on each other.
 - Contract, architecture, and lessons prompts are planner-owned helpers and avoid broad rediscovery unless their prompt explicitly allows focused reads.
 - Test obligations, product-breakdown placement, traceability, and durable product behavior impact are planner-owned work-order sections rather than separate planning-agent handoffs.
 - The builder agent and builder-owned edit helpers are the only agents meant to edit implementation files.
 - `orchestrator-cleanup` is a builder-owned edit helper for cleanup caused by the approved change; it may patch references, update status trackers and indexes, reconcile duplicates or superseded content, remove orphaned artifacts, and report cleanup evidence without expanding scope.
-- Reviewer selects read-only review helpers using adaptive risk triggers; low-risk tasks may be reviewed directly with an explicit rationale.
+- Reviewer selects read-only review helpers using adaptive risk triggers; independent review helpers should be grouped into parallel-safe packets after builder evidence is available. Low-risk tasks may be reviewed directly with an explicit rationale.
 - Every top-level stage and directed helper can request user feedback, report out-of-scope improvement candidates, and use the researcher when external source material is needed. Dependency, API, framework, standard, version, or documentation uncertainty requires researcher evidence before approval unless waived.
 - The workflow should remain inspectable without a hidden Python runtime.
 - Persistent lesson memory lives in versioned markdown, not in ephemeral conversation state.

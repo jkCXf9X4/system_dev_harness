@@ -3,6 +3,7 @@
 The workflow package must satisfy these high-level acceptance criteria:
 
 - Every guarded workflow run produces a planner-owned work order with verifiable checks.
+- Planner and reviewer stages identify parallel-safe helper packets for independent helper work and preserve dependencies, expected outputs, and file write sets.
 - Every change is independently reviewed before completion.
 - Every completed guarded workflow run performs final reflection before reporting so durable memory incorporation is explicitly accepted, rejected, deferred, or marked not applicable.
 - Workflow memory includes trust metadata, revalidation cues, and an explicit boundary between durable memory, task-local evidence, run history, and improvement backlog items.

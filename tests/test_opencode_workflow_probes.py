@@ -698,6 +698,37 @@ def test_adaptive_risk_triggers_drive_helper_selection(simple_project: Path) -> 
     assert "may not approve external claims without cited researcher evidence or a waiver" in control_policy
 
 
+def test_planner_and_reviewer_support_parallel_helper_packets(simple_project: Path) -> None:
+    control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
+    planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
+    reviewer_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
+
+    assert "parallel helper execution" in control_policy
+    assert "parallel_helper_plan" in control_policy
+    assert "parallel_safe: true|false" in control_policy
+    assert "file_write_set" in control_policy
+    assert "do not parallelize helper work" in control_policy
+    assert "external research must decide" in control_policy
+
+    assert "parallel helper planning" in planner_prompt
+    assert "parallel-safe packets" in planner_prompt
+    assert "invoke them in parallel" in planner_prompt
+    assert "orchestrator-discovery" in planner_prompt
+    assert "orchestrator-contract" in planner_prompt
+    assert "orchestrator-architecture" in planner_prompt
+    assert "parallel_helper_plan" in planner_prompt
+    assert "file_write_set" in planner_prompt
+
+    assert "parallel helper review" in reviewer_prompt
+    assert "parallel-safe review helpers" in reviewer_prompt
+    assert "invoke independent read-only review helpers in parallel" in reviewer_prompt
+    assert "orchestrator-verifier" in reviewer_prompt
+    assert "orchestrator-review-completeness" in reviewer_prompt
+    assert "orchestrator-review-architecture" in reviewer_prompt
+    assert "parallel_helper_plan" in reviewer_prompt
+    assert "file_write_set" in reviewer_prompt
+
+
 def test_shared_review_output_policy_is_referenced(simple_project: Path) -> None:
     review_output_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/review-output.md").lower()
     lessons_memory = read_prompt(simple_project, ".opencode/dev_harness_memories/lessons.md").lower()

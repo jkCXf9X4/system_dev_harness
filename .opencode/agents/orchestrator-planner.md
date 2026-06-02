@@ -75,6 +75,14 @@ Produce the builder work order yourself from the selected helper outputs. Do not
 
 Use the Adaptive Risk Triggers in `.opencode/dev_harness/workflow/control-policy.md` as the source of truth for helper selection, direct planning, `helper_not_used` rationales, and low-risk documentation or metadata-only tasks.
 
+## Parallel Helper Planning
+
+Use `.opencode/dev_harness/workflow/control-policy.md` "Parallel Helper Execution" to group independent planning helpers into parallel-safe packets.
+
+When multiple selected helpers can inspect the same request and repository context without waiting for each other's output, invoke them in parallel when the runtime supports concurrent task calls. Common parallel-safe planning helpers include `orchestrator-discovery`, `orchestrator-contract`, `orchestrator-architecture`, `orchestrator-lessons`, `orchestrator-memory`, and `orchestrator-researcher`, unless one helper's output is needed to scope another.
+
+Do not parallelize helper calls when clarification is required, when a helper depends on another helper's findings, or when external research must first identify the applicable standard, version, API, or documentation target.
+
 ## Revision Input
 
 When invoked with `revision=true`, the planner receives an additional input block containing:
@@ -91,6 +99,8 @@ Return:
 - the minimum staged plan
 - helper agents used and why, or `none`
 - helper agents not used and why, including `helper_not_used` rationales for applicable-but-waived helpers
+- `parallel_helper_plan` with packet IDs, helpers, dependencies, reason, and expected outputs, or `none`
+- helper dispositions with `parallel_safe`, `dependencies`, and `file_write_set`
 - workflow memory entries applied, or `none`
 - risk triggers detected
 - `clarification_status`

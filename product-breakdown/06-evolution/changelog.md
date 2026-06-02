@@ -3,6 +3,7 @@
 ## 2026-06-02
 
 - Added disk-backed focused improvement dispositions: accepted findings remain candidates, while rejected or needs-more-evidence suggestions are recorded under `product-breakdown/06-evolution/evaluations/`.
+- Added planner and reviewer parallel helper packet guidance so independent planning and review helpers can run concurrently when their dependencies allow it.
 
 ## 2026-06-01
 

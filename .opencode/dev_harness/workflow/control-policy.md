@@ -165,6 +165,34 @@ The reporter relays the reflection-owned memory hygiene summary and any memory I
 
 Use helper agents based on task risk instead of forcing the full helper set for every task. A top-level stage may handle a task itself only when no trigger below applies, or when it returns an explicit `helper_not_used` rationale for each applicable-but-waived helper.
 
+## Parallel Helper Execution
+
+Planner and reviewer helpers should be grouped into parallel-safe helper packets whenever their inputs are available and their outputs do not depend on each other.
+
+Parallel-safe planner helpers are read-only and can run together when they inspect different concerns from the same user request and repository evidence. Typical parallel planning packets include discovery, contract, architecture, lessons, memory, and researcher, unless one helper explicitly depends on another helper's output.
+
+Parallel-safe reviewer helpers are read-only and can run together after builder evidence is available. Typical parallel review packets include verifier, review-completeness, review-architecture, review-lessons, memory, and researcher, unless a check needs another helper's result first.
+
+Do not parallelize helper work when:
+
+- a helper must consume another helper's output before it can produce useful evidence
+- two helpers would write or mutate the same artifact
+- the task requires a user clarification or waiver before helper work is meaningful
+- external research must decide which files, checks, or standards another helper should inspect
+
+Planner and reviewer outputs should include:
+
+```text
+parallel_helper_plan:
+- packet_id: <short-id>
+  helpers: <helper agents that can run together>
+  dependencies: <packet IDs or none>
+  reason: <why this packet is parallel-safe>
+  expected_outputs: <evidence each helper must return>
+```
+
+Each helper disposition should report `parallel_safe: true|false`, `dependencies`, and `file_write_set`. Read-only helpers normally use `file_write_set: none`.
+
 Planner triggers:
 
 - Code changes require `orchestrator-discovery` and `orchestrator-contract`.
