@@ -139,6 +139,7 @@ def test_candidate_capture_uses_full_guarded_chain(simple_project: Path) -> None
     assert "candidate-capture.md" in reporter_prompt
     assert "both workflow modes use the same guarded chain" in control_policy
     assert "builder is the only workflow stage that persists improvement backlog artifacts" in candidate_policy
+    assert "should write backlog-worthy candidates to file before returning" in candidate_policy
     assert "do not create a placeholder file" in candidate_policy
 
 
@@ -153,6 +154,7 @@ def test_candidate_capture_has_single_persistence_owner(simple_project: Path) ->
     assert "candidate-capture.md" in control_policy
     assert "builder is the only workflow stage that persists improvement backlog artifacts" in candidate_policy
     assert "persist improvement backlog artifacts instead of implementation changes" in builder_prompt
+    assert "save every backlog-worthy candidate to disk before returning" in builder_prompt
     assert "request a follow-up `workflow_mode: candidate_capture` run" in reporter_prompt
     assert "evaluator" not in reporter_prompt
 

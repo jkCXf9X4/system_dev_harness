@@ -12,7 +12,7 @@ The workflow package must satisfy these high-level acceptance criteria:
 - Reviewer findings are actionable (blocked findings route back to planner per the revision loop).
 - Stale references, status trackers, duplicates, superseded content, unresolved links, traceability, and orphaned artifacts are reconciled before completion.
 - Repo-state review tasks either produce trace-preserving updates or a reviewed no-change/backlog result that records stale, duplicated, conflicting, or orphaned findings.
-- Improvement candidates are persisted to `product-breakdown/06-evolution/candidates/` by builder candidate-capture mode without changing implementation files.
+- Backlog-worthy improvement candidates are persisted to `product-breakdown/06-evolution/candidates/` by builder candidate-capture mode before the builder returns, without changing implementation files.
 - Every deliberate candidate-capture run receives a reviewed disposition before final reporting: accepted candidate or no candidate.
 - Bug, fix, regression, feature, and documentation subjects use `workflow_mode: candidate_capture` when the user asks for proposal, evaluation, candidate, future-task-seed, or backlog capture instead of implementation.
 - Working agents can surface incidental improvement candidates without persisting them; deliberate persistence requires a candidate-capture work order.

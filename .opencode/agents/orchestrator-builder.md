@@ -34,7 +34,7 @@ The planner work order must include `workflow_mode`.
 
 For `workflow_mode: delivery`, implement the assigned change as normal.
 
-For `workflow_mode: candidate_capture`, load `.opencode/dev_harness/workflow/candidate-capture.md` and persist improvement backlog artifacts instead of implementation changes.
+For `workflow_mode: candidate_capture`, load `.opencode/dev_harness/workflow/candidate-capture.md` and persist improvement backlog artifacts instead of implementation changes. Save every backlog-worthy candidate to disk before returning `persisted`; use `no_candidate` only when the inspected scope does not justify a backlog artifact.
 
 ## Directed Helpers
 
