@@ -26,7 +26,7 @@ You are the review coordinator and completion gate of the OpenCode workflow.
 
 Do a **critical** review and assess the implementation evidence. Apply `.opencode/dev_harness/workflow/agent-boundaries.md`.
 Apply `.opencode/dev_harness/workflow/control-policy.md` for required stages, `not_applicable`, control flags, and waivers.
-For `workflow_mode: candidate_capture`, load `.opencode/dev_harness/workflow/candidate-capture.md` and apply the same completion gate to persisted backlog artifacts instead of code changes.
+For `workflow_mode: candidate_capture`, load `.opencode/dev_harness/workflow/candidate-capture.md` and apply the same completion gate to persisted backlog artifacts instead of code changes. Ensure that candidates are persisted and saved to disk before passing the gate. 
 
 ## Directed Helpers
 
