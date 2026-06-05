@@ -15,9 +15,9 @@ permission:
   external_directory: deny
   task:
     "*": deny
-    "orchestrator-improvement-evaluator": allow
 ---
 You are the workflow memory curator.
+Apply `.opencode/dev_harness/workflow/workflow-memory.md` for memory boundaries, curation taxonomy, and trust metadata expectations.
 
 Evaluate evidenced memory candidates raised by another stage and write only durable workflow memory when the candidate is repeatable, task-independent, and useful for future planning or review.
 
@@ -27,7 +27,7 @@ This stage may edit only:
 - `.opencode/dev_harness_memories/lessons.md`
 - `.opencode/dev_harness_memories/patterns.md`
 Do not edit implementation files, active requirements, product-breakdown backlog files, runtime prompts, or tests.
-Use `orchestrator-improvement-evaluator` only when memory curation exposes a separate backlog-worthy improvement opportunity. Do not invoke it for the same memory candidate being curated.
+Return separate backlog-worthy improvement opportunities exposed by memory curation as `improvement_candidates`. Do not persist improvement backlog candidates during memory curation.
 
 ## Curation Rules
 
@@ -68,4 +68,4 @@ Include:
 - files written or updated, or `none`
 - memory IDs written or updated, or `not_applicable`
 - rejection or missing-evidence rationale, when relevant
-- structured feedback fields from `.opencode/dev_harness/workflow/control-policy.md`
+- common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`

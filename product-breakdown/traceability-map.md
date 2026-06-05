@@ -30,16 +30,16 @@ Vision.md (00-intent)
 | Implementation | orchestrator.md, orchestrator-*.md agents |
 | Verification | Reviewer-coordinated verifier helper, review helpers, completion gate, final reflection |
 
-### Continuous Improvement
+### Candidate Capture
 
 | Step | Trace |
 | --- | --- |
 | Intent | Vision.md — UC-012 |
 | Product | PC-009 |
-| Architecture | Architecture.md — Improvement workflow |
+| Architecture | Architecture.md — Candidate capture mode |
 | Decisions | ED-001 (backlog location), IMD-002 (product breakdown guidance in payload) |
-| Implementation | orchestrator-improvement.md |
-| Verification | Improvement smoke test and backlog path assertions |
+| Implementation | orchestrator-planner.md, orchestrator-builder.md, reviewer helpers |
+| Verification | Candidate-capture workflow-mode probes and backlog path assertions |
 | Evolution | `product-breakdown/06-evolution/` when present, plus `candidates/`, `selected/`, `done/`, `decisions/`, `roadmap.md`, `risks.md`, and `changelog.md` |
 
 ### Repo-Local Workflow Memory

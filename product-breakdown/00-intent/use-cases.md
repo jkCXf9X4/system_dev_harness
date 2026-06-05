@@ -9,7 +9,7 @@
 - Software architect: protects modularity, simple solutions, readability, and coherent module responsibilities.
 - Test architect: defines focused verification strategy and expected evidence.
 - Product architect: protects product behavior, product-breakdown placement, durable decisions, and traceability.
-- Improvement agent: explores codebase improvement opportunities and turns them into backlog candidates.
+- Candidate-capture mode: uses the guarded planner, builder, reviewer, reflection, and reporter chain to turn improvement opportunities into backlog candidates.
 - Builder: makes the approved changes and coordinates build-error, cleanup, documentation, and research helpers when needed.
 - OpenCode build agent: handles direct operator-chosen implementation work when invoked explicitly outside the orchestrator path.
 - Reviewer: coordinates verification, independent review helpers, and the completion gate.
@@ -286,7 +286,7 @@ Primary value:
 
 ## UC-012: Drive Continuous Codebase Improvement
 
-Goal: run a separate exploratory workflow that identifies improvement work and feeds a backlog without polluting contained feature implementation.
+Goal: run the guarded workflow in candidate-capture mode to identify improvement work and feed a backlog without polluting contained feature implementation.
 
 Input:
 
@@ -309,7 +309,7 @@ Output:
 - improvement rationale and priority
 - follow-up contract seeds
 - backlog-ready improvement entries
-- rejected or deferred evaluation records for suggestions that should be remembered but not accepted as candidates yet
+- no-candidate rationale when deliberate candidate capture finds no backlog-worthy item
 
 Primary value:
 
@@ -317,9 +317,9 @@ Primary value:
 
 Workflow boundary:
 
-- continuous improvement discovery may persist backlog entries, but must not edit implementation files
-- focused improvement evaluation must give each non-empty improvement suggestion a disk-backed disposition: accepted candidate, rejected evaluation, or needs-more-evidence evaluation
-- route selection is based on requested outcome, so a bug/fix/regression subject still uses improvement routing when the user asks for candidate capture rather than implementation
+- candidate-capture mode may persist backlog entries, but must not edit implementation files
+- every deliberate candidate-capture run must receive a reviewed disposition: accepted candidate or reviewed no-candidate result
+- route selection is based on requested outcome, so a bug/fix/regression subject still uses candidate-capture mode when the user asks for candidate capture rather than implementation
 - candidates must not be implemented inside a contained feature task unless they are explicitly part of that task contract
 - accepted candidates become backlog entries or future task contracts before code changes begin
 

@@ -108,59 +108,53 @@ def test_direct_build_agent_does_not_inherit_orchestrator_prompt(simple_project:
     assert "do not invoke planner, builder, reviewer, reporter" in package_instructions
 
 
-def test_improvement_stage_smoke(simple_project: Path, opencode_env: dict[str, str]) -> None:
-    status, output = run_opencode(
-        simple_project,
-        opencode_env,
-        agent="orchestrator-improvement",
-        title="improvement_stage",
-        prompt="Find and persist backlog-ready improvement candidates in this workflow package.",
-        timeout=60,
-    )
-
-    assert status in {0, 124}
-    assert "orchestrator-improvement" in output.lower()
-    prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-improvement.md")
-    assert "continuous improvement discovery stage" in prompt.lower()
-    assert "backlog-worthy improvement work" in prompt.lower()
-    assert "product-breakdown/06-evolution/candidates/" in prompt
-    assert "product-breakdown/06-evolution/selected/" in prompt
-    assert "product-breakdown/06-evolution/done/" in prompt
-    assert "edit: allow" in prompt
-    assert "may edit only improvement backlog artifacts" in prompt.lower()
-    assert "plans/backlog" not in prompt
-
-
-def test_focused_improvement_evaluator_is_scoped(simple_project: Path) -> None:
-    prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-improvement-evaluator.md").lower()
+def test_candidate_capture_uses_full_guarded_chain(simple_project: Path) -> None:
+    orchestrator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator.md").lower()
+    planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
+    builder_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-builder.md").lower()
+    reviewer_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
+    reflection_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reflection.md").lower()
     reporter_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reporter.md").lower()
     control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
+    candidate_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/candidate-capture.md").lower()
 
-    assert "focused improvement evaluator" in prompt
-    assert "one specific improvement finding" in prompt
-    assert "product-breakdown/06-evolution/candidates/" in prompt
-    assert "product-breakdown/06-evolution/selected/" in prompt
-    assert "product-breakdown/06-evolution/done/" in prompt
-    assert "product-breakdown/06-evolution/evaluations/" in prompt
-    assert "improvement-backlog-overview-template.md" in prompt
-    assert "improvement-candidate-template.md" in prompt
-    assert "improvement-evaluation-template.md" in prompt
-    assert "edit: allow" in prompt
-    assert "do not edit implementation files" in prompt
-    assert "persisted" in prompt
-    assert "rejected" in prompt
-    assert "needs_more_evidence" in prompt
-    assert "evaluation record" in prompt
-    assert "evidence, impact, and scoped future task seed" in prompt
-    assert '"orchestrator-memory-curator": allow' in prompt
-    assert "focused improvement evaluation" in control_policy
-    assert "backlog capture only" in control_policy
-    assert "disk-backed disposition" in control_policy
-    assert "product-breakdown/06-evolution/evaluations/" in control_policy
-    assert "evaluation records are future-reference artifacts" in control_policy
-    assert "without an evaluator disposition" in reporter_prompt
-    assert "rejected evaluation record" in reporter_prompt
-    assert "needs-more-evidence evaluation record" in reporter_prompt
+    assert '"orchestrator-improvement": allow' not in orchestrator_prompt
+    assert "workflow_mode: candidate_capture" in orchestrator_prompt
+    assert "same builder, reviewer, reflection, and reporter chain" in orchestrator_prompt
+
+    assert "`workflow_mode`: `candidate_capture`" in planner_prompt
+    assert "`route`: `guarded_chain`" in planner_prompt
+    assert "candidate-capture.md" in planner_prompt
+
+    assert "for `workflow_mode: candidate_capture`" in builder_prompt
+    assert "persist improvement backlog artifacts instead of implementation changes" in builder_prompt
+    assert "candidate-capture.md" in builder_prompt
+    assert "candidate-capture disposition" in builder_prompt
+
+    assert "for `workflow_mode: candidate_capture`" in reviewer_prompt
+    assert "same completion gate" in reviewer_prompt
+    assert "candidate-capture.md" in reviewer_prompt
+
+    assert "workflow_mode: candidate_capture" in reflection_prompt
+    assert "candidate-capture.md" in reporter_prompt
+    assert "both workflow modes use the same guarded chain" in control_policy
+    assert "builder is the only workflow stage that persists improvement backlog artifacts" in candidate_policy
+    assert "do not create a placeholder file" in candidate_policy
+
+
+def test_candidate_capture_has_single_persistence_owner(simple_project: Path) -> None:
+    builder_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-builder.md").lower()
+    reporter_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reporter.md").lower()
+    control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
+    candidate_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/candidate-capture.md").lower()
+
+    assert not (simple_project / ".opencode/agents/orchestrator-improvement.md").exists()
+    assert not (simple_project / ".opencode/agents/orchestrator-improvement-evaluator.md").exists()
+    assert "candidate-capture.md" in control_policy
+    assert "builder is the only workflow stage that persists improvement backlog artifacts" in candidate_policy
+    assert "persist improvement backlog artifacts instead of implementation changes" in builder_prompt
+    assert "request a follow-up `workflow_mode: candidate_capture` run" in reporter_prompt
+    assert "evaluator" not in reporter_prompt
 
 
 def test_decision_templates_are_generic_and_referenced(simple_project: Path) -> None:
@@ -220,8 +214,8 @@ def test_product_breakdown_usage_is_embedded_in_agent_workflow(simple_project: P
     assert "intent, product behavior, architecture, implementation, verification, operation, and evolution" in product_breakdown_readme
     assert "primary layer" in planner_prompt
     assert "planner work order" in verifier_prompt
-    assert "product-breakdown/" in verifier_prompt
-    assert "product-breakdown/" in completeness_prompt
+    assert "product-breakdown-work.md" in verifier_prompt
+    assert "product-breakdown-work.md" in completeness_prompt
     assert "product breakdown evidence" in gate_prompt
 
 
@@ -334,9 +328,10 @@ def test_agent_control_policy_closes_escape_hatches(simple_project: Path) -> Non
     assert "do not evaluate implementation evidence" in orchestrator_prompt
     assert "do not invoke directed helpers" in orchestrator_prompt
     assert "use only prior stage outputs, reviewer gate labels, and user decisions" in orchestrator_prompt
-    assert "call `orchestrator-improvement` when planner output explicitly declares `route: improvement`" in orchestrator_prompt
-    assert "requested_outcome: capture_candidate" in orchestrator_prompt
+    assert "workflow_mode: candidate_capture" in orchestrator_prompt
+    assert "orchestrator-builder" in orchestrator_prompt
     assert "workflow_type: improvement" not in orchestrator_prompt
+    assert "route: improvement" not in orchestrator_prompt
     assert "call `orchestrator-planner` again with the corrected outcome" in orchestrator_prompt
 
     assert "every listed top-level guarded workflow stage must run" in control_policy
@@ -366,9 +361,10 @@ def test_planner_routes_candidate_capture_by_requested_outcome(simple_project: P
     assert "`issue_kind`: bug, fix, regression" in planner_prompt
     assert "`requested_outcome`: `implement_now`" in planner_prompt
     assert "`requested_outcome`: `capture_candidate`" in planner_prompt
-    assert "`route`: `delivery`" in planner_prompt
-    assert "`route`: `improvement`" in planner_prompt
-    assert "a bug, fix, regression, feature, or documentation subject can still route to improvement" in planner_prompt
+    assert "`workflow_mode`: `delivery`" in planner_prompt
+    assert "`workflow_mode`: `candidate_capture`" in planner_prompt
+    assert "`route`: `guarded_chain`" in planner_prompt
+    assert "a bug, fix, regression, feature, or documentation subject can still use `workflow_mode: candidate_capture`" in planner_prompt
     assert "do not classify a candidate/backlog request as delivery only because the subject is a bug or fix" in planner_prompt
 
 
@@ -387,9 +383,10 @@ def test_top_level_flow_and_directed_helpers_are_explicit(simple_project: Path) 
         "orchestrator-builder",
         "orchestrator-reviewer",
         "orchestrator-reporter",
-        "orchestrator-improvement",
     ):
         assert f'"{top_level_stage}": allow' in orchestrator_prompt
+
+    assert '"orchestrator-improvement": allow' not in orchestrator_prompt
 
     for directed_helper in (
         "orchestrator-discovery",
@@ -405,7 +402,6 @@ def test_top_level_flow_and_directed_helpers_are_explicit(simple_project: Path) 
         "orchestrator-review-completeness",
         "orchestrator-review-lessons",
         "orchestrator-researcher",
-        "orchestrator-improvement-evaluator",
     ):
         assert f'"{directed_helper}": allow' not in orchestrator_prompt
 
@@ -414,6 +410,7 @@ def test_top_level_flow_and_directed_helpers_are_explicit(simple_project: Path) 
         "orchestrator-memory",
         "test planning",
         "product-breakdown placement",
+        "workflow_mode",
     ):
         assert helper in planner_prompt
 
@@ -470,10 +467,10 @@ def test_builder_cleanup_helper_is_scoped_and_wired(simple_project: Path) -> Non
     assert "approved builder work order" in cleanup_prompt
     assert "status trackers" in cleanup_prompt
     assert "duplicate, superseded, contradictory, or orphaned information" in cleanup_prompt
-    assert "preserve the `docs/` versus `product-breakdown/` boundary" in cleanup_prompt
-    assert "orchestrator-improvement-evaluator" in cleanup_prompt
-    assert "structured feedback fields" in cleanup_prompt
-    assert "do not broaden scope" in cleanup_prompt
+    assert "product-breakdown-work.md" in cleanup_prompt
+    assert "improvement_candidates" in cleanup_prompt
+    assert "stage-output-schema.md" in cleanup_prompt
+    assert "agent-boundaries.md" in cleanup_prompt
 
     assert "orchestrator-cleanup" in information_hygiene
     assert "status tracker updates" in information_hygiene
@@ -484,8 +481,10 @@ def test_builder_cleanup_helper_is_scoped_and_wired(simple_project: Path) -> Non
 
 def test_structured_feedback_protocol_is_shared(simple_project: Path) -> None:
     control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
+    stage_schema = read_prompt(simple_project, ".opencode/dev_harness/workflow/stage-output-schema.md").lower()
     agent_paths = [
         ".opencode/agents/orchestrator-planner.md",
+        ".opencode/agents/orchestrator-discovery.md",
         ".opencode/agents/orchestrator-builder.md",
         ".opencode/agents/orchestrator-reviewer.md",
         ".opencode/agents/orchestrator-reporter.md",
@@ -503,12 +502,68 @@ def test_structured_feedback_protocol_is_shared(simple_project: Path) -> None:
         "improvement_candidates",
         "research_requests",
     ):
-        assert field in control_policy
+        assert field in stage_schema
+
+    assert "stage-output-schema.md" in control_policy
+    assert "not_applicable" in stage_schema
+    assert "clarification_status" in stage_schema
 
     for agent_path in agent_paths:
         prompt = read_prompt(simple_project, agent_path).lower()
-        assert "structured feedback fields" in prompt
-        assert "control-policy.md" in prompt
+        assert "stage-output-schema.md" in prompt
+
+
+def test_shared_boundary_and_product_breakdown_policy_are_extracted(simple_project: Path) -> None:
+    agent_boundaries = read_prompt(simple_project, ".opencode/dev_harness/workflow/agent-boundaries.md").lower()
+    product_breakdown_work = read_prompt(simple_project, ".opencode/dev_harness/workflow/product-breakdown-work.md").lower()
+    implementation_doc = read_prompt(
+        Path(__file__).resolve().parents[1],
+        "product-breakdown/03-implementation/implementation.md",
+    ).lower()
+
+    for phrase in (
+        "read-only agents",
+        "editing agents",
+        "do not broaden scope",
+        "candidate_capture",
+    ):
+        assert phrase in agent_boundaries
+
+    for phrase in (
+        "loading rules",
+        "placement rules",
+        "required evidence",
+        "traceability updates",
+        "decision-record update",
+    ):
+        assert phrase in product_breakdown_work
+
+    for agent_path in (
+        ".opencode/agents/orchestrator.md",
+        ".opencode/agents/orchestrator-planner.md",
+        ".opencode/agents/orchestrator-builder.md",
+        ".opencode/agents/orchestrator-cleanup.md",
+        ".opencode/agents/orchestrator-contract.md",
+        ".opencode/agents/orchestrator-verifier.md",
+        ".opencode/agents/orchestrator-review-completeness.md",
+    ):
+        prompt = read_prompt(simple_project, agent_path).lower()
+        assert "agent-boundaries.md" in prompt
+
+    for agent_path in (
+        ".opencode/agents/orchestrator-planner.md",
+        ".opencode/agents/orchestrator-builder.md",
+        ".opencode/agents/orchestrator-cleanup.md",
+        ".opencode/agents/orchestrator-contract.md",
+        ".opencode/agents/orchestrator-verifier.md",
+        ".opencode/agents/orchestrator-review-completeness.md",
+    ):
+        prompt = read_prompt(simple_project, agent_path).lower()
+        assert "product-breakdown-work.md" in prompt
+
+    assert "stage-output-schema.md" in implementation_doc
+    assert "agent-boundaries.md" in implementation_doc
+    assert "product-breakdown-work.md" in implementation_doc
 
 
 def test_directed_agents_can_use_researcher(simple_project: Path) -> None:
@@ -529,7 +584,7 @@ def test_directed_agents_can_use_researcher(simple_project: Path) -> None:
         assert "orchestrator-researcher" in prompt
 
 
-def test_working_agents_can_trigger_focused_improvement_evaluation(simple_project: Path) -> None:
+def test_working_agents_surface_incidental_improvement_candidates_without_writer_duplication(simple_project: Path) -> None:
     agent_paths = [
         ".opencode/agents/orchestrator-planner.md",
         ".opencode/agents/orchestrator-builder.md",
@@ -548,18 +603,16 @@ def test_working_agents_can_trigger_focused_improvement_evaluation(simple_projec
         ".opencode/agents/orchestrator-review-lessons.md",
         ".opencode/agents/orchestrator-memory.md",
         ".opencode/agents/orchestrator-memory-curator.md",
-        ".opencode/agents/orchestrator-improvement.md",
     ]
 
     for agent_path in agent_paths:
-        prompt = read_prompt(simple_project, agent_path)
-        assert '"orchestrator-improvement-evaluator": allow' in prompt
+        prompt = read_prompt(simple_project, agent_path).lower()
+        assert "stage-output-schema.md" in prompt or "improvement_candidates" in prompt
 
     orchestrator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator.md")
-    evaluator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-improvement-evaluator.md")
-    assert '"orchestrator-improvement-evaluator": allow' not in orchestrator_prompt
-    assert '"orchestrator-researcher": allow' in evaluator_prompt
-    assert '"orchestrator-memory-curator": allow' in evaluator_prompt
+    assert "orchestrator-improvement" not in orchestrator_prompt
+    assert not (simple_project / ".opencode/agents/orchestrator-improvement.md").exists()
+    assert not (simple_project / ".opencode/agents/orchestrator-improvement-evaluator.md").exists()
 
 
 def test_workflow_memory_layer_is_versioned_and_scoped(simple_project: Path) -> None:
@@ -571,8 +624,8 @@ def test_workflow_memory_layer_is_versioned_and_scoped(simple_project: Path) -> 
     reviewer_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
     reflection_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reflection.md").lower()
     reporter_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reporter.md").lower()
-    evaluator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-improvement-evaluator.md").lower()
     control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
+    workflow_memory = read_prompt(simple_project, ".opencode/dev_harness/workflow/workflow-memory.md").lower()
     review_output = read_prompt(simple_project, ".opencode/dev_harness/workflow/review-output.md").lower()
     memories_readme = read_prompt(simple_project, ".opencode/dev_harness_memories/README.md").lower()
 
@@ -620,7 +673,6 @@ def test_workflow_memory_layer_is_versioned_and_scoped(simple_project: Path) -> 
     assert '"orchestrator-memory-curator": allow' not in reviewer_prompt
     assert '"orchestrator-memory-curator": allow' in reflection_prompt
     assert '"orchestrator-memory-curator": allow' not in reporter_prompt
-    assert '"orchestrator-memory-curator": allow' in evaluator_prompt
     assert "memory candidates identified for reflection" in reviewer_prompt
     assert "memory hygiene input evidence" in reviewer_prompt
     assert "memory hygiene input evidence" in review_output
@@ -628,18 +680,22 @@ def test_workflow_memory_layer_is_versioned_and_scoped(simple_project: Path) -> 
     assert "memory hygiene summary" in reflection_prompt
     assert "owner of final memory incorporation and memory hygiene synthesis" in reporter_prompt
     assert "reflection-owned memory hygiene summary" in reporter_prompt
-    assert "workflow memory" in control_policy
-    assert "current task state" in control_policy
-    assert "reflection owns the memory hygiene summary" in control_policy
-    assert "reporter relays the reflection-owned memory hygiene summary" in control_policy
+    assert "workflow-memory.md" in control_policy
+    assert "workflow-memory.md" in reflection_prompt
+    assert "workflow-memory.md" in reporter_prompt
+    assert "current task state" in workflow_memory
+    assert "reflection owns final memory-incorporation triage" in workflow_memory
+    assert "reporter relays the reflection-owned memory hygiene summary" in workflow_memory
 
 
-def test_surgical_goal_driven_pattern_is_embedded_in_workflow_roles(simple_project: Path) -> None:
+def test_workflow_roles_use_runtime_memory_guidance_without_prompt_design_comments(simple_project: Path) -> None:
     planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
     builder_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-builder.md").lower()
     cleanup_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-cleanup.md").lower()
     completeness_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-completeness.md").lower()
     architecture_review_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-architecture.md").lower()
+    memory_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-memory.md").lower()
+    lessons_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-lessons.md").lower()
 
     for prompt in (
         planner_prompt,
@@ -648,32 +704,25 @@ def test_surgical_goal_driven_pattern_is_embedded_in_workflow_roles(simple_proje
         completeness_prompt,
         architecture_review_prompt,
     ):
-        assert "pat-001" in prompt
-        assert ".opencode/dev_harness_memories/patterns.md" in prompt
+        assert "pat-001" not in prompt
+        assert "do not embed concrete memory entries" not in prompt
+        assert "memory guidance" in prompt or "memory helper output" in prompt
 
-    assert "state assumptions" in planner_prompt
-    assert "success criteria" in planner_prompt
-    assert "every changed line should trace to the work order" in builder_prompt
-    assert "no speculative abstractions" in builder_prompt
-    assert "cleanup only stale artifacts caused by the current change" in cleanup_prompt
-    assert "unrelated cleanup into an improvement candidate" in cleanup_prompt
-    assert "every changed line traces to the work order" in completeness_prompt
-    assert "speculative flexibility" in completeness_prompt
-    assert "speculative abstractions" in architecture_review_prompt
-    assert "complexity not required by the work order" in architecture_review_prompt
+    assert "dev_harness_memories/patterns.md" in memory_prompt
+    assert "relevant lessons, patterns, and decision pointers" in memory_prompt
+    assert "lessons" in lessons_prompt
 
 
 def test_adaptive_risk_triggers_drive_helper_selection(simple_project: Path) -> None:
-    control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
+    risk_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/adaptive-risk-triggers.md").lower()
     planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
     reviewer_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
 
     for content in (planner_prompt, reviewer_prompt):
-        assert "adaptive risk triggers" in content
-        assert "control-policy.md" in content
+        assert "adaptive-risk-triggers.md" in content
         assert "helper_not_used" in content
 
-    for content in (control_policy,):
+    for content in (risk_policy,):
         assert "adaptive" in content
         assert "triggers" in content
         assert "code changes require" in content
@@ -687,41 +736,37 @@ def test_adaptive_risk_triggers_drive_helper_selection(simple_project: Path) -> 
     assert "orchestrator-discovery" in planner_prompt
     assert "orchestrator-contract" in planner_prompt
     assert "orchestrator-memory" in planner_prompt
-    assert "test obligations" in control_policy
+    assert "test obligations" in risk_policy
     assert "product-breakdown placement" in planner_prompt
-    assert "requires_external_research: true" in control_policy
+    assert "requires_external_research: true" in risk_policy
 
     assert "orchestrator-verifier" in reviewer_prompt
     assert "orchestrator-review-completeness" in reviewer_prompt
     assert "memory candidates identified for reflection" in reviewer_prompt
     assert "acceptance criteria" in reviewer_prompt
-    assert "may not approve external claims without cited researcher evidence or a waiver" in control_policy
+    assert "may not approve external claims without cited researcher evidence or a waiver" in risk_policy
 
 
 def test_planner_and_reviewer_support_parallel_helper_packets(simple_project: Path) -> None:
-    control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
+    parallel_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/parallel-helper-execution.md").lower()
     planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
     reviewer_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
 
-    assert "parallel helper execution" in control_policy
-    assert "parallel_helper_plan" in control_policy
-    assert "parallel_safe: true|false" in control_policy
-    assert "file_write_set" in control_policy
-    assert "do not parallelize helper work" in control_policy
-    assert "external research must decide" in control_policy
+    assert "parallel helper execution" in parallel_policy
+    assert "parallel_helper_plan" in parallel_policy
+    assert "parallel_safe: true|false" in parallel_policy
+    assert "file_write_set" in parallel_policy
+    assert "do not parallelize helper work" in parallel_policy
+    assert "external research must decide" in parallel_policy
 
-    assert "parallel helper planning" in planner_prompt
-    assert "parallel-safe packets" in planner_prompt
-    assert "invoke them in parallel" in planner_prompt
+    assert "parallel-helper-execution.md" in planner_prompt
     assert "orchestrator-discovery" in planner_prompt
     assert "orchestrator-contract" in planner_prompt
     assert "orchestrator-architecture" in planner_prompt
     assert "parallel_helper_plan" in planner_prompt
     assert "file_write_set" in planner_prompt
 
-    assert "parallel helper review" in reviewer_prompt
-    assert "parallel-safe review helpers" in reviewer_prompt
-    assert "invoke independent read-only review helpers in parallel" in reviewer_prompt
+    assert "parallel-helper-execution.md" in reviewer_prompt
     assert "orchestrator-verifier" in reviewer_prompt
     assert "orchestrator-review-completeness" in reviewer_prompt
     assert "orchestrator-review-architecture" in reviewer_prompt

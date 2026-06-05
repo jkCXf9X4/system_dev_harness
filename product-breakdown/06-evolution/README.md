@@ -17,7 +17,7 @@ This directory hosts the three-stage improvement lifecycle for continuous improv
 
 ## Lifecycle
 
-1. **Candidate** (`candidates/`): Any improvement finding that is backlog-worthy but has no task contract yet. Persisted by the improvement workflow or focused evaluator.
+1. **Candidate** (`candidates/`): Any improvement finding that is backlog-worthy but has no task contract yet. Persisted by builder candidate-capture mode.
 2. **Selected** (`selected/`): A candidate that has been approved for implementation via a scoped task contract. The candidate file is added here (or symlinked/moved) when contract creation triggers the transition.
 3. **Done** (`done/`): An improvement whose implementation is verified complete. The file is moved here for historical tracking.
 
@@ -27,7 +27,7 @@ Rejected or deferred suggestions are stored under `evaluations/` so future agent
 
 | Transition | Trigger | Responsible Stage |
 |---|---|---|
-| `candidates/` → `selected/` | A task contract is created for the candidate | Planner / improvement workflow |
+| `candidates/` → `selected/` | A task contract is created for the candidate | Planner / builder candidate-capture workflow |
 | `selected/` → `done/` | Implementation is verified complete | Reviewer / verifier |
 
 ## Candidates

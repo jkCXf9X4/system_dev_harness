@@ -23,7 +23,7 @@ Benefits:
 Tradeoffs:
 
 - backlog content can go stale if it is not groomed
-- the directory layout must stay in sync with the improvement workflow prompts and templates
+- the directory layout must stay in sync with candidate-capture prompts, builder persistence rules, and templates
 
 ## Traceability
 

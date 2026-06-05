@@ -16,7 +16,6 @@ permission:
   task:
     "*": deny
     "orchestrator-researcher": allow
-    "orchestrator-improvement-evaluator": allow
 ---
 You are the lessons-memory stage of the OpenCode workflow.
 
@@ -27,7 +26,7 @@ Return:
 - prevention rules
 - completion checks
 - any new lesson candidates exposed by the task
-- structured feedback fields from `.opencode/dev_harness/workflow/control-policy.md`
+- common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
 Keep the list small and task-specific.
-Do not modify files.
+Do not modify files; use `.opencode/dev_harness/workflow/agent-boundaries.md`.

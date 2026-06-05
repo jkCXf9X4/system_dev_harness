@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-06-05
+
+- Consolidated candidate capture into the guarded planner -> builder -> reviewer -> reflection -> reporter chain using `workflow_mode: candidate_capture`.
+- Removed standalone improvement/evaluator agent ownership from the guarded workflow; builder now owns candidate persistence in candidate-capture mode.
+- Moved detailed candidate-capture rules into `.opencode/dev_harness/workflow/candidate-capture.md` so agents can load the policy only when relevant.
+- Split helper-trigger, parallel-helper, and workflow-memory rules out of `control-policy.md` into focused load-on-demand workflow policy files.
+- Extracted common stage output schema, agent read/write boundaries, and product-breakdown work rules into focused workflow policy files.
+
 ## 2026-06-02
 
 - Added disk-backed focused improvement dispositions: accepted findings remain candidates, while rejected or needs-more-evidence suggestions are recorded under `product-breakdown/06-evolution/evaluations/`.

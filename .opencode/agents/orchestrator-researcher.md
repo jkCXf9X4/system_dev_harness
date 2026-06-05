@@ -17,7 +17,6 @@ permission:
   external_directory: deny
   task:
     "*": deny
-    "orchestrator-improvement-evaluator": allow
 ---
 Use this agent for documentation lookups, dependency research, and other source gathering that should not touch the workspace.
 
@@ -29,6 +28,6 @@ Return:
 - relevant findings
 - confidence and gaps
 - recommended downstream use
-- structured feedback fields from `.opencode/dev_harness/workflow/control-policy.md`
+- common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
-Do not modify files.
+Do not modify files; use `.opencode/dev_harness/workflow/agent-boundaries.md`.

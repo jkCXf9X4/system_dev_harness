@@ -16,7 +16,7 @@ They are more stable than implementation plans and more concrete than vision sta
 | PC-006 | The workspace shall keep design rationale and touched artifacts traceable through Intent -> Product Commitments -> System Architecture -> Technical Decisions -> Implementation -> Verification, and shall reconcile stale, duplicate, superseded, or orphaned information before completion. | Vision, UC-010 |
 | PC-007 | The workspace shall express workflow behavior through repository-local OpenCode agents and config rather than hidden runtime code. | Vision, UC-001, UC-005, UC-006 |
 | PC-008 | The workspace shall require architecture work to evaluate modularity, simplicity, readability, and module responsibility fit. | Vision, UC-003, UC-011 |
-| PC-009 | The workspace shall run continuous improvement as a separate exploratory workflow that feeds backlog candidates without expanding contained feature diffs. | Vision, UC-009, UC-012 |
+| PC-009 | The workspace shall run candidate capture through the guarded chain so backlog candidates are planned, persisted, reviewed, reflected on, and reported without expanding contained feature diffs. | Vision, UC-009, UC-012 |
 | PC-010 | The workspace shall allow direct operator-chosen build execution outside the orchestrator path without letting the orchestrator omit guarded workflow stages. | Vision, UC-001, UC-013 |
 
 ## Trace Links

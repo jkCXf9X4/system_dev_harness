@@ -11,9 +11,9 @@ The workflow package must satisfy these high-level acceptance criteria:
 - Product-breakdown source docs define the canonical storage mechanism for product rationale, runtime prompts, dev harness context, workflow memory, improvement backlog items, task-local evidence, skills/plugins, and external research.
 - Reviewer findings are actionable (blocked findings route back to planner per the revision loop).
 - Stale references, status trackers, duplicates, superseded content, unresolved links, traceability, and orphaned artifacts are reconciled before completion.
-- Improvement candidates are persisted to `product-breakdown/06-evolution/candidates/` by the improvement workflow or focused evaluator without changing implementation files.
-- Every non-empty improvement suggestion receives a disk-backed disposition before final reporting: accepted candidate, rejected evaluation record, or needs-more-evidence evaluation record.
-- Bug, fix, regression, feature, and documentation subjects route to improvement when the user asks for proposal, evaluation, candidate, future-task-seed, or backlog capture instead of implementation.
-- Working agents can trigger focused improvement evaluation, while the primary orchestrator cannot invoke the focused evaluator directly.
+- Improvement candidates are persisted to `product-breakdown/06-evolution/candidates/` by builder candidate-capture mode without changing implementation files.
+- Every deliberate candidate-capture run receives a reviewed disposition before final reporting: accepted candidate or no candidate.
+- Bug, fix, regression, feature, and documentation subjects use `workflow_mode: candidate_capture` when the user asks for proposal, evaluation, candidate, future-task-seed, or backlog capture instead of implementation.
+- Working agents can surface incidental improvement candidates without persisting them; deliberate persistence requires a candidate-capture work order.
 - Product source information, scope, stable decisions, and traceability remain in `product-breakdown/`.
 - Runnable guidance, examples, install/deploy instructions, verification commands, and contributor workflow remain in `docs/` without duplicating product text.

@@ -8,6 +8,7 @@ Explore improvement opportunities around [area, module, workflow, or recurring p
 Goal:
 - Identify backlog-worthy improvements with evidence.
 - Do not edit code during this task.
+- If a backlog-worthy item is found, persist it to disk before returning it.
 
 Context:
 - Current pain: [slow workflow, repeated review issue, confusing ownership, flaky tests, etc.]
@@ -29,6 +30,7 @@ Return candidates with:
 - Suggested priority.
 - Backlog-ready task seed.
 - What must stay out of unrelated feature or bug-fix diffs.
+- File path for the written candidate.
 ```
 
 Best-practice notes:

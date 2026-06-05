@@ -13,19 +13,10 @@ guarded delivery:
   task intake
     -> OpenCode primary orchestrator (routing only)
     -> planner (request classification, uncertainty resolution, directed planning helpers)
-    -> builder (implementation, directed build helpers)
+    -> builder (implementation or candidate persistence, directed build helpers)
     -> reviewer (verification, independent review helpers, deterministic gate routing)
     -> reflection (memory incorporation triage)
     -> final control report
-
-  continuous improvement:
-  improvement intake
-    -> read-only discovery
-    -> pressure analysis
-    -> cleanup, refactoring, and other backlog-ready candidates
-    -> persist candidate files under product-breakdown/06-evolution/candidates/
-    -> reflection (memory incorporation triage)
-    -> final report
 ```
 
 ## Stable Concepts
@@ -41,7 +32,7 @@ guarded delivery:
 | Workflow memory | Provide versioned lessons, reusable patterns, decision pointers, and trust metadata under `.opencode/dev_harness_memories/`. |
 | Planning work order | Packages contract, guardrails, checks, feedback needs, parallel-safe helper packet evidence, and deferred improvement candidates for implementation. |
 | Handoff section | Provides an external or manual coding brief inside the planner work order only when needed. |
-| Builder | Applies approved changes and may use directed helpers for build errors, scoped cleanup, documentation updates, information hygiene, and research. |
+| Builder | Applies approved delivery changes or persists candidate-capture backlog artifacts, and may use directed helpers for build errors, scoped cleanup, documentation updates, information hygiene, and research. |
 | Cleanup helper | Performs builder-owned cleanup passes for references, trackers, duplicate or superseded content, orphaned artifacts, links, and traceability inside the approved scope. |
 | Reviewer | Coordinates focused checks, independent review helpers, parallel-safe review packets, and the completion gate. |
 | Review helpers | Independently review contract completeness, verification adequacy, architecture, code quality, cleanliness, information hygiene, and lessons. |
@@ -49,10 +40,10 @@ guarded delivery:
 | Reflection | Reviews the completed run and owns final durable-memory incorporation triage before reporting. |
 | Final report | Captures the final state, decision, and remaining gaps. |
 | Information hygiene | Reconciles new, changed, moved, and superseded information so the workflow does not leave duplicate, stale, or orphaned artifacts. |
-| Improvement workflow | Separately explores cleanup, refactoring, pattern, module responsibility, and tuning opportunities, then persists backlog candidates. |
-| Focused improvement evaluator | Evaluates one noteworthy finding raised during normal work and persists it only when evidence, impact, and a scoped future task seed are present. |
+| Candidate capture mode | Uses the normal planner, builder, reviewer, reflection, and reporter chain to explore improvement opportunities and persist backlog candidates as information artifacts. |
+| Incidental improvement candidate | One noteworthy out-of-scope finding raised during guarded work. It is reported as `improvement_candidates` and persisted only by a later candidate-capture work order. |
 | Memory helper | Retrieves task-relevant workflow memory without editing it. |
-| Memory curator | Evaluates evidenced repeatable findings and persists only durable workflow memory when invoked by reflection or the focused improvement evaluator. |
+| Memory curator | Evaluates evidenced repeatable findings and persists only durable workflow memory when invoked by reflection. |
 | Improvement backlog | Stores proposed or accepted improvement candidates before they become scoped implementation tasks. |
 | Dev harness context | Captures cross-project prompts, workflow policy, product-breakdown guidance, and supporting templates under `.opencode/dev_harness/`. |
 | Product breakdown guidance | Provides copied, load-on-demand context under `.opencode/dev_harness/product-breakdown/` so target-repo agents can structure layered artifacts without relying on source docs in the package repo. |
@@ -65,7 +56,7 @@ guarded delivery:
 - `opencode.json` selects the primary agent and loads the workflow instructions.
 - Pre-implementation discovery is a directed helper owned by `orchestrator-planner`.
 - The orchestrator is not a preliminary implementation, discovery, classification, planning, or evaluation layer.
-- The primary orchestrator has no file read, search, list, edit, or shell permissions; it may invoke only top-level planner, builder, reviewer, reflection, reporter, and improvement entrypoint agents.
+- The primary orchestrator has no file read, search, list, edit, or shell permissions; it may invoke only top-level planner, builder, reviewer, reflection, and reporter agents.
 - Planner classifies the request, resolves uncertainty, and decides whether to plan directly or invoke directed planning helpers using adaptive risk triggers. Independent planner helpers should be grouped into parallel-safe packets when their inputs are available and their outputs do not depend on each other.
 - Contract, architecture, and lessons prompts are planner-owned helpers and avoid broad rediscovery unless their prompt explicitly allows focused reads.
 - Test obligations, product-breakdown placement, traceability, and durable product behavior impact are planner-owned work-order sections rather than separate planning-agent handoffs.
@@ -76,7 +67,7 @@ guarded delivery:
 - The workflow should remain inspectable without a hidden Python runtime.
 - Persistent lesson memory lives in versioned markdown, not in ephemeral conversation state.
 - Workflow memory is versioned markdown under `.opencode/dev_harness_memories/`; it captures durable lessons, reusable patterns, and decision pointers with trust metadata, not current task state, backlog candidates, or broad run history.
-- `orchestrator-memory` is read-only and may be used by planner or reviewer stages for focused recall. `orchestrator-reflection` owns final memory-incorporation triage before reporting. `orchestrator-memory-curator` may be used by reflection or the focused improvement evaluator to persist durable memory candidates.
+- `orchestrator-memory` is read-only and may be used by planner or reviewer stages for focused recall. `orchestrator-reflection` owns final memory-incorporation triage before reporting. `orchestrator-memory-curator` may be used by reflection to persist durable memory candidates.
 - Dev harness context lives in versioned markdown under `.opencode/dev_harness/` so it can be copied between projects without losing structure.
 - Product breakdown guidance lives under `.opencode/dev_harness/product-breakdown/` because target repositories receive `.opencode/` but not this package's `product-breakdown/` tree.
 - Workflow policy guidance lives under `.opencode/dev_harness/workflow/` because target repositories receive `.opencode/` but not this package's `product-breakdown/` tree.
@@ -84,9 +75,8 @@ guarded delivery:
 - New information must either update an existing artifact, replace a superseded artifact, or declare a clear parent context and downstream destination.
 - Completion evidence must cover stale-reference cleanup, status tracker updates, duplicate-content reconciliation, orphaned-artifact handling, and traceability for changed information artifacts.
 - Architecture guardrails include modularity, simplicity, readability, and module responsibility fit, not only preservation of the current shape.
-- Improvement discovery is separate from contained implementation. It may inspect broadly, but it must not change code.
-- Improvement discovery may write only improvement backlog files under `product-breakdown/06-evolution/candidates/`.
-- Focused improvement evaluation may be triggered by working agents for one concrete finding; it may write only improvement backlog files and cannot expand the current task.
+- Candidate capture is separate from contained implementation scope but uses the same guarded chain. It may inspect broadly through planner-owned helpers, but builder may write only improvement backlog artifacts when `workflow_mode: candidate_capture`.
+- Incidental improvement findings may be returned by working agents as `improvement_candidates`; they are persisted only through a later candidate-capture work order.
 - Memory curation may be triggered for one evidenced memory candidate; it may write only workflow memory files and cannot expand the current task or replace improvement backlog persistence.
 - Improvement candidates must be traceable to current features, requirements, evidence, review findings, or observed module friction.
 - Improvement candidates must not be created as dangling artifacts; each one needs an explicit parent context and follow-up destination.
@@ -98,19 +88,19 @@ The deterministic completion gate produces `approved`, `blocked`, or `waiver_req
 
 The reviewer stage coordinates focused verification and independent reviewer nodes for the risks present in the task: contract satisfaction, acceptance criteria, test adequacy, architecture, code quality, cleanliness, completeness, information hygiene, and known mistakes. Architecture and code-quality checks also cover modularity, simplicity, readability, and module responsibility fit when relevant. The gate aggregates review findings and implementation evidence. Reviewer approval cannot silently override missing contract items, missing cleanup evidence, or missing required researcher evidence. Incomplete items require explicit waivers with reason, risk, owner, and follow-up action.
 
-After approval, accepted waiver, or completed improvement discovery, the reflection stage reviews the run for durable memory candidates before final reporting. Reflection can invoke memory curation for evidenced repeatable lessons or patterns, but it cannot override the gate, expand scope, or store task-local evidence, backlog candidates, or broad run history as memory.
+After approval or accepted waiver, the reflection stage reviews the run for durable memory candidates before final reporting. Reflection can invoke memory curation for evidenced repeatable lessons or patterns, but it cannot override the gate, expand scope, or store task-local evidence, backlog candidates, or broad run history as memory.
 
 ## Workflow Split
 
-The repository supports three related workflow branches:
+The repository supports one guarded chain with two planner-selected workflow modes, plus focused incidental evaluation:
 
-- Delivery workflow: normalize a bounded task, create a planner-owned work order, implement only the contracted change, review and verify it, and gate completion. Use this when the requested outcome is actual change now.
-- Improvement workflow: explore current features, requirements, implementation evidence, reviewer findings, module friction, bug/fix/regression subjects requested as candidate capture, and cleanup opportunities to produce backlog-ready improvement candidates. Use this when the requested outcome is proposal, recommendation, evaluation, discovery, documented candidate, future task seed, or backlog item.
-- Focused improvement evaluation: evaluate one concrete finding raised during delivery or improvement work and persist it only when it meets the evidence-plus-impact threshold.
+- Delivery mode: normalize a bounded task, create a planner-owned work order, implement only the contracted change, review and verify it, and gate completion. Use this when the requested outcome is actual change now.
+- Candidate-capture mode: use planner-owned helpers to explore current features, requirements, implementation evidence, reviewer findings, module friction, bug/fix/regression subjects requested as candidate capture, and cleanup opportunities; builder persists backlog-ready candidates as information artifacts; reviewer gates the persisted artifacts. Use this when the requested outcome is proposal, recommendation, evaluation, discovery, documented candidate, future task seed, or backlog item.
+- Incidental improvement surfacing: return one concrete finding raised during guarded work as `improvement_candidates`; persistence requires a later candidate-capture work order.
 
 The delivery workflow may report improvement candidates, but it must not absorb exploratory cleanup, refactoring, or pattern changes unless the contract explicitly includes them. This keeps diffs small, verification focused, and review evidence tied to the requested feature or fix.
 
-Route selection is based on requested outcome, not only issue subject. A bug, fix, regression, feature, or documentation subject can route to improvement when the user asks to capture a candidate instead of implementing the change.
+Route selection is based on requested outcome, not only issue subject. A bug, fix, regression, feature, or documentation subject can use candidate-capture mode when the user asks to capture a candidate instead of implementing the change.
 
 ## Persistence And Context Mechanisms
 
@@ -123,7 +113,7 @@ The workflow uses different storage mechanisms for different kinds of informatio
 | Runtime agent prompts | Agent role definitions, permissions, stage responsibilities, helper-routing rules, and copied workflow behavior. | Product source rationale, repo-local memory, or target-specific task state. | `.opencode/agents/*.md`, `.opencode/instructions.md` | Package maintainers; copied into target repos. |
 | Dev harness context | Reusable prompt templates, product-breakdown guidance, workflow policy, information hygiene rules, and review-output protocols. | Repo-local memory, improvement backlog candidates, or package-only product source docs. | `.opencode/dev_harness/` | Package maintainers; copied into target repos. |
 | Workflow memory | Durable lessons, reusable procedural patterns, decision pointers, trust metadata, and revalidation cues that should survive future runs in the same repo. | Current task state, broad transcripts, searchable history, unresolved improvement ideas, or facts that cannot be scoped and revalidated. | `.opencode/dev_harness_memories/` | Reflection plus memory curator, with reviewer visibility when memory influences the task. |
-| Improvement backlog | Cleanup, refactoring, pattern, module-responsibility, tuning, or future-task candidates that are evidenced but not part of the current delivery contract. | Durable memory lessons, task transcripts, or implementation changes. | `product-breakdown/06-evolution/candidates/`, then selected/done evolution files. | Improvement workflow or focused improvement evaluator. |
+| Improvement backlog | Cleanup, refactoring, pattern, module-responsibility, tuning, or future-task candidates that are evidenced but not part of the current delivery contract. | Durable memory lessons, task transcripts, or implementation changes. | `product-breakdown/06-evolution/candidates/`, then selected/done evolution files. | Builder in candidate-capture mode. |
 | Task-local evidence | The current work order, implementation evidence, verification results, review findings, waivers, and final report for one run. | Durable product rationale unless reconciled into the product breakdown; durable memory unless accepted by reflection and curator. | Stage outputs during the active run; reconciled only into the relevant source artifact when durable. | Current stage owner. |
 | Skills and plugins | External Codex capabilities, local procedures, or connector workflows selected by the operator environment. | Primary-agent responsibilities or repo runtime policy. The workflow package does not persist agent `SKILLS` declarations. | Outside the copied payload unless represented as an explicit product decision or runtime prompt change. | Operator environment; package maintainers only document accepted or declined use. |
 | External research | Source references, claims, and implementation notes that justify workflow behavior. | Unverified web excerpts, dependency state without retrieval date, or task-local browsing notes. | `knowledge/agent-reasoning/` and cited product-breakdown decisions. | Maintainers through research-backed product work. |

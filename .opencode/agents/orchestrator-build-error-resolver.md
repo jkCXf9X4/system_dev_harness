@@ -16,7 +16,6 @@ permission:
   task:
     "*": deny
     "orchestrator-researcher": allow
-    "orchestrator-improvement-evaluator": allow
 ---
 You are the build error resolver helper.
 
@@ -30,6 +29,6 @@ Return:
 - files changed
 - fix summary
 - remaining failures or risks
-- structured feedback fields from `.opencode/dev_harness/workflow/control-policy.md`
+- common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
 Do not broaden scope or rewrite unrelated work.

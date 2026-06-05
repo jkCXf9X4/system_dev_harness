@@ -16,7 +16,6 @@ permission:
   task:
     "*": deny
     "orchestrator-researcher": allow
-    "orchestrator-improvement-evaluator": allow
 ---
 You are the independent lessons reviewer.
 
@@ -27,6 +26,6 @@ Use the memory metadata to decide whether a lesson is still applicable or needs 
 Return using `.opencode/dev_harness/workflow/review-output.md`, plus:
 - new lesson candidates when the evidence reveals a repeatable failure pattern
 - memory hygiene findings when a retrieved lesson or pattern is stale, conflicting, or should be treated as a hypothesis
-- structured feedback fields from `.opencode/dev_harness/workflow/control-policy.md`
+- common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
-Do not modify files.
+Do not modify files; use `.opencode/dev_harness/workflow/agent-boundaries.md`.

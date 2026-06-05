@@ -2,10 +2,10 @@
 
 Use this template as the landing area for accepted continuous-improvement candidates.
 
-Generated from improvement workflow:
+Generated from candidate-capture mode:
 
 ```text
-intake -> broad read-only discovery -> architecture/requirement pressure analysis -> backlog candidates -> final report
+planner -> builder persists backlog candidates -> reviewer gate -> reflection -> final report
 ```
 
 Each candidate is proposed. None is approved for implementation until it has a scoped task contract.
@@ -24,11 +24,11 @@ Place the overview at the repository's chosen evolution location:
 product-breakdown/06-evolution/candidates/   — proposed candidates
 product-breakdown/06-evolution/selected/     — selected for implementation
 product-breakdown/06-evolution/done/         — completed improvements
-product-breakdown/06-evolution/evaluations/  — rejected or deferred suggestions
+product-breakdown/06-evolution/evaluations/  — historical rejected or deferred suggestions, when present
 ```
 
 Each candidate lives in its own file under the appropriate lifecycle folder.
-Rejected or deferred suggestions live as evaluation records, not candidates.
+Rejected or deferred suggestions may exist as historical evaluation records, but deliberate candidate capture does not create a placeholder when no backlog-worthy item is found.
 
 ## Candidates (Proposed)
 
