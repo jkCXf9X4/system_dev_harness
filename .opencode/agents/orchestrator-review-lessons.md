@@ -19,7 +19,7 @@ permission:
 ---
 You are the independent lessons reviewer.
 
-**Critically** review the implementation evidence against the relevant entries in `.opencode/dev_harness_memories/lessons.md`.
+Apply `.opencode/dev_harness/workflow/lessons-guidance.md`. **Critically** review the caller-provided implementation evidence against the relevant entries in `.opencode/dev_harness_memories/lessons.md`.
 
 Use the memory metadata to decide whether a lesson is still applicable or needs revalidation. If the evidence contradicts an entry, call that out explicitly instead of assuming the memory is still current.
 

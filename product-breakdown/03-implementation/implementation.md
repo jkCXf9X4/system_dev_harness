@@ -43,7 +43,7 @@ If a change creates information that crosses these boundaries, update the owning
 - Direct operator-selected `build` execution is outside the guarded orchestrator path and must not inherit the orchestrator prompt through global instructions.
 - `orchestrator` is a dispatcher and gate router only; it has no file read, search, list, edit, or shell permissions, does not classify requests, and invokes only planner, builder, reviewer, reflection, and reporter. Directed helpers such as researcher are invoked by their owning top-level stage.
 - `orchestrator-planner` owns discovery, contract, architecture, lessons, research helper routing, inline test obligations, product-breakdown placement, durable product behavior impact, workflow-mode selection, and final work-order synthesis; helper use follows adaptive risk triggers and groups independent helpers into parallel-safe packets when possible.
-- `orchestrator-builder` owns implementation, candidate-capture persistence, scoped cleanup, documentation/product-breakdown updates, build-error resolution, cleanup-helper routing, and research helper routing.
+- `orchestrator-builder` owns implementation, candidate-capture persistence, scoped cleanup, documentation/product-breakdown updates, build-error resolution, cleanup-helper routing, review-helper routing for builder-owned review pass evidence, and research helper routing.
 - `orchestrator-reviewer` owns verifier, review helper, researcher, and deterministic gate routing; helper use follows adaptive risk triggers, groups independent read-only helpers into parallel-safe packets when possible, and may be lightweight for low-risk tasks.
 - review agents are read-only and exist to keep approval separate from implementation.
 - `orchestrator-reflection` owns final memory-incorporation triage before reporting and may invoke the memory curator for evidenced durable memory candidates.
@@ -60,7 +60,7 @@ If a change creates information that crosses these boundaries, update the owning
 | Orchestration | `.opencode/agents/orchestrator.md` | no | no | Routes planner, builder, reviewer, reflection, and reporter without repository inspection, request classification, or specialist stage work. |
 | Planning | `.opencode/agents/orchestrator-planner.md` | no | yes | Normalizes the request, resolves uncertainty, selects delivery or candidate-capture mode, coordinates planning helpers, groups independent helper packets, and emits the builder work order. |
 | Planning helpers | `.opencode/agents/orchestrator-discovery.md`, `orchestrator-contract.md`, `orchestrator-architecture.md`, `orchestrator-lessons.md`, `orchestrator-memory.md` | no | yes | Provide directed discovery, requirements, architecture, lessons, and memory support. Planner handles test obligations and product-breakdown placement in the work order. |
-| Build | `.opencode/agents/orchestrator-builder.md` | yes | yes | Applies approved changes or persists candidate-capture backlog artifacts, coordinates builder helpers, reconciles changed information, removes stale or duplicate artifacts, and reports implementation evidence. |
+| Build | `.opencode/agents/orchestrator-builder.md` | yes | yes | Applies approved changes or persists candidate-capture backlog artifacts, coordinates builder helpers, may run a builder-owned review pass, reconciles changed information, removes stale or duplicate artifacts, and reports implementation evidence. |
 | Build helpers | `.opencode/agents/orchestrator-build-error-resolver.md`, `.opencode/agents/orchestrator-cleanup.md` | yes | yes | Resolve assigned build/test/type-check failures and run focused cleanup passes for references, trackers, indexes, duplicate or superseded content, orphaned artifacts, links, and traceability inside the approved scope. |
 | Review and gate | `.opencode/agents/orchestrator-reviewer.md` | no | yes | Coordinates verification and review helpers, groups independent read-only helper packets, then produces `approved`, `blocked`, or `waiver_required`. |
 | Review helpers | `.opencode/agents/orchestrator-verifier.md`, `.opencode/agents/orchestrator-review-*.md`, `.opencode/agents/orchestrator-memory.md` | no | yes | Independently verify checks and review contract completeness, acceptance criteria, test adequacy, architecture, code quality, cleanliness, information hygiene, lessons, and relevant workflow memory. |
@@ -109,5 +109,5 @@ Shared workflow policies are implemented as copied agent context under `.opencod
 
 - Implements AD-001 through AD-003, ED-001, IMD-001 through IMD-003, and IMP-001 through IMP-007.
 - Satisfies PC-001 through PC-010.
-- Covers UC-001 through UC-013.
+- Covers UC-001 through UC-014.
 - Implements the architecture-level persistence and context mechanism boundaries through the mechanism storage rules above.

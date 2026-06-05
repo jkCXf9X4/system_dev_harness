@@ -346,6 +346,39 @@ Primary value:
 
 - preserves operator escape hatches while keeping the default workflow governed
 
+## UC-014: Review Current Repository State
+
+Goal: assess the repository's current state for freshness, completeness, consistency, traceability, and alignment with the current product and workflow contract.
+
+Input:
+
+- repo files that need review, including code, documentation, config, prompts, and metadata
+- product-breakdown source docs when the review needs product context
+- runtime prompts and workflow policy when the review needs workflow context
+- recent repository changes relevant to the review scope
+- user-specified review scope
+
+Output:
+
+- review gap list
+- stale, duplicated, conflicting, or orphaned references
+- missing trace links or broken relationships between repo artifacts
+- recommended updates or backlog candidates
+- no-change rationale when the repo state is already aligned
+
+Primary value:
+
+- keeps repository artifacts aligned before stale code, docs, config, or metadata spreads
+
+Workflow fit:
+
+- the planner treats review work as a first-class task, not an informal side note
+- if the user wants changes now, the task runs in delivery mode and the builder may edit the relevant repo artifacts while preserving traceability
+- if the user wants only an assessment, proposal, future-task seed, or backlog capture, the task runs in candidate-capture mode and persists only backlog-ready review candidates
+- in candidate-capture mode, the builder returns a reviewed `no_candidate` result when the inspected scope does not justify a backlog artifact
+- reviewer still checks evidence, traceability, and stale-reference cleanup before completion
+- external dependency, API, framework, standard, version, or documentation uncertainty still uses the researcher helper when needed
+
 ## Trace Links
 
-- UC-001 through UC-013 feed `product-breakdown/01-product/product-commitments.md`
+- UC-001 through UC-014 feed `product-breakdown/01-product/product-commitments.md`

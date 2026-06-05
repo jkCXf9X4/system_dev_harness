@@ -160,6 +160,7 @@ def test_candidate_capture_has_single_persistence_owner(simple_project: Path) ->
 def test_decision_templates_are_generic_and_referenced(simple_project: Path) -> None:
     architecture_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-architecture.md")
     review_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-architecture.md")
+    architecture_guidance = read_prompt(simple_project, ".opencode/dev_harness/workflow/architecture-guidance.md").lower()
     decision_placement = read_prompt(
         simple_project,
         ".opencode/dev_harness/product-breakdown/decision-placement.md",
@@ -173,10 +174,14 @@ def test_decision_templates_are_generic_and_referenced(simple_project: Path) -> 
         ".opencode/dev_harness/product-breakdown/templates/decision-log-entry-template.md",
     )
 
-    assert "decision-template.md" in architecture_prompt.lower()
-    assert "decision-log-entry-template.md" in architecture_prompt.lower()
-    assert "durable choice" in review_prompt.lower()
-    assert "product-breakdown/" in review_prompt.lower()
+    assert "decision-template.md" in architecture_guidance
+    assert "decision-log-entry-template.md" in architecture_guidance
+    assert "architecture-guidance.md" in architecture_prompt.lower()
+    assert "architecture-guidance.md" in review_prompt.lower()
+    assert "treat unknown architecture as risk" in architecture_guidance
+    assert "context expectations" in architecture_guidance
+    assert "caller-provided implementation evidence" in review_prompt.lower()
+    assert "product-breakdown/" in architecture_guidance
     assert "where its consequences are most directly felt" in decision_placement.lower()
     assert "durable product breakdown decisions" in decision_template.lower()
     assert "decision log entry template" in decision_log_entry.lower()
@@ -479,6 +484,33 @@ def test_builder_cleanup_helper_is_scoped_and_wired(simple_project: Path) -> Non
     assert "orchestrator-cleanup.md" in implementation_doc
 
 
+def test_builder_can_run_review_helper_passes_without_becoming_the_gate(simple_project: Path) -> None:
+    builder_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-builder.md").lower()
+    reviewer_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
+    implementation_doc = read_prompt(
+        Path(__file__).resolve().parents[1],
+        "product-breakdown/03-implementation/implementation.md",
+    ).lower()
+
+    for helper in (
+        "orchestrator-verifier",
+        "orchestrator-review-completeness",
+        "orchestrator-review-architecture",
+        "orchestrator-review-lessons",
+        "orchestrator-memory",
+    ):
+        assert f'"{helper}": allow' in builder_prompt
+
+    assert "builder-owned review pass" in builder_prompt
+    assert "review-helper routing" in implementation_doc
+    assert "builder-owned review pass" in implementation_doc
+    assert "review coordinator and completion gate" in reviewer_prompt
+    assert "return one of:" in reviewer_prompt
+    assert "approved" in reviewer_prompt
+    assert "blocked" in reviewer_prompt
+    assert "waiver_required" in reviewer_prompt
+
+
 def test_structured_feedback_protocol_is_shared(simple_project: Path) -> None:
     control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
     stage_schema = read_prompt(simple_project, ".opencode/dev_harness/workflow/stage-output-schema.md").lower()
@@ -696,6 +728,7 @@ def test_workflow_roles_use_runtime_memory_guidance_without_prompt_design_commen
     architecture_review_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-architecture.md").lower()
     memory_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-memory.md").lower()
     lessons_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-lessons.md").lower()
+    lessons_guidance = read_prompt(simple_project, ".opencode/dev_harness/workflow/lessons-guidance.md").lower()
 
     for prompt in (
         planner_prompt,
@@ -710,6 +743,10 @@ def test_workflow_roles_use_runtime_memory_guidance_without_prompt_design_commen
 
     assert "dev_harness_memories/patterns.md" in memory_prompt
     assert "relevant lessons, patterns, and decision pointers" in memory_prompt
+    assert "lessons-guidance.md" in lessons_prompt
+    assert "lessons-guidance.md" in read_prompt(simple_project, ".opencode/agents/orchestrator-review-lessons.md").lower()
+    assert "identify only the lessons that matter" in lessons_guidance
+    assert "caller-provided task context" in lessons_guidance
     assert "lessons" in lessons_prompt
 
 

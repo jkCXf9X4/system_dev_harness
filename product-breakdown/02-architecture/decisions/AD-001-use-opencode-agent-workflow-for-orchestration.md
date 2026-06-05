@@ -30,4 +30,4 @@ Tradeoffs:
 ## Traceability
 
 - Product commitments: PC-001, PC-002, PC-004, PC-005, PC-006, PC-007, PC-008, PC-009, PC-010
-- Use cases: UC-001 through UC-013
+- Use cases: UC-001 through UC-014

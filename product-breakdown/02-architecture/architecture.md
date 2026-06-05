@@ -92,9 +92,10 @@ After approval or accepted waiver, the reflection stage reviews the run for dura
 
 ## Workflow Split
 
-The repository supports one guarded chain with two planner-selected workflow modes, plus focused incidental evaluation:
+The repository supports one guarded chain with two planner-selected workflow modes, plus focused incidental review of repo state:
 
 - Delivery mode: normalize a bounded task, create a planner-owned work order, implement only the contracted change, review and verify it, and gate completion. Use this when the requested outcome is actual change now.
+- Repo-state review: assess the current repository state, reconcile stale or conflicting references, and either route the task into delivery mode for direct updates or candidate-capture mode for backlog-ready review findings or a reviewed `no_candidate` result.
 - Candidate-capture mode: use planner-owned helpers to explore current features, requirements, implementation evidence, reviewer findings, module friction, bug/fix/regression subjects requested as candidate capture, and cleanup opportunities; builder persists backlog-ready candidates as information artifacts; reviewer gates the persisted artifacts. Use this when the requested outcome is proposal, recommendation, evaluation, discovery, documented candidate, future task seed, or backlog item.
 - Incidental improvement surfacing: return one concrete finding raised during guarded work as `improvement_candidates`; persistence requires a later candidate-capture work order.
 

@@ -4,6 +4,7 @@ Use helper agents based on task risk instead of forcing the full helper set for 
 
 ## Planner Triggers
 
+- Repo-state review requests require `orchestrator-discovery`; add `orchestrator-contract` when the review criteria, scope, or success definition are not already checklistable.
 - Code changes require `orchestrator-discovery` and `orchestrator-contract`.
 - Behavior changes require planner-owned test obligations in the work order.
 - Product-breakdown or durable product behavior changes require planner-owned product placement, traceability, and decision-record obligations in the work order.
@@ -22,6 +23,7 @@ Use helper agents based on task risk instead of forcing the full helper set for 
 
 ## Reviewer Triggers
 
+- Repo-state review requests require `orchestrator-review-completeness`; add `orchestrator-review-architecture` when the review scope includes code structure, architecture, module boundaries, dependency shape, or responsibility fit.
 - Code changes require `orchestrator-verifier` plus `orchestrator-review-completeness`; architecture review is added when architecture triggers apply.
 - Behavior changes require `orchestrator-review-completeness` to check acceptance criteria, edge cases, and test adequacy.
 - Product-breakdown or information-artifact changes require `orchestrator-review-completeness`; durable decision changes also require `orchestrator-review-architecture`.

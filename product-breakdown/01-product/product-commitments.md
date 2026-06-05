@@ -13,7 +13,7 @@ They are more stable than implementation plans and more concrete than vision sta
 | PC-003 | The workspace shall use persistent mistake memory to reduce repeated correction loops. | Vision, UC-004, UC-009 |
 | PC-004 | The workspace shall separate execution from approval so coding output is reviewed against evidence. | Vision, UC-006, UC-007, UC-008 |
 | PC-005 | The workspace shall require incomplete work to be blocked or explicitly waived rather than silently accepted. | Vision, UC-008 |
-| PC-006 | The workspace shall keep design rationale and touched artifacts traceable through Intent -> Product Commitments -> System Architecture -> Technical Decisions -> Implementation -> Verification, and shall reconcile stale, duplicate, superseded, or orphaned information before completion. | Vision, UC-010 |
+| PC-006 | The workspace shall keep design rationale and touched artifacts traceable through Intent -> Product Commitments -> System Architecture -> Technical Decisions -> Implementation -> Verification, and shall reconcile stale, duplicate, superseded, or orphaned information before completion. | Vision, UC-010, UC-014 |
 | PC-007 | The workspace shall express workflow behavior through repository-local OpenCode agents and config rather than hidden runtime code. | Vision, UC-001, UC-005, UC-006 |
 | PC-008 | The workspace shall require architecture work to evaluate modularity, simplicity, readability, and module responsibility fit. | Vision, UC-003, UC-011 |
 | PC-009 | The workspace shall run candidate capture through the guarded chain so backlog candidates are planned, persisted, reviewed, reflected on, and reported without expanding contained feature diffs. | Vision, UC-009, UC-012 |

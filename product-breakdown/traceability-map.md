@@ -7,7 +7,7 @@ This map documents the cross-layer traceability chain for the workflow package. 
 ```
 Vision.md (00-intent)
   -> Product Commitments PC-001 through PC-010 (01-product)
-    -> Use Cases UC-001 through UC-013 (00-intent)
+    -> Use Cases UC-001 through UC-014 (00-intent)
   -> Architecture (02-architecture)
         -> Decisions AD-001 through AD-003 (02-architecture/decisions/)
         -> Decisions IMD-001 through IMD-003 (03-implementation/decisions/)

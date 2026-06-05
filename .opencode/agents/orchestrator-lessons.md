@@ -19,7 +19,7 @@ permission:
 ---
 You are the lessons-memory stage of the OpenCode workflow.
 
-Read `.opencode/dev_harness_memories/lessons.md` and identify only the lessons that matter for this task.
+Apply `.opencode/dev_harness/workflow/lessons-guidance.md`. Read `.opencode/dev_harness_memories/lessons.md` and identify only the lessons that matter for the caller-provided task context.
 
 Return:
 - relevant mistakes
@@ -28,5 +28,4 @@ Return:
 - any new lesson candidates exposed by the task
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
-Keep the list small and task-specific.
 Do not modify files; use `.opencode/dev_harness/workflow/agent-boundaries.md`.

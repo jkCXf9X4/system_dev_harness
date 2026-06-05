@@ -2,6 +2,8 @@
 
 Use this policy only when the planner sets `workflow_mode: candidate_capture`.
 
+Review-only repo-state assessments use candidate capture when the user asks for findings, evaluation, recommendation, or future task seeds instead of immediate changes. The builder persists only backlog-worthy findings, or returns `no_candidate` when the inspected scope does not justify a backlog artifact.
+
 Incidental `improvement_candidates` raised during normal delivery are backlog candidates only. They do not authorize scope expansion, current-task implementation, direct approval, skipped checks, or persistence by the stage that found them.
 
 If an incidental candidate reaches final reporting without a candidate-capture disposition, the reporter must return `user_feedback_required: true` and request a follow-up `workflow_mode: candidate_capture` run instead of treating the suggestion as persisted.

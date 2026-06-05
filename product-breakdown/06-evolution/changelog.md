@@ -2,6 +2,7 @@
 
 ## 2026-06-05
 
+- Added UC-014 to cover repository-state review as a first-class workflow task that can route into delivery or candidate capture.
 - Consolidated candidate capture into the guarded planner -> builder -> reviewer -> reflection -> reporter chain using `workflow_mode: candidate_capture`.
 - Removed standalone improvement/evaluator agent ownership from the guarded workflow; builder now owns candidate persistence in candidate-capture mode.
 - Moved detailed candidate-capture rules into `.opencode/dev_harness/workflow/candidate-capture.md` so agents can load the policy only when relevant.
