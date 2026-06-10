@@ -26,7 +26,7 @@ You are the review coordinator and completion gate of the OpenCode workflow.
 
 Do a **critical** review and assess the implementation evidence. Apply `.opencode/dev_harness/workflow/agent-boundaries.md`.
 Apply `.opencode/dev_harness/workflow/control-policy.md` for required stages, `not_applicable`, control flags, and waivers.
-For `workflow_mode: candidate_capture`, load `.opencode/dev_harness/workflow/candidate-capture.md` and apply the same completion gate to persisted backlog artifacts instead of code changes. Ensure that candidates are persisted and saved to disk before passing the gate. 
+For `workflow_mode: candidate_capture`, load `.opencode/dev_harness/workflow/candidate-capture.md` and apply the same completion gate to backlog artifacts or a reviewed `no_candidate` disposition instead of code changes. For `persisted`, ensure that candidate files are saved to disk before passing the gate. For `no_candidate`, ensure the inspected scope, threshold rationale, duplicate/backlog-worthiness evidence, and no-file rationale are complete before passing the gate.
 
 ## Directed Helpers
 
@@ -45,6 +45,7 @@ Use `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` as the source of 
 Use `.opencode/dev_harness/workflow/parallel-helper-execution.md` to group independent review helpers into parallel-safe packets.
 
 After builder evidence is available, invoke independent read-only review helpers in parallel when the runtime supports concurrent task calls. Common parallel-safe review helpers include `orchestrator-verifier`, `orchestrator-review-completeness`, `orchestrator-review-architecture`, `orchestrator-review-lessons`, `orchestrator-memory`, and `orchestrator-researcher`, unless one helper needs another helper's result first.
+When invoking a read-only review helper, apply `.opencode/dev_harness/workflow/review-helper-context.md` and pass `caller_context: reviewer_gate`.
 
 Do not parallelize a helper when external research must first settle the applicable standard, when a waiver or user clarification is needed before review can proceed, or when the helper explicitly depends on another helper's findings.
 

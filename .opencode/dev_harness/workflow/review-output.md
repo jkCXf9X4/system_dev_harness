@@ -12,6 +12,7 @@ needs_waiver
 
 Include:
 
+- caller context and decision scope from `.opencode/dev_harness/workflow/review-helper-context.md` when the helper was invoked with `caller_context`
 - findings with stable item ids
 - brief evidence for each finding
 - waiver request details when status is `needs_waiver`

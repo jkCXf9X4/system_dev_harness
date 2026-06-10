@@ -113,6 +113,8 @@ def test_candidate_capture_uses_full_guarded_chain(simple_project: Path) -> None
     planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
     builder_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-builder.md").lower()
     reviewer_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
+    verifier_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-verifier.md").lower()
+    completeness_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-completeness.md").lower()
     reflection_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reflection.md").lower()
     reporter_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reporter.md").lower()
     control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
@@ -134,16 +136,23 @@ def test_candidate_capture_uses_full_guarded_chain(simple_project: Path) -> None
     assert "for `workflow_mode: candidate_capture`" in reviewer_prompt
     assert "same completion gate" in reviewer_prompt
     assert "candidate-capture.md" in reviewer_prompt
+    assert "for `persisted`, ensure that candidate files are saved to disk" in reviewer_prompt
+    assert "for `no_candidate`, ensure the inspected scope" in reviewer_prompt
+    assert "file-existence/content status" in verifier_prompt
+    assert "reported candidate path is missing" in completeness_prompt
 
     assert "workflow_mode: candidate_capture" in reflection_prompt
     assert "candidate-capture.md" in reporter_prompt
     assert "both workflow modes use the same guarded chain" in control_policy
     assert "builder is the only workflow stage that persists improvement backlog artifacts" in candidate_policy
     assert "should write backlog-worthy candidates to file before returning" in candidate_policy
+    assert "reviewed assessment with `no_candidate` is a valid candidate-capture outcome" in candidate_policy
+    assert "not for new candidate discovery" in candidate_policy
     assert "do not create a placeholder file" in candidate_policy
 
 
 def test_candidate_capture_has_single_persistence_owner(simple_project: Path) -> None:
+    orchestrator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator.md").lower()
     builder_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-builder.md").lower()
     reporter_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reporter.md").lower()
     control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
@@ -157,6 +166,7 @@ def test_candidate_capture_has_single_persistence_owner(simple_project: Path) ->
     assert "save every backlog-worthy candidate to disk before returning" in builder_prompt
     assert "request a follow-up `workflow_mode: candidate_capture` run" in reporter_prompt
     assert "evaluator" not in reporter_prompt
+    assert "before calling builder, improvement, reviewer, or reporter" not in orchestrator_prompt
 
 
 def test_decision_templates_are_generic_and_referenced(simple_project: Path) -> None:
@@ -489,6 +499,11 @@ def test_builder_cleanup_helper_is_scoped_and_wired(simple_project: Path) -> Non
 def test_builder_can_run_review_helper_passes_without_becoming_the_gate(simple_project: Path) -> None:
     builder_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-builder.md").lower()
     reviewer_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
+    review_context = read_prompt(
+        simple_project,
+        ".opencode/dev_harness/workflow/review-helper-context.md",
+    ).lower()
+    review_output = read_prompt(simple_project, ".opencode/dev_harness/workflow/review-output.md").lower()
     implementation_doc = read_prompt(
         Path(__file__).resolve().parents[1],
         "product-breakdown/03-implementation/implementation.md",
@@ -504,6 +519,15 @@ def test_builder_can_run_review_helper_passes_without_becoming_the_gate(simple_p
         assert f'"{helper}": allow' in builder_prompt
 
     assert "builder-owned review pass" in builder_prompt
+    assert "review-helper-context.md" in builder_prompt
+    assert "builder_preflight" in builder_prompt
+    assert "review-helper-context.md" in reviewer_prompt
+    assert "reviewer_gate" in reviewer_prompt
+    assert "reviewer_gate" in review_context
+    assert "helper_findings_only" in review_context
+    assert "reviewer_gate_input" in review_context
+    assert "not a completion-gate decision" in review_context
+    assert "caller context and decision scope" in review_output
     assert "review-helper routing" in implementation_doc
     assert "builder-owned review pass" in implementation_doc
     assert "review coordinator and completion gate" in reviewer_prompt
@@ -511,6 +535,18 @@ def test_builder_can_run_review_helper_passes_without_becoming_the_gate(simple_p
     assert "approved" in reviewer_prompt
     assert "blocked" in reviewer_prompt
     assert "waiver_required" in reviewer_prompt
+
+    for helper_path in (
+        ".opencode/agents/orchestrator-verifier.md",
+        ".opencode/agents/orchestrator-review-completeness.md",
+        ".opencode/agents/orchestrator-review-architecture.md",
+        ".opencode/agents/orchestrator-review-lessons.md",
+        ".opencode/agents/orchestrator-memory.md",
+        ".opencode/agents/orchestrator-researcher.md",
+    ):
+        helper_prompt = read_prompt(simple_project, helper_path).lower()
+        assert "caller_context" in helper_prompt
+        assert "review-helper-context.md" in helper_prompt
 
 
 def test_structured_feedback_protocol_is_shared(simple_project: Path) -> None:

@@ -2,7 +2,7 @@
 
 Use this policy only when the planner sets `workflow_mode: candidate_capture`.
 
-Review-only repo-state assessments use candidate capture when the user asks for findings, evaluation, recommendation, or future task seeds instead of immediate changes. The builder should persist every backlog-worthy finding to disk, or return `no_candidate` when the inspected scope does not justify a backlog artifact.
+Review-only repo-state assessments use candidate capture when the user asks for findings, evaluation, recommendation, or future task seeds instead of immediate changes. The builder should persist every backlog-worthy finding to disk, or return `no_candidate` when the inspected scope does not justify a backlog artifact. A reviewed assessment with `no_candidate` is a valid candidate-capture outcome when the inspected evidence is below the backlog-worthiness threshold.
 
 Incidental `improvement_candidates` raised during normal delivery are backlog candidates only. They do not authorize scope expansion, current-task implementation, direct approval, skipped checks, or persistence by the stage that found them.
 
@@ -18,18 +18,18 @@ planner -> builder -> reviewer -> reflection -> reporter
 
 - Planner scopes the candidate-capture work order and selects directed helpers.
 - Builder is the only workflow stage that persists improvement backlog artifacts, and should write backlog-worthy candidates to file before returning its disposition.
-- Reviewer gates candidate artifacts as information artifacts and blocks when a backlog-worthy finding was reported but not saved to disk.
+- Reviewer gates candidate artifacts as information artifacts. For `persisted`, reviewer blocks when the candidate file is missing or not saved to disk. For `no_candidate`, reviewer checks the inspected scope, threshold rationale, and duplicate/backlog-worthiness evidence instead of requiring a file.
 - Reflection handles durable memory triage only.
 - Reporter summarizes the reviewed disposition.
 
 ## Builder Write Boundary
 
-Builder should write backlog-worthy candidates to disk, but may write only:
+Builder should write backlog-worthy new findings to disk under:
 
 - `product-breakdown/06-evolution/candidates/IMP-NNN.md`
-- `product-breakdown/06-evolution/selected/IMP-NNN.md`
-- `product-breakdown/06-evolution/done/IMP-NNN.md`
 - `product-breakdown/06-evolution/README.md`
+
+Builder may write `product-breakdown/06-evolution/selected/IMP-NNN.md` or `product-breakdown/06-evolution/done/IMP-NNN.md` only when the planner work order explicitly scopes a lifecycle transition, not for new candidate discovery.
 
 Do not edit implementation files during candidate capture.
 
@@ -47,7 +47,8 @@ Do not edit implementation files during candidate capture.
 - source evidence inspected
 - backlog-worthiness threshold decision
 - duplicate-check result
-- candidate ID and file path, or `no_candidate` rationale
+- for `persisted`: candidate ID, candidate file path, file-existence/content verification, and duplicate-check result
+- for `no_candidate`: inspected scope, threshold rationale, duplicate/backlog-worthiness evidence, and why no file was created
 - product-breakdown layer placement
 - information hygiene checks for overview tables, stale references, duplicate content, orphaned artifacts, unresolved links, and traceability
 

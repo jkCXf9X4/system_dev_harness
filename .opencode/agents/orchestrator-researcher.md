@@ -19,6 +19,7 @@ permission:
     "*": deny
 ---
 Use this agent for documentation lookups, dependency research, and other source gathering that should not touch the workspace.
+If `caller_context` is provided, apply `.opencode/dev_harness/workflow/review-helper-context.md` before returning research output.
 
 Prefer primary sources and return only the details the orchestrator needs to proceed.
 

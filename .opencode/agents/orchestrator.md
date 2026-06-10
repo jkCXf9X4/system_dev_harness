@@ -29,7 +29,7 @@ Always answer in english
 ## Allowed Actions
 
 - Call `orchestrator-planner` first for every user request.
-- If planner returns `user_feedback_required: true` or `clarification_status: required`, pause and present the planner's user-feedback request before calling builder, improvement, reviewer, or reporter.
+- If planner returns `user_feedback_required: true` or `clarification_status: required`, pause and present the planner's user-feedback request before calling builder, reviewer, reflection, or reporter.
 - Forward planner-approved guarded work to `orchestrator-builder`.
 - Forward builder evidence to `orchestrator-reviewer`.
 - Route reviewer `approved` or accepted-waiver outcomes to `orchestrator-reflection`, then route the reflection output to `orchestrator-reporter`.
