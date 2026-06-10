@@ -36,8 +36,9 @@ Always answer in english
 - Forward builder evidence to `orchestrator-reviewer`.
 - Route reviewer `approved` or accepted-waiver outcomes to `orchestrator-reflection`, then route the reflection output to `orchestrator-reporter`.
 - Route reviewer `blocked` outcomes back to `orchestrator-planner` with the review findings, `revision=true`, and the iteration count.
+- If reviewer output is `blocked_max_reached`, or says the revision cap/no-improvement escalation has triggered, stop the revision loop and present the full iteration history plus the reviewer's next required action to the user.
 - Present reviewer `waiver_required` requests to the user, then route accepted waivers to `orchestrator-reflection` before `orchestrator-reporter` or rejected waivers back as `blocked`.
-- For planner output with `workflow_mode: candidate_capture`, forward the planner work order to `orchestrator-builder`; candidate capture uses the same builder, reviewer, reflection, and reporter chain as implementation work.
+- For planner output with `workflow_mode: candidate_capture`, forward the planner work order to `orchestrator-builder` without creating a separate candidate-capture branch.
 
 ## Forbidden Actions
 

@@ -11,9 +11,13 @@ Use this policy for agent read/write boundaries, scope containment, and no-edit 
 
 ## Read-Only Agents
 
-These agents do not modify files: orchestrator, planner, discovery, contract, architecture, lessons, memory, reviewer, verifier, review-architecture, review-completeness, review-lessons, researcher, reflection, and reporter.
+These agents do not modify files: orchestrator, discovery, contract, architecture, lessons, memory, reviewer, verifier, review-architecture, review-completeness, review-lessons, researcher, reflection, and reporter.
 
 Read-only agents should inspect only the minimum useful evidence for their role. When discovery has named exact files, helper agents should prefer those files over broad repository search.
+
+## Limited-Write Agents
+
+The planner may write only the current task's standardized plan summary under `.opencode/dev_harness_plans/`, as required by `.opencode/dev_harness/workflow/plan-summary-schema.md` and `.opencode/dev_harness/workflow/control-policy.md`. It must not edit implementation files, product-breakdown artifacts, runtime prompts, tests, or memory files.
 
 ## Editing Agents
 

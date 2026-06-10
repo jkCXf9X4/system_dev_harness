@@ -122,27 +122,21 @@ def test_candidate_capture_uses_full_guarded_chain(simple_project: Path) -> None
 
     assert '"orchestrator-improvement": allow' not in orchestrator_prompt
     assert "workflow_mode: candidate_capture" in orchestrator_prompt
-    assert "same builder, reviewer, reflection, and reporter chain" in orchestrator_prompt
 
-    assert "`workflow_mode`: `candidate_capture`" in planner_prompt
-    assert "`route`: `guarded_chain`" in planner_prompt
+    assert "route selection" in planner_prompt
+    assert "control-policy.md" in planner_prompt
     assert "candidate-capture.md" in planner_prompt
 
-    assert "for `workflow_mode: candidate_capture`" in builder_prompt
-    assert "persist improvement backlog artifacts instead of implementation changes" in builder_prompt
     assert "candidate-capture.md" in builder_prompt
     assert "candidate-capture disposition" in builder_prompt
 
-    assert "for `workflow_mode: candidate_capture`" in reviewer_prompt
-    assert "same completion gate" in reviewer_prompt
     assert "candidate-capture.md" in reviewer_prompt
-    assert "for `persisted`, ensure that candidate files are saved to disk" in reviewer_prompt
-    assert "for `no_candidate`, ensure the inspected scope" in reviewer_prompt
     assert "file-existence/content status" in verifier_prompt
     assert "reported candidate path is missing" in completeness_prompt
 
     assert "workflow_mode: candidate_capture" in reflection_prompt
     assert "candidate-capture.md" in reporter_prompt
+    assert "workflow_mode: candidate_capture" in control_policy
     assert "both workflow modes use the same guarded chain" in control_policy
     assert "builder is the only workflow stage that persists improvement backlog artifacts" in candidate_policy
     assert "should write backlog-worthy candidates to file before returning" in candidate_policy
@@ -162,8 +156,8 @@ def test_candidate_capture_has_single_persistence_owner(simple_project: Path) ->
     assert not (simple_project / ".opencode/agents/orchestrator-improvement-evaluator.md").exists()
     assert "candidate-capture.md" in control_policy
     assert "builder is the only workflow stage that persists improvement backlog artifacts" in candidate_policy
-    assert "persist improvement backlog artifacts instead of implementation changes" in builder_prompt
-    assert "save every backlog-worthy candidate to disk before returning" in builder_prompt
+    assert "candidate-capture.md" in builder_prompt
+    assert "candidate-capture disposition" in builder_prompt
     assert "request a follow-up `workflow_mode: candidate_capture` run" in reporter_prompt
     assert "evaluator" not in reporter_prompt
     assert "before calling builder, improvement, reviewer, or reporter" not in orchestrator_prompt
@@ -350,10 +344,13 @@ def test_agent_control_policy_closes_escape_hatches(simple_project: Path) -> Non
     assert "workflow_type: improvement" not in orchestrator_prompt
     assert "route: improvement" not in orchestrator_prompt
     assert "call `orchestrator-planner` again with the corrected outcome" in orchestrator_prompt
+    assert "blocked_max_reached" in orchestrator_prompt
+    assert "revision cap/no-improvement escalation" in orchestrator_prompt
 
     assert "every listed top-level guarded workflow stage must run" in control_policy
     assert "not_applicable" in control_policy
     assert "waivers are not approvals" in control_policy
+    assert "blocked_max_reached" in control_policy
 
     for prompt in (planner_prompt, contract_prompt):
         assert "touches_information_artifacts" in prompt
@@ -373,16 +370,16 @@ def test_agent_control_policy_closes_escape_hatches(simple_project: Path) -> Non
 
 def test_planner_routes_candidate_capture_by_requested_outcome(simple_project: Path) -> None:
     planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
+    control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
 
     assert "separate the subject from the requested outcome" in planner_prompt
-    assert "`issue_kind`: bug, fix, regression" in planner_prompt
-    assert "`requested_outcome`: `implement_now`" in planner_prompt
-    assert "`requested_outcome`: `capture_candidate`" in planner_prompt
-    assert "`workflow_mode`: `delivery`" in planner_prompt
-    assert "`workflow_mode`: `candidate_capture`" in planner_prompt
-    assert "`route`: `guarded_chain`" in planner_prompt
-    assert "a bug, fix, regression, feature, or documentation subject can still use `workflow_mode: candidate_capture`" in planner_prompt
-    assert "do not classify a candidate/backlog request as delivery only because the subject is a bug or fix" in planner_prompt
+    assert "control-policy.md" in planner_prompt
+    assert "route selection" in planner_prompt
+    assert "issue_kind: bug|fix|regression" in control_policy
+    assert "requested_outcome: implement_now|capture_candidate" in control_policy
+    assert "workflow_mode: delivery|candidate_capture" in control_policy
+    assert "route: guarded_chain" in control_policy
+    assert "bug, fix, regression, feature, documentation, cleanup, and refactoring subjects can all use `workflow_mode: candidate_capture`" in control_policy
 
 
 def test_top_level_flow_and_directed_helpers_are_explicit(simple_project: Path) -> None:
@@ -593,11 +590,16 @@ def test_shared_boundary_and_product_breakdown_policy_are_extracted(simple_proje
 
     for phrase in (
         "read-only agents",
+        "limited-write agents",
         "editing agents",
         "do not broaden scope",
         "candidate_capture",
     ):
         assert phrase in agent_boundaries
+
+    assert "orchestrator, planner" not in agent_boundaries
+    assert "the planner may write only the current task's standardized plan summary" in agent_boundaries
+    assert "must not edit implementation files" in agent_boundaries
 
     for phrase in (
         "loading rules",
