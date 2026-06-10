@@ -4,7 +4,7 @@ Use this artifact to help the planner classify a work order as a "larger job" th
 
 ## Classification Criteria
 
-Any **single** criterion match triggers large-job classification (OR logic). When triggered, the planner must set `user_feedback_required: true`, present the matching details to the operator, and stop for approval.
+Any **single** criterion match triggers large-job classification (OR logic). The planner records the result with `large_job_triggered`; `.opencode/dev_harness/workflow/control-policy.md` maps that result to draft approval routing.
 
 ### 1. File-Count Threshold
 
@@ -49,9 +49,6 @@ Tasks clearly below **all** of the above thresholds proceed without the pre-appr
 1. Planner loads this artifact and the work order.
 2. Planner counts files touched, checks blast-radius category, scans for destructive ops, and estimates time.
 3. If any criterion matches:
-   - Set `user_feedback_required: true`
-   - Set `user_feedback_request` with the matching criteria and details
-   - Stop, present to the operator, and wait for approval
+   - Set `large_job_triggered: true`
 4. If no criteria match:
    - Set `large_job_triggered: false`
-   - Proceed to implementation routing

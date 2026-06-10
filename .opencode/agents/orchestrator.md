@@ -29,8 +29,9 @@ Always answer in english
 
 - Call `orchestrator-planner` first for every user request.
 - If any stage returns `user_feedback_required: true`, pause and present that stage's `user_feedback_request` before calling the next stage. Preserve the unresolved feedback context in the handoff so later stages see the same request.
-- If planner output has `large_job_triggered: true`, treat it as a pre-execution approval request. If the user approves, forward the approved planner work order plus the approval decision to `orchestrator-builder`; if the user revises scope, call `orchestrator-planner` again with the user's revision and prior planner output.
-- Forward planner-approved guarded work to `orchestrator-builder`.
+- Route planner `plan_approval_status` before builder execution:
+  - `not_required`: forward the planner work order to `orchestrator-builder`.
+  - `pending`: pause for operator decision using the planner's `user_feedback_request`; on `approve`, forward the prior planner work order plus the approval decision to `orchestrator-builder`; on `revise`, call `orchestrator-planner` again with the user's requested revision and prior planner output; on `reject`, stop the guarded chain and report the rejection rationale without calling builder.
 
 - Forward builder evidence to `orchestrator-reviewer`.
 - Route reviewer `approved` or accepted-waiver outcomes to `orchestrator-reflection`, then route the reflection output to `orchestrator-reporter`.

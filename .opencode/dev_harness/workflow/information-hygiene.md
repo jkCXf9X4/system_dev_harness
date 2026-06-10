@@ -30,8 +30,8 @@ The `.opencode/dev_harness_plans/` directory stores standardized plan summaries 
 
 - It is **volatile local content**, NOT part of the implementation artifact graph.
 - Information-hygiene checks do NOT require reference patching, duplicate reconciliation, or stale-link cleanup across plan files.
-- The planner writes the complete plan summary file, including `large_job_triggered`, and MUST verify the write succeeded.
+- The planner writes the complete plan summary file, including draft approval fields, and MUST verify the write succeeded.
 - The reviewer SHOULD still check archive integrity for the current task:
   1. A plan file exists for the current task.
-  2. The plan file contains all required fields (`task_id`, `timestamp`, `scope`, `files_touched`, `risk_assessment`, `candidate_linkages`, `large_job_triggered`).
+  2. The plan file contains all required fields from `.opencode/dev_harness/workflow/plan-summary-schema.md`.
   3. The timestamp is recent and matches the current execution session.

@@ -98,32 +98,30 @@ Use the control flag names from `.opencode/dev_harness/workflow/control-policy.m
 
 ## Standardized Summary Header
 
-The planner work order MUST include the following standardized summary header fields as a structured block that the builder can extract:
-
-| Field | Description |
-|---|---|
-| `task_id` | Unique task identifier (derived from the improvement candidate ID or generated) |
-| `timestamp` | ISO-8601 timestamp (e.g., `2026-06-10T14:30:22Z`) |
-| `scope` | One-paragraph scope statement summarizing the task |
-| `files_touched` | List of file paths with brief reasons for each change |
-| `risk_assessment` | Blast-radius category (`local`, `cross-module`, or `destructive`) + file count + estimated impact |
-| `candidate_linkages` | List of improvement candidate IDs linked to this task, or `none` |
-| `large_job_triggered` | `true` when the planner classifies the task as a larger job, otherwise `false` |
+The planner work order MUST include the standardized summary header from `.opencode/dev_harness/workflow/plan-summary-schema.md` as a structured block that the builder can extract.
 
 Include these fields immediately after the task normalization paragraph and before the minimum staged plan section.
 
-## Large Job Decision
+## Plan Draft Approval
 
-For `workflow_mode: delivery`, evaluate the work order against `.opencode/dev_harness/workflow/large-job-guidelines.md`. If any criterion matches, set `large_job_triggered: true` and `user_feedback_required: true` with a `user_feedback_request` that names the matching criteria and asks the operator to approve or revise the work order. If no criterion matches, set `large_job_triggered: false`. Then write the plan summary to `.opencode/dev_harness_plans/<YYYY-MM-DD_HHMMSS>-<task-id>.md` using bash, including all standardized summary fields, and include `plan_file_path` in the work order output.
+For `workflow_mode: delivery`, evaluate whether the plan draft needs operator approval before builder execution. Use `.opencode/dev_harness/workflow/control-policy.md` for draft approval states and `.opencode/dev_harness/workflow/large-job-guidelines.md` for large-job classification.
 
-For `workflow_mode: candidate_capture`, skip plan persistence entirely and set `large_job_triggered: false`.
+When approval is required, set `plan_approval_status: pending`, set `plan_approval_reason`, set `user_feedback_required: true`, and ask the operator to approve, request revision, or reject the draft work order. When approval is not required, set `plan_approval_status: not_required` and `plan_approval_reason: not_applicable`. Operator decisions are routing input, not planner output.
+
+Large jobs set `large_job_triggered: true` and use `plan_approval_reason: large_job`. Non-large delivery work sets `large_job_triggered: false`.
+
+Then write the plan summary to `.opencode/dev_harness_plans/<YYYY-MM-DD_HHMMSS>-<task-id>.md` using bash, including all standardized summary fields, and include `plan_file_path` in the work order output.
+
+For `workflow_mode: candidate_capture`, skip plan persistence entirely, set `large_job_triggered: false`, `plan_approval_status: not_required`, and `plan_approval_reason: not_applicable`.
 
 Return:
 - a one-paragraph task normalization
-- the standardized summary header with the seven required fields (task_id, timestamp, scope, files_touched, risk_assessment, candidate_linkages, large_job_triggered)
+- the standardized summary header from `.opencode/dev_harness/workflow/plan-summary-schema.md`
 - the minimum staged plan
 - `plan_file_path` -- path to the written plan summary file, or `none`
 - `large_job_triggered`
+- `plan_approval_status`
+- `plan_approval_reason`
 - helper agents used and why, or `none`
 - helper agents not used and why, including `helper_not_used` rationales for applicable-but-waived helpers
 - `parallel_helper_plan` with packet IDs, helpers, dependencies, reason, and expected outputs, or `none`

@@ -59,6 +59,7 @@ No rejected or deferred evaluations are currently recorded.
 | `done/IMP-005.md` | IMP-005 | Procedural patterns versus factual memory | 2026-06-01 | `.opencode/dev_harness_memories/README.md`, `.opencode/dev_harness_memories/patterns.md`, `.opencode/agents/orchestrator-memory-curator.md`, `.opencode/dev_harness/workflow/control-policy.md` |
 | `done/IMP-006.md` | IMP-006 | Initial clarification gate for ambiguous requests | 2026-06-01 | `.opencode/agents/orchestrator.md`, `.opencode/agents/orchestrator-planner.md`, `.opencode/dev_harness/workflow/control-policy.md` |
 | `done/IMP-007.md` | IMP-007 | Final reflection stage for memory incorporation ownership | 2026-06-01 | `.opencode/agents/orchestrator-reflection.md`, `.opencode/dev_harness/workflow/control-policy.md` |
+| `done/IMP-011.md` | IMP-011 | Workflow Control / Pre-Execution Approval — Plan Draft Approval Cycle | 2026-06-10 | `.opencode/agents/orchestrator.md`, `.opencode/agents/orchestrator-planner.md`, `.opencode/agents/orchestrator-reviewer.md`, `.opencode/dev_harness/workflow/control-policy.md`, `.opencode/dev_harness/workflow/large-job-guidelines.md`, `.opencode/dev_harness_plans/README.md` |
 
 ## Related Files
 

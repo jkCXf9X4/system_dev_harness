@@ -41,6 +41,35 @@ Both workflow modes use the same guarded chain: planner, builder, reviewer, refl
 
 Every top-level stage and directed helper returns the common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`.
 
+## Plan Draft Approval
+
+For `workflow_mode: delivery`, the planner emits a draft work order before builder execution.
+
+Planner output uses:
+
+```text
+plan_approval_status: not_required|pending
+plan_approval_reason: large_job|destructive|operator_requested|not_applicable
+```
+
+Use `plan_approval_status: pending` when builder execution must wait for operator approval. Required approval triggers include:
+
+- `large_job_triggered: true`
+- destructive or high-blast-radius changes
+- explicit user requests to review or approve the plan before implementation
+
+Use `plan_approval_status: not_required` for routine low-risk delivery work. Candidate-capture work does not require plan draft approval unless the workflow is explicitly extended.
+
+Operator decisions route as follows:
+
+- `approve`: orchestrator forwards the approved planner work order to builder.
+- `revise`: orchestrator calls planner again with the user's requested revision and prior planner output.
+- `reject`: orchestrator stops before builder execution and reports the rejection rationale.
+
+Operator decisions are routing inputs, not `plan_approval_status` values.
+
+Large-job approval is one trigger for this draft approval cycle; do not route large jobs through a separate approval path.
+
 ## Initial Clarification Gate
 
 The planner must distinguish harmless assumptions from blocking uncertainty before routing work to delivery or improvement.

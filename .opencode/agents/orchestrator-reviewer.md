@@ -38,9 +38,9 @@ After receiving the builder evidence and before returning the gate decision, ver
    - Set status to `blocked`
    - Include finding ID `pfv-001` with description "Plan summary file missing at {plan_file_path}"
    - Do not pass the gate
-4. If the file exists, verify it is non-empty and contains all required standardized summary fields: `task_id`, `timestamp`, `scope`, `files_touched`, `risk_assessment`, `candidate_linkages`, `large_job_triggered`.
+4. If the file exists, verify it is non-empty and contains all required fields from `.opencode/dev_harness/workflow/plan-summary-schema.md`.
 5. If any required field is missing or incomplete, block with finding ID `pfv-002` describing the specific gap.
-6. If review evidence shows the task should have triggered the large-job gate but `large_job_triggered` is missing or false, record a non-blocking process finding `lg-001`; do not block approval solely for skipped large-job gating because implementation has already occurred.
+6. If review evidence shows the task required draft approval but `plan_approval_status` was `not_required` or missing, record a non-blocking process finding `pda-001`; do not block approval solely for skipped draft approval because implementation has already occurred.
 7. Record the plan file verification result (`pass` or `fail`) in the review output.
 8. If the planner's `workflow_mode` was `candidate_capture`, plan persistence is skipped; set `plan_file_verification: not_applicable` with rationale.
 
