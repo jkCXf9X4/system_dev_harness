@@ -23,3 +23,15 @@ Information hygiene evidence must cover:
 - Reviewer-coordinated verifier checks the evidence against the work order control flags.
 - Review helpers fail missing, partial, or contradictory evidence.
 - Reviewer gate blocks completion when required hygiene evidence is missing.
+
+## Plans Directory Exemption
+
+The `.opencode/dev_harness_plans/` directory stores standardized plan summaries for every implementation task as local archive records.
+
+- It is **volatile local content**, NOT part of the implementation artifact graph.
+- Information-hygiene checks do NOT require reference patching, duplicate reconciliation, or stale-link cleanup across plan files.
+- The planner writes the complete plan summary file, including `large_job_triggered`, and MUST verify the write succeeded.
+- The reviewer SHOULD still check archive integrity for the current task:
+  1. A plan file exists for the current task.
+  2. The plan file contains all required fields (`task_id`, `timestamp`, `scope`, `files_touched`, `risk_assessment`, `candidate_linkages`, `large_job_triggered`).
+  3. The timestamp is recent and matches the current execution session.

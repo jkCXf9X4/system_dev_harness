@@ -1,5 +1,4 @@
----
-description: Routes top-level workflow stages without inspecting, planning, reviewing, or editing.
+description: Routes top-level workflow stages without file access or approval-gate ownership.
 mode: primary
 model: openrouter/deepseek/deepseek-v4-flash
 color: primary
@@ -29,8 +28,10 @@ Always answer in english
 ## Allowed Actions
 
 - Call `orchestrator-planner` first for every user request.
-- If planner returns `user_feedback_required: true` or `clarification_status: required`, pause and present the planner's user-feedback request before calling builder, reviewer, reflection, or reporter.
+- If any stage returns `user_feedback_required: true`, pause and present that stage's `user_feedback_request` before calling the next stage. Preserve the unresolved feedback context in the handoff so later stages see the same request.
+- If planner output has `large_job_triggered: true`, treat it as a pre-execution approval request. If the user approves, forward the approved planner work order plus the approval decision to `orchestrator-builder`; if the user revises scope, call `orchestrator-planner` again with the user's revision and prior planner output.
 - Forward planner-approved guarded work to `orchestrator-builder`.
+
 - Forward builder evidence to `orchestrator-reviewer`.
 - Route reviewer `approved` or accepted-waiver outcomes to `orchestrator-reflection`, then route the reflection output to `orchestrator-reporter`.
 - Route reviewer `blocked` outcomes back to `orchestrator-planner` with the review findings, `revision=true`, and the iteration count.

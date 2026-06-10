@@ -28,6 +28,22 @@ Do a **critical** review and assess the implementation evidence. Apply `.opencod
 Apply `.opencode/dev_harness/workflow/control-policy.md` for required stages, `not_applicable`, control flags, and waivers.
 For `workflow_mode: candidate_capture`, load `.opencode/dev_harness/workflow/candidate-capture.md` and apply the same completion gate to backlog artifacts or a reviewed `no_candidate` disposition instead of code changes. For `persisted`, ensure that candidate files are saved to disk before passing the gate. For `no_candidate`, ensure the inspected scope, threshold rationale, duplicate/backlog-worthiness evidence, and no-file rationale are complete before passing the gate.
 
+## Plan File Verification
+
+After receiving the builder evidence and before returning the gate decision, verify the plan summary file:
+
+1. Read `plan_file_path` from the work order context (set by the planner's work order).
+2. Check that the plan summary file exists at the given path using `test -f`.
+3. If the file does not exist:
+   - Set status to `blocked`
+   - Include finding ID `pfv-001` with description "Plan summary file missing at {plan_file_path}"
+   - Do not pass the gate
+4. If the file exists, verify it is non-empty and contains all required standardized summary fields: `task_id`, `timestamp`, `scope`, `files_touched`, `risk_assessment`, `candidate_linkages`, `large_job_triggered`.
+5. If any required field is missing or incomplete, block with finding ID `pfv-002` describing the specific gap.
+6. If review evidence shows the task should have triggered the large-job gate but `large_job_triggered` is missing or false, record a non-blocking process finding `lg-001`; do not block approval solely for skipped large-job gating because implementation has already occurred.
+7. Record the plan file verification result (`pass` or `fail`) in the review output.
+8. If the planner's `workflow_mode` was `candidate_capture`, plan persistence is skipped; set `plan_file_verification: not_applicable` with rationale.
+
 ## Directed Helpers
 
 Depending on scope, review directly or use directed subagents:

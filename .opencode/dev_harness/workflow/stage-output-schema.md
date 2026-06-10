@@ -11,7 +11,9 @@ improvement_candidates: <out-of-scope candidates or none>
 research_requests: <research already performed or needed, or none>
 ```
 
-When `user_feedback_required` is true, the orchestrator pauses and requests the user decision before continuing.
+Any stage may set `user_feedback_required: true` when it needs user input, approval, or a waiver.
+
+When `user_feedback_required` is true, the orchestrator pauses and requests the user decision before continuing. The unresolved `user_feedback_request` must be relayed unchanged to downstream stages after the user responds so every agent sees the same active feedback context.
 
 Improvement candidates are backlog candidates only. They do not authorize scope expansion in the current task. Incidental candidate handling and persistence ownership live in `.opencode/dev_harness/workflow/candidate-capture.md`.
 

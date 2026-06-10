@@ -10,7 +10,7 @@ permission:
   glob: allow
   grep: allow
   list: allow
-  edit: deny
+  edit: allow
   bash: allow
   external_directory: deny
   task:
@@ -95,9 +95,35 @@ With revision input, return the same plan shape but with refined scope that expl
 
 Use the control flag names from `.opencode/dev_harness/workflow/control-policy.md`. For product breakdown work, apply `.opencode/dev_harness/workflow/product-breakdown-work.md`; infer the likely primary layer and downstream layers from the request only, and let discovery confirm exact files and guidance to load.
 
+
+## Standardized Summary Header
+
+The planner work order MUST include the following standardized summary header fields as a structured block that the builder can extract:
+
+| Field | Description |
+|---|---|
+| `task_id` | Unique task identifier (derived from the improvement candidate ID or generated) |
+| `timestamp` | ISO-8601 timestamp (e.g., `2026-06-10T14:30:22Z`) |
+| `scope` | One-paragraph scope statement summarizing the task |
+| `files_touched` | List of file paths with brief reasons for each change |
+| `risk_assessment` | Blast-radius category (`local`, `cross-module`, or `destructive`) + file count + estimated impact |
+| `candidate_linkages` | List of improvement candidate IDs linked to this task, or `none` |
+| `large_job_triggered` | `true` when the planner classifies the task as a larger job, otherwise `false` |
+
+Include these fields immediately after the task normalization paragraph and before the minimum staged plan section.
+
+## Large Job Decision
+
+For `workflow_mode: delivery`, evaluate the work order against `.opencode/dev_harness/workflow/large-job-guidelines.md`. If any criterion matches, set `large_job_triggered: true` and `user_feedback_required: true` with a `user_feedback_request` that names the matching criteria and asks the operator to approve or revise the work order. If no criterion matches, set `large_job_triggered: false`. Then write the plan summary to `.opencode/dev_harness_plans/<YYYY-MM-DD_HHMMSS>-<task-id>.md` using bash, including all standardized summary fields, and include `plan_file_path` in the work order output.
+
+For `workflow_mode: candidate_capture`, skip plan persistence entirely and set `large_job_triggered: false`.
+
 Return:
 - a one-paragraph task normalization
+- the standardized summary header with the seven required fields (task_id, timestamp, scope, files_touched, risk_assessment, candidate_linkages, large_job_triggered)
 - the minimum staged plan
+- `plan_file_path` -- path to the written plan summary file, or `none`
+- `large_job_triggered`
 - helper agents used and why, or `none`
 - helper agents not used and why, including `helper_not_used` rationales for applicable-but-waived helpers
 - `parallel_helper_plan` with packet IDs, helpers, dependencies, reason, and expected outputs, or `none`
@@ -125,4 +151,4 @@ Return:
 - whether this is a contained implementation task or a candidate-capture artifact persistence task
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
-Do not modify files; use `.opencode/dev_harness/workflow/agent-boundaries.md`.
+The planner may write plan summary files under `.opencode/dev_harness_plans/`. Apply `.opencode/dev_harness/workflow/agent-boundaries.md` for editing boundaries.

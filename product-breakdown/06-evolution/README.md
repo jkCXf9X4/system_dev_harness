@@ -34,9 +34,15 @@ Rejected or deferred suggestions are stored under `evaluations/` so future agent
 
 | File | ID | Theme | Priority | Proposed Date |
 | --- | --- | --- | --- | --- |
-| `candidates/IMP-008.md` | IMP-008 | Governance / Risk Management — Pre-Execution Approval for Larger Jobs | Medium | 2026-06-10 |
-| `candidates/IMP-009.md` | IMP-009 | Traceability / Learning — Mandatory Plan Summary Persistence | High | 2026-06-10 |
 | `candidates/IMP-010.md` | IMP-010 | Collaboration / Iteration — Enhanced Planning-and-Discussion Workflow | Medium | 2026-06-10 |
+
+
+## Selected
+
+| File | ID | Theme | Selected Date | Task Contract |
+| --- | --- | --- | --- | --- |
+| `selected/IMP-008.md` | IMP-008 | Governance / Risk Management — Pre-Execution Approval for Larger Jobs | 2026-06-10 | Implemented via this coordinated pass |
+| `selected/IMP-009.md` | IMP-009 | Traceability / Learning — Mandatory Plan Summary Persistence | 2026-06-10 | Implemented via this coordinated pass |
 
 ## Evaluations
 
