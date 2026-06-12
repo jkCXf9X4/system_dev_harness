@@ -23,6 +23,8 @@ The planner may write only the current task's standardized plan summary under `.
 
 The builder may edit files within the approved work order.
 
+The build error resolver may edit only files needed to fix build, test, type-check, or dependency failures caused by the current implementation or explicitly assigned by the builder.
+
 The cleanup helper may edit only stale references, trackers, indexes, duplicate or superseded content, orphaned artifacts, links, and traceability inside the builder-assigned scope.
 
 The memory curator may edit only `.opencode/dev_harness_memories/lessons.md` and `.opencode/dev_harness_memories/patterns.md` unless the workflow memory policy is explicitly extended.

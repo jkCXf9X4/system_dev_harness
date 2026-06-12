@@ -329,6 +329,7 @@ def test_agent_control_policy_closes_escape_hatches(simple_project: Path) -> Non
         "grep: deny",
         "list: deny",
         "edit: deny",
+        "write: deny",
         "bash: deny",
     ):
         assert denied_permission in orchestrator_prompt
@@ -599,6 +600,7 @@ def test_shared_boundary_and_product_breakdown_policy_are_extracted(simple_proje
 
     assert "orchestrator, planner" not in agent_boundaries
     assert "the planner may write only the current task's standardized plan summary" in agent_boundaries
+    assert "the build error resolver may edit only files needed to fix" in agent_boundaries
     assert "must not edit implementation files" in agent_boundaries
 
     for phrase in (
@@ -614,6 +616,7 @@ def test_shared_boundary_and_product_breakdown_policy_are_extracted(simple_proje
         ".opencode/agents/orchestrator.md",
         ".opencode/agents/orchestrator-planner.md",
         ".opencode/agents/orchestrator-builder.md",
+        ".opencode/agents/orchestrator-build-error-resolver.md",
         ".opencode/agents/orchestrator-cleanup.md",
         ".opencode/agents/orchestrator-contract.md",
         ".opencode/agents/orchestrator-verifier.md",
@@ -636,6 +639,42 @@ def test_shared_boundary_and_product_breakdown_policy_are_extracted(simple_proje
     assert "stage-output-schema.md" in implementation_doc
     assert "agent-boundaries.md" in implementation_doc
     assert "product-breakdown-work.md" in implementation_doc
+
+
+def test_relevant_write_agents_have_edit_permission(simple_project: Path) -> None:
+    writer_agents = (
+        ".opencode/agents/orchestrator-planner.md",
+        ".opencode/agents/orchestrator-builder.md",
+        ".opencode/agents/orchestrator-build-error-resolver.md",
+        ".opencode/agents/orchestrator-cleanup.md",
+        ".opencode/agents/orchestrator-memory-curator.md",
+    )
+    read_only_agents = (
+        ".opencode/agents/orchestrator.md",
+        ".opencode/agents/orchestrator-discovery.md",
+        ".opencode/agents/orchestrator-contract.md",
+        ".opencode/agents/orchestrator-architecture.md",
+        ".opencode/agents/orchestrator-lessons.md",
+        ".opencode/agents/orchestrator-memory.md",
+        ".opencode/agents/orchestrator-reviewer.md",
+        ".opencode/agents/orchestrator-verifier.md",
+        ".opencode/agents/orchestrator-review-architecture.md",
+        ".opencode/agents/orchestrator-review-completeness.md",
+        ".opencode/agents/orchestrator-review-lessons.md",
+        ".opencode/agents/orchestrator-researcher.md",
+        ".opencode/agents/orchestrator-reflection.md",
+        ".opencode/agents/orchestrator-reporter.md",
+    )
+
+    for agent_path in writer_agents:
+        prompt = read_prompt(simple_project, agent_path).lower()
+        assert "edit: allow" in prompt
+        assert "write: allow" in prompt
+
+    for agent_path in read_only_agents:
+        prompt = read_prompt(simple_project, agent_path).lower()
+        assert "edit: deny" in prompt
+        assert "write: deny" in prompt
 
 
 def test_directed_agents_can_use_researcher(simple_project: Path) -> None:
@@ -723,12 +762,14 @@ def test_workflow_memory_layer_is_versioned_and_scoped(simple_project: Path) -> 
         assert metadata_field in memories_readme
 
     assert "edit: deny" in memory_prompt
+    assert "write: deny" in memory_prompt
     assert "dev_harness_memories/lessons.md" in memory_prompt
     assert "dev_harness_memories/patterns.md" in memory_prompt
     assert "memory candidates" in memory_prompt
     assert "treat retrieved memory as a hypothesis" in memory_prompt
 
     assert "edit: allow" in curator_prompt
+    assert "write: allow" in curator_prompt
     assert "dev_harness_memories/lessons.md" in curator_prompt
     assert "dev_harness_memories/patterns.md" in curator_prompt
     assert "current task state" in curator_prompt

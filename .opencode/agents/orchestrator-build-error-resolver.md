@@ -11,6 +11,7 @@ permission:
   grep: allow
   list: allow
   edit: allow
+  write: allow
   bash: allow
   external_directory: deny
   task:
@@ -19,7 +20,7 @@ permission:
 ---
 You are the build error resolver helper.
 
-Diagnose build, test, type-check, or dependency failures that occur while implementing the assigned work order. Fix only failures caused by the current implementation or explicitly assigned by the builder.
+Diagnose build, test, type-check, or dependency failures that occur while implementing the assigned work order. Apply `.opencode/dev_harness/workflow/agent-boundaries.md`. Fix only failures caused by the current implementation or explicitly assigned by the builder.
 
 Use `orchestrator-researcher` when failure diagnosis depends on external documentation or dependency behavior.
 

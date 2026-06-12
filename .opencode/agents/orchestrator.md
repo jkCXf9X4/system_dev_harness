@@ -9,6 +9,7 @@ permission:
   grep: deny
   list: deny
   edit: deny
+  write: deny
   bash: deny
   external_directory: deny
   task:
