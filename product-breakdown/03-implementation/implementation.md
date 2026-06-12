@@ -12,6 +12,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 - `.opencode/dev_harness/README.md` - package index for the reusable dev harness folder.
 - `.opencode/dev_harness/product-breakdown/` - reusable product breakdown guidance split into small files for copied target-repo agents.
 - `.opencode/dev_harness/workflow/` - shared workflow control, information hygiene, and review-output policies referenced by copied agents.
+- `.opencode/dev_harness/workflow/subagent-lifecycle.md` - helper reuse versus fresh-helper handoff policy for context freshness when accumulated helper context becomes suspect.
 - `.opencode/dev_harness_memories/` - canonical repo-local versioned memory for lessons, reusable patterns, decision pointers, and trust metadata.
 
 ## Package Documentation
@@ -98,6 +99,7 @@ Shared workflow policies are implemented as copied agent context under `.opencod
 | `.opencode/dev_harness/workflow/candidate-capture.md` | Candidate-capture ownership, write boundary, required evidence, and valid dispositions. |
 | `.opencode/dev_harness/workflow/information-hygiene.md` | Canonical evidence requirements for changed information artifacts. |
 | `.opencode/dev_harness/workflow/parallel-helper-execution.md` | Planner and reviewer rules for parallel-safe helper packets. |
+| `.opencode/dev_harness/workflow/subagent-lifecycle.md` | Helper lifecycle rules for reuse, fresh helper contexts, context-rot triggers, and compact handoff fields. |
 | `.opencode/dev_harness/workflow/product-breakdown-work.md` | Product-breakdown loading, placement, traceability, decision, and index evidence rules. |
 | `.opencode/dev_harness/workflow/stage-output-schema.md` | Common output fields, `not_applicable`, clarification fields, feedback, candidate, and research request schema. |
 | `.opencode/dev_harness/workflow/workflow-memory.md` | Memory retrieval, curation, final reflection, and reporting boundaries. |
@@ -107,7 +109,7 @@ Shared workflow policies are implemented as copied agent context under `.opencod
 
 ## Trace Links
 
-- Implements AD-001 through AD-003, ED-001, IMD-001 through IMD-003, and IMP-001 through IMP-007.
+- Implements AD-001 through AD-005, ED-001, IMD-001 through IMD-003, and IMP-001 through IMP-007.
 - Satisfies PC-001 through PC-010.
 - Covers UC-001 through UC-014.
 - Implements the architecture-level persistence and context mechanism boundaries through the mechanism storage rules above.

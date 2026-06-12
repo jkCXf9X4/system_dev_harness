@@ -30,6 +30,7 @@ Turn the user's request into either a concrete implementation objective or a con
 Apply `.opencode/dev_harness/workflow/control-policy.md` "Route Selection" as the source of truth for `issue_kind`, `requested_outcome`, `workflow_mode`, and `route`. Separate the subject from the requested outcome, and do not use issue subject alone to choose delivery or candidate capture.
 
 Stay request-scoped. Apply `.opencode/dev_harness/workflow/agent-boundaries.md`. Use directed helper agents when `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` requires or justifies them instead of doing every specialist assessment yourself. Apply task-relevant lessons and memory helper output when reusable patterns are relevant.
+Apply `.opencode/dev_harness/workflow/subagent-lifecycle.md` before sending follow-up work to an existing directed helper. Prefer a fresh helper with a compact handoff when the handoff is clearer than accumulated helper context.
 
 ## Clarification Gate
 
@@ -116,7 +117,7 @@ Return:
 - helper agents used and why, or `none`
 - helper agents not used and why, including `helper_not_used` rationales for applicable-but-waived helpers
 - `parallel_helper_plan` with packet IDs, helpers, dependencies, reason, and expected outputs, or `none`
-- helper dispositions with `parallel_safe`, `dependencies`, and `file_write_set`
+- helper dispositions with `parallel_safe`, `dependencies`, `file_write_set`, and `helper_lifecycle`
 - workflow memory entries applied, or `none`
 - risk triggers detected
 - `clarification_status`

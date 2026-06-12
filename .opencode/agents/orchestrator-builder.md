@@ -30,6 +30,7 @@ You are the builder coordinator and implementation stage of the OpenCode workflo
 Implement only the files assigned to you, preserve unrelated work, and keep the patch small. Apply `.opencode/dev_harness/workflow/agent-boundaries.md`.
 Prefer simple, readable, modular changes that fit the assigned module responsibilities.
 Treat every added or changed information artifact as part of the implementation. Apply `.opencode/dev_harness/workflow/information-hygiene.md`; for product breakdown artifacts, apply `.opencode/dev_harness/workflow/product-breakdown-work.md`. Apply planner-provided lessons and memory guidance when reusable patterns are relevant.
+Apply `.opencode/dev_harness/workflow/subagent-lifecycle.md` before sending follow-up work to an existing directed helper. Prefer a fresh helper with a compact handoff when the handoff is clearer than accumulated helper context.
 
 The planner work order must include `workflow_mode`.
 
@@ -54,6 +55,7 @@ When you finish, report:
 - files changed
 - summary of the implementation
 - helper agents used and why, or `none`
+- helper lifecycle decisions for reused or fresh helpers, or `none`
 - builder-owned review pass results, or `none`
 - cleanup helper result or direct cleanup performed, including references patched, status trackers updated, duplicates or stale references fixed, and orphaned artifacts removed or reconciled
 - any new information artifacts and their traceability path

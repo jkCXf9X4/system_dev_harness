@@ -273,8 +273,65 @@ def test_orchestrator_does_not_route_shortcut_build(simple_project: Path) -> Non
     for content in (orchestrator_prompt, planner_prompt, architecture_doc):
         lowered = content.lower()
         assert "small-task handoff" not in lowered
-        assert "compact handoff" not in lowered
         assert "shortcut path" not in lowered
+
+    assert "shortcut" not in planner_prompt.lower()
+
+
+def test_subagent_lifecycle_policy_is_centralized(simple_project: Path) -> None:
+    repo_root = Path(__file__).resolve().parents[1]
+    policy = read_prompt(
+        simple_project,
+        ".opencode/dev_harness/workflow/subagent-lifecycle.md",
+    ).lower()
+    architecture_doc = read_prompt(repo_root, "product-breakdown/02-architecture/architecture.md").lower()
+    implementation_doc = read_prompt(repo_root, "product-breakdown/03-implementation/implementation.md").lower()
+    decision_log = read_prompt(repo_root, "product-breakdown/decision-log.md").lower()
+
+    assert "cannot force compaction" in policy
+    assert "clearing" in policy
+    assert "reuse_existing|start_fresh|not_applicable" in policy
+    assert "fresh_helper_handoff" in policy
+    assert "accumulated context" in policy
+
+    assert "subagent lifecycle policy" in architecture_doc
+    assert "subagent-lifecycle.md" in implementation_doc
+    assert "ad-005" in decision_log
+
+
+def test_top_level_agents_reference_subagent_lifecycle_policy(simple_project: Path) -> None:
+    for agent_path in (
+        ".opencode/agents/orchestrator-planner.md",
+        ".opencode/agents/orchestrator-builder.md",
+        ".opencode/agents/orchestrator-reviewer.md",
+        ".opencode/agents/orchestrator-reflection.md",
+    ):
+        prompt = read_prompt(simple_project, agent_path).lower()
+        assert "subagent-lifecycle.md" in prompt
+        assert "fresh helper" in prompt
+
+
+def test_helper_outputs_include_lifecycle_decision(simple_project: Path) -> None:
+    stage_schema = read_prompt(
+        simple_project,
+        ".opencode/dev_harness/workflow/stage-output-schema.md",
+    ).lower()
+    parallel_policy = read_prompt(
+        simple_project,
+        ".opencode/dev_harness/workflow/parallel-helper-execution.md",
+    ).lower()
+    review_context = read_prompt(
+        simple_project,
+        ".opencode/dev_harness/workflow/review-helper-context.md",
+    ).lower()
+
+    for content in (stage_schema, parallel_policy):
+        assert "helper_lifecycle" in content
+        assert "reuse_existing" in content
+        assert "start_fresh" in content
+
+    assert "subagent-lifecycle.md" in review_context
+    assert "compact handoff" in review_context
 
 
 def test_information_hygiene_is_workflow_gated(simple_project: Path) -> None:

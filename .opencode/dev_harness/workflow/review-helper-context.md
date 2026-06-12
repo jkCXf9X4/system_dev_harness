@@ -2,6 +2,8 @@
 
 Use this protocol when a builder or reviewer invokes a read-only review helper.
 
+Apply `.opencode/dev_harness/workflow/subagent-lifecycle.md` before sending follow-up review work to an existing helper. If the review input can be summarized clearly, prefer a fresh helper context with `caller_context` and a compact handoff over accumulated helper history.
+
 The invoking stage must include one caller context:
 
 ```text

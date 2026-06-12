@@ -48,6 +48,7 @@ guarded delivery:
 | Dev harness context | Captures cross-project prompts, workflow policy, product-breakdown guidance, and supporting templates under `.opencode/dev_harness/`. |
 | Product breakdown guidance | Provides copied, load-on-demand context under `.opencode/dev_harness/product-breakdown/` so target-repo agents can structure layered artifacts without relying on source docs in the package repo. |
 | Workflow policy guidance | Provides copied workflow control, information hygiene, and review-output rules under `.opencode/dev_harness/workflow/` so agents reference shared policy instead of duplicating it. |
+| Subagent lifecycle policy | Controls helper reuse versus fresh helper handoff when context quality is suspect, without depending on runtime compaction or clearing. |
 
 ## Boundaries
 
@@ -71,6 +72,7 @@ guarded delivery:
 - Dev harness context lives in versioned markdown under `.opencode/dev_harness/` so it can be copied between projects without losing structure.
 - Product breakdown guidance lives under `.opencode/dev_harness/product-breakdown/` because target repositories receive `.opencode/` but not this package's `product-breakdown/` tree.
 - Workflow policy guidance lives under `.opencode/dev_harness/workflow/` because target repositories receive `.opencode/` but not this package's `product-breakdown/` tree.
+- Context freshness for directed helpers is managed through `.opencode/dev_harness/workflow/subagent-lifecycle.md`. The workflow does not depend on a runtime API for parent-forced helper compaction, clearing, pruning, or reset; when helper context becomes suspect, the owning stage starts a fresh helper context with a compact handoff.
 - Every artifact touched by the workflow should have a visible place in the information chain, with no orphaned node left behind after a creation, move, rename, rewrite, or replacement.
 - New information must either update an existing artifact, replace a superseded artifact, or declare a clear parent context and downstream destination.
 - Completion evidence must cover stale-reference cleanup, status tracker updates, duplicate-content reconciliation, orphaned-artifact handling, and traceability for changed information artifacts.
@@ -132,9 +134,9 @@ When information could fit more than one mechanism, choose the narrowest durable
 
 - Intent docs feed PC-001 through PC-010.
 - Product commitments constrain the agent roles and permissions.
-- Technical and evolution decisions justify the OpenCode-native workflow and persistent source docs.
+- Technical and evolution decisions justify the OpenCode-native workflow, helper lifecycle policy, and persistent source docs.
 - Implementation artifacts realize the workflow in `opencode.json`, `.opencode/agents/*.md`, and `.opencode/dev_harness/**/*.md`, including the repo-local workflow memory schema and memory hygiene guidance.
 - Product breakdown guidance supports PC-006 by giving agents copied context for layered decisions and traceability.
-- Workflow policy guidance keeps repeated control, information hygiene, and review-output rules centralized for copied agents.
+- Workflow policy guidance keeps repeated control, information hygiene, helper lifecycle, and review-output rules centralized for copied agents.
 - Persistence and context mechanism boundaries support PC-006 and PC-007 by keeping product rationale, runtime behavior, workflow memory, improvement candidates, skills/plugins, and research in distinct owners.
 - IMP-001 through IMP-005 harden the workflow-memory and review/report boundary, while IMP-006 and IMP-007 harden clarification and reflection routing.

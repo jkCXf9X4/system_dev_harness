@@ -9,7 +9,7 @@ Vision.md (00-intent)
   -> Product Commitments PC-001 through PC-010 (01-product)
     -> Use Cases UC-001 through UC-014 (00-intent)
   -> Architecture (02-architecture)
-        -> Decisions AD-001 through AD-003 (02-architecture/decisions/)
+        -> Decisions AD-001 through AD-005 (02-architecture/decisions/)
         -> Decisions IMD-001 through IMD-003 (03-implementation/decisions/)
           -> Implementation Artifacts (03-implementation)
             -> Verification (04-verification)
@@ -52,6 +52,17 @@ Vision.md (00-intent)
 | Decisions | IMD-001 (versioned lessons), IMD-003 (repo-local workflow memory) |
 | Implementation | orchestrator-memory.md, orchestrator-memory-curator.md, orchestrator-reflection.md, `.opencode/dev_harness_memories/` |
 | Verification | Workflow memory probe coverage, review/helper routing checks, final reflection output |
+
+### Subagent Lifecycle And Context Freshness
+
+| Step | Trace |
+| --- | --- |
+| Intent | Vision.md - Core Thesis, Desired Outcomes |
+| Product | PC-003, PC-006, PC-007 |
+| Architecture | Architecture.md - Subagent lifecycle policy, Boundaries, Persistence And Context Mechanisms |
+| Decisions | AD-005 (fresh helper handoffs for context rot) |
+| Implementation | `.opencode/dev_harness/workflow/subagent-lifecycle.md`, planner/builder/reviewer/reflection prompt references, helper lifecycle schema fields |
+| Verification | Subagent lifecycle policy probe coverage and top-level stage reference checks |
 
 ### Traceability & Information Hygiene
 
