@@ -5,6 +5,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 ## Implemented Artifacts
 
 - `opencode.json` - copy into the target development repo root as the OpenCode config and entrypoint selector.
+- `pyproject.toml` and `src/system_dev_harness_sync/` - local Python package and CLI for syncing the runtime payload into target repositories.
 - `.opencode/dev_harness/instructions.md` - package-level neutral instructions that preserve the selected agent boundary.
 - `.opencode/agents/orchestrator.md` - primary workflow router.
 - `.opencode/agents/orchestrator-*.md` - top-level agents for planning, building, reviewing, reflection, and reporting plus directed helper agents owned by planner, builder, reviewer, and reflection.
@@ -29,10 +30,12 @@ The implementation keeps each persistence mechanism in one canonical place so co
 | --- | --- | --- |
 | Product source rationale, commitments, architecture, decisions, verification expectations, operation requirements, and traceability | `product-breakdown/` | Product-breakdown updates in guarded delivery or improvement work. |
 | Runnable install, deploy, usage, verification, troubleshooting, and contributor procedures | `docs/` | Documentation updates; link to product-breakdown context instead of copying it. |
+| Local sync helper code | `pyproject.toml`, `src/system_dev_harness_sync/` | Package code updates with focused unit tests. |
 | Agent roles, permissions, workflow-stage prompts, helper routing, and copied runtime behavior | `.opencode/agents/*.md`, `.opencode/dev_harness/instructions.md`, `.opencode/dev_harness/` | Package prompt and workflow-policy edits. |
 | Repo-local lessons, reusable patterns, decision pointers, trust metadata, and revalidation cues | `.opencode/dev_harness_memories/` | `orchestrator-reflection` triage and `orchestrator-memory-curator` writes. |
 | Improvement candidates and future work seeds | Accepted candidates in `product-breakdown/06-evolution/candidates/`, then selected/done evolution files | `orchestrator-builder` in candidate-capture mode. |
 | Current task evidence, work orders, verification output, review findings, waivers, and final reports | Active stage outputs; reconcile durable facts into the owning artifact before completion | Owning stage for the active run. |
+| Target-repo sync state | `.opencode/dev_harness/.sync-manifest.json` in target repositories | `system-dev-harness-sync`; this state is generated and should not become product source documentation. |
 | External research claims and source notes | `knowledge/agent-reasoning/` plus cited decisions in `product-breakdown/` | Research-backed product work. |
 | Skills, plugins, and connector capabilities | Operator environment unless an accepted product decision changes the package | Product decisions only; do not add agent `SKILLS` declarations without superseding AD-004. |
 

@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "system-dev-harness-sync"
+version = "0.1.0"
+description = "Local sync helper for the OpenCode system dev harness payload."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "system_dev_harness maintainers" }
+]
+dependencies = []
+
+[project.scripts]
+system-dev-harness-sync = "system_dev_harness_sync.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
