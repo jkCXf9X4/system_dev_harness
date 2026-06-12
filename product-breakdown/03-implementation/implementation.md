@@ -5,7 +5,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 ## Implemented Artifacts
 
 - `opencode.json` - copy into the target development repo root as the OpenCode config and entrypoint selector.
-- `.opencode/instructions.md` - package-level neutral instructions that preserve the selected agent boundary.
+- `.opencode/dev_harness/instructions.md` - package-level neutral instructions that preserve the selected agent boundary.
 - `.opencode/agents/orchestrator.md` - primary workflow router.
 - `.opencode/agents/orchestrator-*.md` - top-level agents for planning, building, reviewing, reflection, and reporting plus directed helper agents owned by planner, builder, reviewer, and reflection.
 - `.opencode/dev_harness/prompts/*.md` - reusable prompt templates tied to use cases.
@@ -29,7 +29,7 @@ The implementation keeps each persistence mechanism in one canonical place so co
 | --- | --- | --- |
 | Product source rationale, commitments, architecture, decisions, verification expectations, operation requirements, and traceability | `product-breakdown/` | Product-breakdown updates in guarded delivery or improvement work. |
 | Runnable install, deploy, usage, verification, troubleshooting, and contributor procedures | `docs/` | Documentation updates; link to product-breakdown context instead of copying it. |
-| Agent roles, permissions, workflow-stage prompts, helper routing, and copied runtime behavior | `.opencode/agents/*.md`, `.opencode/instructions.md`, `.opencode/dev_harness/` | Package prompt and workflow-policy edits. |
+| Agent roles, permissions, workflow-stage prompts, helper routing, and copied runtime behavior | `.opencode/agents/*.md`, `.opencode/dev_harness/instructions.md`, `.opencode/dev_harness/` | Package prompt and workflow-policy edits. |
 | Repo-local lessons, reusable patterns, decision pointers, trust metadata, and revalidation cues | `.opencode/dev_harness_memories/` | `orchestrator-reflection` triage and `orchestrator-memory-curator` writes. |
 | Improvement candidates and future work seeds | Accepted candidates in `product-breakdown/06-evolution/candidates/`, then selected/done evolution files | `orchestrator-builder` in candidate-capture mode. |
 | Current task evidence, work orders, verification output, review findings, waivers, and final reports | Active stage outputs; reconcile durable facts into the owning artifact before completion | Owning stage for the active run. |
@@ -57,7 +57,7 @@ If a change creates information that crosses these boundaries, update the owning
 | Stage | Artifact | Edit | Bash | Responsibility |
 | --- | --- | --- | --- | --- |
 | Entrypoint | `opencode.json` | n/a | n/a | Selects `orchestrator` as the default primary agent. |
-| Package instructions | `.opencode/instructions.md` | no | no | Keeps global instructions neutral so explicitly selected non-orchestrator agents do not inherit the guarded workflow. |
+| Package instructions | `.opencode/dev_harness/instructions.md` | no | no | Keeps global instructions neutral so explicitly selected non-orchestrator agents do not inherit the guarded workflow. |
 | Orchestration | `.opencode/agents/orchestrator.md` | no | no | Routes planner, builder, reviewer, reflection, and reporter without repository inspection, request classification, or specialist stage work. |
 | Planning | `.opencode/agents/orchestrator-planner.md` | no | yes | Normalizes the request, resolves uncertainty, selects delivery or candidate-capture mode, coordinates planning helpers, groups independent helper packets, and emits the builder work order. |
 | Planning helpers | `.opencode/agents/orchestrator-discovery.md`, `orchestrator-contract.md`, `orchestrator-architecture.md`, `orchestrator-lessons.md`, `orchestrator-memory.md` | no | yes | Provide directed discovery, requirements, architecture, lessons, and memory support. Planner handles test obligations and product-breakdown placement in the work order. |

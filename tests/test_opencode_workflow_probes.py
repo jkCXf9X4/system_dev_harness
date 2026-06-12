@@ -97,10 +97,10 @@ def test_build_stage_smoke(simple_project: Path, opencode_env: dict[str, str]) -
 def test_direct_build_agent_does_not_inherit_orchestrator_prompt(simple_project: Path) -> None:
     config = json.loads(read_prompt(simple_project, "opencode.json"))
     instructions = config.get("instructions", [])
-    package_instructions = read_prompt(simple_project, ".opencode/instructions.md").lower()
+    package_instructions = read_prompt(simple_project, ".opencode/dev_harness/instructions.md").lower()
 
     assert config["default_agent"] == "orchestrator"
-    assert ".opencode/instructions.md" in instructions
+    assert ".opencode/dev_harness/instructions.md" in instructions
     assert ".opencode/agents/orchestrator.md" not in instructions
     assert "currently selected agent" in package_instructions
     assert "normal `build` agent" in package_instructions
