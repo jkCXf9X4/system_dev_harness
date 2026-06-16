@@ -13,6 +13,6 @@ Quick start:
 Local sync helper:
 
 ```bash
-python -m pip install -e .
+python -m pip install git+https://github.com/jkCXf9X4/system_dev_harness.git
 system-dev-harness-sync
 ```
