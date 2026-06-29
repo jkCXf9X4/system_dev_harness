@@ -440,6 +440,38 @@ def test_planner_routes_candidate_capture_by_requested_outcome(simple_project: P
     assert "bug, fix, regression, feature, documentation, cleanup, and refactoring subjects can all use `workflow_mode: candidate_capture`" in control_policy
 
 
+def test_workflow_tailoring_record_is_documented(simple_project: Path) -> None:
+    repo_root = Path(__file__).resolve().parents[1]
+    planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
+    reporter_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reporter.md").lower()
+    control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
+    adaptive_triggers = read_prompt(simple_project, ".opencode/dev_harness/workflow/adaptive-risk-triggers.md").lower()
+    plan_schema = read_prompt(simple_project, ".opencode/dev_harness/workflow/plan-summary-schema.md").lower()
+    acceptance_criteria = read_prompt(repo_root, "product-breakdown/cross-cutting/04-verification/acceptance-criteria.md").lower()
+    product_verification = read_prompt(repo_root, "product-breakdown/fbs/01-product/verification.md").lower()
+    impl_verification = read_prompt(repo_root, "product-breakdown/pbs/03-implementation/verification.md").lower()
+    implementation_doc = read_prompt(repo_root, "product-breakdown/pbs/03-implementation/implementation.md").lower()
+    evolution_done = read_prompt(
+        repo_root,
+        "product-breakdown/cross-cutting/06-evolution/done/IMP-029.md",
+    ).lower()
+
+    for content in (control_policy, adaptive_triggers):
+        assert "lightweight" in content
+        assert "standard" in content
+        assert "high_assurance" in content
+        assert "tailoring_record" in content
+
+    assert "tailoring_record" in plan_schema
+    assert "tailoring_record" in planner_prompt
+    assert "tailoring summary" in reporter_prompt
+    assert "task-tailoring record" in acceptance_criteria
+    assert "criterion ac-product-09" in product_verification
+    assert "criterion ac-impl-04" in impl_verification
+    assert "planner-owned tailoring records" in implementation_doc
+    assert "tailoring record" in evolution_done
+
+
 def test_top_level_flow_and_directed_helpers_are_explicit(simple_project: Path) -> None:
     orchestrator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator.md").lower()
     planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
@@ -526,7 +558,7 @@ def test_builder_cleanup_helper_is_scoped_and_wired(simple_project: Path) -> Non
         Path(__file__).resolve().parents[1],
         "product-breakdown/pbs/02-architecture/architecture.md",
     ).lower()
-implementation_doc = read_prompt(
+    implementation_doc = read_prompt(
         Path(__file__).resolve().parents[1],
         "product-breakdown/pbs/03-implementation/implementation.md",
     ).lower()

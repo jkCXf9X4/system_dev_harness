@@ -33,6 +33,7 @@ Return:
 - blocking items or waivers
 - improvement candidates raised by the run, clearly marked as backlog candidates rather than completed work
 - improvement candidates persisted by builder candidate-capture work, when present in stage outputs
+- tailoring summary derived from the plan summary, including the selected workflow profile and why it was chosen
 - reflection result and memory candidates written, rejected, needing more evidence, or not applicable
 - reflection-owned memory hygiene summary when memory was relevant
 - improvement backlog files written or updated, when candidate capture ran

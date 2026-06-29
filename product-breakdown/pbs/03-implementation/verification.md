@@ -35,6 +35,15 @@ The following criteria are extracted from the centralized acceptance criteria an
 | **Description** | Repo-state review tasks must either produce trace-preserving updates or a reviewed no-change/backlog result that records stale, duplicated, conflicting, or orphaned findings. |
 | **Verification** | Confirm repo-state review mode records its findings (either updates applied or no-change result with orphaned/conflicting/duplicate entries documented). |
 
+### Criterion AC-IMPL-04: Workflow tailoring records are preserved in planner and reporter outputs
+
+| Property | Value |
+|---|---|
+| **Original Reference** | `product-breakdown/cross-cutting/04-verification/acceptance-criteria.md` — criterion 18 |
+| **Scope** | `pbs/03-implementation/implementation.md` |
+| **Description** | Planner and reporter implementation artifacts must preserve a task-tailoring record with the selected workflow profile, applied triggers, helper or stage deviations, and rationale. |
+| **Verification** | Confirm the planner prompt requires `tailoring_record` in the work order. Verify the reporter prompt summarizes the selected workflow profile and rationale. |
+
 ## Cross-Reference to Centralized Criteria
 
 | Implementation Criterion | Centralized Criterion (cross-cutting/04-verification/acceptance-criteria.md) |
@@ -42,6 +51,7 @@ The following criteria are extracted from the centralized acceptance criteria an
 | AC-IMPL-01 | Criterion 2 |
 | AC-IMPL-02 | Criterion 8 |
 | AC-IMPL-03 | Criterion 10 |
+| AC-IMPL-04 | Criterion 18 |
 
 ## Relationship to PBS
 

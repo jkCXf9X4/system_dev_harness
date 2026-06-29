@@ -92,6 +92,8 @@ Use the control flag names from `.opencode/dev_harness/workflow/control-policy.m
 
 The planner work order MUST include the standardized summary header from `.opencode/dev_harness/workflow/plan-summary-schema.md` as a structured block that the builder can extract.
 
+The work order must also include a `tailoring_record` section that states the selected workflow profile (`lightweight`, `standard`, or `high_assurance`), the applied risk triggers, any helpers or stages intentionally waived or intensified, and the rationale for that process configuration.
+
 Include these fields immediately after the task normalization paragraph and before the minimum staged plan section.
 
 ## Plan Draft Approval
@@ -125,6 +127,7 @@ Return:
 - `clarification_questions`
 - `assumption_rationale`
 - assumptions and interpretation choices, or `none`
+- `tailoring_record`
 - success criteria and verification obligations
 - `issue_kind`
 - `requested_outcome`

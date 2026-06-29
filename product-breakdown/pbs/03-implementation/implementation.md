@@ -9,6 +9,7 @@ The current solution is packaged as copyable OpenCode configuration and prompts.
 - `.opencode/dev_harness/instructions.md` - package-level neutral instructions that preserve the selected agent boundary.
 - `.opencode/agents/orchestrator.md` - primary workflow router.
 - `.opencode/agents/orchestrator-*.md` - top-level agents for planning, building, reviewing, reflection, and reporting plus directed helper agents owned by planner, builder, reviewer, and reflection.
+- `.opencode/agents/orchestrator-planner.md` and `.opencode/agents/orchestrator-reporter.md` - planner-owned tailoring records and reporter summaries for task-specific workflow profiles.
 - `.opencode/dev_harness/prompts/*.md` - reusable prompt templates tied to use cases.
 - `.opencode/dev_harness/README.md` - package index for the reusable dev harness folder.
 - `.opencode/dev_harness/product-breakdown/` - reusable product breakdown guidance split into small files for copied target-repo agents.
@@ -47,10 +48,12 @@ If a change creates information that crosses these boundaries, update the owning
 - Direct operator-selected `build` execution is outside the guarded orchestrator path and must not inherit the orchestrator prompt through global instructions.
 - `orchestrator` is a dispatcher and gate router only; it has no file read, search, list, edit, or shell permissions, does not classify requests, and invokes only planner, builder, reviewer, reflection, and reporter. Directed helpers such as researcher are invoked by their owning top-level stage.
 - `orchestrator-planner` owns discovery, contract, architecture, lessons, research helper routing, inline test obligations, product-breakdown placement, durable product behavior impact, workflow-mode selection, and final work-order synthesis; helper use follows adaptive risk triggers and groups independent helpers into parallel-safe packets when possible.
+- `orchestrator-planner` also owns task-tailoring selection and the `tailoring_record` that captures the selected workflow profile, applied triggers, and rationale for process adaptation.
 - `orchestrator-builder` owns implementation, candidate-capture persistence, scoped cleanup, documentation/product-breakdown updates, build-error resolution, cleanup-helper routing, review-helper routing for builder-owned review pass evidence, and research helper routing. Builder-owned review helper calls use `caller_context: builder_preflight`.
 - `orchestrator-reviewer` owns verifier, review helper, researcher, and deterministic gate routing; helper use follows adaptive risk triggers, groups independent read-only helpers into parallel-safe packets when possible, and may be lightweight for low-risk tasks. Reviewer-owned review helper calls use `caller_context: reviewer_gate`.
 - review agents are read-only and exist to keep approval separate from implementation.
 - `orchestrator-reflection` owns final memory-incorporation triage before reporting and may invoke the memory curator for evidenced durable memory candidates.
+- `orchestrator-reporter` includes the final tailoring summary derived from the planner work order so the chosen workflow profile remains visible in the control report.
 - `orchestrator-memory` retrieves task-relevant workflow memory without editing it.
 - `orchestrator-memory-curator` may edit only workflow memory files and only for evidenced durable memory candidates.
 - Incidental improvement findings raised by working agents are reported as `improvement_candidates`; deliberate persistence uses planner, builder, reviewer, reflection, and reporter.

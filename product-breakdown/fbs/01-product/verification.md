@@ -80,6 +80,15 @@ The following criteria are extracted from the centralized acceptance criteria an
 | **Description** | Review-only repo-state assessment requests must use `workflow_mode: candidate_capture`; review-and-change requests must use `workflow_mode: delivery`. |
 | **Verification** | Confirm the workflow routes review-only requests to candidate-capture mode and review-and-change requests to delivery mode. |
 
+### Criterion AC-PRODUCT-09: Workflow tailoring records are preserved in work orders and reports
+
+| Property | Value |
+|---|---|
+| **Original Reference** | `product-breakdown/cross-cutting/04-verification/acceptance-criteria.md` — criterion 18 |
+| **Scope** | `fbs/01-product/product-commitments.md` (PC-001, PC-004, PC-006, PC-008) |
+| **Description** | Planner work orders and final reports must preserve a task-tailoring record with the selected workflow profile, applied triggers, helper or stage deviations, and rationale so task-specific process adaptation is auditable. |
+| **Verification** | Confirm planner outputs a `tailoring_record` section. Verify reporter output summarizes the tailored profile and rationale from the plan summary. |
+
 ## Cross-Reference to Centralized Criteria
 
 | Product Criterion | Centralized Criterion (cross-cutting/04-verification/acceptance-criteria.md) |
@@ -92,6 +101,7 @@ The following criteria are extracted from the centralized acceptance criteria an
 | AC-PRODUCT-06 | Criterion 13 |
 | AC-PRODUCT-07 | Criterion 14 |
 | AC-PRODUCT-08 | Criterion 17 |
+| AC-PRODUCT-09 | Criterion 18 |
 
 ## Relationship to FBS
 

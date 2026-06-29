@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import os
 import shutil
 from pathlib import Path
@@ -45,4 +46,10 @@ def opencode_env(tmp_path: Path) -> dict[str, str]:
             "XDG_CACHE_HOME": str(cache),
         }
     )
+
+    if AUTH_FILE.exists():
+        auth = json.loads(AUTH_FILE.read_text(encoding="utf-8"))
+        openrouter_key = auth.get("openrouter", {}).get("key")
+        if openrouter_key:
+            env["OPENROUTER_API_KEY"] = openrouter_key
     return env

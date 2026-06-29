@@ -17,7 +17,7 @@ The following per-layer verification artifacts exist:
 | Operation | `cross-cutting/05-operation/verification.md` | Runbook, deployment process |
 | Evolution | `cross-cutting/06-evolution/verification.md` | Roadmap, changelog, risks, gap analysis, WBS |
 
-All 17 centralized acceptance criteria are listed below. Each criterion is extracted into one or more per-layer verification artifacts as indicated by its cross-reference.
+All 18 centralized acceptance criteria are listed below. Each criterion is extracted into one or more per-layer verification artifacts as indicated by its cross-reference.
 
 ---
 
@@ -42,3 +42,4 @@ The workflow package must satisfy these high-level acceptance criteria:
 - Product source information, scope, stable decisions, and traceability remain in `product-breakdown/`.
 - Runnable guidance, examples, install/deploy instructions, verification commands, and contributor workflow remain in `docs/` without duplicating product text.
 - Review-only repo-state assessment requests use `workflow_mode: candidate_capture`; review-and-change requests use `workflow_mode: delivery`.
+- Planner work orders and final reports preserve a task-tailoring record with the selected workflow profile, applied triggers, helper/stage deviations, and rationale.

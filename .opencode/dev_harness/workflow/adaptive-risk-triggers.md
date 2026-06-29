@@ -2,6 +2,16 @@
 
 Use helper agents based on task risk instead of forcing the full helper set for every task. A top-level stage may handle a task itself only when no trigger below applies, or when it returns an explicit `helper_not_used` rationale for each applicable-but-waived helper. Use `.opencode/dev_harness/workflow/workflow-memory.md` for workflow memory boundaries after this policy selects `orchestrator-memory`.
 
+## Tailoring Profiles
+
+The planner should select a baseline workflow profile before helper selection. Profiles set the default process depth; risk triggers then add or waive specific helpers on top of that baseline.
+
+- `lightweight`: use for low-risk documentation, metadata-only, and narrow no-code work when no higher-risk trigger applies.
+- `standard`: use for routine delivery work that needs the guarded chain but no exceptional escalation.
+- `high_assurance`: use for behavior changes, cross-module work, architecture or boundary changes, external uncertainty, revision-heavy work, or high-blast-radius tasks.
+
+The selected profile must be recorded in the planner work order's `tailoring_record`. Profile selection does not override mandatory helper triggers.
+
 ## Planner Triggers
 
 - Repo-state review requests require `orchestrator-discovery`; add `orchestrator-contract` when the review criteria, scope, or success definition are not already checklistable.

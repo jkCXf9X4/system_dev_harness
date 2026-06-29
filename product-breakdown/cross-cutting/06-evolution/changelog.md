@@ -9,6 +9,12 @@
 - Split helper-trigger, parallel-helper, and workflow-memory rules out of `control-policy.md` into focused load-on-demand workflow policy files.
 - Extracted common stage output schema, agent read/write boundaries, and product-breakdown work rules into focused workflow policy files.
 
+## 2026-06-29
+
+- Added explicit workflow tailoring profiles (`lightweight`, `standard`, `high_assurance`) and a required `tailoring_record` so planner work orders record how the process was adapted for task risk and context.
+- Updated the planner and reporter prompts so tailoring choices are captured in the work order and summarized in the final control report.
+- Added product-layer and implementation-layer verification criteria for tailoring-record preservation.
+
 ## 2026-06-02
 
 - Added disk-backed focused improvement dispositions: accepted findings remain candidates, while rejected or needs-more-evidence suggestions are recorded under `product-breakdown/cross-cutting/06-evolution/evaluations/`.

@@ -15,3 +15,4 @@ Use this schema for planner work-order summary headers and `.opencode/dev_harnes
 | `large_job_triggered` | `true` when the planner classifies the task as a larger job, otherwise `false` |
 | `plan_approval_status` | `not_required` or `pending` |
 | `plan_approval_reason` | `large_job`, `destructive`, `operator_requested`, or `not_applicable` |
+| `tailoring_record` | Selected workflow profile plus applied triggers, helper/stage deviations, and rationale for task-specific tailoring |
