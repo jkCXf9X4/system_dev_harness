@@ -6,6 +6,8 @@ Message-sequence tables for the two guarded workflow paths and parametric constr
 
 Current as of IMP-032 (2026-06-29).
 
+> **External references:** This file adapts SysML concepts (sequence diagrams, parametric constraints) for analytical use within this workflow. SysML is a trademark of OMG. Descriptions are original summaries; for authoritative definitions, consult the SysML specification directly.
+
 ## Notation
 
 Sequence tables follow lifeline/message conventions adapted from SysML Sequence Diagrams. Each row is one message exchange between lifelines (agents or stages). Messages are ordered by sequence number.

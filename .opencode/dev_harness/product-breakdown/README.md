@@ -22,12 +22,23 @@ Load only the files needed for the current task:
 | Connect intent to tests | `traceability.md` |
 | Name artifacts consistently | `naming.md` |
 | Create an improvement backlog | `layers/06-evolution.md`, `templates/improvement-backlog-overview-template.md`, `templates/improvement-candidate-template.md` |
+| Perform systems-engineering analysis | `architecture/interface-contracts.md`, `architecture/agent-state-machines.md`, `architecture/sequence-parametric.md`, `architecture/component-hierarchy.md` |
+| Assess system risks | `verification/risk-framework.md` |
+| Verify acceptance criteria | `verification/acceptance-criteria.md` |
 
 ## Core Rule
 
 A decision belongs in the layer where its consequences are most directly felt.
 
 Do not collect decisions in one central decisions directory. Keep decisions beside the artifacts they constrain, and maintain a root-level decision log only as an index.
+
+## External References
+
+This folder adapts concepts from the following standards for analytical use within the workflow. Descriptions are original summaries; for authoritative definitions, consult the standards directly.
+
+- **ISO/IEC 15288** (ISO/IEC): Systems and software engineering — System life cycle processes. Referenced for staged pipeline concepts and verification/validation distinction.
+- **INCOSE Systems Engineering Handbook, 5th Edition** (INCOSE): Referenced for product breakdown structure hierarchy conventions and verification pattern guidance.
+- **OMG SysML** (Object Management Group): SysML is a trademark of OMG. Referenced for diagram-adapted text artifacts (BDD, IBD, state machines, sequence diagrams, parametric constraints).
 
 ## Expected Product Breakdown Tree
 
@@ -79,6 +90,7 @@ Each layer may contain a local `decisions/` directory.
 
 ## Agent Usage
 
+0. For systems-engineering analysis, load the architecture artifacts (`architecture/interface-contracts.md`, `architecture/agent-state-machines.md`, `architecture/sequence-parametric.md`, `architecture/component-hierarchy.md`) and the risk framework (`verification/risk-framework.md`).
 1. Identify the task layer before reading broadly.
 2. Load that layer file and any directly linked support file.
 3. If adding a decision, apply `decision-placement.md` before writing.

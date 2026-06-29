@@ -1,6 +1,7 @@
 # Verification Strategy
 
 > **Runtime reference copy for agent context.** Canonical source: `product-breakdown/cross-cutting/04-verification/acceptance-criteria.md`.
+> **External references:** This file adapts concepts from ISO/IEC 15288 (System life cycle processes) and the INCOSE Systems Engineering Handbook for verification/validation analysis within this workflow. Descriptions are original summaries; for authoritative definitions, consult the standards directly.
 
 This document serves as the authoritative index for all verification criteria across the system. It defines the overall verification approach and cross-cutting concerns.
 

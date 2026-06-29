@@ -6,6 +6,8 @@ IBD-adapted interface specification tables for all agent-to-agent handoffs in th
 
 SysML is a trademark of the Object Management Group (OMG).
 
+> **External references:** This file adapts SysML concepts (IBD) for analytical use within this workflow. SysML is a trademark of the Object Management Group (OMG). Descriptions are original summaries; for authoritative definitions, consult the SysML specification directly.
+
 Current as of IMP-032 (2026-06-29).
 
 ## Notation

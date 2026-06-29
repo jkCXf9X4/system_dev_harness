@@ -8,6 +8,8 @@ Current as of IMP-032 (2026-06-29).
 
 Last reviewed: 2026-06-29.
 
+> **External references:** This file adapts SysML concepts (state machine notation) for analytical use within this workflow. SysML is a trademark of OMG. Descriptions are original summaries; for authoritative definitions, consult the SysML specification directly.
+
 ## Notation
 
 Each agent uses these states:
