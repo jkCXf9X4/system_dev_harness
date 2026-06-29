@@ -1,5 +1,7 @@
 # Verification Strategy
 
+> **Runtime reference copy for agent context.** Canonical source: `product-breakdown/cross-cutting/04-verification/acceptance-criteria.md`.
+
 This document serves as the authoritative index for all verification criteria across the system. It defines the overall verification approach and cross-cutting concerns.
 
 Per IMP-021, verification uses a dual INCOSE-aligned pattern:
@@ -10,12 +12,12 @@ The following per-layer verification artifacts exist:
 
 | Layer | Path | Scope |
 |---|---|---|
-| Intent | `fbs/00-intent/verification.md` | Vision, use cases |
-| Product | `fbs/01-product/verification.md` | Product commitments |
-| Architecture | `pbs/02-architecture/verification.md` | Architecture boundaries, control flow, mechanisms |
-| Implementation | `pbs/03-implementation/verification.md` | Implementation artifacts |
-| Operation | `cross-cutting/05-operation/verification.md` | Runbook, deployment process |
-| Evolution | `cross-cutting/06-evolution/verification.md` | Roadmap, changelog, risks, gap analysis, WBS |
+| Intent | `product-breakdown/fbs/00-intent/verification.md` | Vision, use cases |
+| Product | `product-breakdown/fbs/01-product/verification.md` | Product commitments |
+| Architecture | `product-breakdown/pbs/02-architecture/verification.md` | Architecture boundaries, control flow, mechanisms |
+| Implementation | `product-breakdown/pbs/03-implementation/verification.md` | Implementation artifacts |
+| Operation | `product-breakdown/cross-cutting/05-operation/verification.md` | Runbook, deployment process |
+| Evolution | `product-breakdown/cross-cutting/06-evolution/verification.md` | Roadmap, changelog, risks, gap analysis, WBS |
 
 All 18 centralized acceptance criteria are listed below. Each criterion is extracted into one or more per-layer verification artifacts as indicated by its cross-reference.
 

@@ -60,3 +60,15 @@ This tree follows the FBS-PBS-cross-cutting grouping. For a visual hierarchical 
 - `product-breakdown/decision-log.md` — Index of all decisions across layers
 
 See `.opencode/dev_harness/product-breakdown/README.md` for the full layer definitions.
+
+---
+
+## External Reference Sources
+
+This product-breakdown documentation references the following external sources as analytical frameworks and structural guidance:
+
+- **ISO/IEC 15288**: Systems and software engineering — System life cycle processes. Referenced for staged pipeline concepts (Concept → Requirements → Architecture → Design → Build → Integrate → Verify → Validate → Deploy → Maintain), validation process (§6.4), measurement process (§6.3.7), decision management process (§6.3.4), configuration management process (§6.3.6), and corrective action process (§6.3.8). This document paraphrases ISO process language rather than quoting directly.
+- **INCOSE Systems Engineering Handbook (SEHB, 5th Edition)**: Referenced for product breakdown structure hierarchy conventions (§1.3.5), element type annotations, subordination rules, and verification pattern guidance. The handbook is available as a reference file in `SE_V5/INCOSE_SEHB5.txt`.
+- **OMG SysML (Systems Modeling Language)**: Referenced for diagram-adapted text artifacts (BDD tables, IBD tables, state machines, sequence diagrams, parametric constraints). SysML is a trademark of the Object Management Group (OMG).
+
+These references are used for analytical framing only. The workflow package does not implement or require conformance to these standards; they inform the structural and verification approach.

@@ -9,12 +9,14 @@ This directory hosts the three-stage improvement lifecycle for continuous improv
   candidates/   — Proposed improvements not yet selected for development
   selected/     — Improvements approved and waiting or being implemented
   done/         — Historical tracking of completed improvements
-  evaluations/  — Rejected or deferred improvement suggestions kept for future reference
-  changelog.md  — Notable changes over time
-  risks.md      — Known risks, tradeoffs, and open concerns
-  roadmap.md    — Planned future work and sequencing
-  wbs.md        — Project management WBS with effort estimates and scheduling (planning aid)
-  gap-analysis.md — FBS-PBS cross-reference gap analysis (IMP-020)
+evaluations/  — Rejected or deferred improvement suggestions kept for future reference
+   changelog.md  — Notable changes over time
+   risks.md      — Known risks, tradeoffs, and open concerns
+   roadmap.md    — Planned future work and sequencing
+   wbs.md        — Project management WBS with effort estimates and scheduling (planning aid)
+   gap-analysis.md — FBS-PBS cross-reference gap analysis (IMP-020)
+   prompt-policy-extraction-tasks.md — Prompt-policy extraction task breakdown and planning notes
+   undeveloped_improvements.md — Record of undeveloped improvement findings not yet formalized as candidates
 ```
 
 Note: The canonical absolute path is `product-breakdown/cross-cutting/06-evolution/`.
@@ -46,6 +48,7 @@ Rejected or deferred suggestions are stored under `evaluations/` so future agent
 | File | ID | Theme | Selected Date | Task Contract |
 | --- | --- | --- | --- | --- |
 | `selected/IMP-031-orchestrator-systems-engineering.md` | IMP-031 | Create orchestrator-systems-engineering subagent for ISO 15288 / SysML analytical lens | 2026-06-29 | IMP-031-impl |
+| `selected/IMP-032.md` | IMP-032 | Product-breakdown alignment review against orchestrator-systems-engineering agent requirements | 2026-06-29 | IMP-032-delivery |
 
 ## Evaluations
 

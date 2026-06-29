@@ -26,7 +26,7 @@ Introduce structured process decision records (PDRs) for workflow governance dec
 - `.opencode/dev_harness/workflow/control-policy.md` (lines 151-159: Revision Loop Policy requires evidence preservation — but no structured record format for decisions made during the loop)
 - `.opencode/dev_harness/product-breakdown/decision-log.md` (entire file: describes product-level decision index only — ID, Title, Layer, Status, Location, Related artifacts — no workflow governance decisions)
 - `.opencode/dev_harness/product-breakdown/decision-placement.md` (entire file: placement rules for product decisions — no placement for workflow process decisions)
-- ISO/IEC 15288 §6.3.4 — Decision Management Process: "The decision management process shall select a course of action from among alternatives"
+- ISO/IEC 15288 §6.3.4 — Decision Management Process: per ISO 15288, the decision management process selects a course of action from among alternatives, using an established set of criteria and evaluation methods.
 - CMMI Decision Analysis and Resolution (DAR): requires formal evaluation of alternatives for selected decisions
 - Work System Theory (Alter 2013): "Work systems need explicit decision records to maintain process integrity across changes in participants, technology, and context"
 

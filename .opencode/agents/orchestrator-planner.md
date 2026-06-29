@@ -62,6 +62,8 @@ Use only the helpers needed for the task:
 - `orchestrator-researcher` for external documentation or dependency context.
 - `orchestrator-systems-engineering` for cross-system analysis, interface contracts, and systems-level constraints.
 
+Cross-reference `.opencode/dev_harness/product-breakdown/architecture/interface-contracts.md` for handoff payload schemas and `.opencode/dev_harness/product-breakdown/architecture/agent-state-machines.md` for agent state understanding when orchestrating helper handoffs.
+
 Own test planning, product-breakdown placement, durable product behavior impact, traceability obligations, and decision-record obligations directly in the work order. Do not create extra planning helper handoffs for those topics.
 
 Produce the builder work order yourself from the selected helper outputs. Do not add separate synthesis or extra helper handoffs unless the workflow is explicitly extended again; the work order is the handoff between planner and builder. For tiny, low-risk tasks you may produce the work order without helpers, but still include the same structured outputs and evidence fields.

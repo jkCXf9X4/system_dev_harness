@@ -15,6 +15,20 @@
 - Updated the planner and reporter prompts so tailoring choices are captured in the work order and summarized in the final control report.
 - Added product-layer and implementation-layer verification criteria for tailoring-record preservation.
 
+## 2026-06-29 — IMP-032: Product-Breakdown Alignment Review
+
+- Implemented 7 task seeds from IMP-032:
+  - Seed 1: Created `pbs/02-architecture/interface-contracts.md` — IBD-adapted handoff tables for all agent-to-agent interfaces
+  - Seed 2: Created `pbs/02-architecture/agent-state-machines.md` — State/transition tables for 4 top-level agents
+  - Seed 3: Added validation criteria (VAL-001 through VAL-005) to `cross-cutting/04-verification/acceptance-criteria.md`
+  - Seed 4: Created 9 decision records: PD-001/002/003, VD-001/002/003, OD-001/002/003; updated decision-log.md
+  - Seed 5: Copyright remediation — replaced direct ISO/IEC 15288 quotes in IMP-026/027/028/030 with paraphrased descriptions; added attribution boilerplate to product-breakdown/README.md
+  - Seed 6: Structural cleanup — moved IMP-031 from done/ to selected/, added IMP prefix to naming.md, moved IMD files to decisions/, created evaluations/, documented missing files in 06-evolution/README.md, updated stale references
+  - Seed 7: Created `pbs/02-architecture/sequence-parametric.md` — sequence tables and parametric constraints
+- Expanded scope: Agent prompt updates (planner, reviewer, systems-engineering); directory restructuring (decisions/ dirs, evaluations/)
+- Updated index, traceability, and cross-references (product-tree.md, traceability-map.md, decision-log.md, 02-architecture/README.md, 04-verification/README.md, changelog.md)
+- Candidate IMP-032 status updated from Proposed to In Progress
+
 ## 2026-06-02
 
 - Added disk-backed focused improvement dispositions: accepted findings remain candidates, while rejected or needs-more-evidence suggestions are recorded under `product-breakdown/cross-cutting/06-evolution/evaluations/`.

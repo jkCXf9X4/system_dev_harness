@@ -18,6 +18,7 @@ Use short, stable IDs for artifacts.
 | `VD` | Verification decision |
 | `OD` | Operational decision |
 | `ED` | Evolution decision |
+| `IMP` | Improvement candidate |
 | `RISK` | Risk |
 | `TEST` | Test or verification artifact |
 

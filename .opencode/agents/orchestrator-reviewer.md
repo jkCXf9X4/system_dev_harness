@@ -72,6 +72,8 @@ Return one of:
 - `blocked`
 - `waiver_required`
 
+Include validation gate checks per `.opencode/dev_harness/product-breakdown/verification/acceptance-criteria.md` (VAL-001 through VAL-005) for user-need satisfaction assessment alongside verification conformance checks.
+
 Include:
 - helper agents used and why, or `none`
 - helper agents not used and why, including `helper_not_used` rationales for applicable-but-waived helpers

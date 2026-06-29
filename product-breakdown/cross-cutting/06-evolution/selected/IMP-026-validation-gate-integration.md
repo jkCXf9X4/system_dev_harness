@@ -27,7 +27,7 @@ Add a validation gate between contract and builder stages to close the verificat
 - `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` (entire file: triggers select helpers for verification, architecture, completeness — no validation trigger)
 - `.opencode/dev_harness/workflow/agent-boundaries.md` (lines 12-16: Read-Only Agents list includes reviewer but no validation agent)
 - `.opencode/dev_harness/agents/orchestrator-reviewer.md` (lines 70-74: gate returns approved|blocked|waiver_required — verification gate, not validation)
-- ISO/IEC 15288 §6.4 — Validation Process: "validate that the system meets the intended use in its intended operational environment"
+- ISO/IEC 15288 §6.4 — Validation Process: per ISO 15288, validation confirms that the system meets stakeholder requirements and satisfies stakeholder needs in the intended operational environment, distinct from verification which checks conformance to a technical specification.
 - V-Model: explicit distinction between verification (are we building it right?) and validation (are we building the right thing?)
 
 ## Current Pain Or Risk
@@ -113,4 +113,4 @@ Do NOT implement these scoped extensions:
 
 ## Notes
 
-This gap is confirmed in the work-systems engineering evaluation (2026-06-29) as Discovery Gap #1: No validation gate. The current system has verification only. The V-Model explicitly requires both verification AND validation as separate concerns. ISO/IEC 15288 §6.4.2.3.1 states: "The validation process shall confirm that the actual system or system element meets the stakeholder requirements and satisfies the stakeholder needs."
+This gap is confirmed in the work-systems engineering evaluation (2026-06-29) as Discovery Gap #1: No validation gate. The current system has verification only. The V-Model explicitly requires both verification AND validation as separate concerns. Per ISO/IEC 15288 §6.4.2.3.1, the validation process must confirm that the actual system element meets the stakeholder requirements and satisfies the stakeholder needs — a check the current workflow does not perform.

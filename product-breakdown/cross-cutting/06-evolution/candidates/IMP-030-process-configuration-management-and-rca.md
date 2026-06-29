@@ -25,8 +25,8 @@ Establish process configuration management (version-controlled process baselines
 - `.opencode/dev_harness/workflow/control-policy.md` (lines 151-159: Revision Loop Policy has iteration cap and no-improvement detection — but no root cause analysis when the cap is exceeded; escalation goes to human without structured investigation)
 - `.opencode/dev_harness/workflow/control-policy.md` (entire file: no reference to process baselines, process versioning, or configuration management of the workflow itself)
 - `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` (entire file: triggers are fixed rules — no process configuration management, no baseline comparison)
-- ISO/IEC 15288 §6.3.6 — Configuration Management Process: "The configuration management process shall establish and maintain the integrity of all identified outputs and enable their identification, control, status accounting, and verification"
-- ISO/IEC 15288 §6.3.8 — Root Cause Analysis (implied by corrective action process): "The corrective action process shall analyze the causes of problems and select corrective actions"
+- ISO/IEC 15288 §6.3.6 — Configuration Management Process: per ISO 15288, the configuration management process establishes and maintains the integrity of all identified outputs and enables their identification, control, status accounting, and verification.
+- ISO/IEC 15288 §6.3.8 — Corrective Action Process (implied root cause analysis): per ISO 15288, the corrective action process analyzes the causes of problems and selects corrective actions to prevent recurrence.
 - CMMI — Causal Analysis and Resolution (CAR): "Identify causes of defects and other problems and take action to prevent them from occurring in the future"
 - CMMI — Configuration Management: requires establishing baselines, tracking changes, and maintaining integrity of work products
 

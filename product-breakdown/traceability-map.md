@@ -111,6 +111,39 @@ Vision.md (fbs/00-intent)
 | Verification | Centralized criteria at 04-verification/acceptance-criteria.md (authoritative source); local extraction in pbs/02-architecture/verification.md |
 | Evolution | IMP-013 (horizontal verification)
 
+### Interface Contracts (IMP-032)
+
+| Step | Trace |
+| --- | --- |
+| Intent | Vision.md — structured handoff definitions |
+| Product | PC-003, PC-006 — workflow handoff traceability |
+| Architecture | Architecture.md — Control Flow, Stable Concepts, Boundaries |
+| Decisions | AD-001 through AD-005 |
+| Implementation | `pbs/02-architecture/interface-contracts.md` — IBD-adapted handoff tables |
+| Verification | Interface contract completeness checked by architecture review |
+
+### Agent State Machines (IMP-032)
+
+| Step | Trace |
+| --- | --- |
+| Intent | Vision.md — formal agent behavior model |
+| Product | PC-003, PC-006 — workflow state traceability |
+| Architecture | Architecture.md — Control Flow, Stable Concepts |
+| Decisions | AD-001 (agent workflow) |
+| Implementation | `pbs/02-architecture/agent-state-machines.md` — state/transition tables |
+| Verification | State machine completeness checked by systems-engineering analysis |
+
+### Sequence Diagrams & Parametric Constraints (IMP-032)
+
+| Step | Trace |
+| --- | --- |
+| Intent | Vision.md — interaction and constraint model |
+| Product | PC-003, PC-006 — workflow interaction traceability |
+| Architecture | Architecture.md — Control Flow, Completion Model |
+| Decisions | AD-001, AD-003 |
+| Implementation | `pbs/02-architecture/sequence-parametric.md` — message-sequence tables, parametric constraints |
+| Verification | Sequence and constraint completeness checked by systems-engineering analysis |
+
 ### Per-Layer Verification
 
 | Step | Trace |

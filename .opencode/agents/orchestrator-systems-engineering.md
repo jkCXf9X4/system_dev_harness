@@ -84,6 +84,14 @@ You focus on *system/process* structure: cross-agent handoffs, interface contrac
 
 These are complementary, not parallel. Architecture answers "how should the code be structured?" You answer "how do the pieces fit together as a system, and is the system ready to advance to the next stage?"
 
+## Source Artifacts
+
+When analyzing the workflow system, reference these product-breakdown architecture artifacts for structured data:
+
+- `.opencode/dev_harness/product-breakdown/architecture/interface-contracts.md` — IBD-adapted handoff tables (payload schema, ports, preconditions, postconditions, error handling for all agent handoffs)
+- `.opencode/dev_harness/product-breakdown/architecture/agent-state-machines.md` — State/transition tables for planner, builder, reviewer, and reflection agents
+- `.opencode/dev_harness/product-breakdown/architecture/sequence-parametric.md` — Message-sequence tables for delivery and candidate-capture paths; parametric constraints for revision loop cap, context window utilization, and concurrency bounds
+
 ## Return Format
 
 Return:

@@ -26,7 +26,7 @@ Add a measurement and metrics framework for quantitative evaluation of workflow 
 - `.opencode/dev_harness/workflow/stage-output-schema.md` (entire file: all fields are qualitative — user_feedback_required, improvement_candidates, research_requests, helper_lifecycle — no quantitative fields like cycle_time, defect_count, revision_count)
 - `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` (entire file: triggers are qualitative heuristics — code changes, behavior changes, architecture changes — no quantitative thresholds like "more than X revision loops in Y tasks")
 - `.opencode/dev_harness/workflow/stage-gate.md` (file does not exist — referenced but absent, no metrics gate is possible)
-- ISO/IEC 15288 §6.3.7 — Measurement Process: "The measurement process shall collect, analyze, and report data relating to the products and processes"
+- ISO/IEC 15288 §6.3.7 — Measurement Process: per ISO 15288, the measurement process collects, analyzes, and reports data relating to products and processes to support effective management and objective evaluation.
 - CMMI Maturity Level 3 — Process Definition: requires defined, measured processes; Level 4 — Quantitative Management: requires statistical process control
 - CMMI Measurement and Analysis process area: "Develop and sustain a measurement capability used to support management information needs"
 
@@ -50,13 +50,15 @@ Add a lightweight measurement framework that instruments the guarded workflow wi
 1. **Instrumentation points**: Each stage output field in `stage-output-schema.md` gains optional `workflow_metrics` fields:
    - `stage_start_time` / `stage_end_time` (ISO-8601)
    - `helper_count` (number of helpers invoked)
+   - `tool_calls_count` (number of tool calls)
    - `revision_iteration` (current revision loop count)
    - `blocking_finding_count` (for reviewer stage)
    - `files_changed_count` (for builder stage)
 
+
 2. **Metrics accumulation**: A new file under `.opencode/dev_harness/workflow/workflow-metrics-schema.md` defines which metrics are accumulated across stages and how they fold into the final report.
 
-3. **Metrics report section**: The reporter stage includes a metrics summary block in its output (minimum: cycle_time, revision_count, helper_count, gate_result).
+3. **Metrics report section**: The reporter stage includes a metrics summary block in its output (minimum: cycle_time, revision_count, helper_count, tool_calls_count, gate_result).
 
 4. **No database or permanent storage**: Metrics are task-local and reported in the final report only. No historical database, dashboard, or trending required for the initial implementation.
 
