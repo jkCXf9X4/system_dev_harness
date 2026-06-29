@@ -35,6 +35,11 @@ Rejected or deferred suggestions are stored under `evaluations/` so future agent
 | File | ID | Theme | Priority | Proposed Date |
 | --- | --- | --- | --- | --- |
 | `candidates/IMP-010.md` | IMP-010 | Collaboration / Iteration — Enhanced Planning-and-Discussion Workflow | Medium | 2026-06-10 |
+| `candidates/IMP-012.md` | IMP-012 | PBS / Structure — Reify PBS as hierarchical tree of system elements | Medium | 2026-06-29 |
+| `candidates/IMP-013.md` | IMP-013 | PBS / Verification — Move verification into horizontal views per decomposition level | Low | 2026-06-29 |
+| `candidates/IMP-014.md` | IMP-014 | PBS / Visualization — Create formal Product Tree diagram | Medium | 2026-06-29 |
+| `candidates/IMP-015.md` | IMP-015 | PBS / Metadata — Annotate leaf elements with make/buy/reuse decisions | Medium | 2026-06-29 |
+| `candidates/IMP-016.md` | IMP-016 | PBS / Decomposition — Document FBS-PBS-WBS relationships | Low | 2026-06-29 |
 
 
 ## Selected
