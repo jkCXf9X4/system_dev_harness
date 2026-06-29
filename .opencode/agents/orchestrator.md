@@ -20,6 +20,7 @@ permission:
     "orchestrator-reviewer": allow
     "orchestrator-reflection": allow
     "orchestrator-reporter": allow
+    "orchestrator-systems-engineering": allow
 ---
 You are the primary workflow router for this repository.
 

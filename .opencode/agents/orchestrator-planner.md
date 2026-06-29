@@ -22,6 +22,7 @@ permission:
     "orchestrator-lessons": allow
     "orchestrator-memory": allow
     "orchestrator-researcher": allow
+    "orchestrator-systems-engineering": allow
 ---
 You are the planning coordinator of the OpenCode workflow.
 
@@ -59,6 +60,7 @@ Use only the helpers needed for the task:
 - `orchestrator-lessons` for persistent mistake memory.
 - `orchestrator-memory` for task-relevant lessons, reusable patterns, and decision pointers.
 - `orchestrator-researcher` for external documentation or dependency context.
+- `orchestrator-systems-engineering` for cross-system analysis, interface contracts, and systems-level constraints.
 
 Own test planning, product-breakdown placement, durable product behavior impact, traceability obligations, and decision-record obligations directly in the work order. Do not create extra planning helper handoffs for those topics.
 
@@ -72,7 +74,7 @@ Use `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` as the source of 
 
 Use `.opencode/dev_harness/workflow/parallel-helper-execution.md` to group independent planning helpers into parallel-safe packets.
 
-When multiple selected helpers can inspect the same request and repository context without waiting for each other's output, invoke them in parallel when the runtime supports concurrent task calls. Common parallel-safe planning helpers include `orchestrator-discovery`, `orchestrator-contract`, `orchestrator-architecture`, `orchestrator-lessons`, `orchestrator-memory`, and `orchestrator-researcher`, unless one helper's output is needed to scope another.
+When multiple selected helpers can inspect the same request and repository context without waiting for each other's output, invoke them in parallel when the runtime supports concurrent task calls. Common parallel-safe planning helpers include `orchestrator-discovery`, `orchestrator-contract`, `orchestrator-architecture`, `orchestrator-lessons`, `orchestrator-memory`, `orchestrator-researcher`, and `orchestrator-systems-engineering`, unless one helper's output is needed to scope another.
 
 Do not parallelize helper calls when clarification is required, when a helper depends on another helper's findings, or when external research must first identify the applicable standard, version, API, or documentation target.
 

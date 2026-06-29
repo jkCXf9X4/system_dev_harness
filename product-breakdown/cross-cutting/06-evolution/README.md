@@ -38,17 +38,14 @@ Rejected or deferred suggestions are stored under `evaluations/` so future agent
 
 | File | ID | Theme | Status | Date |
 | --- | --- | --- | --- | --- |
-| `candidates/IMP-022.md` | IMP-022 | Declined — VBS (Verification Breakdown Structure) evaluated and ruled out; use IMP-021 per-layer pattern instead | Declined | 2026-06-29 |
-| `candidates/IMP-023.md` | IMP-023 | FBS/PBS/WBS cross-cutting decomposition evaluation — four-question structured assessment of whether 05-operation, 06-evolution, and the cross-cutting grouping should be redistributed | Proposed | 2026-06-29 |
-| `candidates/IMP-024.md` | IMP-024 | 05-Operation PBS merger evaluation — structured assessment of whether cross-cutting/05-operation/ should move to pbs/05-operation/ | Proposed | 2026-06-29 |
-| `candidates/IMP-025.md` | IMP-025 | Software decomposition boundary guide — clarify solution architecture vs detailed design vs implementation for mid-size software projects | Proposed | 2026-06-29 |
+| `candidates/IMP-028-process-decision-records.md` | IMP-028 | Workflow process decision records for governance decisions | Proposed | 2026-06-29 |
+| `candidates/IMP-030-process-configuration-management-and-rca.md` | IMP-030 | Process configuration management and root cause analysis | Proposed | 2026-06-29 |
 
 ## Selected
 
 | File | ID | Theme | Selected Date | Task Contract |
 | --- | --- | --- | --- | --- |
-
-No improvements are currently selected for implementation.
+| `selected/IMP-031-orchestrator-systems-engineering.md` | IMP-031 | Create orchestrator-systems-engineering subagent for ISO 15288 / SysML analytical lens | 2026-06-29 | IMP-031-impl |
 
 ## Evaluations
 

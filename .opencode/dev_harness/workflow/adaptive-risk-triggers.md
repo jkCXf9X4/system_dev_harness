@@ -23,6 +23,7 @@ The selected profile must be recorded in the planner work order's `tailoring_rec
 - Durable lesson, pattern, or decision uncertainty requires `orchestrator-memory`.
 - External dependency, API, framework, standard, version, or documentation uncertainty requires `orchestrator-researcher` and `requires_external_research: true`.
 - External/manual implementation requests are represented as a `handoff_required` section in the planner work order.
+- Cross-system, multi-module, interface, workflow-stage, or systems-architecture-level analysis requires `orchestrator-systems-engineering`.
 
 ## Builder Triggers
 

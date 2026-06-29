@@ -6,7 +6,7 @@ Planner and reviewer helpers should be grouped into parallel-safe helper packets
 
 Apply `.opencode/dev_harness/workflow/subagent-lifecycle.md` before reusing helper context across packets or follow-up calls. Parallel helper packets are usually easiest to reason about as fresh, self-contained helper calls with compact handoffs.
 
-Parallel-safe planner helpers are read-only and can run together when they inspect different concerns from the same user request and repository evidence. Typical parallel planning packets include discovery, contract, architecture, lessons, memory, and researcher, unless one helper explicitly depends on another helper's output.
+Parallel-safe planner helpers are read-only and can run together when they inspect different concerns from the same user request and repository evidence. Typical parallel planning packets include discovery, contract, architecture, lessons, memory, researcher, and systems-engineering, unless one helper explicitly depends on another helper's output.
 
 Parallel-safe reviewer helpers are read-only and can run together after builder evidence is available. Typical parallel review packets include verifier, review-completeness, review-architecture, review-lessons, memory, and researcher, unless a check needs another helper's result first.
 
