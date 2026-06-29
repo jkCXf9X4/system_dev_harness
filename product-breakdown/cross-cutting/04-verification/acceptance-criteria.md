@@ -1,3 +1,26 @@
+# Verification Strategy
+
+This document serves as the authoritative index for all verification criteria across the system. It defines the overall verification approach and cross-cutting concerns.
+
+Per IMP-021, verification uses a dual INCOSE-aligned pattern:
+- **Centralized strategy (this document):** Defines the overall verification approach, methods, and cross-cutting concerns. This preamble and the criteria index below form the strategy overview.
+- **Per-layer verification artifacts:** Each PBS/FBS layer has a local `verification.md` that extracts and scopes the criteria relevant to that element. These per-layer artifacts are authoritative for their element.
+
+The following per-layer verification artifacts exist:
+
+| Layer | Path | Scope |
+|---|---|---|
+| Intent | `fbs/00-intent/verification.md` | Vision, use cases |
+| Product | `fbs/01-product/verification.md` | Product commitments |
+| Architecture | `pbs/02-architecture/verification.md` | Architecture boundaries, control flow, mechanisms |
+| Implementation | `pbs/03-implementation/verification.md` | Implementation artifacts |
+| Operation | `cross-cutting/05-operation/verification.md` | Runbook, deployment process |
+| Evolution | `cross-cutting/06-evolution/verification.md` | Roadmap, changelog, risks, gap analysis, WBS |
+
+All 17 centralized acceptance criteria are listed below. Each criterion is extracted into one or more per-layer verification artifacts as indicated by its cross-reference.
+
+---
+
 # Acceptance Criteria
 
 The workflow package must satisfy these high-level acceptance criteria:

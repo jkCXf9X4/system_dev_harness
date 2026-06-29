@@ -111,6 +111,15 @@ Vision.md (fbs/00-intent)
 | Verification | Centralized criteria at 04-verification/acceptance-criteria.md (authoritative source); local extraction in pbs/02-architecture/verification.md |
 | Evolution | IMP-013 (horizontal verification)
 
-## Maintenance
+### Per-Layer Verification
+
+| Step | Trace |
+| --- | --- |
+| Intent | fbs/00-intent/verification.md — AC-INTENT-01 through AC-INTENT-05 (vision.md, use-cases.md) |
+| Product | fbs/01-product/verification.md — AC-PRODUCT-01 through AC-PRODUCT-08 (product-commitments.md) |
+| Architecture | pbs/02-architecture/verification.md — AC-ARCH-01 through AC-ARCH-06 (architecture.md) |
+| Implementation | pbs/03-implementation/verification.md — AC-IMPL-01 through AC-IMPL-03 (implementation.md) |
+| Operation | cross-cutting/05-operation/verification.md — AC-OPS-01 through AC-OPS-12 (runbook.md, deployment-process.md) |
+| Evolution | cross-cutting/06-evolution/verification.md — AC-EVOL-01 through AC-EVOL-06 (roadmap.md, changelog.md, risks.md, gap-analysis.md) |
 
 This map is consolidated from per-file `## Trace Links` sections. Update the source file's trace links when adding or changing artifacts. This map is a summary — per-file sections contain the detailed links.

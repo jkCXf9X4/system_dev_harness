@@ -106,7 +106,7 @@ External coding-agent handoff must require the agent to re-check the contract be
 Completion check:
 Completeness reviewer must compare final work against the original contract, not only the latest local change.
 
-### KM-004: Minimize Parallel Structures In Hierarchy And Code
+### KM-004: Minimize Parallel Solutions In Hierarchy And Code
 
 Metadata:
 Scope: documentation and implementation
@@ -117,13 +117,13 @@ Revalidation trigger: before adding a second path for the same concern, file typ
 Environment notes: especially relevant when creating package roots, entrypoints, or mirrored documentation trees
 
 Pattern:
-Agents may create parallel package trees, duplicate entrypoints, or mirrored helper modules that solve the same concern in different places.
+Agents may create parallel package solutions, duplicate entrypoints, or mirrored helper modules that solve the same concern in different places.
 
 Why it matters:
-Parallel structures make ownership unclear, increase maintenance cost, and cause future agents to update one path while missing the other.
+Parallel solutions make ownership unclear, increase maintenance cost, and cause future agents to update one path while missing the other.
 
 Prevention rule:
-Prefer one canonical hierarchy for each concern. Before adding a new top-level package, entrypoint, helper module, config path, or documentation section, check whether the existing structure should be extended or moved instead.
+Prefer one canonical solution for each concern. Before adding a new top-level package, entrypoint, helper module, config path, or documentation section, check whether the existing artifacts should be extended or moved instead.
 
 Completion check:
 Reviewers must verify that new code and documentation do not introduce duplicate package roots, competing CLI paths, mirrored utilities, or parallel documentation locations for the same concept unless an ADR explicitly justifies the split.

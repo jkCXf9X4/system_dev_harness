@@ -142,14 +142,20 @@ system_dev_harness [PBS Root]
 +-- Product Breakdown [Physical: Source documentation]
        +-- FBS Grouping [Physical: fbs/]
        |    +-- Intent Layer [Physical: fbs/00-intent/]
+       |    |    +-- verification.md [Physical: Intent verification]
        |    +-- Product Layer [Physical: fbs/01-product/]
+       |         +-- verification.md [Physical: Product verification]
        +-- PBS Grouping [Physical: pbs/]
        |    +-- Architecture Layer [Physical: pbs/02-architecture/]
+       |    |    +-- verification.md [Physical: Architecture verification]
        |    +-- Implementation Layer [Physical: pbs/03-implementation/]
+       |         +-- verification.md [Physical: Implementation verification]
        +-- Cross-Cutting Grouping [Physical: cross-cutting/]
             +-- Verification Layer [Physical: cross-cutting/04-verification/]
             +-- Operation Layer [Physical: cross-cutting/05-operation/]
+            |    +-- verification.md [Physical: Operation verification]
             +-- Evolution Layer [Physical: cross-cutting/06-evolution/]
+            |    +-- verification.md [Physical: Evolution verification]
             +-- Root Artifacts [Physical: Root files]
 ```
 
@@ -198,6 +204,12 @@ system_dev_harness Work [WBS Root]
  |    +-- W-03.02 Test Strategy Definition (PBS: 04-verification/)
  |    +-- W-03.03 Traceability Matrix Maintenance (PBS: 04-verification/)
  |    +-- W-03.04 Horizontal Verification (PBS: per-layer verification/)
+|    |    +-- fbs/00-intent/verification.md
+|    |    +-- fbs/01-product/verification.md
+|    |    +-- pbs/02-architecture/verification.md
+|    |    +-- pbs/03-implementation/verification.md
+|    |    +-- cross-cutting/05-operation/verification.md
+|    |    +-- cross-cutting/06-evolution/verification.md
  |
  +-- W-04 Review & Gate Activities (derived from FBS + PBS)
  |    +-- W-04.01 Implementation Review (F-07)
@@ -238,7 +250,7 @@ The following table explicitly states which artifacts belong to the FBS vs. the 
 | `fbs/01-product/product-commitments.md` (PC-001 through PC-010) | FBS | Captures durable functional requirements derived from the vision. |
 | `pbs/02-architecture/architecture.md` | PBS | Describes the physical architecture: agents, control flow, boundaries, and mechanism storage. |
 | `pbs/03-implementation/implementation.md` | PBS | Lists the concrete physical artifacts (files, directories, agent prompts). |
-| `cross-cutting/04-verification/` | Cross-cutting (PBS) | Physical verification artifacts; verification itself is a cross-cutting horizontal view across PBS layers. |
+| `cross-cutting/04-verification/` | Cross-cutting (PBS) | Physical verification artifacts; verification follows a dual pattern: centralized strategy (`acceptance-criteria.md`) defines the overall approach and method, while per-layer `verification.md` files in each PBS/FBS element directory contain element-specific acceptance criteria and verification gates. |
 | `cross-cutting/05-operation/` | Cross-cutting (PBS) | Physical operational requirements and deployment model. |
 | `cross-cutting/06-evolution/` | Cross-cutting (PBS) | Physical improvement lifecycle tracking. |
 | Agents (`orchestrator`, `planner`, `builder`, etc.) | PBS | Physical entities that execute work. |

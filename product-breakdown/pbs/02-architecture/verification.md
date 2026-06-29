@@ -1,6 +1,6 @@
 # Architecture Verification
 
-> **Note:** This is a pilot horizontal-view artifact per IMP-013. The centralized acceptance criteria at `cross-cutting/04-verification/acceptance-criteria.md` remains the authoritative source.
+> **Note:** Per IMP-021, verification uses a dual pattern: the centralized Verification Strategy at `cross-cutting/04-verification/acceptance-criteria.md` is the authoritative index; per-layer artifacts are authoritative for their element. This artifact was the pilot per IMP-013.
 
 This document extracts and refines the acceptance criteria from `product-breakdown/cross-cutting/04-verification/acceptance-criteria.md` that are scoped to the architecture layer (`pbs/02-architecture/`). It co-locates architecture verification with the architecture it verifies, following the INCOSE §1.3.5 horizontal-view model.
 
@@ -75,13 +75,14 @@ The following criteria are extracted from the centralized acceptance criteria an
 
 ## Relationship to PBS
 
-Per IMP-013, each PBS layer should eventually have its own local verification artifact. This file (`02-architecture/verification.md`) is the pilot artifact for the `02-architecture` layer. Future work may add:
+Per IMP-021, the following verification artifacts have been created:
 
-- `00-intent/verification.md` — verification criteria for intent docs
-- `01-product/verification.md` — verification criteria for product commitments
-- `03-implementation/verification.md` — verification criteria for implementation artifacts
-- `05-operation/verification.md` — verification criteria for operational requirements
-- `06-evolution/verification.md` — verification criteria for evolution lifecycle
+- `fbs/00-intent/verification.md` — verification criteria for intent docs
+- `fbs/01-product/verification.md` — verification criteria for product commitments
+- `pbs/02-architecture/verification.md` — this pilot artifact
+- `pbs/03-implementation/verification.md` — verification criteria for implementation artifacts
+- `cross-cutting/05-operation/verification.md` — verification criteria for operational requirements
+- `cross-cutting/06-evolution/verification.md` — verification criteria for evolution lifecycle
 
 The centralized `cross-cutting/04-verification/acceptance-criteria.md` remains the authoritative source and cross-cutting view.
 
