@@ -128,7 +128,7 @@ Prefer one canonical solution for each concern. Before adding a new top-level pa
 Completion check:
 Reviewers must verify that new code and documentation do not introduce duplicate package roots, competing CLI paths, mirrored utilities, or parallel documentation locations for the same concept unless an ADR explicitly justifies the split.
 
-### KM-005: Preserve Documentation Layer Separation And Backward Traceability
+### KM-005: Preserve Abstraction Separation And Backward Traceability
 
 Metadata:
 Scope: product-breakdown and documentation maintenance
