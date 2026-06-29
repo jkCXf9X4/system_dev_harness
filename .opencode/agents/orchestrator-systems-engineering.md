@@ -3,7 +3,7 @@ description: "Provides cross-system analysis, interface contracts, and systems-l
 mode: subagent
 model: openrouter/deepseek/deepseek-v4-flash
 hidden: true
-color: danger
+color: accent
 temperature: 0.1
 permission:
   read: allow
