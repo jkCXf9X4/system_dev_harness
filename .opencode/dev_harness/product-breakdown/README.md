@@ -39,40 +39,43 @@ product-breakdown/
   decision-log.md
   traceability-map.md
 
-  00-intent/
-  01-product/
-  02-architecture/
-  03-implementation/
-  04-verification/
-  05-operation/
-  06-evolution/
+  fbs/
+    00-intent/
+    01-product/
+  pbs/
+    02-architecture/
+    03-implementation/
+  cross-cutting/
+    04-verification/
+    05-operation/
+    06-evolution/
 ```
 
 Each layer may contain a local `decisions/` directory.
 
 ## Layer Questions
 
-| Layer | Main question |
-| --- | --- |
-| `00-intent/` | Why does this product exist? |
-| `01-product/` | What should it do? |
-| `02-architecture/` | How is it structurally organized? |
-| `03-implementation/` | How is it built in code and configuration? |
-| `04-verification/` | How do we know it works? |
-| `05-operation/` | What operational behavior and support constraints must the product satisfy? |
-| `06-evolution/` | How should it change over time? |
+| Layer | Decomposition | Main question |
+| --- | --- | --- |
+| `fbs/00-intent/` | FBS | Why does this product exist? |
+| `fbs/01-product/` | FBS | What should it do? |
+| `pbs/02-architecture/` | PBS | How is it structurally organized? |
+| `pbs/03-implementation/` | PBS | How is it built in code and configuration? |
+| `cross-cutting/04-verification/` | Cross-cutting | How do we know it works? |
+| `cross-cutting/05-operation/` | Cross-cutting | What operational behavior and support constraints must the product satisfy? |
+| `cross-cutting/06-evolution/` | Cross-cutting | How should it change over time? |
 
 ## Layer Summary
 
-| Layer | Use |
-| --- | --- |
-| `00-intent/` | Capture purpose, users, outcomes, constraints, and assumptions. |
-| `01-product/` | Capture scope, capabilities, use cases, requirements, domain, and glossary. |
-| `02-architecture/` | Capture boundaries, components, data flow, integrations, deployment, and quality attributes. |
-| `03-implementation/` | Capture code structure, modules, interfaces, configuration, and environments. |
-| `04-verification/` | Capture acceptance criteria, test strategy, test cases, and traceability. |
-| `05-operation/` | Capture operational requirements, support constraints, incident expectations, and deployment constraints; runnable procedures belong in `docs/`. |
-| `06-evolution/` | Capture roadmap, candidates, selected improvements, completed improvements, risks, changelog, and future change. |
+| Layer | Decomposition | Use |
+| --- | --- | --- |
+| `fbs/00-intent/` | FBS | Capture purpose, users, outcomes, constraints, and assumptions. |
+| `fbs/01-product/` | FBS | Capture scope, capabilities, use cases, requirements, domain, and glossary. |
+| `pbs/02-architecture/` | PBS | Capture boundaries, components, data flow, integrations, deployment, and quality attributes. |
+| `pbs/03-implementation/` | PBS | Capture code structure, modules, interfaces, configuration, and environments. |
+| `cross-cutting/04-verification/` | Cross-cutting | Capture acceptance criteria, test strategy, test cases, and traceability. |
+| `cross-cutting/05-operation/` | Cross-cutting | Capture operational requirements, support constraints, incident expectations, and deployment constraints; runnable procedures belong in `docs/`. |
+| `cross-cutting/06-evolution/` | Cross-cutting | Capture roadmap, candidates, selected improvements, completed improvements, risks, changelog, and future change. |
 
 ## Agent Usage
 

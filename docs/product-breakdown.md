@@ -8,14 +8,14 @@ If an operator guide needs product context, link to these product-breakdown page
 
 ## Source Map
 
-- [Intent](../product-breakdown/00-intent/vision.md)
-- [Use Cases](../product-breakdown/00-intent/use-cases.md)
-- [Product Commitments](../product-breakdown/01-product/product-commitments.md)
-- [Architecture](../product-breakdown/02-architecture/architecture.md)
-- [Implementation](../product-breakdown/03-implementation/implementation.md)
-- [Verification](../product-breakdown/04-verification/acceptance-criteria.md)
-- [Operation](../product-breakdown/05-operation/runbook.md)
-- [Evolution](../product-breakdown/06-evolution/roadmap.md)
+- [Intent (FBS)](../product-breakdown/fbs/00-intent/vision.md)
+- [Use Cases (FBS)](../product-breakdown/fbs/00-intent/use-cases.md)
+- [Product Commitments (FBS)](../product-breakdown/fbs/01-product/product-commitments.md)
+- [Architecture (PBS)](../product-breakdown/pbs/02-architecture/architecture.md)
+- [Implementation (PBS)](../product-breakdown/pbs/03-implementation/implementation.md)
+- [Verification (Cross-cutting)](../product-breakdown/cross-cutting/04-verification/acceptance-criteria.md)
+- [Operation (Cross-cutting)](../product-breakdown/cross-cutting/05-operation/runbook.md)
+- [Evolution (Cross-cutting)](../product-breakdown/cross-cutting/06-evolution/roadmap.md)
 - [Decision Log](../product-breakdown/decision-log.md)
 - [Traceability Map](../product-breakdown/traceability-map.md)
 

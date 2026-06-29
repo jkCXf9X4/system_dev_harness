@@ -26,10 +26,10 @@ planner -> builder -> reviewer -> reflection -> reporter
 
 Builder should write backlog-worthy new findings to disk under:
 
-- `product-breakdown/06-evolution/candidates/IMP-NNN.md`
-- `product-breakdown/06-evolution/README.md`
+- `product-breakdown/cross-cutting/06-evolution/candidates/IMP-NNN.md`
+- `product-breakdown/cross-cutting/06-evolution/README.md`
 
-Builder may write `product-breakdown/06-evolution/selected/IMP-NNN.md` or `product-breakdown/06-evolution/done/IMP-NNN.md` only when the planner work order explicitly scopes a lifecycle transition, not for new candidate discovery.
+Builder may write `product-breakdown/cross-cutting/06-evolution/selected/IMP-NNN.md` or `product-breakdown/cross-cutting/06-evolution/done/IMP-NNN.md` only when the planner work order explicitly scopes a lifecycle transition, not for new candidate discovery.
 
 Do not edit implementation files during candidate capture.
 

@@ -235,8 +235,8 @@ def test_docs_and_product_breakdown_boundaries_are_explicit(simple_project: Path
     docs_readme = read_prompt(repo_root, "docs/README.md").lower()
     docs_product_breakdown = read_prompt(repo_root, "docs/product-breakdown.md").lower()
     product_breakdown_readme = read_prompt(repo_root, "product-breakdown/README.md").lower()
-    operation_requirements = read_prompt(repo_root, "product-breakdown/05-operation/runbook.md").lower()
-    deployment_requirements = read_prompt(repo_root, "product-breakdown/05-operation/deployment-process.md").lower()
+    operation_requirements = read_prompt(repo_root, "product-breakdown/cross-cutting/05-operation/runbook.md").lower()
+    deployment_requirements = read_prompt(repo_root, "product-breakdown/cross-cutting/05-operation/deployment-process.md").lower()
     copied_guidance = read_prompt(
         simple_project,
         ".opencode/dev_harness/product-breakdown/README.md",
@@ -268,7 +268,7 @@ def test_orchestrator_does_not_route_shortcut_build(simple_project: Path) -> Non
     repo_root = Path(__file__).resolve().parents[1]
     orchestrator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator.md")
     planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md")
-    architecture_doc = read_prompt(repo_root, "product-breakdown/02-architecture/architecture.md")
+    architecture_doc = read_prompt(repo_root, "product-breakdown/pbs/02-architecture/architecture.md")
 
     for content in (orchestrator_prompt, planner_prompt, architecture_doc):
         lowered = content.lower()
@@ -284,8 +284,8 @@ def test_subagent_lifecycle_policy_is_centralized(simple_project: Path) -> None:
         simple_project,
         ".opencode/dev_harness/workflow/subagent-lifecycle.md",
     ).lower()
-    architecture_doc = read_prompt(repo_root, "product-breakdown/02-architecture/architecture.md").lower()
-    implementation_doc = read_prompt(repo_root, "product-breakdown/03-implementation/implementation.md").lower()
+    architecture_doc = read_prompt(repo_root, "product-breakdown/pbs/02-architecture/architecture.md").lower()
+    implementation_doc = read_prompt(repo_root, "product-breakdown/pbs/03-implementation/implementation.md").lower()
     decision_log = read_prompt(repo_root, "product-breakdown/decision-log.md").lower()
 
     assert "cannot force compaction" in policy
@@ -341,8 +341,8 @@ def test_information_hygiene_is_workflow_gated(simple_project: Path) -> None:
     verifier_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-verifier.md")
     completeness_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-completeness.md")
     gate_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md")
-    architecture_doc = read_prompt(repo_root, "product-breakdown/02-architecture/architecture.md")
-    commitments_doc = read_prompt(repo_root, "product-breakdown/01-product/product-commitments.md")
+    architecture_doc = read_prompt(repo_root, "product-breakdown/pbs/02-architecture/architecture.md")
+    commitments_doc = read_prompt(repo_root, "product-breakdown/fbs/01-product/product-commitments.md")
     information_hygiene_policy = read_prompt(
         simple_project,
         ".opencode/dev_harness/workflow/information-hygiene.md",
@@ -524,11 +524,11 @@ def test_builder_cleanup_helper_is_scoped_and_wired(simple_project: Path) -> Non
     ).lower()
     architecture_doc = read_prompt(
         Path(__file__).resolve().parents[1],
-        "product-breakdown/02-architecture/architecture.md",
+        "product-breakdown/pbs/02-architecture/architecture.md",
     ).lower()
-    implementation_doc = read_prompt(
+implementation_doc = read_prompt(
         Path(__file__).resolve().parents[1],
-        "product-breakdown/03-implementation/implementation.md",
+        "product-breakdown/pbs/03-implementation/implementation.md",
     ).lower()
 
     assert '"orchestrator-cleanup": allow' in builder_prompt
@@ -561,7 +561,7 @@ def test_builder_can_run_review_helper_passes_without_becoming_the_gate(simple_p
     review_output = read_prompt(simple_project, ".opencode/dev_harness/workflow/review-output.md").lower()
     implementation_doc = read_prompt(
         Path(__file__).resolve().parents[1],
-        "product-breakdown/03-implementation/implementation.md",
+        "product-breakdown/pbs/03-implementation/implementation.md",
     ).lower()
 
     for helper in (
@@ -643,7 +643,7 @@ def test_shared_boundary_and_product_breakdown_policy_are_extracted(simple_proje
     product_breakdown_work = read_prompt(simple_project, ".opencode/dev_harness/workflow/product-breakdown-work.md").lower()
     implementation_doc = read_prompt(
         Path(__file__).resolve().parents[1],
-        "product-breakdown/03-implementation/implementation.md",
+        "product-breakdown/pbs/03-implementation/implementation.md",
     ).lower()
 
     for phrase in (

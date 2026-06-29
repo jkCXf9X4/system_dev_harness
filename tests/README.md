@@ -34,7 +34,7 @@ Avoid brittle assertions:
 
 It is reasonable to assert exact paths when the path is the behavior under test, for example:
 
-- canonical backlog location: `product-breakdown/06-evolution/candidates/`
+- canonical backlog location: `product-breakdown/cross-cutting/06-evolution/candidates/`
 - shared workflow policies: `workflow/control-policy.md`, `workflow/information-hygiene.md`, `workflow/review-output.md`
 - work-order-producing stages naming required implementation inputs
 

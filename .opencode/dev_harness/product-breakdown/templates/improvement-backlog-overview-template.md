@@ -12,19 +12,19 @@ Each candidate is proposed. None is approved for implementation until it has a s
 
 ## Lifecycle
 
-Improvements follow the three-stage lifecycle described in [06-evolution/README.md](../../../../product-breakdown/06-evolution/README.md). Summary: Candidate → Selected → Done.
+Improvements follow the three-stage lifecycle described in [cross-cutting/06-evolution/README.md](../../../../product-breakdown/cross-cutting/06-evolution/README.md). Summary: Candidate → Selected → Done.
 
-See `product-breakdown/06-evolution/README.md` for the full lifecycle model.
+See `product-breakdown/cross-cutting/06-evolution/README.md` for the full lifecycle model.
 
 ## Usage
 
 Place the overview at the repository's chosen evolution location:
 
 ```text
-product-breakdown/06-evolution/candidates/   — proposed candidates
-product-breakdown/06-evolution/selected/     — selected for implementation
-product-breakdown/06-evolution/done/         — completed improvements
-product-breakdown/06-evolution/evaluations/  — historical rejected or deferred suggestions, when present
+product-breakdown/cross-cutting/06-evolution/candidates/   — proposed candidates
+product-breakdown/cross-cutting/06-evolution/selected/     — selected for implementation
+product-breakdown/cross-cutting/06-evolution/done/         — completed improvements
+product-breakdown/cross-cutting/06-evolution/evaluations/  — historical rejected or deferred suggestions, when present
 ```
 
 Each candidate lives in its own file under the appropriate lifecycle folder.

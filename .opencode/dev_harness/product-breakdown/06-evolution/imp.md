@@ -11,7 +11,7 @@ The planner selects `workflow_mode: candidate_capture` when the user asks for a 
 In candidate-capture mode:
 
 - planner uses the normal directed helpers for evidence, requirements, architecture pressure, lessons, memory, and research
-- builder persists only improvement backlog artifacts under `product-breakdown/06-evolution/`
+- builder persists only improvement backlog artifacts under `product-breakdown/cross-cutting/06-evolution/`
 - reviewer gates the persisted candidate artifacts as information artifacts
 - reflection handles durable memory triage
 - reporter summarizes the candidate disposition and next action

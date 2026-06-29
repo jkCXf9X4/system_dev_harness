@@ -33,9 +33,9 @@ Policy and product context:
 - `.opencode/dev_harness/workflow/review-output.md`
 - `.opencode/dev_harness/product-breakdown/`
 - `.opencode/dev_harness_memories/`
-- `product-breakdown/02-architecture/architecture.md`
-- `product-breakdown/02-architecture/decisions/AD-001-use-opencode-agent-workflow-for-orchestration.md`
-- `product-breakdown/02-architecture/decisions/AD-003-use-structured-handoff-before-code-editing.md`
+- `product-breakdown/pbs/02-architecture/architecture.md`
+- `product-breakdown/pbs/02-architecture/decisions/AD-001-use-opencode-agent-workflow-for-orchestration.md`
+- `product-breakdown/pbs/02-architecture/decisions/AD-003-use-structured-handoff-before-code-editing.md`
 
 ## Overall Assessment
 

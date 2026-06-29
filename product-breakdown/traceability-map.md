@@ -5,16 +5,16 @@ This map documents the cross-layer traceability chain for the workflow package. 
 ## Core Trace Chain
 
 ```
-Vision.md (00-intent)
-  -> Product Commitments PC-001 through PC-010 (01-product)
-    -> Use Cases UC-001 through UC-014 (00-intent)
-  -> Architecture (02-architecture)
-        -> Decisions AD-001 through AD-005 (02-architecture/decisions/)
-        -> Decisions IMD-001 through IMD-003 (03-implementation/decisions/)
-          -> Implementation Artifacts (03-implementation)
-            -> Verification (04-verification)
-              -> Operation (05-operation)
-                -> Evolution (06-evolution)
+Vision.md (fbs/00-intent)
+  -> Product Commitments PC-001 through PC-010 (fbs/01-product)
+    -> Use Cases UC-001 through UC-014 (fbs/00-intent)
+  -> Architecture (pbs/02-architecture)
+        -> Decisions AD-001 through AD-005 (pbs/02-architecture/decisions/)
+        -> Decisions IMD-001 through IMD-003 (pbs/03-implementation/decisions/)
+          -> Implementation Artifacts (pbs/03-implementation)
+            -> Verification (cross-cutting/04-verification)
+              -> Operation (cross-cutting/05-operation)
+                -> Evolution (cross-cutting/06-evolution)
 ```
 
 ## Per-Capability Traces
@@ -40,7 +40,7 @@ Vision.md (00-intent)
 | Decisions | ED-001 (backlog location), IMD-002 (product breakdown guidance in payload) |
 | Implementation | orchestrator-planner.md, orchestrator-builder.md, reviewer helpers |
 | Verification | Candidate-capture workflow-mode probes and backlog path assertions |
-| Evolution | `product-breakdown/06-evolution/` when present, plus `candidates/`, `selected/`, `done/`, `decisions/`, `roadmap.md`, `risks.md`, and `changelog.md` |
+| Evolution | `product-breakdown/cross-cutting/06-evolution/` when present, plus `candidates/`, `selected/`, `done/`, `decisions/`, `roadmap.md`, `risks.md`, and `changelog.md` |
 
 ### Repo-Local Workflow Memory
 
@@ -74,6 +74,42 @@ Vision.md (00-intent)
 | Decisions | AD-002 (versioned markdown) |
 | Implementation | information-hygiene.md, orchestrator-verifier.md, Mechanism Storage Rules |
 | Verification | Information hygiene checks in reviewer-coordinated verifier + cleanliness/completeness review |
+
+### Product Tree
+
+| Step | Trace |
+| --- | --- |
+| Intent | Vision.md — traceable product-breakdown structure |
+| Product | PC-006 — traceability and artifact lineage |
+| Architecture | Architecture.md — Stable Concepts, Boundaries |
+| Decisions | AD-002 (versioned markdown) |
+| Implementation | product-tree.md — hierarchical PBS decomposition |
+| Verification | Visual inspection of diagram accuracy against directory structure |
+| Evolution | IMP-012 (hierarchical tree structure), IMP-014 (visual diagram), IMP-015 (element annotations), IMP-016 (decomposition relationships)
+
+### Breakdown Structures
+
+| Step | Trace |
+| --- | --- |
+| Intent | Vision.md — traceable decomposition from function to physical to work |
+| Product | PC-006 — traceability and artifact lineage |
+| Architecture | Architecture.md — Stable Concepts, Boundaries |
+| Decisions | AD-002 (versioned markdown) |
+| Implementation | breakdown-structures.md — FBS, PBS, WBS mapping |
+| Verification | Cross-reference check that FBS, PBS, and WBS entries match existing artifacts |
+| Evolution | IMP-016 (decomposition relationships)
+
+### Architecture Verification
+
+| Step | Trace |
+| --- | --- |
+| Intent | Vision.md — verifiable architecture layer |
+| Product | PC-006 — traceability and artifact lineage |
+| Architecture | Architecture.md — Boundaries, Mechanisms |
+| Decisions | AD-002 (versioned markdown) |
+| Implementation | 02-architecture/verification.md — horizontal verification artifact |
+| Verification | Centralized criteria at 04-verification/acceptance-criteria.md (authoritative source); local extraction in pbs/02-architecture/verification.md |
+| Evolution | IMP-013 (horizontal verification)
 
 ## Maintenance
 
