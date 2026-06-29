@@ -1,7 +1,7 @@
 ---
 description: Normalizes the request into a concrete task and work order.
 mode: subagent
-model: openrouter/deepseek/deepseek-v4-flash
+model: openrouter/deepseek/deepseek-v4-pro
 hidden: true
 color: info
 temperature: 0.1
