@@ -46,7 +46,7 @@ Depending on scope, implement directly or use directed subagents:
 - `orchestrator-researcher` for external documentation or dependency context.
 
 Handle small assigned refactoring, cleanup, documentation, and system-definition edits directly when they are tightly coupled to the code change. Use `orchestrator-cleanup` when cleanup requires a focused pass across references, trackers, indexes, duplicate content, or information hygiene evidence. Do not delegate outside the work order. Builder-owned helpers may edit only within the builder's assigned scope.
-When invoking a read-only review helper, apply `.opencode/dev_harness/workflow/review-helper-context.md` and pass `caller_context: builder_preflight`.
+When invoking a read-only review helper, apply `.opencode/dev_harness/workflow/review-protocol.md` and pass `caller_context: builder_preflight`.
 Builder-owned review pass findings are implementation evidence only. They can guide local fixes inside the approved work order, but approval still belongs to `orchestrator-reviewer`.
 
 When `touches_shared_interface` is set in the work order, apply `.opencode/dev_harness/workflow/interface-consistency.md` for the interface consistency verification procedure. Report the interface-consumer verification result in your evidence.

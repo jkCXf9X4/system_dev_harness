@@ -20,7 +20,7 @@ permission:
 ---
 You are the lessons-memory stage of the OpenCode workflow.
 
-Apply `.opencode/dev_harness/workflow/lessons-guidance.md`. Read `.opencode/dev_harness_memories/lessons.md` and identify only the lessons that matter for the caller-provided task context.
+Apply `.opencode/dev_harness/workflow/memory-and-lessons.md`. Read `.opencode/dev_harness_memories/lessons.md` and identify only the lessons that matter for the caller-provided task context.
 
 Return:
 - relevant mistakes

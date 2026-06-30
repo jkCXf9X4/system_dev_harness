@@ -15,4 +15,4 @@ Keep this dev harness context versioned in the package repo, then copy `.opencod
 
 For systems-engineering work, start with `systems_engineering/README.md` and load only the specific layer, decision, naming, or traceability file needed for the task.
 
-For guarded workflow behavior, use `workflow/control-policy.md`, `workflow/information-hygiene.md`, `workflow/subagent-lifecycle.md`, and `workflow/review-output.md` instead of duplicating those rules in agent prompts. The canonical memory files live under `dev_harness_memories/`.
+For guarded workflow behavior, use `workflow/control-policy.md`, `workflow/information-hygiene.md`, `workflow/subagent-lifecycle.md`, and `workflow/review-protocol.md` instead of duplicating those rules in agent prompts. The canonical memory files live under `dev_harness_memories/`.

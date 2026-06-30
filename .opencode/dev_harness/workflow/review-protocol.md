@@ -35,3 +35,25 @@ decision_scope: helper_findings_only|reviewer_gate_input
 Use `decision_scope: helper_findings_only` for `builder_preflight`.
 Use `decision_scope: reviewer_gate_input` for `reviewer_gate`.
 Use `caller_context: not_provided` only when the invoking stage omitted the context; report that omission as a finding when the task depends on distinguishing builder preflight from reviewer gate.
+
+# Review Output Protocol
+
+Use this protocol for independent review stages.
+
+Return exactly one status:
+
+```text
+pass
+fail
+needs_waiver
+```
+
+Include:
+
+- caller context and decision scope from the Caller Context section above when the helper was invoked with `caller_context`
+- findings with stable item ids
+- brief evidence for each finding
+- waiver request details when status is `needs_waiver`
+- when memory is relevant, memory hygiene input evidence covering retrieved entries, revalidation status, stale or conflicting memory, new memory candidates for reflection, and whether memory influenced the review outcome
+
+Use `fail` when evidence is missing, contradictory, or does not prove completion. Use `needs_waiver` only when the implementation is intentionally incomplete or risky and requires explicit user approval under `.opencode/dev_harness/workflow/control-policy.md`.

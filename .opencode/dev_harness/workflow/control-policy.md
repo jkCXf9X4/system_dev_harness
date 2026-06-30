@@ -111,6 +111,19 @@ Open questions alone do not require a pause. Only questions that materially chan
 
 Any working stage or directed helper may return incidental `improvement_candidates` under `.opencode/dev_harness/workflow/stage-output-schema.md`. Detailed incidental candidate handling, candidate-capture criteria, and valid dispositions live in `.opencode/dev_harness/workflow/candidate-capture.md`.
 
+Candidate capture uses the normal guarded chain:
+
+```text
+planner -> builder -> reviewer -> reflection -> reporter
+```
+
+Ownership:
+- Planner scopes the candidate-capture work order and selects directed helpers.
+- Builder is the only workflow stage that persists improvement backlog artifacts, and should write backlog-worthy candidates to file before returning its disposition.
+- Reviewer gates candidate artifacts as information artifacts. For `persisted`, reviewer blocks when the candidate file is missing or not saved to disk. For `no_candidate`, reviewer checks the inspected scope, threshold rationale, and duplicate/backlog-worthiness evidence instead of requiring a file.
+- Reflection handles durable memory triage only.
+- Reporter summarizes the reviewed disposition.
+
 ## Workflow Memory
 
 Load `.opencode/dev_harness/workflow/workflow-memory.md` when a stage needs task-relevant memory, memory curation, memory hygiene evidence, or final reflection memory-incorporation rules.

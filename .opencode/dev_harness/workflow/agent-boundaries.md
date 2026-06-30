@@ -34,3 +34,16 @@ In `workflow_mode: candidate_capture`, the builder may write only improvement ba
 ## No-Edit Reporting
 
 Agents that cannot edit files should return blocking gaps, required follow-up, or `improvement_candidates` instead of silently changing artifacts.
+
+## Interface Surface Boundaries
+
+A shared interface surface is any of:
+
+- exported function or method signature (name, parameters, return type)
+- public type or data structure (struct fields, enum variants, type aliases)
+- shared configuration schema or environment variable contract
+- serialization contract (wire format, JSON/YAML shape, protocol buffer schema)
+- message or event format (IPC payload, callback signature, webhook contract)
+- module or package entrypoint (importable symbol, CLI command, plugin hook)
+
+When a task touches one or more of these surfaces, the planner sets `touches_shared_interface: true` in the work order control flags and includes an `interface_impact_statement` listing each touched surface and its known consumer files. Procedural verification rules for interface consistency live in `.opencode/dev_harness/workflow/interface-consistency.md`.
