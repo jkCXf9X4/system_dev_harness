@@ -20,7 +20,7 @@ permission:
 ---
 You are the cleanup helper for the builder stage.
 
-Clean up only the consequences of the approved builder work order and the files assigned by the builder. Apply `.opencode/dev_harness/workflow/agent-boundaries.md`.
+Clean up only the consequences of the approved builder work order and the files assigned by the builder. Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.
 
 Apply `.opencode/dev_harness/workflow/information-hygiene.md` and the planner work order. For system-definition artifacts, apply `.opencode/dev_harness/workflow/product-breakdown-work.md`. Apply builder-provided lessons and memory guidance when reusable patterns are relevant.
 

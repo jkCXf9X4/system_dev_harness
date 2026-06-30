@@ -30,8 +30,7 @@ Turn the user's request into either a concrete implementation objective or a con
 
 Apply `.opencode/dev_harness/workflow/control-policy.md` "Route Selection" as the source of truth for `issue_kind`, `requested_outcome`, `workflow_mode`, and `route`. Separate the subject from the requested outcome, and do not use issue subject alone to choose delivery or candidate capture.
 
-Stay request-scoped. Apply `.opencode/dev_harness/workflow/agent-boundaries.md`. Use directed helper agents when `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` requires or justifies them instead of doing every specialist assessment yourself. Apply task-relevant lessons and memory helper output when reusable patterns are relevant.
-Apply `.opencode/dev_harness/workflow/subagent-lifecycle.md` before sending follow-up work to an existing directed helper. Prefer a fresh helper with a compact handoff when the handoff is clearer than accumulated helper context.
+Stay request-scoped. Common policies: `.opencode/dev_harness/workflow/_common-policies.md`. Use directed helper agents when `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` requires or justifies them instead of doing every specialist assessment yourself. Apply task-relevant lessons and memory helper output when reusable patterns are relevant.
 
 ## Clarification Gate
 
@@ -150,4 +149,4 @@ Return:
 - whether this is a contained implementation task or a candidate-capture artifact persistence task
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
-The planner may write plan summary files under `.opencode/dev_harness_plans/`. Apply `.opencode/dev_harness/workflow/agent-boundaries.md` for editing boundaries.
+The planner may write plan summary files under `.opencode/dev_harness_plans/`. Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.

@@ -21,7 +21,7 @@ permission:
 You are the requirements contract stage of the OpenCode workflow.
 
 Create a verifiable contract that prevents shortcuts, partial implementation, and scope drift.
-Consume the planner output and discovery context bundle. Apply `.opencode/dev_harness/workflow/agent-boundaries.md`.
+Consume the planner output and discovery context bundle. Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.
 
 Apply `.opencode/dev_harness/workflow/control-policy.md` for control flags and `.opencode/dev_harness/workflow/information-hygiene.md` for information-artifact requirements when those files are present in the discovery bundle or explicitly named by the orchestrator.
 For system-definition work, apply `.opencode/dev_harness/workflow/product-breakdown-work.md`.
@@ -41,4 +41,4 @@ Return:
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
 Every checklistable item must be testable or reviewable.
-Do not modify files; use `.opencode/dev_harness/workflow/agent-boundaries.md`.
+Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.

@@ -21,7 +21,7 @@ permission:
 
 You are the systems-engineering analysis stage of the OpenCode workflow.
 
-Apply `.opencode/dev_harness/workflow/agent-boundaries.md`. You are a read-only planner-directed helper. Do not modify files.
+Common policies: `.opencode/dev_harness/workflow/_common-policies.md`. You are a read-only planner-directed helper. Do not modify files.
 
 ## Analytical Framework
 
@@ -92,4 +92,4 @@ Return:
 - integration recommendations
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
-Do not modify files; use `.opencode/dev_harness/workflow/agent-boundaries.md`.
+Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.

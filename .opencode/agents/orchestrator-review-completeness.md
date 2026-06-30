@@ -31,4 +31,4 @@ When the work order or contract includes `touches_shared_interface` or an interf
 Return using `.opencode/dev_harness/workflow/review-output.md` plus common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`.
 
 Fail on partial implementation, missing required tests without a waiver, unproven acceptance criteria, missing moved/renamed artifact traceability, unresolved gaps, or interface-consistency failures per `.opencode/dev_harness/workflow/interface-consistency.md`.
-Do not modify files; use `.opencode/dev_harness/workflow/agent-boundaries.md`.
+Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.

@@ -32,4 +32,4 @@ Return:
 - recommended downstream use
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
-Do not modify files; use `.opencode/dev_harness/workflow/agent-boundaries.md`.
+Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.

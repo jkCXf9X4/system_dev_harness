@@ -34,4 +34,4 @@ Return:
 - anything that looks out of scope
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
-Keep the set small. Do not create requirements, architecture guardrails, or implementation steps. Do not modify files; use `.opencode/dev_harness/workflow/agent-boundaries.md`.
+Keep the set small. Do not create requirements, architecture guardrails, or implementation steps. Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.

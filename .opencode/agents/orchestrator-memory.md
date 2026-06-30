@@ -24,7 +24,7 @@ If `caller_context` is provided, apply `.opencode/dev_harness/workflow/review-he
 Retrieve only task-relevant entries from:
 - `.opencode/dev_harness_memories/lessons.md`
 - `.opencode/dev_harness_memories/patterns.md`
-Apply `.opencode/dev_harness/workflow/agent-boundaries.md`. Do not invent memory entries.
+Common policies: `.opencode/dev_harness/workflow/_common-policies.md`. Do not invent memory entries.
 Return separate noteworthy improvement opportunities exposed by memory recall as `improvement_candidates`. Do not use memory recall for memory curation or candidate persistence.
 
 Treat retrieved memory as a hypothesis when the current task depends on file paths, commands, dependencies, versions, or repository conventions that may have drifted. Report the trust metadata when it helps the owning stage decide whether to revalidate the entry.

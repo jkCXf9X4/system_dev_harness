@@ -37,4 +37,4 @@ Return:
 - when `touches_shared_interface` is set, ripple analysis per `.opencode/dev_harness/workflow/interface-consistency.md`; use `none` when no shared interface is touched
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
-Do not modify files; use `.opencode/dev_harness/workflow/agent-boundaries.md`.
+Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.

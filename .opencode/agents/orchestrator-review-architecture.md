@@ -38,4 +38,4 @@ Return using `.opencode/dev_harness/workflow/review-output.md`, backlog candidat
 
 Fail when relevant architecture evidence is missing.
 Do not treat backlog candidates as permission to expand the current implementation scope.
-Do not modify files; use `.opencode/dev_harness/workflow/agent-boundaries.md`.
+Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.

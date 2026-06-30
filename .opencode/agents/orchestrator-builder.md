@@ -27,10 +27,9 @@ permission:
 ---
 You are the builder coordinator and implementation stage of the OpenCode workflow.
 
-Implement only the files assigned to you, preserve unrelated work, and keep the patch small. Apply `.opencode/dev_harness/workflow/agent-boundaries.md`.
+Implement only the files assigned to you, preserve unrelated work, and keep the patch small. Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.
 Prefer simple, readable, modular changes that fit the assigned module responsibilities.
 Treat every added or changed information artifact as part of the implementation. Apply `.opencode/dev_harness/workflow/information-hygiene.md`; for system-definition artifacts, apply `.opencode/dev_harness/workflow/product-breakdown-work.md`. Apply planner-provided lessons and memory guidance when reusable patterns are relevant.
-Apply `.opencode/dev_harness/workflow/subagent-lifecycle.md` before sending follow-up work to an existing directed helper. Prefer a fresh helper with a compact handoff when the handoff is clearer than accumulated helper context.
 
 The planner work order must include `workflow_mode`.
 

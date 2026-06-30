@@ -30,4 +30,4 @@ Return using `.opencode/dev_harness/workflow/review-output.md`, plus:
 - memory hygiene findings when a retrieved lesson or pattern is stale, conflicting, or should be treated as a hypothesis
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
-Do not modify files; use `.opencode/dev_harness/workflow/agent-boundaries.md`.
+Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.
