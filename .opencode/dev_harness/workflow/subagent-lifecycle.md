@@ -2,6 +2,10 @@
 
 Use this policy when a stage considers sending follow-up work to an existing directed helper or starting a fresh helper context.
 
+## Omit-By-Default
+
+The `helper_lifecycle` block is emitted only when the owning stage decides to reuse an existing helper. First-call helpers and `not_applicable` cases silently omit the block. This reduces token overhead for the common case where no reuse decision is needed.
+
 The workflow cannot force compaction, clearing, pruning, or reset of another agent's conversation context. Context freshness is therefore controlled by lifecycle choice: reuse the existing helper only when its accumulated context is still valuable, or start a fresh helper with a compact handoff when accumulated context is more likely to harm the result.
 
 ## Reuse Existing Helper
@@ -27,20 +31,19 @@ Start fresh when any of these are true:
 
 When starting fresh, do not pass prior transcripts. Pass only the current objective, relevant evidence, constraints, decisions, and deliverable. Treat the prior helper output as evidence to summarize, not as hidden memory to preserve.
 
-## Lifecycle Decision
+## Lifecycle Decision  <!-- Optional -->
+
+Only emit when `reuse_decision` is `reuse_existing` or `start_fresh` for a previously-used helper. Omit for first-call helpers.
 
 Before invoking a helper after earlier helper work, the owning stage should record:
 
 ```text
 helper_lifecycle:
-  reuse_decision: reuse_existing|start_fresh|not_applicable
+  reuse_decision: reuse_existing|start_fresh
   reason: <why this lifecycle choice fits the next helper task>
-  prior_context_dependency: none|low|medium|high
-  context_rot_risk: low|medium|high
-  handoff_summary: <compact summary for a fresh helper, or not_applicable>
 ```
 
-Use `not_applicable` for first-time helper calls or direct work with no helper reuse decision.
+Use `reuse_existing` when the next task directly depends on the helper's current private context. Use `start_fresh` when accumulated context is more likely to harm the result.
 
 ## Fresh Helper Handoff
 

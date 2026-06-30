@@ -12,6 +12,26 @@ The planner should select a baseline workflow profile before helper selection. P
 
 The selected profile must be recorded in the planner work order's `tailoring_record`. Profile selection does not override mandatory helper triggers.
 
+## Lightweight Skip Rules
+
+When ALL of the following concrete thresholds are met, the lightweight profile enables stage-skipping behavior beyond normal helper selection:
+
+- **Local blast radius**: change affects only the immediate task scope, no cascading effects
+- **≤3 files**: change touches at most 3 files
+- **No behavior change**: no functional, routing, or permission logic changes
+- **No interface touch**: no shared interface surface modification
+- **No architecture impact**: no module boundary, dependency shape, or design quality changes
+
+When ALL thresholds are met:
+
+- **Planner**: skip discovery, contract, architecture, lessons, memory, systems-engineering. Produce a direct work order unless a risk trigger explicitly fires.
+- **Builder**: skip verifier, review-completeness, review-architecture, review-lessons. Use only build-error-resolver or cleanup if needed.
+- **Reviewer**: single-stage review. Skip all review helper sub-agents.
+- **Reflection**: skip entirely. Set `not_applicable`.
+- **Reporter**: single-pass summary. Skip improvement-candidate processing.
+
+> **Note**: `lightweight` profile selection alone does not trigger these skips — the concrete thresholds above must also be met. The planner must verify each threshold against the task before applying skip rules.
+
 ## Planner Triggers
 
 - Repo-state review requests require `orchestrator-discovery`; add `orchestrator-contract` when the review criteria, scope, or success definition are not already checklistable.
