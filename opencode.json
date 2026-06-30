@@ -1,34 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "default_agent": "orchestrator",
+  "default_agent": "orchestrator-planner",
   "share": "disabled",
   "instructions": [
     ".opencode/dev_harness/instructions.md"
   ],
-  "agent": {
-    "orchestrator": {
-      "mode": "primary",
-      "permission": {
-        "read": "deny",
-        "glob": "deny",
-        "grep": "deny",
-        "list": "deny",
-        "edit": "deny",
-        "write": "deny",
-        "bash": "deny",
-        "external_directory": "deny",
-        "webfetch": "deny",
-        "task": {
-          "*": "deny",
-          "orchestrator-planner": "allow",
-          "orchestrator-builder": "allow",
-          "orchestrator-reviewer": "allow",
-          "orchestrator-reflection": "allow",
-          "orchestrator-reporter": "allow"
-        }
-      }
-    }
-  },
   "provider": {
     "openrouter": {
       "models": {
