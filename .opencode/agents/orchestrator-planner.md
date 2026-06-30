@@ -14,7 +14,7 @@ permission:
   bash: allow
   external_directory: deny
   task:
-    "*": deny
+    "*": allow
     "orchestrator-discovery": allow
     "orchestrator-contract": allow
     "orchestrator-architecture": allow
