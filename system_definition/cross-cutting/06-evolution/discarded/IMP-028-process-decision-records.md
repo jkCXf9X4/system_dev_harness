@@ -1,3 +1,5 @@
+Deemed low value, do not implement unless reevaluated
+
 # IMP-028: Workflow Process Decision Records
 
 Use this template for one backlog-ready improvement candidate.

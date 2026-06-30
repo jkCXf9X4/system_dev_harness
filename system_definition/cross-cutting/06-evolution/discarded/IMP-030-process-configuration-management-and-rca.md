@@ -1,3 +1,5 @@
+Deemed low value, do not implement unless reevaluated
+
 # IMP-030: Process Configuration Management And Root Cause Analysis
 
 Use this template for one backlog-ready improvement candidate.

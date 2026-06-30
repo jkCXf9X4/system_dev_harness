@@ -13,3 +13,5 @@ Prune unnecessary parts, align with methods and standards and add new informatio
 
 
 ---
+
+Evaluate if context to agents can be minimized, items pruned if deemed low value or if duplicate information can be merged into common to maximize agent cache hits. Create candidates for these improvements
