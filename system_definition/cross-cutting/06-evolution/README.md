@@ -45,6 +45,7 @@ Rejected or deferred suggestions are stored under `evaluations/` so future agent
 | `candidates/IMP-034.md` | IMP-034 | Normalize edit/modify/write terminology in agent-boundaries.md | Proposed | 2026-06-30 |
 | `candidates/IMP-035.md` | IMP-035 | Require plan_approval_status lifecycle updates after reviewer gate | Proposed | 2026-06-30 |
 | `candidates/IMP-036.md` | IMP-036 | Process guard against out-of-scope file modifications during delivery | Proposed | 2026-06-30 |
+| `candidates/IMP-037.md` | IMP-037 | Token optimization — instruction compression, agent consolidation, efficient handoffs | Proposed | 2026-06-30 |
 
 ## Selected
 
