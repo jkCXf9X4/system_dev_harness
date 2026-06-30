@@ -2,9 +2,9 @@
 
 This directory stores research-backed knowledge for reasoning about agent structure and prompts.
 
-It is intentionally separate from `product-breakdown/` and `.opencode/`:
+It is intentionally separate from `system_definition/` and `.opencode/`:
 
-- `product-breakdown/` remains the product traceability and decision source.
+- `system_definition/` remains the product traceability and decision source.
 - `.opencode/` remains the copied runtime payload.
 - `knowledge/agent-reasoning/` provides cited research claims that future decisions, prompt changes, or reviews can reference.
 
@@ -32,6 +32,6 @@ Do not vendor full paper text into this repository. Keep local reference materia
 - `SRC-NNN` identifies a research source in `source-index.md`.
 - `AK-NNN` identifies a reusable agent-knowledge claim in `claims/`.
 
-Knowledge claims are not implementation approval. They provide reasoning evidence that must still be applied through the normal product-breakdown decision and workflow review process.
+Knowledge claims are not implementation approval. They provide reasoning evidence that must still be applied through the normal system-definition decision and workflow review process.
 
 Implementation notes are not research evidence. They capture observed patterns from external systems so future work can compare them against the research-backed claim set before adopting them.

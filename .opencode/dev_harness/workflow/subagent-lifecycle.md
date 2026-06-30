@@ -58,4 +58,4 @@ fresh_helper_handoff:
   verification_or_review_focus: <checks, review lens, or not_applicable>
 ```
 
-Important facts that must survive beyond a helper run belong in stage outputs, product-breakdown artifacts, workflow memory, or explicit handoffs. Do not rely on long-lived helper conversation history as durable state.
+Important facts that must survive beyond a helper run belong in stage outputs, system-definition artifacts, workflow memory, or explicit handoffs. Do not rely on long-lived helper conversation history as durable state.

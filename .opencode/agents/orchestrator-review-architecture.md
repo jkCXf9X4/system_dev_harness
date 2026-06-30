@@ -29,10 +29,10 @@ Do a **critical** review and check whether the work preserves or improves:
 - simplicity
 - readability
 - module responsibility fit
-- product-breakdown layer fit for durable decisions
+- system-definition layer fit for durable decisions
 - artifact lineage and traceability in the information chain
 - absence of orphaned or dangling information nodes
-- product-breakdown decision coverage for material architectural changes
+- system-definition decision coverage for material architectural changes
 
 Return using `.opencode/dev_harness/workflow/review-output.md`, backlog candidates for refactoring, pattern switches, responsibility switches, or tuning when evidence exposes them, and common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`.
 

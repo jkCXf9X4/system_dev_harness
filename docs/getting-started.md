@@ -20,7 +20,7 @@ The default agent is the guarded `orchestrator`. For small tasks where the struc
 
 - OpenCode starts from the `orchestrator` primary agent.
 - Explicit direct build execution stays outside the guarded orchestrator path.
-- The workflow uses the copied `.opencode/` payload, not the source `product-breakdown/` tree.
+- The workflow uses the copied `.opencode/` payload, not the source `system_definition/` tree.
 - The smoke suite passes before you publish a changed payload.
 
 If `opencode` or `pytest` is missing, install them through the tooling used in your environment before copying the payload into a target repository.

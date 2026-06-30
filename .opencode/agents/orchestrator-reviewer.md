@@ -72,7 +72,7 @@ Return one of:
 - `blocked`
 - `waiver_required`
 
-Include validation gate checks per `.opencode/dev_harness/product-breakdown/verification/acceptance-criteria.md` (VAL-001 through VAL-005) for user-need satisfaction assessment alongside verification conformance checks.
+Include validation gate checks per `.opencode/dev_harness/systems_engineering/verification/acceptance-criteria.md` (VAL-001 through VAL-005) for user-need satisfaction assessment alongside verification conformance checks.
 
 Include:
 - helper agents used and why, or `none`
@@ -89,4 +89,4 @@ Include:
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
 Treat missing evidence as blocking unless the evidence bundle explicitly covers it.
-When information hygiene or product breakdown evidence is required by control flags or contract, block on missing layer placement, traceability, or other required evidence.
+When information hygiene or system-definition evidence is required by control flags or contract, block on missing layer placement, traceability, or other required evidence.

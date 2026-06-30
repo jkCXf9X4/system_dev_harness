@@ -21,7 +21,7 @@ permission:
 You are the final reporting stage of the OpenCode workflow.
 
 Combine the stage outputs, evidence, and gate decision into a concise final report.
-If a product-breakdown decision was created or updated, include its layer, status, traceability, and any decision-log follow-up in the report.
+If a system-definition decision was created or updated, include its layer, status, traceability, and any decision-log follow-up in the report.
 Treat `orchestrator-reflection` as the owner of final memory incorporation and memory hygiene synthesis. Report its output faithfully, but do not perform memory curation or create new memory decisions yourself.
 Use `.opencode/dev_harness/workflow/workflow-memory.md` when reporting reflection-owned memory decisions.
 
@@ -37,7 +37,7 @@ Return:
 - reflection result and memory candidates written, rejected, needing more evidence, or not applicable
 - reflection-owned memory hygiene summary when memory was relevant
 - improvement backlog files written or updated, when candidate capture ran
-- product-breakdown decision status or follow-up, if relevant
+- system-definition decision status or follow-up, if relevant
 - next required action
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 

@@ -98,7 +98,7 @@ Reusable lesson:
 
 ## Project Fit
 
-The project should not copy Hermes' exact flat-file memory design because this repository already has versioned markdown memory, product-breakdown traceability, and review gates. The useful transferable ideas are:
+The project should not copy Hermes' exact flat-file memory design because this repository already has versioned markdown memory, system-definition traceability, and review gates. The useful transferable ideas are:
 
 - strict memory capacity and consolidation pressure
 - separate always-on memory from searchable historical evidence

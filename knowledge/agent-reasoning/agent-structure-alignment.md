@@ -31,11 +31,11 @@ Policy and product context:
 - `.opencode/dev_harness/workflow/control-policy.md`
 - `.opencode/dev_harness/workflow/information-hygiene.md`
 - `.opencode/dev_harness/workflow/review-output.md`
-- `.opencode/dev_harness/product-breakdown/`
+- `.opencode/dev_harness/systems_engineering/`
 - `.opencode/dev_harness_memories/`
-- `product-breakdown/pbs/02-architecture/architecture.md`
-- `product-breakdown/pbs/02-architecture/decisions/AD-001-use-opencode-agent-workflow-for-orchestration.md`
-- `product-breakdown/pbs/02-architecture/decisions/AD-003-use-structured-handoff-before-code-editing.md`
+- `system_definition/pbs/02-architecture/architecture.md`
+- `system_definition/pbs/02-architecture/decisions/AD-001-use-opencode-agent-workflow-for-orchestration.md`
+- `system_definition/pbs/02-architecture/decisions/AD-003-use-structured-handoff-before-code-editing.md`
 
 ## Overall Assessment
 
@@ -90,7 +90,7 @@ Sources: `SRC-001`, `SRC-002`, `SRC-003`, `SRC-008`, `SRC-010`
 The current agent set maps to four top-level delivery responsibilities plus specialized helpers:
 
 - `orchestrator` routes only.
-- `planner` classifies the request, selects planning helpers, applies route selection, owns test planning, owns product-breakdown placement, and emits the builder work order.
+- `planner` classifies the request, selects planning helpers, applies route selection, owns test planning, owns system-definition placement, and emits the builder work order.
 - `discovery`, `contract`, `architecture`, `lessons`, `memory`, and `researcher` are planner-directed helpers.
 - `builder` implements the approved work order and may use `build-error-resolver`, `cleanup`, and `researcher`.
 - `reviewer` coordinates verifier, independent review helpers, memory recall, memory curation, researcher, and the completion gate.
@@ -169,7 +169,7 @@ The prompts consistently define:
 - structured feedback fields
 - stop conditions and waiver behavior
 
-The current structure is better than the earlier version in one important way: it avoids forcing every task through every helper. Adaptive risk triggers let low-risk documentation, wording, and metadata-only tasks stay lightweight while still requiring helper use for code, behavior, architecture, product-breakdown, external-research, and memory risks.
+The current structure is better than the earlier version in one important way: it avoids forcing every task through every helper. Adaptive risk triggers let low-risk documentation, wording, and metadata-only tasks stay lightweight while still requiring helper use for code, behavior, architecture, system-definition, external-research, and memory risks.
 
 The tradeoff is that prompt quality now depends heavily on trigger clarity. If `helper_not_used` rationales are weak, the system can appear compliant while skipping useful independent judgment.
 
@@ -203,7 +203,7 @@ The review model remains one of the strongest parts of the system:
 
 - verifier gathers focused command and file evidence
 - completeness review checks contract satisfaction, acceptance criteria, tests, edge cases, information hygiene, stale references, duplicates, and orphaned artifacts
-- architecture review checks boundaries, coupling, durable design choices, maintainability, readability, and product-breakdown fit
+- architecture review checks boundaries, coupling, durable design choices, maintainability, readability, and system-definition fit
 - lessons review checks persistent mistake memory
 - reviewer applies the deterministic gate
 - waivers require explicit risk, scope, and follow-up or expiry

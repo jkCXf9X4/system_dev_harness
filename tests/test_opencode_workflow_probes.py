@@ -169,15 +169,15 @@ def test_decision_templates_are_generic_and_referenced(simple_project: Path) -> 
     architecture_guidance = read_prompt(simple_project, ".opencode/dev_harness/workflow/architecture-guidance.md").lower()
     decision_placement = read_prompt(
         simple_project,
-        ".opencode/dev_harness/product-breakdown/decision-placement.md",
+        ".opencode/dev_harness/systems_engineering/decision-placement.md",
     )
     decision_template = read_prompt(
         simple_project,
-        ".opencode/dev_harness/product-breakdown/templates/decision-template.md",
+        ".opencode/dev_harness/systems_engineering/templates/decision-template.md",
     )
     decision_log_entry = read_prompt(
         simple_project,
-        ".opencode/dev_harness/product-breakdown/templates/decision-log-entry-template.md",
+        ".opencode/dev_harness/systems_engineering/templates/decision-log-entry-template.md",
     )
 
     assert "decision-template.md" in architecture_guidance
@@ -187,14 +187,14 @@ def test_decision_templates_are_generic_and_referenced(simple_project: Path) -> 
     assert "treat unknown architecture as risk" in architecture_guidance
     assert "context expectations" in architecture_guidance
     assert "caller-provided implementation evidence" in review_prompt.lower()
-    assert "product-breakdown/" in architecture_guidance
+    assert "systems_engineering/" in architecture_guidance
     assert "where its consequences are most directly felt" in decision_placement.lower()
     assert "durable product breakdown decisions" in decision_template.lower()
     assert "decision log entry template" in decision_log_entry.lower()
     assert "ssp_references" not in decision_template
     assert "ssp_references" not in decision_log_entry
-    assert "product-breakdown/adr/README.md" not in decision_template
-    assert "product-breakdown/adr/README.md" not in decision_log_entry
+    assert "system_definition/adr/README.md" not in decision_template
+    assert "system_definition/adr/README.md" not in decision_log_entry
 
 
 def test_product_breakdown_usage_is_embedded_in_agent_workflow(simple_project: Path) -> None:
@@ -211,48 +211,48 @@ def test_product_breakdown_usage_is_embedded_in_agent_workflow(simple_project: P
 
     for agent_path in agents:
         prompt = read_prompt(simple_project, agent_path).lower()
-        assert "product breakdown" in prompt or "product-breakdown" in prompt
+        assert "system definition" in prompt or "system-definition" in prompt or "product-breakdown-work.md" in prompt
 
     planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
     verifier_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-verifier.md").lower()
     completeness_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-completeness.md").lower()
     gate_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
-    product_breakdown_readme = read_prompt(
+    system_definition_readme = read_prompt(
         simple_project,
-        ".opencode/dev_harness/product-breakdown/README.md",
+        ".opencode/dev_harness/systems_engineering/README.md",
     ).lower()
 
-    assert "intent, product behavior, architecture, implementation, verification, operation, and evolution" in product_breakdown_readme
+    assert "intent, product behavior, architecture, implementation, verification, operation, and evolution" in system_definition_readme
     assert "primary layer" in planner_prompt
     assert "planner work order" in verifier_prompt
     assert "product-breakdown-work.md" in verifier_prompt
     assert "product-breakdown-work.md" in completeness_prompt
-    assert "product breakdown evidence" in gate_prompt
+    assert "system-definition evidence" in gate_prompt
 
 
 def test_docs_and_product_breakdown_boundaries_are_explicit(simple_project: Path) -> None:
     repo_root = Path(__file__).resolve().parents[1]
     docs_readme = read_prompt(repo_root, "docs/README.md").lower()
-    docs_product_breakdown = read_prompt(repo_root, "docs/product-breakdown.md").lower()
-    product_breakdown_readme = read_prompt(repo_root, "product-breakdown/README.md").lower()
-    operation_requirements = read_prompt(repo_root, "product-breakdown/cross-cutting/05-operation/runbook.md").lower()
-    deployment_requirements = read_prompt(repo_root, "product-breakdown/cross-cutting/05-operation/deployment-process.md").lower()
+    docs_system_definition = read_prompt(repo_root, "docs/system-definition.md").lower()
+    system_definition_readme = read_prompt(repo_root, "system_definition/README.md").lower()
+    operation_requirements = read_prompt(repo_root, "system_definition/cross-cutting/05-operation/runbook.md").lower()
+    deployment_requirements = read_prompt(repo_root, "system_definition/cross-cutting/05-operation/deployment-process.md").lower()
     copied_guidance = read_prompt(
         simple_project,
-        ".opencode/dev_harness/product-breakdown/README.md",
+        ".opencode/dev_harness/systems_engineering/README.md",
     ).lower()
 
     assert "runnable guidance" in docs_readme
     assert "command examples" in docs_readme
     assert "link to them for product context" in docs_readme
 
-    assert "product facts" in docs_product_breakdown
-    assert "runnable instructions" in docs_product_breakdown
-    assert "link to these product-breakdown pages" in docs_product_breakdown
+    assert "product facts" in docs_system_definition
+    assert "runnable instructions" in docs_system_definition
+    assert "link to these system-definition pages" in docs_system_definition
 
-    assert "product source information" in product_breakdown_readme
-    assert "use `docs/` for runnable" in product_breakdown_readme
-    assert "do not duplicate" in product_breakdown_readme
+    assert "product source information" in system_definition_readme
+    assert "use `docs/` for runnable" in system_definition_readme
+    assert "do not duplicate" in system_definition_readme
 
     assert "use `docs/` for runnable guidance" in copied_guidance
     assert "usage guides" in copied_guidance
@@ -268,7 +268,7 @@ def test_orchestrator_does_not_route_shortcut_build(simple_project: Path) -> Non
     repo_root = Path(__file__).resolve().parents[1]
     orchestrator_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator.md")
     planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md")
-    architecture_doc = read_prompt(repo_root, "product-breakdown/pbs/02-architecture/architecture.md")
+    architecture_doc = read_prompt(repo_root, "system_definition/pbs/02-architecture/architecture.md")
 
     for content in (orchestrator_prompt, planner_prompt, architecture_doc):
         lowered = content.lower()
@@ -284,9 +284,9 @@ def test_subagent_lifecycle_policy_is_centralized(simple_project: Path) -> None:
         simple_project,
         ".opencode/dev_harness/workflow/subagent-lifecycle.md",
     ).lower()
-    architecture_doc = read_prompt(repo_root, "product-breakdown/pbs/02-architecture/architecture.md").lower()
-    implementation_doc = read_prompt(repo_root, "product-breakdown/pbs/03-implementation/implementation.md").lower()
-    decision_log = read_prompt(repo_root, "product-breakdown/decision-log.md").lower()
+    architecture_doc = read_prompt(repo_root, "system_definition/pbs/02-architecture/architecture.md").lower()
+    implementation_doc = read_prompt(repo_root, "system_definition/pbs/03-implementation/implementation.md").lower()
+    decision_log = read_prompt(repo_root, "system_definition/decision-log.md").lower()
 
     assert "cannot force compaction" in policy
     assert "clearing" in policy
@@ -341,8 +341,8 @@ def test_information_hygiene_is_workflow_gated(simple_project: Path) -> None:
     verifier_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-verifier.md")
     completeness_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-completeness.md")
     gate_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md")
-    architecture_doc = read_prompt(repo_root, "product-breakdown/pbs/02-architecture/architecture.md")
-    commitments_doc = read_prompt(repo_root, "product-breakdown/fbs/01-product/product-commitments.md")
+    architecture_doc = read_prompt(repo_root, "system_definition/pbs/02-architecture/architecture.md")
+    commitments_doc = read_prompt(repo_root, "system_definition/fbs/01-product/product-commitments.md")
     information_hygiene_policy = read_prompt(
         simple_project,
         ".opencode/dev_harness/workflow/information-hygiene.md",
@@ -447,13 +447,13 @@ def test_workflow_tailoring_record_is_documented(simple_project: Path) -> None:
     control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
     adaptive_triggers = read_prompt(simple_project, ".opencode/dev_harness/workflow/adaptive-risk-triggers.md").lower()
     plan_schema = read_prompt(simple_project, ".opencode/dev_harness/workflow/plan-summary-schema.md").lower()
-    acceptance_criteria = read_prompt(repo_root, "product-breakdown/cross-cutting/04-verification/acceptance-criteria.md").lower()
-    product_verification = read_prompt(repo_root, "product-breakdown/fbs/01-product/verification.md").lower()
-    impl_verification = read_prompt(repo_root, "product-breakdown/pbs/03-implementation/verification.md").lower()
-    implementation_doc = read_prompt(repo_root, "product-breakdown/pbs/03-implementation/implementation.md").lower()
+    acceptance_criteria = read_prompt(repo_root, "system_definition/cross-cutting/04-verification/acceptance-criteria.md").lower()
+    product_verification = read_prompt(repo_root, "system_definition/fbs/01-product/verification.md").lower()
+    impl_verification = read_prompt(repo_root, "system_definition/pbs/03-implementation/verification.md").lower()
+    implementation_doc = read_prompt(repo_root, "system_definition/pbs/03-implementation/implementation.md").lower()
     evolution_done = read_prompt(
         repo_root,
-        "product-breakdown/cross-cutting/06-evolution/done/IMP-029.md",
+        "system_definition/cross-cutting/06-evolution/done/IMP-029.md",
     ).lower()
 
     for content in (control_policy, adaptive_triggers):
@@ -513,7 +513,7 @@ def test_top_level_flow_and_directed_helpers_are_explicit(simple_project: Path) 
         "orchestrator-architecture",
         "orchestrator-memory",
         "test planning",
-        "product-breakdown placement",
+        "system-definition placement",
         "workflow_mode",
     ):
         assert helper in planner_prompt
@@ -556,11 +556,11 @@ def test_builder_cleanup_helper_is_scoped_and_wired(simple_project: Path) -> Non
     ).lower()
     architecture_doc = read_prompt(
         Path(__file__).resolve().parents[1],
-        "product-breakdown/pbs/02-architecture/architecture.md",
+        "system_definition/pbs/02-architecture/architecture.md",
     ).lower()
     implementation_doc = read_prompt(
         Path(__file__).resolve().parents[1],
-        "product-breakdown/pbs/03-implementation/implementation.md",
+        "system_definition/pbs/03-implementation/implementation.md",
     ).lower()
 
     assert '"orchestrator-cleanup": allow' in builder_prompt
@@ -593,7 +593,7 @@ def test_builder_can_run_review_helper_passes_without_becoming_the_gate(simple_p
     review_output = read_prompt(simple_project, ".opencode/dev_harness/workflow/review-output.md").lower()
     implementation_doc = read_prompt(
         Path(__file__).resolve().parents[1],
-        "product-breakdown/pbs/03-implementation/implementation.md",
+        "system_definition/pbs/03-implementation/implementation.md",
     ).lower()
 
     for helper in (
@@ -672,10 +672,10 @@ def test_structured_feedback_protocol_is_shared(simple_project: Path) -> None:
 
 def test_shared_boundary_and_product_breakdown_policy_are_extracted(simple_project: Path) -> None:
     agent_boundaries = read_prompt(simple_project, ".opencode/dev_harness/workflow/agent-boundaries.md").lower()
-    product_breakdown_work = read_prompt(simple_project, ".opencode/dev_harness/workflow/product-breakdown-work.md").lower()
+    system_definition_work = read_prompt(simple_project, ".opencode/dev_harness/workflow/product-breakdown-work.md").lower()
     implementation_doc = read_prompt(
         Path(__file__).resolve().parents[1],
-        "product-breakdown/pbs/03-implementation/implementation.md",
+        "system_definition/pbs/03-implementation/implementation.md",
     ).lower()
 
     for phrase in (
@@ -699,7 +699,7 @@ def test_shared_boundary_and_product_breakdown_policy_are_extracted(simple_proje
         "traceability updates",
         "decision-record update",
     ):
-        assert phrase in product_breakdown_work
+        assert phrase in system_definition_work
 
     for agent_path in (
         ".opencode/agents/orchestrator.md",
@@ -934,7 +934,7 @@ def test_adaptive_risk_triggers_drive_helper_selection(simple_project: Path) -> 
         assert "triggers" in content
         assert "code changes require" in content
         assert "behavior changes require" in content
-        assert "product-breakdown" in content
+        assert "system-definition" in content or "product-breakdown-work.md" in content
         assert "external dependency, api, framework, standard, version, or documentation uncertainty requires" in content
         assert "low-risk documentation, formatting, wording, or metadata-only tasks" in content
         assert "helper_not_used" in content
@@ -944,7 +944,7 @@ def test_adaptive_risk_triggers_drive_helper_selection(simple_project: Path) -> 
     assert "orchestrator-contract" in planner_prompt
     assert "orchestrator-memory" in planner_prompt
     assert "test obligations" in risk_policy
-    assert "product-breakdown placement" in planner_prompt
+    assert "system-definition placement" in planner_prompt
     assert "requires_external_research: true" in risk_policy
 
     assert "orchestrator-verifier" in reviewer_prompt

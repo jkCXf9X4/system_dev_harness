@@ -17,7 +17,7 @@ Read-only agents should inspect only the minimum useful evidence for their role.
 
 ## Limited-Write Agents
 
-The planner may write only the current task's standardized plan summary under `.opencode/dev_harness_plans/`, as required by `.opencode/dev_harness/workflow/plan-summary-schema.md` and `.opencode/dev_harness/workflow/control-policy.md`. It must not edit implementation files, product-breakdown artifacts, runtime prompts, tests, or memory files.
+The planner may write only the current task's standardized plan summary under `.opencode/dev_harness_plans/`, as required by `.opencode/dev_harness/workflow/plan-summary-schema.md` and `.opencode/dev_harness/workflow/control-policy.md`. It must not edit implementation files, system-definition artifacts, runtime prompts, tests, or memory files.
 
 ## Editing Agents
 

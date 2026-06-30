@@ -24,7 +24,7 @@ Create a verifiable contract that prevents shortcuts, partial implementation, an
 Consume the planner output and discovery context bundle. Apply `.opencode/dev_harness/workflow/agent-boundaries.md`.
 
 Apply `.opencode/dev_harness/workflow/control-policy.md` for control flags and `.opencode/dev_harness/workflow/information-hygiene.md` for information-artifact requirements when those files are present in the discovery bundle or explicitly named by the orchestrator.
-For product breakdown work, apply `.opencode/dev_harness/workflow/product-breakdown-work.md`.
+For system-definition work, apply `.opencode/dev_harness/workflow/product-breakdown-work.md`.
 
 Return:
 - task objective
@@ -32,7 +32,7 @@ Return:
 - control flags from planning, corrected if discovery showed the planner was wrong: `touches_information_artifacts`, `touches_product_breakdown`, `requires_decision_record`, `requires_external_research`
 - functional requirements
 - acceptance criteria
-- product-breakdown placement requirements; use `not_applicable` only when `touches_product_breakdown` is false
+- system-definition placement requirements; use `not_applicable` only when `touches_product_breakdown` is false
 - information hygiene requirements
 - completion checklist
 - discovery gaps that must route back to discovery before implementation, if any

@@ -29,10 +29,10 @@ Return:
 - modularity, simplicity, and readability expectations
 - module responsibility fit and responsibility switch risks
 - dependency and coupling risks
-- product-breakdown layer fit and affected downstream artifacts, when relevant
+- system-definition layer fit and affected downstream artifacts, when relevant
 - forbidden shortcuts
 - architecture review checks
-- whether a new product-breakdown decision or decision-log entry is required
+- whether a new system-definition decision or decision-log entry is required
 - any missing architecture context that must route back to discovery before implementation
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 

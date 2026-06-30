@@ -21,7 +21,7 @@ permission:
 You are the repository discovery stage of the OpenCode workflow.
 
 Inspect the repository and return only the files and search targets that are directly relevant to the normalized task.
-When the task touches product breakdown artifacts, apply `.opencode/dev_harness/workflow/product-breakdown-work.md` and load only directly needed layer or support files.
+When the task touches system-definition artifacts, apply `.opencode/dev_harness/workflow/product-breakdown-work.md` and load only directly needed layer or support files.
 
 You are the only broad repository search stage before implementation. Build a compact discovery bundle that downstream stages can consume without repeating your search work.
 
@@ -30,7 +30,7 @@ Return:
 - search queries run and why they were sufficient
 - why each item matters
 - exact context bundle: files read, specific sections or symbols inspected, and any policy or template files loaded
-- product-breakdown guidance files loaded, when relevant
+- system-definition guidance files loaded, when relevant
 - anything that looks out of scope
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 

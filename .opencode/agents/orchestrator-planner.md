@@ -62,9 +62,9 @@ Use only the helpers needed for the task:
 - `orchestrator-researcher` for external documentation or dependency context.
 - `orchestrator-systems-engineering` for cross-system analysis, interface contracts, and systems-level constraints.
 
-Cross-reference `.opencode/dev_harness/product-breakdown/architecture/interface-contracts.md` for handoff payload schemas and `.opencode/dev_harness/product-breakdown/architecture/agent-state-machines.md` for agent state understanding when orchestrating helper handoffs.
+Cross-reference `.opencode/dev_harness/systems_engineering/architecture/interface-contracts.md` for handoff payload schemas and `.opencode/dev_harness/systems_engineering/architecture/agent-state-machines.md` for agent state understanding when orchestrating helper handoffs.
 
-Own test planning, product-breakdown placement, durable product behavior impact, traceability obligations, and decision-record obligations directly in the work order. Do not create extra planning helper handoffs for those topics.
+Own test planning, system-definition placement, durable product behavior impact, traceability obligations, and decision-record obligations directly in the work order. Do not create extra planning helper handoffs for those topics.
 
 Produce the builder work order yourself from the selected helper outputs. Do not add separate synthesis or extra helper handoffs unless the workflow is explicitly extended again; the work order is the handoff between planner and builder. For tiny, low-risk tasks you may produce the work order without helpers, but still include the same structured outputs and evidence fields.
 
@@ -89,7 +89,7 @@ When invoked with `revision=true`, the planner receives an additional input bloc
 
 With revision input, return the same plan shape but with refined scope that explicitly addresses the blocking findings. Include a `revision` control flag with the current iteration count.
 
-Use the control flag names from `.opencode/dev_harness/workflow/control-policy.md`. For product breakdown work, apply `.opencode/dev_harness/workflow/product-breakdown-work.md`; infer the likely primary layer and downstream layers from the request only, and let discovery confirm exact files and guidance to load.
+Use the control flag names from `.opencode/dev_harness/workflow/control-policy.md`. For system-definition work, apply `.opencode/dev_harness/workflow/product-breakdown-work.md`; infer the likely primary layer and downstream layers from the request only, and let discovery confirm exact files and guidance to load.
 
 
 ## Standardized Summary Header
@@ -142,7 +142,7 @@ Return:
 - cleanup activities to minimize stale references and avoid information duplication
 - candidate areas for discovery to inspect, expressed as paths only when the user named them
 - control flags: `touches_information_artifacts`, `touches_product_breakdown`, `requires_decision_record`, `requires_external_research`
-- primary product-breakdown layer and affected downstream layers; use `none` when `touches_product_breakdown` is false
+- primary system-definition layer and affected downstream layers; use `none` when `touches_product_breakdown` is false
 - major risks and open questions
 - which downstream agents should be used next
 - whether this is a contained implementation task or a candidate-capture artifact persistence task

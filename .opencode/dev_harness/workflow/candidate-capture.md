@@ -26,17 +26,17 @@ planner -> builder -> reviewer -> reflection -> reporter
 
 Builder should write backlog-worthy new findings to disk under:
 
-- `product-breakdown/cross-cutting/06-evolution/candidates/IMP-NNN.md`
-- `product-breakdown/cross-cutting/06-evolution/README.md`
+- `system_definition/cross-cutting/06-evolution/candidates/IMP-NNN.md`
+- `system_definition/cross-cutting/06-evolution/README.md`
 
-Builder may write `product-breakdown/cross-cutting/06-evolution/selected/IMP-NNN.md` or `product-breakdown/cross-cutting/06-evolution/done/IMP-NNN.md` only when the planner work order explicitly scopes a lifecycle transition, not for new candidate discovery.
+Builder may write `system_definition/cross-cutting/06-evolution/selected/IMP-NNN.md` or `system_definition/cross-cutting/06-evolution/done/IMP-NNN.md` only when the planner work order explicitly scopes a lifecycle transition, not for new candidate discovery.
 
 Do not edit implementation files during candidate capture.
 
 ## Persistence Rules
 
-- Load `.opencode/dev_harness/product-breakdown/templates/improvement-backlog-overview-template.md`.
-- Load `.opencode/dev_harness/product-breakdown/templates/improvement-candidate-template.md`.
+- Load `.opencode/dev_harness/systems_engineering/templates/improvement-backlog-overview-template.md`.
+- Load `.opencode/dev_harness/systems_engineering/templates/improvement-candidate-template.md`.
 - Create and save a candidate file when the item has concrete evidence, meaningful impact, and a scoped future task seed.
 - Do not create a placeholder file when no backlog-worthy item exists; return `no_candidate` with inspected scope and rationale.
 - Check duplicates across `candidates/`, `selected/`, `done/`, and existing historical `evaluations/` before choosing the next `IMP-NNN`.
@@ -49,7 +49,7 @@ Do not edit implementation files during candidate capture.
 - duplicate-check result
 - for `persisted`: candidate ID, candidate file path, file-existence/content verification, and duplicate-check result
 - for `no_candidate`: inspected scope, threshold rationale, duplicate/backlog-worthiness evidence, and why no file was created
-- product-breakdown layer placement
+- system-definition layer placement
 - information hygiene checks for overview tables, stale references, duplicate content, orphaned artifacts, unresolved links, and traceability
 
 ## Valid Dispositions

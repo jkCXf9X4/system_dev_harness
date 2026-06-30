@@ -34,11 +34,11 @@ Avoid brittle assertions:
 
 It is reasonable to assert exact paths when the path is the behavior under test, for example:
 
-- canonical backlog location: `product-breakdown/cross-cutting/06-evolution/candidates/`
+- canonical backlog location: `system_definition/cross-cutting/06-evolution/candidates/`
 - shared workflow policies: `workflow/control-policy.md`, `workflow/information-hygiene.md`, `workflow/review-output.md`
 - work-order-producing stages naming required implementation inputs
 
-It is usually not reasonable to force exact support filenames into verifier, reviewer, or gate prompts. Those stages should validate control flags and work-order-selected files rather than hard-coding every possible product-breakdown support file.
+It is usually not reasonable to force exact support filenames into verifier, reviewer, or gate prompts. Those stages should validate control flags and work-order-selected files rather than hard-coding every possible system-definition support file.
 
 ## Canonical Rule Location
 
@@ -46,7 +46,7 @@ Detailed rules should live in copied runtime context under `.opencode/dev_harnes
 
 Use:
 
-- `product-breakdown/` for the source documentation and traceability set, and `.opencode/dev_harness/product-breakdown/` for the copied runtime guidance used by agents
+- `system_definition/` for the source documentation and traceability set, and `.opencode/dev_harness/systems_engineering/` for the copied runtime guidance used by agents
 - `.opencode/dev_harness/workflow/` for workflow control, information hygiene, and review-output rules
 - `.opencode/dev_harness_memories/` for repo-local workflow memory that should not be copied from the dev harness package
 

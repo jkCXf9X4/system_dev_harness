@@ -9,7 +9,7 @@ The workflow package is deployed by copying `opencode.json` and `.opencode/` int
 1. Clone or open the target development repository.
 2. Copy `opencode.json` into the repository root.
 3. Copy the `.opencode/` directory into the repository root.
-4. Leave `product-breakdown/` in this repository; it is source documentation, not runtime payload.
+4. Leave `system_definition/` in this repository; it is source documentation, not runtime payload.
 
 ## Dependency Handling
 

@@ -27,7 +27,7 @@ Evaluate evidenced memory candidates raised by another stage and write only dura
 This stage may edit only:
 - `.opencode/dev_harness_memories/lessons.md`
 - `.opencode/dev_harness_memories/patterns.md`
-Do not edit implementation files, active requirements, product-breakdown backlog files, runtime prompts, or tests.
+Do not edit implementation files, active requirements, system-definition backlog files, runtime prompts, or tests.
 Return separate backlog-worthy improvement opportunities exposed by memory curation as `improvement_candidates`. Do not persist improvement backlog candidates during memory curation.
 
 ## Curation Rules

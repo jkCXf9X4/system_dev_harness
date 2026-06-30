@@ -17,7 +17,7 @@ The selected profile must be recorded in the planner work order's `tailoring_rec
 - Repo-state review requests require `orchestrator-discovery`; add `orchestrator-contract` when the review criteria, scope, or success definition are not already checklistable.
 - Code changes require `orchestrator-discovery` and `orchestrator-contract`.
 - Behavior changes require planner-owned test obligations in the work order.
-- Product-breakdown or durable product behavior changes require planner-owned product placement, traceability, and decision-record obligations in the work order.
+- System-definition or durable product behavior changes require planner-owned product placement, traceability, and decision-record obligations in the work order.
 - Architecture, module-boundary, dependency-shape, or responsibility changes require `orchestrator-architecture`.
 - Known repeated mistake risk or revision input requires `orchestrator-lessons`.
 - Durable lesson, pattern, or decision uncertainty requires `orchestrator-memory`.

@@ -131,7 +131,7 @@ Reviewers must verify that new code and documentation do not introduce duplicate
 ### KM-005: Preserve Abstraction Separation And Backward Traceability
 
 Metadata:
-Scope: product-breakdown and documentation maintenance
+Scope: system-definition and documentation maintenance
 Source: repeated documentation layering and traceability issues
 Last verified: 2026-06-01
 Confidence: high

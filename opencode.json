@@ -37,7 +37,8 @@
             "provider": {
               "ignore": [
                 "gmicloud",
-                "SiliconFlow"
+                "SiliconFlow",
+                "Baidu"
               ],
               "allow_fallbacks": false
             }
