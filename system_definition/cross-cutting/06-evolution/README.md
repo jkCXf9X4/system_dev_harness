@@ -42,6 +42,9 @@ Rejected or deferred suggestions are stored under `evaluations/` so future agent
 | --- | --- | --- | --- | --- |
 | `candidates/IMP-028-process-decision-records.md` | IMP-028 | Workflow process decision records for governance decisions | Proposed | 2026-06-29 |
 | `candidates/IMP-030-process-configuration-management-and-rca.md` | IMP-030 | Process configuration management and root cause analysis | Proposed | 2026-06-29 |
+| `candidates/IMP-034.md` | IMP-034 | Normalize edit/modify/write terminology in agent-boundaries.md | Proposed | 2026-06-30 |
+| `candidates/IMP-035.md` | IMP-035 | Require plan_approval_status lifecycle updates after reviewer gate | Proposed | 2026-06-30 |
+| `candidates/IMP-036.md` | IMP-036 | Process guard against out-of-scope file modifications during delivery | Proposed | 2026-06-30 |
 
 ## Selected
 

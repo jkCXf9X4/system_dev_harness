@@ -241,3 +241,31 @@ Apply `.opencode/dev_harness/workflow/interface-consistency.md` for the builder 
 
 Completion check:
 Reviewers must verify that every changed interface surface has been checked against all known consumers, that no callers were silently broken, and that the interface-consumer verification result is documented in the builder evidence.
+
+### KM-010: Reference Workflow Files Instead Of Duplicating Rules In Agent Prompts
+
+Metadata:
+Scope: agent-prompt maintenance and workflow hygiene
+Source: completed context-minimization delivery run across all dev_harness agent prompts
+Last verified: 2026-06-30
+Confidence: medium (first-hand evidence from a single delivery run)
+Revalidation trigger: agent prompts are restructured or workflow reference files under `.opencode/dev_harness/workflow/` are reorganized
+Environment notes: applies to the dev_harness workflow agent prompts; does not apply to canonical locations (`instructions.md`, `orchestrator.md`) where the rule originated
+
+Decision pointer:
+When removing a duplicated rule from an agent prompt, first verify the rule still exists in the canonical workflow reference file. The canonical location is authoritative, not the copy.
+
+Pattern:
+Agents may duplicate behavioral rules, constraints, or guardrails that already exist in canonical workflow reference files (under `.opencode/dev_harness/workflow/`) into individual agent prompts instead of referencing the canonical source.
+
+Why it matters:
+Duplication causes:
+- Context bloat in agent prompts, increasing token usage and cognitive load
+- Inconsistency when the canonical rule is updated but copies are not, leading to contradictory directives
+- Confusion about which version is authoritative, undermining the workflow hierarchy
+
+Prevention rule:
+When a rule, constraint, or behavioral guardrail already exists in a canonical workflow reference file under `.opencode/dev_harness/workflow/`, agent prompts should reference that file rather than duplicate the rule. Before adding a rule to an agent prompt, check whether it is already defined in a canonical location. If it is, remove the duplication and add a reference or rely on the orchestrated inclusion mechanism.
+
+Completion check:
+Reviewers must verify that any rule, constraint, or guardrail appearing in an agent prompt is not a verbatim or near-verbatim duplicate of content already present in a canonical workflow reference file. Evidence of the duplicate-check and the canonical reference location must be documented.

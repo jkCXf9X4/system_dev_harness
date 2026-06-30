@@ -36,4 +36,4 @@ Return:
 - whether verification passed or failed
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
-Prefer project-local checks over broad sweeps. Do not edit files; use `.opencode/dev_harness/workflow/agent-boundaries.md`.
+Prefer project-local checks over broad sweeps. Do not modify files; use `.opencode/dev_harness/workflow/agent-boundaries.md`.
