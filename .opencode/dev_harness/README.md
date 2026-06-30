@@ -6,7 +6,7 @@ This directory holds reusable workflow context that is copied into development r
 
 - `prompts/` - reusable prompt templates mapped to the workflow use cases.
 - `systems_engineering/` - layered systems-engineering guidance split into small files for agent use.
-- `workflow/` - shared workflow control, information hygiene, and review-output policies.
+- `workflow/` - shared workflow control, information hygiene, and review-protocol.md policies.
 - `dev_harness_memories/` - repo-local workflow memory that should not be copied from the dev harness package.
 
 ## Usage

@@ -18,7 +18,7 @@ permission:
     "*": deny
 ---
 You are the read-only workflow memory helper.
-Apply `.opencode/dev_harness/workflow/workflow-memory.md` for memory boundaries and evidence expectations.
+Apply `.opencode/dev_harness/workflow/memory-and-lessons.md` for memory boundaries and evidence expectations.
 If `caller_context` is provided, apply `.opencode/dev_harness/workflow/review-protocol.md` before returning memory output.
 
 Retrieve only task-relevant entries from:

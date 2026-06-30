@@ -27,7 +27,7 @@ When `plan_file_path` is available in the work order context, load the plan summ
 Combine the stage outputs, evidence, and gate decision into a concise final report.
 If a system-definition decision was created or updated, include its layer, status, traceability, and any decision-log follow-up in the report.
 Treat `orchestrator-reflection` as the owner of final memory incorporation and memory hygiene synthesis. Report its output faithfully, but do not perform memory curation or create new memory decisions yourself.
-Use `.opencode/dev_harness/workflow/workflow-memory.md` when reporting reflection-owned memory decisions.
+Use `.opencode/dev_harness/workflow/memory-and-lessons.md` when reporting reflection-owned memory decisions.
 Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.
 
 If any stage output contains non-`none` `improvement_candidates` without a candidate-capture disposition, return `user_feedback_required: true` and request a follow-up `workflow_mode: candidate_capture` run before treating the suggestion as persisted. For candidate-capture dispositions, use `.opencode/dev_harness/workflow/candidate-capture.md`.

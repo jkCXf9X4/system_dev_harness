@@ -126,11 +126,11 @@ Ownership:
 
 ## Workflow Memory
 
-Load `.opencode/dev_harness/workflow/workflow-memory.md` when a stage needs task-relevant memory, memory curation, memory hygiene evidence, or final reflection memory-incorporation rules.
+Load `.opencode/dev_harness/workflow/memory-and-lessons.md` when a stage needs task-relevant memory, memory curation, memory hygiene evidence, or final reflection memory-incorporation rules.
 
 ## Final Reflection
 
-Every completed guarded workflow, including candidate capture, must run `orchestrator-reflection` before `orchestrator-reporter`. Detailed reflection and memory-incorporation rules live in `.opencode/dev_harness/workflow/workflow-memory.md`.
+Every completed guarded workflow, including candidate capture, must run `orchestrator-reflection` before `orchestrator-reporter`. Detailed reflection and memory-incorporation rules live in `.opencode/dev_harness/workflow/memory-and-lessons.md`.
 
 ## Adaptive Risk Triggers
 

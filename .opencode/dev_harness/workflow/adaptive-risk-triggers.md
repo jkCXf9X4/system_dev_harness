@@ -1,6 +1,6 @@
 # Adaptive Risk Triggers
 
-Use helper agents based on task risk instead of forcing the full helper set for every task. A top-level stage may handle a task itself only when no trigger below applies, or when it returns an explicit `helper_not_used` rationale for each applicable-but-waived helper. Use `.opencode/dev_harness/workflow/workflow-memory.md` for workflow memory boundaries after this policy selects `orchestrator-memory`.
+Use helper agents based on task risk instead of forcing the full helper set for every task. A top-level stage may handle a task itself only when no trigger below applies, or when it returns an explicit `helper_not_used` rationale for each applicable-but-waived helper. Use `.opencode/dev_harness/workflow/memory-and-lessons.md` for workflow memory boundaries after this policy selects `orchestrator-memory`.
 
 ## Tailoring Profiles
 
