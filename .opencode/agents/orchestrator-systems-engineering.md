@@ -86,11 +86,13 @@ These are complementary, not parallel. Architecture answers "how should the code
 
 ## Source Artifacts
 
-When analyzing the workflow system, reference these system-definition architecture artifacts for structured data:
+When analyzing the workflow system in the **source repository** (where `system_definition/` exists), load these structured architecture artifacts for enriched SysML-adapted data:
 
-- `.opencode/dev_harness/systems_engineering/architecture/interface-contracts.md` — IBD-adapted handoff tables (payload schema, ports, preconditions, postconditions, error handling for all agent handoffs)
-- `.opencode/dev_harness/systems_engineering/architecture/agent-state-machines.md` — State/transition tables for planner, builder, reviewer, and reflection agents
-- `.opencode/dev_harness/systems_engineering/architecture/sequence-parametric.md` — Message-sequence tables for delivery and candidate-capture paths; parametric constraints for revision loop cap, context window utilization, and concurrency bounds
+- `system_definition/pbs/02-architecture/interface-contracts.md` — handoff payload schemas, preconditions, postconditions
+- `system_definition/pbs/02-architecture/agent-state-machines.md` — state/transition tables for top-level agents
+- `system_definition/pbs/02-architecture/sequence-parametric.md` — message-sequence tables and parametric constraints
+
+In **target repositories** (where only `.opencode/` is available), these files do not exist. Derive equivalent analysis from agent prompts under `.opencode/agents/` and workflow policies under `.opencode/dev_harness/workflow/` instead. The structured artifacts are enrichment in the source repo, not prerequisites for analysis.
 
 ## Return Format
 

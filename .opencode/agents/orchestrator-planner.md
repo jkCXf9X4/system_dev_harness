@@ -62,9 +62,11 @@ Use only the helpers needed for the task:
 - `orchestrator-researcher` for external documentation or dependency context.
 - `orchestrator-systems-engineering` for cross-system analysis, interface contracts, and systems-level constraints.
 
-Cross-reference `.opencode/dev_harness/systems_engineering/architecture/interface-contracts.md` for handoff payload schemas and `.opencode/dev_harness/systems_engineering/architecture/agent-state-machines.md` for agent state understanding when orchestrating helper handoffs.
 
-Own test planning, system-definition placement, durable product behavior impact, traceability obligations, and decision-record obligations directly in the work order. Do not create extra planning helper handoffs for those topics.
+
+Own test planning, system-definition placement, durable product behavior impact, traceability obligations, decision-record obligations, and interface-surface identification directly in the work order. Do not create extra planning helper handoffs for those topics.
+
+For interface-surface identification, apply `.opencode/dev_harness/workflow/interface-consistency.md`. When the task modifies a shared interface surface, set `touches_shared_interface: true` in the control flags and include an `interface_impact_statement` in the work order listing touched surfaces and known consumer files. When discovery is invoked and the task touches a shared interface, instruct discovery to find all direct consumers of the changed interfaces and resolve their file paths.
 
 Produce the builder work order yourself from the selected helper outputs. Do not add separate synthesis or extra helper handoffs unless the workflow is explicitly extended again; the work order is the handoff between planner and builder. For tiny, low-risk tasks you may produce the work order without helpers, but still include the same structured outputs and evidence fields.
 
@@ -141,7 +143,7 @@ Return:
 - `handoff_required: true|false` and paste-ready handoff notes when external/manual implementation was requested
 - cleanup activities to minimize stale references and avoid information duplication
 - candidate areas for discovery to inspect, expressed as paths only when the user named them
-- control flags: `touches_information_artifacts`, `touches_product_breakdown`, `requires_decision_record`, `requires_external_research`
+- control flags: `touches_information_artifacts`, `touches_product_breakdown`, `requires_decision_record`, `requires_external_research`, `touches_shared_interface`
 - primary system-definition layer and affected downstream layers; use `none` when `touches_product_breakdown` is false
 - major risks and open questions
 - which downstream agents should be used next

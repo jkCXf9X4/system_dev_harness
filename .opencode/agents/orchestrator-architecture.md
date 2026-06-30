@@ -34,6 +34,7 @@ Return:
 - architecture review checks
 - whether a new system-definition decision or decision-log entry is required
 - any missing architecture context that must route back to discovery before implementation
+- when `touches_shared_interface` is set, ripple analysis per `.opencode/dev_harness/workflow/interface-consistency.md`; use `none` when no shared interface is touched
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
 Do not modify files; use `.opencode/dev_harness/workflow/agent-boundaries.md`.

@@ -26,7 +26,9 @@ Apply `.opencode/dev_harness/workflow/information-hygiene.md` and `.opencode/dev
 Apply reviewer-provided lessons and memory guidance when reusable patterns are relevant.
 For `workflow_mode: candidate_capture`, load `.opencode/dev_harness/workflow/candidate-capture.md` and check the required evidence. For `persisted`, fail when the reported candidate path is missing, empty, inconsistent with the candidate ID, or outside the allowed write boundary. For `no_candidate`, fail when inspected scope, threshold rationale, duplicate/backlog-worthiness evidence, or no-file rationale is missing.
 
+When the work order or contract includes `touches_shared_interface` or an interface impact statement, apply `.opencode/dev_harness/workflow/interface-consistency.md` for interface mismatch checks.
+
 Return using `.opencode/dev_harness/workflow/review-output.md` plus common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`.
 
-Fail on partial implementation, missing required tests without a waiver, unproven acceptance criteria, missing moved/renamed artifact traceability, or unresolved gaps.
+Fail on partial implementation, missing required tests without a waiver, unproven acceptance criteria, missing moved/renamed artifact traceability, unresolved gaps, or interface-consistency failures per `.opencode/dev_harness/workflow/interface-consistency.md`.
 Do not modify files; use `.opencode/dev_harness/workflow/agent-boundaries.md`.

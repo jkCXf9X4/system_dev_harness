@@ -22,7 +22,7 @@ Load only the files needed for the current task:
 | Connect intent to tests | `traceability.md` |
 | Name artifacts consistently | `naming.md` |
 | Create an improvement backlog | `layers/06-evolution.md`, `templates/improvement-backlog-overview-template.md`, `templates/improvement-candidate-template.md` |
-| Perform systems-engineering analysis | `architecture/interface-contracts.md`, `architecture/agent-state-machines.md`, `architecture/sequence-parametric.md`, `architecture/component-hierarchy.md` |
+| Perform systems-engineering analysis | `system_definition/pbs/02-architecture/interface-contracts.md`, `system_definition/pbs/02-architecture/agent-state-machines.md`, `system_definition/pbs/02-architecture/sequence-parametric.md`, `system_definition/breakdown-structures.md` (source repo only; in target repos, derive from `.opencode/agents/` and `.opencode/dev_harness/workflow/` instead) |
 | Assess system risks | `verification/risk-framework.md` |
 | Verify acceptance criteria | `verification/acceptance-criteria.md` |
 
@@ -90,7 +90,7 @@ Each layer may contain a local `decisions/` directory.
 
 ## Agent Usage
 
-0. For systems-engineering analysis, load the architecture artifacts (`architecture/interface-contracts.md`, `architecture/agent-state-machines.md`, `architecture/sequence-parametric.md`, `architecture/component-hierarchy.md`) and the risk framework (`verification/risk-framework.md`).
+0. For systems-engineering analysis, load the architecture artifacts (`system_definition/pbs/02-architecture/interface-contracts.md`, `system_definition/pbs/02-architecture/agent-state-machines.md`, `system_definition/pbs/02-architecture/sequence-parametric.md`, `system_definition/breakdown-structures.md`) and the risk framework (`verification/risk-framework.md`). In target repos where `system_definition/` does not exist, derive equivalent structural data from `.opencode/agents/` prompts and `.opencode/dev_harness/workflow/` policies instead.
 1. Identify the task layer before reading broadly.
 2. Load that layer file and any directly linked support file.
 3. If adding a decision, apply `decision-placement.md` before writing.

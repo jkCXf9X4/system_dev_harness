@@ -216,3 +216,28 @@ When creating, moving, or rewriting an artifact, assign it a clear source, purpo
 
 Completion check:
 Reviewers must verify that touched artifacts are traceable to a parent context and that no loose, unlinked, or unowned artifact was introduced in the touched scope.
+
+### KM-009: Verify Interface Consistency On Shared Boundaries
+
+Metadata:
+Scope: planning, delivery, and completeness review
+Source: repeated interface-mismatch regressions in minimal-edit workflows
+Last verified: 2026-06-30
+Confidence: high
+Revalidation trigger: whenever a task modifies an exported function, public type, shared config, serialization contract, or message format
+Environment notes: applies to any task where `touches_shared_interface` is set in the planner work order
+
+Decision pointer:
+Planner must set `touches_shared_interface: true` when the task touches a shared boundary; builder must verify all known consumers remain consistent; reviewer must check for silent breaks, semantic mismatches, and shifted interface burden.
+
+Pattern:
+Agents implementing a minimal change to a shared interface may update only the direct target of the change while leaving callers, consumers, interface docs, and downstream modules inconsistent with the new contract.
+
+Why it matters:
+Minimal-edit implementations on shared interfaces are a recurring source of regressions. The changed interface appears complete in isolation but silently breaks consumers, causing cascading failures in later tasks.
+
+Prevention rule:
+Apply `.opencode/dev_harness/workflow/interface-consistency.md` for the builder verification procedure and reviewer mismatch checks.
+
+Completion check:
+Reviewers must verify that every changed interface surface has been checked against all known consumers, that no callers were silently broken, and that the interface-consumer verification result is documented in the builder evidence.

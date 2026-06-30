@@ -4,23 +4,12 @@ Add guidelines that the agents, if there is an obvious better/correct answer, fl
 
 ---
 
-Review the agent resource folder: .opencode/dev_harness/system-definition folder for relevant information, disposition, hierarchy, naming and so on to align with what the system engineering agent need.
+Review the agent resource folder: .opencode/dev_harness/systems_engineering/architecture to evaluate if this really is something tha agents need to do their job, for pure traceability of the project this should be moved to the system definition 
 
-Prune unnecessary parts, align with methods and standards and add new information if deemed beneficiary  
+Limiting context window for the agents is important, take this into consideration 
 
-Evaluate if parts that the agent do not need access to but should be preserved for traceability should be moved to the root/system_definition/ folder
+Prune unnecessary parts, align with methods and standards and add new information if deemed beneficiary
 
-If using information from the incose systems engineering handbook or other public sources, rewrite it to make sure that copyright is not an issue 
 
 
 ---
-
-create a more tailored systems engineering traceability structure for the project to increase overview and workability
-
-evaluate what parts would provide value, if any parts can be removed or if new sections/info should be added to increase value
-
-the structure, under root/product_breakdown should also be renamed to system_definition to limit mixup with .opencode/dev_harness/product-breakdown
-
-.opencode/dev_harness/product-breakdown should also be renamed to systems_engineering to further limit mixup possibilities
-
-**ADDRESSED in IMD-005 (2026-06-30):** Both renames completed. `product-breakdown/` → `system_definition/`, `.opencode/dev_harness/product-breakdown/` → `.opencode/dev_harness/systems_engineering/`. All cross-references updated across ~73 files.

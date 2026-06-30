@@ -50,6 +50,8 @@ Handle small assigned refactoring, cleanup, documentation, and system-definition
 When invoking a read-only review helper, apply `.opencode/dev_harness/workflow/review-helper-context.md` and pass `caller_context: builder_preflight`.
 Builder-owned review pass findings are implementation evidence only. They can guide local fixes inside the approved work order, but approval still belongs to `orchestrator-reviewer`.
 
+When `touches_shared_interface` is set in the work order, apply `.opencode/dev_harness/workflow/interface-consistency.md` for the interface consistency verification procedure. Report the interface-consumer verification result in your evidence.
+
 When you finish, report:
 - workflow mode
 - files changed
@@ -62,6 +64,7 @@ When you finish, report:
 - system-definition layer placement and decision-log updates, when relevant
 - suggested focused verification for the verifier to run
 - any out-of-contract improvement candidates exposed by the work, without implementing them
+- interface-consumer verification result: per `.opencode/dev_harness/workflow/interface-consistency.md` output taxonomy
 - candidate-capture disposition when relevant: `persisted` with candidate IDs and paths, or `no_candidate` with rationale
 - duplicate check result for candidate-capture work
 - any blockers or follow-up work

@@ -27,9 +27,9 @@ Each handoff is documented with:
 | Source port | planner work order output |
 | Target port | builder work order input |
 | Purpose | Hand off the approved implementation plan |
-| Payload schema | Task normalization, summary header (per plan-summary-schema.md), minimum staged plan, control flags (workflow_mode, plan_approval_status, touches_information_artifacts, touches_product_breakdown, requires_decision_record, requires_external_research), tailoring_record, success criteria, helper dispositions, parallel_helper_plan, risk triggers, revision input (when applicable) |
+| Payload schema | Task normalization, summary header (per plan-summary-schema.md), minimum staged plan, control flags (workflow_mode, plan_approval_status, touches_information_artifacts, touches_product_breakdown, requires_decision_record, requires_external_research, touches_shared_interface), interface impact statement per interface-consistency.md (list of known consumers per touched interface surface, or none), tailoring_record, success criteria, helper dispositions, parallel_helper_plan, risk triggers, revision input (when applicable) |
 | Preconditions | Planner has normalized the request, selected workflow mode, resolved uncertainty (or set clarification_status=required), selected helpers and grouped them into parallel-safe packets, produced the work order, and for delivery mode: persisted the plan summary |
-| Postconditions | Builder receives a self-contained work order with no unresolved ambiguity. Builder may start implementation or candidate-capture persistence. |
+| Postconditions | Builder receives a self-contained work order with no unresolved ambiguity. Builder may start implementation or candidate-capture persistence. When `touches_shared_interface` is set, builder must apply interface-consistency.md for interface consistency verification. |
 | Error handling | If work order is incomplete or contradictory, builder returns blocking gap to reviewer. If clarification_status=required, builder does not execute until clarified. |
 
 ### H02: builder → reviewer

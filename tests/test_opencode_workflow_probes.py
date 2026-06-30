@@ -1000,3 +1000,39 @@ def test_shared_review_output_policy_is_referenced(simple_project: Path) -> None
     for agent_path in review_agents:
         prompt = read_prompt(simple_project, agent_path).lower()
         assert "review-output.md" in prompt
+
+
+def test_interface_consistency_features_present(simple_project: Path) -> None:
+    planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
+    contract_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-contract.md").lower()
+    architecture_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-architecture.md").lower()
+    builder_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-builder.md").lower()
+    completeness_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-review-completeness.md").lower()
+    lessons_prompt = read_prompt(simple_project, ".opencode/dev_harness_memories/lessons.md").lower()
+    interface_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/interface-consistency.md").lower()
+
+    assert "touches_shared_interface" in planner_prompt
+    assert "interface-consistency.md" in planner_prompt
+
+    assert "interface-consistency.md" in contract_prompt
+    assert "touches_shared_interface" in contract_prompt
+
+    assert "interface-consistency.md" in architecture_prompt
+    assert "touches_shared_interface" in architecture_prompt
+
+    assert "interface-consistency.md" in builder_prompt
+    assert "interface-consumer verification result" in builder_prompt
+
+    assert "interface-consistency.md" in completeness_prompt
+    assert "touches_shared_interface" in completeness_prompt
+
+    assert "km-009" in lessons_prompt
+    assert "interface-consistency.md" in lessons_prompt
+
+    assert "ripple_analysis" in interface_policy
+    assert "interface_risk_level" in interface_policy
+    assert "reviewer mismatch check" in interface_policy
+    assert "silent interface breaks" in interface_policy
+    assert "interface surface definition" in interface_policy
+    assert "backward_compatibility_requirements" in interface_policy
+    assert "known_consumers" in interface_policy

@@ -37,6 +37,7 @@ Return:
 - completion checklist
 - discovery gaps that must route back to discovery before implementation, if any
 - open questions
+- when `touches_shared_interface` is set, interface-consistency fields per `.opencode/dev_harness/workflow/interface-consistency.md`; use `none` for each field when no shared interface is touched
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
 Every checklistable item must be testable or reviewable.
