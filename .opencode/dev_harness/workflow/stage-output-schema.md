@@ -2,14 +2,18 @@
 
 Use this schema for every top-level stage and directed helper. Role prompts may add role-specific fields, but they should not redefine these common fields.
 
+## Emit-By-Exception Rule
+
+Optional fields are silent when they carry no meaningful value. Replace `none`/`not_applicable` with omission. Only emit a field when it has substantive content.
+
 ## Common Fields
 
 ```text
-user_feedback_required: true|false
-user_feedback_request: <specific question, waiver request, or not_applicable>
-improvement_candidates: <out-of-scope candidates or none>
-research_requests: <research already performed or needed, or none>
-helper_lifecycle: <reuse/start-fresh decision for helper follow-up, or not_applicable>
+user_feedback_required: true|false    # only emit when true
+user_feedback_request: <specific question, waiver request>  # omit when none
+improvement_candidates: <out-of-scope candidates>  # omit when none
+research_requests: <research already performed or needed>  # omit when none
+helper_lifecycle: <reuse/start-fresh decision>  # only emit when reusing a helper
 ```
 
 Any stage may set `user_feedback_required: true` when it needs user input, approval, or a waiver.
@@ -22,16 +26,27 @@ Research requests are handled by `orchestrator-researcher` when source material 
 
 Helper lifecycle decisions use `.opencode/dev_harness/workflow/subagent-lifecycle.md`. They make helper reuse explicit because the workflow cannot force compaction, clearing, pruning, or reset of another agent's context.
 
-When a stage invokes helpers after previous helper work, include:
+When a stage reuses a helper after previous helper work, include:
 
 ```text
 helper_lifecycle:
-  reuse_decision: reuse_existing|start_fresh|not_applicable
+  reuse_decision: reuse_existing|start_fresh
   reason: <why reuse or a fresh helper is appropriate>
-  prior_context_dependency: none|low|medium|high
-  context_rot_risk: low|medium|high
-  handoff_summary: <compact handoff summary when start_fresh, or not_applicable>
 ```
+
+Omit the entire `helper_lifecycle` block for first-call helpers or when no reuse decision is needed.
+
+## Compact Output Format Example
+
+For low-risk tasks, stages may use a compact output format:
+
+```
+status: <pass|fail|approved|blocked|...>
+key_evidence: <brief summary>
+findings: <stable item IDs or none>
+```
+
+All other fields are emitted only when they carry meaningful content. The compact format does not waive required evidence — it only reduces token overhead for fields that would otherwise be `none` or `not_applicable`.
 
 ## Not Applicable
 

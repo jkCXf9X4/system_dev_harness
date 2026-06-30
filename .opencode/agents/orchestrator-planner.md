@@ -146,6 +146,15 @@ Then write the plan summary to `.opencode/dev_harness_plans/<YYYY-MM-DD_HHMMSS>-
 
 For `workflow_mode: candidate_capture`, skip plan persistence entirely, set `large_job_triggered: false`, `plan_approval_status: not_required`, and `plan_approval_reason: not_applicable`.
 
+## ID-Based Handoff
+
+The builder receives a compact handoff containing only:
+- `task_id`: unique identifier for this task
+- `plan_file_path`: path to the written plan summary file
+- Compact work order scope: task normalization, files touched, risk assessment, tailoring record
+
+Remaining context (requirements, architecture constraints, helper outputs, success criteria) is on disk in the plan file at `plan_file_path`. The builder loads the plan file to reconstruct full context.
+
 Return:
 - a one-paragraph task normalization
 - the standardized summary header from `.opencode/dev_harness/workflow/plan-summary-schema.md`

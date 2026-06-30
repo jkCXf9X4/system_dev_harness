@@ -44,6 +44,7 @@ After receiving the builder evidence and before returning the gate decision, ver
 6. If review evidence shows the task required draft approval but `plan_approval_status` was `not_required` or missing, record a non-blocking process finding `pda-001`; do not block approval solely for skipped draft approval because implementation has already occurred.
 7. Record the plan file verification result (`pass` or `fail`) in the review output.
 8. If the planner's `workflow_mode` was `candidate_capture`, plan persistence is skipped; set `plan_file_verification: not_applicable` with rationale.
+9. Read `scope`, `files_touched`, `risk_assessment`, and `tailoring_record` from the plan file to inform review emphasis and helper selection.
 
 ## Directed Helpers
 
