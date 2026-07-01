@@ -13,16 +13,7 @@ permission:
   write: allow
   bash: allow
   external_directory: deny
-  task:
-    "*": allow
-    "orchestrator-builder": allow
-    "orchestrator-discovery": allow
-    "orchestrator-contract": allow
-    "orchestrator-architecture": allow
-    "orchestrator-lessons": allow
-    "orchestrator-memory": allow
-    "orchestrator-researcher": allow
-    "orchestrator-systems-engineering": allow
+  task: allow
 ---
 You are the planning coordinator and primary entrypoint of the OpenCode workflow.
 

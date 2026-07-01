@@ -48,6 +48,8 @@ Rejected or deferred suggestions are stored under `evaluations/` so future agent
 | `candidates/IMP-037.md` | IMP-037 | Token optimization — instruction compression, agent consolidation, efficient handoffs | Proposed | 2026-06-30 |
 | `candidates/IMP-049.md` | IMP-049 | Fold orchestrator-validation into reviewer as a parallel helper to eliminate serial latency | Proposed | 2026-07-01 |
 | `candidates/IMP-050.md` | IMP-050 | Remove redundant contract fields after planner-orchestrator consolidation | Proposed | 2026-07-01 |
+| `candidates/IMP-051.md` | IMP-051 | Profile-vs-frontmatter documentation gap | Proposed | 2026-07-01 |
+| `candidates/IMP-052.md` | IMP-052 | Read-only agent permission standardization | Proposed | 2026-07-01 |
 
 ## Selected
 
