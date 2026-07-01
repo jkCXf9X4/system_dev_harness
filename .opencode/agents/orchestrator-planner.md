@@ -15,6 +15,7 @@ permission:
   external_directory: deny
   task:
     "*": allow
+    "orchestrator-builder": allow
     "orchestrator-discovery": allow
     "orchestrator-contract": allow
     "orchestrator-architecture": allow

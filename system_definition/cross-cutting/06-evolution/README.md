@@ -46,6 +46,8 @@ Rejected or deferred suggestions are stored under `evaluations/` so future agent
 | `candidates/IMP-035.md` | IMP-035 | Require plan_approval_status lifecycle updates after reviewer gate | Proposed | 2026-06-30 |
 | `candidates/IMP-036.md` | IMP-036 | Process guard against out-of-scope file modifications during delivery | Proposed | 2026-06-30 |
 | `candidates/IMP-037.md` | IMP-037 | Token optimization — instruction compression, agent consolidation, efficient handoffs | Proposed | 2026-06-30 |
+| `candidates/IMP-049.md` | IMP-049 | Fold orchestrator-validation into reviewer as a parallel helper to eliminate serial latency | Proposed | 2026-07-01 |
+| `candidates/IMP-050.md` | IMP-050 | Remove redundant contract fields after planner-orchestrator consolidation | Proposed | 2026-07-01 |
 
 ## Selected
 
