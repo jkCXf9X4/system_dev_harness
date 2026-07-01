@@ -8,13 +8,19 @@ Named permission profiles for agent YAML frontmatter. These define the tool acce
 
 ### `read_only`
 
-Tools: read, glob, grep, list — allow. edit, write, bash — deny.
+Tools: read, glob, grep, list — allow. edit, write — deny. bash — allow.
 
-Used by: discovery, contract, architecture, lessons, memory, memory-curator, researcher, verifier, review-architecture, review-completeness, review-lessons, systems-engineering, reflection, reporter.
+Used by: architecture, contract, discovery, lessons, memory, reflection, reporter, researcher, review-architecture, review-completeness, review-lessons, systems-engineering, validation, verifier.
+
+### `curator`
+
+Tools: read, glob, grep, list, edit, write, bash — allow. external_directory — deny.
+
+Used by: memory-curator.
 
 ### `full_access`
 
-Tools: all tools allowed.
+Tools: all tools allowed. Note: external_directory — deny (builder, build-error-resolver, cleanup all restrict external_directory).
 
 Used by: builder, build-error-resolver, cleanup.
 
@@ -30,8 +36,6 @@ Tools: read, glob, grep, list, bash — allow. edit, write — deny. task: allow
 
 Used by: reviewer.
 
-### `orchestrator_router`
+### ~~`orchestrator_router`~~ (deprecated)
 
-Tools: all deny. task: allow specific stage agents.
-
-Used by: orchestrator (router).
+This profile previously referenced the standalone "orchestrator (router)" role. That role has been consolidated into the primary `planner` entrypoint, which handles routing internally. The `planner` profile above reflects the current agent configuration. Retained here as a historical reference only; do not use for new agents.

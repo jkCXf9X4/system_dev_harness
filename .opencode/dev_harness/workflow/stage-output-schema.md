@@ -49,6 +49,50 @@ findings: <stable item IDs or none>
 
 All other fields are emitted only when they carry meaningful content. The compact format does not waive required evidence — it only reduces token overhead for fields that would otherwise be `none` or `not_applicable`.
 
+## Output Mode
+
+Stages use an `output_mode` field to control verbosity:
+
+```text
+output_mode: compact|full  # compact for lightweight/standard, full for high_assurance
+```
+
+**Compact mode** collapses helper disposition blocks to a single summary line:
+
+```text
+helpers_used: [discovery, contract] | helpers_waived: [architecture, lessons, memory, researcher, systems-engineering]
+```
+
+Move detailed rationales to an optional `helper_details` block, emitted only when `high_assurance` profile is active or when a waiver rationale is non-obvious.
+
+**Full mode** retains verbose per-helper disposition blocks with individual `helper_not_used` rationales.
+
+The planner sets `output_mode` in the work order based on the selected tailoring profile:
+- `lightweight` → `compact`
+- `standard` → `compact`
+- `high_assurance` → `full`
+
+## Helper Output Compression
+
+Directed helpers (e.g., `orchestrator-researcher`, `orchestrator-discovery`) return compressed output to reduce token overhead in parent stage context:
+
+```text
+compressed_output: <compact summary, ≤500 tokens, all decisions and constraints included>
+full_output_path: <path to file on disk containing the full helper output>
+```
+
+**Compression rules:**
+- `compressed_output` must include all decisions, constraints, and action items. Raw search results, verbose logs, and intermediate reasoning may be omitted.
+- `full_output_path` points to a file on disk that preserves the complete helper output for on-demand loading.
+- Parent stages load the full output from `full_output_path` only when they need details beyond the compressed summary.
+
+**Profile behavior:**
+- `lightweight` / `standard` profiles → helpers MUST use `compressed_output` + `full_output_path`.
+- `high_assurance` profile → helpers MAY keep full output inline instead of compressing.
+
+**Planner synthesis:**
+The planner synthesizes helper outputs into the work order, keeping only decisions, constraints, and action items. Raw search results and verbose intermediate output are not passed through. See `stage-output-schema.md` "Helper Output Compression."
+
 ## Not Applicable
 
 If a stage is not applicable, it must return:

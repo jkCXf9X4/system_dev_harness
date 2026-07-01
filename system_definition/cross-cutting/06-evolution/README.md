@@ -50,6 +50,7 @@ Rejected or deferred suggestions are stored under `evaluations/` so future agent
 | `candidates/IMP-050.md` | IMP-050 | Remove redundant contract fields after planner-orchestrator consolidation | Proposed | 2026-07-01 |
 | `candidates/IMP-051.md` | IMP-051 | Profile-vs-frontmatter documentation gap | Proposed | 2026-07-01 |
 | `candidates/IMP-052.md` | IMP-052 | Read-only agent permission standardization | Proposed | 2026-07-01 |
+| `candidates/IMP-053.md` | IMP-053 | Expand plan-summary-schema.md for downstream agent context completeness | Proposed | 2026-07-01 |
 
 ## Selected
 

@@ -247,8 +247,8 @@ Reviewers must verify that every changed interface surface has been checked agai
 Metadata:
 Scope: agent-prompt maintenance and workflow hygiene
 Source: completed context-minimization delivery run across all dev_harness agent prompts
-Last verified: 2026-06-30
-Confidence: medium (first-hand evidence from a single delivery run)
+Last verified: 2026-07-01
+Confidence: high (confirmed by two independent delivery runs: original context-minimization run + IMP-038 full agent audit)
 Revalidation trigger: agent prompts are restructured or workflow reference files under `.opencode/dev_harness/workflow/` are reorganized
 Environment notes: applies to the dev_harness workflow agent prompts; does not apply to canonical locations (`instructions.md`, `orchestrator.md`) where the rule originated
 

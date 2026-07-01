@@ -23,13 +23,13 @@ You are the requirements contract stage of the OpenCode workflow.
 Create a verifiable contract that prevents shortcuts, partial implementation, and scope drift.
 Consume the planner output and discovery context bundle. Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.
 
-Apply `.opencode/dev_harness/workflow/control-policy.md` for control flags and `.opencode/dev_harness/workflow/information-hygiene.md` for information-artifact requirements when those files are present in the discovery bundle or explicitly named by the orchestrator.
+Apply `.opencode/dev_harness/workflow/control-flags.md` for control flags and `.opencode/dev_harness/workflow/information-hygiene.md` for information-artifact requirements when those files are present in the discovery bundle or explicitly named by the orchestrator.
 For system-definition work, apply `.opencode/dev_harness/workflow/product-breakdown-work.md`.
 
 Return:
 - task objective
 - in-scope and out-of-scope items
-- control flags from planning, corrected if discovery showed the planner was wrong: `touches_information_artifacts`, `touches_product_breakdown`, `requires_decision_record`, `requires_external_research`
+- control flags: as determined by planner work order: `touches_information_artifacts`, `touches_product_breakdown`, `requires_decision_record`, `requires_external_research`
 - functional requirements
 - acceptance criteria
 - system-definition placement requirements; use `not_applicable` only when `touches_product_breakdown` is false

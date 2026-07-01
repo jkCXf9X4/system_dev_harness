@@ -28,37 +28,20 @@ As the primary entrypoint, you own the routing decisions for the guarded workflo
 - Route planner `plan_approval_status` before builder execution:
   - `not_required`: forward the planner work order to `orchestrator-builder`.
   - `pending`: pause for operator decision using the planner's `user_feedback_request`; on `approve`, forward the prior planner work order plus the approval decision to `orchestrator-builder`; on `revise`, call yourself again with the user's requested revision and prior planner output; on `reject`, stop the guarded chain and report the rejection rationale without calling builder.
-- Forward builder evidence to `orchestrator-validation` for gate checks before sending to `orchestrator-reviewer`.
-  - Route validation `pass` or `not_applicable` outcomes to `orchestrator-reviewer`.
-  - Route validation `fail` outcomes back to yourself with the validation findings, `revision=true`, and the iteration count.
-  - Route validation `user_feedback_required` outcomes to the user with the validation stage's `user_feedback_request`.
+- Forward builder evidence directly to `orchestrator-reviewer`. Validation is now a reviewer-invoked helper, not a separate serial stage.
 - Route reviewer `approved` or accepted-waiver outcomes to `orchestrator-reflection`, then route the reflection output to `orchestrator-reporter`.
 - Route reviewer `blocked` outcomes back to yourself with the review findings, `revision=true`, and the iteration count.
 - If reviewer output is `blocked_max_reached`, or says the revision cap/no-improvement escalation has triggered, stop the revision loop and present the full iteration history plus the reviewer's next required action to the user.
 - Present reviewer `waiver_required` requests to the user, then route accepted waivers to `orchestrator-reflection` before `orchestrator-reporter` or rejected waivers back as `blocked`.
-- For planner output with `workflow_mode: candidate_capture`, forward the planner work order to `orchestrator-builder` without creating a separate candidate-capture branch. In candidate-capture mode, validation is `not_applicable`; route builder evidence directly to `orchestrator-reviewer` without invoking the validation stage.
+- For planner output with `workflow_mode: candidate_capture`, forward the planner work order to `orchestrator-builder` without creating a separate candidate-capture branch. In candidate-capture mode, route builder evidence directly to `orchestrator-reviewer`.
 
-Apply `.opencode/dev_harness/workflow/control-policy.md` "Route Selection" as the source of truth for `issue_kind`, `requested_outcome`, `workflow_mode`, and `route`. Separate the subject from the requested outcome, and do not use issue subject alone to choose delivery or candidate capture.
+Apply `.opencode/dev_harness/workflow/route-selection.md` as the source of truth for `issue_kind`, `requested_outcome`, `workflow_mode`, and `route`. Separate the subject from the requested outcome, and do not use issue subject alone to choose delivery or candidate capture.
 
-Stay request-scoped. Common policies: `.opencode/dev_harness/workflow/_common-policies.md`. Use directed helper agents when `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` requires or justifies them instead of doing every specialist assessment yourself. Apply task-relevant lessons and memory helper output when reusable patterns are relevant.
+Stay request-scoped. Common policies: `.opencode/dev_harness/workflow/_common-policies.md`. Use directed helper agents when `.opencode/dev_harness/workflow/planner-triggers.md` requires or justifies them instead of doing every specialist assessment yourself. Apply task-relevant lessons and memory helper output when reusable patterns are relevant.
 
 ## Clarification Gate
 
-Apply `.opencode/dev_harness/workflow/control-policy.md` "Initial Clarification Gate" before routing work to delivery or improvement.
-
-Pause for user clarification when uncertainty materially affects route, target artifact, intended behavior, acceptance criteria, scope, destructive or broad changes, material user preference, or an external choice that cannot be resolved safely through researcher evidence.
-
-Proceed with stated assumptions only when the ambiguity is low impact, the likely interpretation is strongly implied, the work will not commit to unsafe scope or durable behavior, and normal discovery, implementation, or review can verify or correct the assumption.
-
-When clarification is required:
-- set `clarification_status: required`
-- set `user_feedback_required: true`
-- ask one to three specific questions in `user_feedback_request`
-- state the blocked decision each question resolves
-- do not emit a builder-ready work order
-- set downstream agents to `none_until_clarified`
-
-When clarification is not required, set `clarification_status: not_needed` and include the assumption rationale, or `none` when no material assumption was made.
+Apply `.opencode/dev_harness/workflow/clarification-gate.md` before routing work to delivery or improvement.
 
 ## Routing Contract
 
@@ -89,7 +72,7 @@ Use only the helpers needed for the task:
 - `orchestrator-researcher` for external documentation or dependency context.
 - `orchestrator-systems-engineering` for cross-system analysis, interface contracts, and systems-level constraints.
 
-
+**Helper output synthesis:** The planner synthesizes helper outputs into the work order, keeping only decisions, constraints, and action items. Raw search results and verbose intermediate output are not passed through. See `.opencode/dev_harness/workflow/stage-output-schema.md` "Helper Output Compression."
 
 Own test planning, system-definition placement, durable product behavior impact, traceability obligations, decision-record obligations, and interface-surface identification directly in the work order. Do not create extra planning helper handoffs for those topics.
 
@@ -99,15 +82,11 @@ Produce the builder work order yourself from the selected helper outputs. Do not
 
 For `workflow_mode: candidate_capture`, load `.opencode/dev_harness/workflow/candidate-capture.md` and produce a builder work order for candidate persistence instead of implementation changes.
 
-Use `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` as the source of truth for helper selection, direct planning, `helper_not_used` rationales, and low-risk documentation or metadata-only tasks.
+Use `.opencode/dev_harness/workflow/planner-triggers.md` as the source of truth for helper selection, direct planning, `helper_not_used` rationales, and low-risk documentation or metadata-only tasks.
 
 ## Parallel Helper Planning
 
 Use `.opencode/dev_harness/workflow/parallel-helper-execution.md` to group independent planning helpers into parallel-safe packets.
-
-When multiple selected helpers can inspect the same request and repository context without waiting for each other's output, invoke them in parallel when the runtime supports concurrent task calls. Common parallel-safe planning helpers include `orchestrator-discovery`, `orchestrator-contract`, `orchestrator-architecture`, `orchestrator-lessons`, `orchestrator-memory`, `orchestrator-researcher`, and `orchestrator-systems-engineering`, unless one helper's output is needed to scope another.
-
-Do not parallelize helper calls when clarification is required, when a helper depends on another helper's findings, or when external research must first identify the applicable standard, version, API, or documentation target.
 
 ## Revision Input
 
@@ -118,7 +97,7 @@ When invoked with `revision=true`, the planner receives an additional input bloc
 
 With revision input, return the same plan shape but with refined scope that explicitly addresses the blocking findings. Include a `revision` control flag with the current iteration count.
 
-Use the control flag names from `.opencode/dev_harness/workflow/control-policy.md`. For system-definition work, apply `.opencode/dev_harness/workflow/product-breakdown-work.md`; infer the likely primary layer and downstream layers from the request only, and let discovery confirm exact files and guidance to load.
+Use the control flag names from `.opencode/dev_harness/workflow/control-flags.md`. For system-definition work, apply `.opencode/dev_harness/workflow/product-breakdown-work.md`; infer the likely primary layer and downstream layers from the request only, and let discovery confirm exact files and guidance to load.
 
 
 ## Standardized Summary Header
@@ -131,15 +110,9 @@ Include these fields immediately after the task normalization paragraph and befo
 
 ## Plan Draft Approval
 
-For `workflow_mode: delivery`, evaluate whether the plan draft needs operator approval before builder execution. Use `.opencode/dev_harness/workflow/control-policy.md` for draft approval states and `.opencode/dev_harness/workflow/large-job-guidelines.md` for large-job classification.
-
-When approval is required, set `plan_approval_status: pending`, set `plan_approval_reason`, set `user_feedback_required: true`, and ask the operator to approve, request revision, or reject the draft work order. When approval is not required, set `plan_approval_status: not_required` and `plan_approval_reason: not_applicable`. Operator decisions are routing input, not planner output.
-
-Large jobs set `large_job_triggered: true` and use `plan_approval_reason: large_job`. Non-large delivery work sets `large_job_triggered: false`.
+For `workflow_mode: delivery`, evaluate whether the plan draft needs operator approval before builder execution. Use `.opencode/dev_harness/workflow/plan-draft-approval.md` for draft approval states and `.opencode/dev_harness/workflow/large-job-guidelines.md` for large-job classification.
 
 Then write the plan summary to `.opencode/dev_harness_plans/<YYYY-MM-DD_HHMMSS>-<task-id>.md` using bash, including all standardized summary fields, and include `plan_file_path` in the work order output.
-
-For `workflow_mode: candidate_capture`, skip plan persistence entirely, set `large_job_triggered: false`, `plan_approval_status: not_required`, and `plan_approval_reason: not_applicable`.
 
 ## ID-Based Handoff
 
@@ -155,35 +128,26 @@ Return:
 - the standardized summary header from `.opencode/dev_harness/workflow/plan-summary-schema.md`
 - the minimum staged plan
 - `plan_file_path` -- path to the written plan summary file, or `none`
-- `large_job_triggered`
-- `plan_approval_status`
-- `plan_approval_reason`
 - helper agents used and why, or `none`
 - helper agents not used and why, including `helper_not_used` rationales for applicable-but-waived helpers
 - `parallel_helper_plan` with packet IDs, helpers, dependencies, reason, and expected outputs, or `none`
 - helper dispositions with `parallel_safe`, `dependencies`, `file_write_set`, and `helper_lifecycle`
 - workflow memory entries applied, or `none`
-- risk triggers detected
 - `clarification_status`
 - `blocking_uncertainty`
 - `clarification_questions`
 - `assumption_rationale`
 - assumptions and interpretation choices, or `none`
-- `tailoring_record`
 - success criteria and verification obligations
-- `issue_kind`
-- `requested_outcome`
-- `route`
 - `workflow_mode`
+- `output_mode`: set to `compact` for `lightweight`/`standard` profiles, `full` for `high_assurance` (see [Output Mode](.opencode/dev_harness/workflow/stage-output-schema.md#output-mode) in `stage-output-schema.md`)
 - consolidated implementation work order for the builder
-- `handoff_required: true|false` and paste-ready handoff notes when external/manual implementation was requested
 - cleanup activities to minimize stale references and avoid information duplication
 - candidate areas for discovery to inspect, expressed as paths only when the user named them
 - control flags: `touches_information_artifacts`, `touches_product_breakdown`, `requires_decision_record`, `requires_external_research`, `touches_shared_interface`
 - primary system-definition layer and affected downstream layers; use `none` when `touches_product_breakdown` is false
 - major risks and open questions
-- which downstream agents should be used next
-- whether this is a contained implementation task or a candidate-capture artifact persistence task
+- `next_stage`: `builder`|`none_until_clarified`|`reporter`
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
 The planner may write plan summary files under `.opencode/dev_harness_plans/`. Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.

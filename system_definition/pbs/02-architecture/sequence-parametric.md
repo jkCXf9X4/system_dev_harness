@@ -2,7 +2,7 @@
 
 Message-sequence tables for the two guarded workflow paths and parametric constraint definitions.
 
-Current as of IMP-032 (2026-06-29).
+Current as of IMP-045 (2026-07-01).
 
 ## Notation
 
@@ -30,15 +30,18 @@ Parametric constraints define bounds and invariant conditions adapted from SysML
 | 10 | [Build helpers] | Builder | Return results | State: waiting_for_input → active |
 | 11 | Builder | Self | Optionally run builder-owned review pass | State: active (review pass) |
 | 12 | Builder | Reviewer | Hand off implementation evidence | Contract: H02 |
-| 13 | Reviewer | [Review helpers] | Invoke verifier, review-architecture, review-completeness, review-lessons (parallel-safe packets) | State: active → waiting_for_input |
-| 14 | [Review helpers] | Reviewer | Return verification/review findings | — |
-| 15 | Reviewer | Self | Compute gate decision (approved | blocked | waiver_required) | State: active → completed |
-| 16 | Reviewer | Reflection | Hand off gate result and memory candidates | Contract: H03 |
-| 17 | Reflection | Self | Perform memory triage | State: idle → active → completed |
-| 18 | Reflection | Memory curator | Invoke if durable memory candidate accepted | — |
-| 19 | Memory curator | Reflection | Return curation result | — |
-| 20 | Reflection | Reporter | Hand off memory triage result | Contract: H04 |
-| 21 | Reporter | Operator | Output final control report | — |
+| 12a | Builder | Validation | Hand off implementation evidence | Contract: H02-val |
+| 12b | Validation | Self | Check builder evidence against planner intent and acceptance criteria (VAL-001 through VAL-005) | State: active → active |
+| 12c | Validation | Reviewer | Return validation status (pass | fail | not_applicable) | — |
+| 16 | Reviewer | [Review helpers] | Invoke verifier, review-architecture, review-completeness, review-lessons (parallel-safe packets) | State: active → waiting_for_input |
+| 17 | [Review helpers] | Reviewer | Return verification/review findings | — |
+| 18 | Reviewer | Self | Compute gate decision (approved | blocked | waiver_required) | State: active → completed |
+| 19 | Reviewer | Reflection | Hand off gate result and memory candidates | Contract: H03 |
+| 20 | Reflection | Self | Perform memory triage | State: idle → active → completed |
+| 21 | Reflection | Memory curator | Invoke if durable memory candidate accepted | — |
+| 22 | Memory curator | Reflection | Return curation result | — |
+| 23 | Reflection | Reporter | Hand off memory triage result | Contract: H04 |
+| 24 | Reporter | Operator | Output final control report | — |
 
 ### Revision Loop
 
@@ -139,7 +142,7 @@ This constraint ensures the reviewer gate always produces a valid, evidence-supp
 
 ```
 constraint StageOrderInvariant {
-  ordering: planner -> builder -> reviewer -> reflection -> reporter
+  ordering: planner -> builder -> validation -> reviewer -> reflection -> reporter
   guard: skip_stage only when not_applicable or waiver_granted
 }
 ```
@@ -150,8 +153,9 @@ The stage order must follow the guarded chain. Stages may be skipped only with e
 
 ## Trace Links
 
-- Sequence tables reference states from `agent-state-machines.md` (planner, builder, reviewer, reflection state transitions)
-- Sequence tables reference interface contracts from `interface-contracts.md` (H01–H14 handoff references)
+- Sequence tables reference states from `agent-state-machines.md` (planner, builder, validation, reviewer, reflection state transitions)
+- Sequence tables reference interface contracts from `interface-contracts.md` (H01–H14 handoff references, H02-val validation handoff)
 - Parametric constraints C01, C04, C05 are derived from `architecture.md` (completion model, control flow)
 - Parametric constraint C03 references `adaptive-risk-triggers.md` and `parallel-helper-execution.md` concurrency rules
+- Validation stage references state from `agent-state-machines.md` (validation state transitions) and interface contract H02-val from `interface-contracts.md`
 - Satisfies SysML Sequence Diagram and Parametric Diagram adaptation requirement (IMP-032 Seed 7)
