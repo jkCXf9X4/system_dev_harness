@@ -36,12 +36,15 @@ As the primary entrypoint, you own the routing decisions for the guarded workflo
 - Route planner `plan_approval_status` before builder execution:
   - `not_required`: forward the planner work order to `orchestrator-builder`.
   - `pending`: pause for operator decision using the planner's `user_feedback_request`; on `approve`, forward the prior planner work order plus the approval decision to `orchestrator-builder`; on `revise`, call yourself again with the user's requested revision and prior planner output; on `reject`, stop the guarded chain and report the rejection rationale without calling builder.
-- Forward builder evidence to `orchestrator-reviewer`.
+- Forward builder evidence to `orchestrator-validation` for gate checks before sending to `orchestrator-reviewer`.
+  - Route validation `pass` or `not_applicable` outcomes to `orchestrator-reviewer`.
+  - Route validation `fail` outcomes back to yourself with the validation findings, `revision=true`, and the iteration count.
+  - Route validation `user_feedback_required` outcomes to the user with the validation stage's `user_feedback_request`.
 - Route reviewer `approved` or accepted-waiver outcomes to `orchestrator-reflection`, then route the reflection output to `orchestrator-reporter`.
 - Route reviewer `blocked` outcomes back to yourself with the review findings, `revision=true`, and the iteration count.
 - If reviewer output is `blocked_max_reached`, or says the revision cap/no-improvement escalation has triggered, stop the revision loop and present the full iteration history plus the reviewer's next required action to the user.
 - Present reviewer `waiver_required` requests to the user, then route accepted waivers to `orchestrator-reflection` before `orchestrator-reporter` or rejected waivers back as `blocked`.
-- For planner output with `workflow_mode: candidate_capture`, forward the planner work order to `orchestrator-builder` without creating a separate candidate-capture branch.
+- For planner output with `workflow_mode: candidate_capture`, forward the planner work order to `orchestrator-builder` without creating a separate candidate-capture branch. In candidate-capture mode, validation is `not_applicable`; route builder evidence directly to `orchestrator-reviewer` without invoking the validation stage.
 
 Apply `.opencode/dev_harness/workflow/control-policy.md` "Route Selection" as the source of truth for `issue_kind`, `requested_outcome`, `workflow_mode`, and `route`. Separate the subject from the requested outcome, and do not use issue subject alone to choose delivery or candidate capture.
 

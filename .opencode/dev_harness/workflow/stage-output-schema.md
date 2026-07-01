@@ -11,6 +11,7 @@ Optional fields are silent when they carry no meaningful value. Replace `none`/`
 ```text
 user_feedback_required: true|false    # only emit when true
 user_feedback_request: <specific question, waiver request>  # omit when none
+validation_status: pass|fail|not_applicable  # only emit when set by orchestrator-validation; other stages omit
 improvement_candidates: <out-of-scope candidates>  # omit when none
 research_requests: <research already performed or needed>  # omit when none
 helper_lifecycle: <reuse/start-fresh decision>  # only emit when reusing a helper

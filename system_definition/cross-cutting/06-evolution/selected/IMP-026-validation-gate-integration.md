@@ -10,7 +10,7 @@ Candidate
 
 ## Status
 
-Proposed
+In Progress
 
 ## Layer
 
@@ -72,6 +72,8 @@ Medium
 ## Selected Date
 
 <!-- Date when this candidate was selected for implementation, or N/A -->
+
+2026-06-30
 
 ## Completed Date
 

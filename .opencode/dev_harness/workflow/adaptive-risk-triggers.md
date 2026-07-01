@@ -25,7 +25,7 @@ When ALL of the following concrete thresholds are met, the lightweight profile e
 When ALL thresholds are met:
 
 - **Planner**: skip discovery, contract, architecture, lessons, memory, systems-engineering. Produce a direct work order unless a risk trigger explicitly fires.
-- **Builder**: skip verifier, review-completeness, review-architecture, review-lessons. Use only build-error-resolver or cleanup if needed.
+- **Builder**: skip verifier, review-completeness, review-architecture, review-lessons, validation. Use only build-error-resolver or cleanup if needed.
 - **Reviewer**: single-stage review. Skip all review helper sub-agents.
 - **Reflection**: skip entirely. Set `not_applicable`.
 - **Reporter**: single-pass summary. Skip improvement-candidate processing.
@@ -51,6 +51,21 @@ When ALL thresholds are met:
 - Created, moved, renamed, rewritten, replaced, deleted, or superseded artifacts that require reference patching, tracker/index updates, duplicate reconciliation, orphan cleanup, link checks, or traceability cleanup may use `orchestrator-cleanup`.
 - External dependency, API, framework, standard, version, or documentation uncertainty during implementation may use `orchestrator-researcher`.
 - Noteworthy cleanup or information-hygiene findings outside the approved scope may be returned as `improvement_candidates` instead of expanding the current task.
+
+## Validation Triggers
+
+The validation stage (`orchestrator-validation`) is a read-only gate between builder and reviewer that checks builder evidence against planner intent and acceptance criteria.
+
+Validation is **REQUIRED** when:
+- Behavior changes or user-facing changes
+- Ambiguous scope at planning time
+- `user_feedback_required` was true during planning
+
+Validation is **NOT_APPLICABLE** when:
+- Config changes, dependency bumps, trivial fixes, documentation-only changes
+- `workflow_mode: candidate_capture`
+
+When validation is required, the planner must include the validation gate in the routing sequence. When validation is not_applicable, the planner routes builder evidence directly to the reviewer without invoking the validation stage.
 
 ## Reviewer Triggers
 

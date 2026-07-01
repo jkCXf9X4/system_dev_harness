@@ -9,6 +9,7 @@ Every listed top-level guarded workflow stage must run:
 ```text
 orchestrator-planner
 orchestrator-builder
+orchestrator-validation
 orchestrator-reviewer
 orchestrator-reflection
 orchestrator-reporter
@@ -35,7 +36,7 @@ Bug, fix, regression, feature, documentation, cleanup, and refactoring subjects 
 
 Repo-state review requests use the same split: review-and-change requests are delivery, while review-only assessment requests are candidate capture with either persisted candidates or a reviewed `no_candidate` result.
 
-Both workflow modes use the same guarded chain: planner, builder, reviewer, reflection, and reporter. In `candidate_capture` mode, load `.opencode/dev_harness/workflow/candidate-capture.md` for detailed ownership, write-boundary, disposition, and review rules.
+Both workflow modes use the same guarded chain: planner, builder, validation, reviewer, reflection, and reporter. In `candidate_capture` mode, load `.opencode/dev_harness/workflow/candidate-capture.md` for detailed ownership, write-boundary, disposition, and review rules.
 
 ## Tailoring
 
@@ -114,7 +115,7 @@ Any working stage or directed helper may return incidental `improvement_candidat
 Candidate capture uses the normal guarded chain:
 
 ```text
-planner -> builder -> reviewer -> reflection -> reporter
+planner -> builder -> validation -> reviewer -> reflection -> reporter
 ```
 
 Ownership:
