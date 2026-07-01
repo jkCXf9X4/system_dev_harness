@@ -5,7 +5,7 @@
 
 This document serves as the authoritative index for all verification criteria across the system. It defines the overall verification approach and cross-cutting concerns.
 
-Per IMP-021, verification uses a dual INCOSE-aligned pattern:
+Verification uses a dual INCOSE-aligned pattern:
 - **Centralized strategy (this document):** Defines the overall verification approach, methods, and cross-cutting concerns. This preamble and the criteria index below form the strategy overview.
 - **Per-layer verification artifacts:** Each PBS/FBS layer has a local `verification.md` that extracts and scopes the criteria relevant to that element. These per-layer artifacts are authoritative for their element.
 

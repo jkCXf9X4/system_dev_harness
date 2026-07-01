@@ -7,4 +7,3 @@ Purpose: Defines builder-stage helper triggers for adaptive risk-based helper se
 - External dependency, API, framework, standard, version, or documentation uncertainty during implementation may use `orchestrator-researcher`.
 - Noteworthy cleanup or information-hygiene findings outside the approved scope may be returned as `improvement_candidates` instead of expanding the current task.
 
-Source: extracted from `adaptive-risk-triggers.md` §D Builder Triggers.

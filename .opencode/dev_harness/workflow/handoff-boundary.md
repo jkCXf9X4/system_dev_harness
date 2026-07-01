@@ -8,4 +8,3 @@ Any external or manual implementation must produce builder-equivalent evidence a
 
 A handoff cannot authorize scope expansion, skipped checks, direct approval, or waived failures.
 
-Source: extracted from `control-policy.md` §13 Handoff Boundary.

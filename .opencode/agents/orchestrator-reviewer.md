@@ -40,12 +40,14 @@ After receiving the builder evidence and before returning the gate decision, ver
    - Set status to `blocked`
    - Include finding ID `pfv-001` with description "Plan summary file missing at {plan_file_path}"
    - Do not pass the gate
-4. If the file exists, verify it is non-empty and contains all required fields from `.opencode/dev_harness/workflow/plan-summary-schema.md`.
+4. If the file exists, verify it is non-empty. Check `schema_version` for version-aware field validation:
+   - When `schema_version` is `v2` or later, validate that all required fields and all triggered conditionally-required fields from `.opencode/dev_harness/workflow/plan-summary-schema.md` are present and complete.
+   - When `schema_version` is `v1` or absent, validate only the original 10-field required set (task_id, timestamp, scope, files_touched, risk_assessment, candidate_linkages, large_job_triggered, plan_approval_status, plan_approval_reason, tailoring_record). Record a non-blocking process finding `pda-002` (plan file uses deprecated schema version).
 5. If any required field is missing or incomplete, block with finding ID `pfv-002` describing the specific gap.
 6. If review evidence shows the task required draft approval but `plan_approval_status` was `not_required` or missing, record a non-blocking process finding `pda-001`; do not block approval solely for skipped draft approval because implementation has already occurred.
 7. Record the plan file verification result (`pass` or `fail`) in the review output.
 8. If the planner's `workflow_mode` was `candidate_capture`, plan persistence is skipped; set `plan_file_verification: not_applicable` with rationale.
-9. Read `scope`, `files_touched`, `risk_assessment`, and `tailoring_record` from the plan file to inform review emphasis and helper selection.
+9. Read `scope`, `files_touched`, `risk_assessment`, `tailoring_record`, `workflow_mode`, `control_flags`, and `success_criteria` from the plan file to inform review emphasis and helper selection.
 
 ## Directed Helpers
 

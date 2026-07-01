@@ -29,4 +29,3 @@ Operator decisions are routing inputs, not `plan_approval_status` values.
 
 Large-job approval is one trigger for this draft approval cycle; do not route large jobs through a separate approval path.
 
-Source: extracted from `control-policy.md` §5 Plan Draft Approval.

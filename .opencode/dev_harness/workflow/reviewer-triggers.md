@@ -30,4 +30,3 @@ Validation is **NOT_APPLICABLE** when:
 
 Validation is invoked as a reviewer parallel helper, not a separate serial stage. When validation is required, the reviewer includes it among parallel helpers. When validation is not_applicable, the reviewer sets `not_applicable` for the validation helper.
 
-Source: extracted from `adaptive-risk-triggers.md` §E Validation Triggers, §F Reviewer Triggers.

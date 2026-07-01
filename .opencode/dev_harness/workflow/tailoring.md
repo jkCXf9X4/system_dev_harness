@@ -12,4 +12,3 @@ Use these baseline profiles:
 
 Tailoring may change helper depth, review emphasis, or whether optional helpers are invoked. Tailoring does not remove required stages, waive evidence requirements, or bypass review and gate rules. When a task uses a narrower or broader process than the default, the planner must explain why in the work order and plan summary. When `lightweight` profile is selected and all concrete thresholds from `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` are met, the planner work order must record which stages are skipped and why in the `tailoring_record`.
 
-Source: extracted from `control-policy.md` §3 Tailoring.

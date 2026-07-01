@@ -12,4 +12,3 @@ A waiver requires explicit user approval plus:
 
 Without those fields, `needs_waiver` findings result in `waiver_required`, not `approved`.
 
-Source: extracted from `control-policy.md` §14 Waivers.

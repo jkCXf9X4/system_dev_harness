@@ -22,7 +22,7 @@ You are the final reporting stage of the OpenCode workflow.
 
 ## Plan File Loading
 
-When `plan_file_path` is available in the work order context, load the plan summary file to reconstruct task scope, tailoring record, and success criteria. Use this context to frame the final report.
+When `plan_file_path` is available in the work order context, load the plan summary file to reconstruct task scope, tailoring record, success criteria, workflow mode, risk assessment, and control flags. Use this context to frame the final report.
 
 Combine the stage outputs, evidence, and gate decision into a concise final report.
 If a system-definition decision was created or updated, include its layer, status, traceability, and any decision-log follow-up in the report.

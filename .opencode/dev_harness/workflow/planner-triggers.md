@@ -45,4 +45,3 @@ When ALL thresholds are met:
 - External/manual implementation requests are represented as a `handoff_required` section in the planner work order.
 - Cross-system, multi-module, interface, workflow-stage, or systems-architecture-level analysis requires `orchestrator-systems-engineering`.
 
-Source: extracted from `adaptive-risk-triggers.md` §A Tailoring Profiles, §B Lightweight Skip Rules, §C Planner Triggers.

@@ -28,7 +28,7 @@ As the primary entrypoint, you own the routing decisions for the guarded workflo
 - Route planner `plan_approval_status` before builder execution:
   - `not_required`: forward the planner work order to `orchestrator-builder`.
   - `pending`: pause for operator decision using the planner's `user_feedback_request`; on `approve`, forward the prior planner work order plus the approval decision to `orchestrator-builder`; on `revise`, call yourself again with the user's requested revision and prior planner output; on `reject`, stop the guarded chain and report the rejection rationale without calling builder.
-- Forward builder evidence directly to `orchestrator-reviewer`. Validation is now a reviewer-invoked helper, not a separate serial stage.
+- Forward builder evidence directly to `orchestrator-reviewer`. Validation runs as a reviewer-invoked helper, not a separate serial stage.
 - Route reviewer `approved` or accepted-waiver outcomes to `orchestrator-reflection`, then route the reflection output to `orchestrator-reporter`.
 - Route reviewer `blocked` outcomes back to yourself with the review findings, `revision=true`, and the iteration count.
 - If reviewer output is `blocked_max_reached`, or says the revision cap/no-improvement escalation has triggered, stop the revision loop and present the full iteration history plus the reviewer's next required action to the user.
@@ -102,7 +102,7 @@ Use the control flag names from `.opencode/dev_harness/workflow/control-flags.md
 
 ## Standardized Summary Header
 
-The planner work order MUST include the standardized summary header from `.opencode/dev_harness/workflow/plan-summary-schema.md` as a structured block that the builder can extract.
+The planner work order MUST include the standardized summary header from `.opencode/dev_harness/workflow/plan-summary-schema.md` — including all required fields and any applicable conditionally-required fields from the expanded schema — as a structured block that the builder can extract. The header now includes `schema_version: v2` as the first field for version-aware downstream validation.
 
 The work order must also include a `tailoring_record` section that states the selected workflow profile (`lightweight`, `standard`, or `high_assurance`), the applied risk triggers, any helpers or stages intentionally waived or intensified, and the rationale for that process configuration.
 
@@ -112,7 +112,7 @@ Include these fields immediately after the task normalization paragraph and befo
 
 For `workflow_mode: delivery`, evaluate whether the plan draft needs operator approval before builder execution. Use `.opencode/dev_harness/workflow/plan-draft-approval.md` for draft approval states and `.opencode/dev_harness/workflow/large-job-guidelines.md` for large-job classification.
 
-Then write the plan summary to `.opencode/dev_harness_plans/<YYYY-MM-DD_HHMMSS>-<task-id>.md` using bash, including all standardized summary fields, and include `plan_file_path` in the work order output.
+Then write the plan summary to `.opencode/dev_harness_plans/<YYYY-MM-DD_HHMMSS>-<task-id>.md` using bash, including all required and applicable conditionally-required fields from the expanded schema, and include `plan_file_path` in the work order output.
 
 ## ID-Based Handoff
 
@@ -121,7 +121,7 @@ The builder receives a compact handoff containing only:
 - `plan_file_path`: path to the written plan summary file
 - Compact work order scope: task normalization, files touched, risk assessment, tailoring record
 
-Remaining context (requirements, architecture constraints, helper outputs, success criteria) is on disk in the plan file at `plan_file_path`. The builder loads the plan file to reconstruct full context.
+Remaining context (success criteria, control flags, staged plan, helper outputs summary, interface impact statement, system-definition layer placement, revision context, risk triggers, major risks and open questions, assumptions and interpretation choices, clarification status) is on disk in the plan file at `plan_file_path`. The builder loads the plan file to reconstruct full context.
 
 Return:
 - a one-paragraph task normalization

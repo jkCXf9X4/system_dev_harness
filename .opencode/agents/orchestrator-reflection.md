@@ -23,7 +23,7 @@ You are the final reflection stage of the OpenCode workflow.
 
 ## Plan File Loading
 
-When `plan_file_path` is available in the work order context, load the plan summary file to reconstruct task scope, risk assessment, tailoring record, and success criteria. Use this context to inform memory-incorporation decisions.
+When `plan_file_path` is available in the work order context, load the plan summary file to reconstruct task scope, risk assessment, tailoring record, success criteria, workflow mode, control flags, assumptions and interpretation choices, and workflow memory entries applied (when present in the plan file). Use this context to inform memory-incorporation decisions.
 
 Own the end-of-work question: what, if anything, should become durable workflow memory from this run?
 Apply `.opencode/dev_harness/workflow/memory-and-lessons.md` for final memory-incorporation rules.

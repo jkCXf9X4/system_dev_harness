@@ -2,7 +2,7 @@
 
 Named permission profiles for agent YAML frontmatter. These define the tool access boundaries for each agent role.
 
-> **Note**: If OpenCode does not support `profile:` references in agent YAML frontmatter, these profiles serve as documentation. The explicit `permission:` blocks in each agent file remain the source of truth.
+> **Note**: Profile references in agent YAML frontmatter are not yet supported by OpenCode. These profiles serve as documentation. The explicit `permission:` blocks in each agent file remain the source of truth.
 
 ## Profile Definitions
 
@@ -36,6 +36,3 @@ Tools: read, glob, grep, list, bash — allow. edit, write — deny. task: allow
 
 Used by: reviewer.
 
-### ~~`orchestrator_router`~~ (deprecated)
-
-This profile previously referenced the standalone "orchestrator (router)" role. That role has been consolidated into the primary `planner` entrypoint, which handles routing internally. The `planner` profile above reflects the current agent configuration. Retained here as a historical reference only; do not use for new agents.

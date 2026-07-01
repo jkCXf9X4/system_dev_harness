@@ -10,4 +10,3 @@ When the completion gate returns `blocked`, the guarded workflow enters a revisi
 4. **Evidence preservation.** All review findings from every iteration must be preserved and attached to the final report, regardless of whether the workflow completes, loops, or escalates.
 5. **Escalation.** When the iteration cap is exceeded or no-improvement detection triggers, the workflow produces a `blocked_max_reached` status with full iteration history. A human operator decides the next action.
 
-Source: extracted from `control-policy.md` §15 Revision Loop Policy.

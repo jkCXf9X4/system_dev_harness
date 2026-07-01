@@ -25,4 +25,3 @@ Planner output must include the clarification fields from `.opencode/dev_harness
 
 Open questions alone do not require a pause. Only questions that materially change route, scope, acceptance, safety, or durable behavior should block the workflow.
 
-Source: extracted from `control-policy.md` §6 Initial Clarification Gate.
