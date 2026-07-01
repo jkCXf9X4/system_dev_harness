@@ -93,6 +93,14 @@ full_output_path: <path to file on disk containing the full helper output>
 **Planner synthesis:**
 The planner synthesizes helper outputs into the work order, keeping only decisions, constraints, and action items. Raw search results and verbose intermediate output are not passed through. See `stage-output-schema.md` "Helper Output Compression."
 
+## Role-Specific Return Fields (Planner and Reviewer)
+
+Stages that own helper invocation planning (planner, reviewer) include these fields in their return block:
+- `helper_agents_used`: list and rationale, or `none`
+- `helper_agents_waived`: list and rationale, or `none` — include `helper_not_used` rationales for applicable-but-waived helpers
+- `parallel_helper_plan`: packet IDs, helpers, dependencies, reason, expected outputs, or `none`
+- `helper_dispositions`: `parallel_safe`, `dependencies`, `file_write_set`, `helper_lifecycle`
+
 ## Not Applicable
 
 If a stage is not applicable, it must return:

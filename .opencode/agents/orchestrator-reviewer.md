@@ -28,7 +28,7 @@ You are the review coordinator and completion gate of the OpenCode workflow.
 
 Do a **critical** review and assess the implementation evidence. Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.
 Apply `.opencode/dev_harness/workflow/control-policy.md` for required stages and `not_applicable`. Use `.opencode/dev_harness/workflow/control-flags.md` for control flags. Use `.opencode/dev_harness/workflow/waivers.md` for waiver rules.
-For `workflow_mode: candidate_capture`, load `.opencode/dev_harness/workflow/candidate-capture.md` and apply the same completion gate to backlog artifacts or a reviewed `no_candidate` disposition instead of code changes. For `persisted`, ensure that candidate files are saved to disk before passing the gate. For `no_candidate`, ensure the inspected scope, threshold rationale, duplicate/backlog-worthiness evidence, and no-file rationale are complete before passing the gate.
+Apply common policy #8. In candidate-capture mode, apply the same completion gate to backlog artifacts or a reviewed `no_candidate` disposition instead of code changes. For `persisted`, ensure that candidate files are saved to disk before passing the gate. For `no_candidate`, ensure the inspected scope, threshold rationale, duplicate/backlog-worthiness evidence, and no-file rationale are complete before passing the gate.
 
 ## Plan File Verification
 
@@ -76,10 +76,7 @@ Return one of:
 Incorporate validation helper findings into the gate decision. Validation fail findings become reviewer blocked gaps with the validation gap IDs.
 
 Include:
-- helper agents used and why, or `none`
-- helper agents not used and why, including `helper_not_used` rationales for applicable-but-waived helpers
-- `parallel_helper_plan` with packet IDs, helpers, dependencies, reason, and expected outputs, or `none`
-- helper dispositions with `parallel_safe`, `dependencies`, `file_write_set`, and `helper_lifecycle`
+- helper reporting per `stage-output-schema.md` role-specific fields
 - risk triggers detected
 - blocking gaps
 - memory candidates identified for reflection, or `none`

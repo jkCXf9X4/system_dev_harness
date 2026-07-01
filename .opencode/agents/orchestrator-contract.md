@@ -41,4 +41,3 @@ Return:
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
 Every checklistable item must be testable or reviewable.
-Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.

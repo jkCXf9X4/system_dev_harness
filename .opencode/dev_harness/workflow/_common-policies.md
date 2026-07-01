@@ -9,3 +9,4 @@
 5. For system-definition work, apply `product-breakdown-work.md`.
 6. For lessons/memory, apply `memory-and-lessons.md`.
 7. Read-only agents: do not modify files using Edit or Write. Return blocking gaps, required follow-up, or `improvement_candidates` instead.
+8. When the work order includes `workflow_mode: candidate_capture`, load `.opencode/dev_harness/workflow/candidate-capture.md`.

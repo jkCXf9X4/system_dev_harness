@@ -44,3 +44,12 @@ Conditionally-required fields are emitted only when their trigger condition is m
 | `assumptions_and_interpretation_choices` | When planner proceeded with assumptions under clarification gate | Consumed by validation VAL-003 and reflection for intent-to-outcome traceability |
 | `clarification_status` | When `blocking_uncertainty` was present | Records whether user intent was clarified or assumed — consumed by reviewer and reflection |
 | `workflow_memory_entries_applied` | When workflow memory entries were retrieved and applied during planning | Lists memory entry IDs and their influence — consumed by reflection for memory-incorporation decisions |
+
+## Plan File Consumption
+
+Any stage receiving `plan_file_path` in the work order context loads the plan summary file for task context.
+Each stage focuses on the fields it needs:
+- **Builder**: scope, files_touched, risk_assessment, tailoring_record, success_criteria, workflow_mode, control_flags, staged_plan, interface_impact_statement, revision, helper_outputs_summary, major_risks_and_open_questions, assumptions_and_interpretation_choices
+- **Reviewer**: scope, files_touched, risk_assessment, tailoring_record, workflow_mode, control_flags, success_criteria (plus plan file verification per reviewer's own procedure)
+- **Reflection**: scope, risk_assessment, tailoring_record, success_criteria, workflow_mode, control_flags, assumptions_and_interpretation_choices, workflow_memory_entries_applied
+- **Reporter**: scope, tailoring_record, success_criteria, workflow_mode, risk_assessment, control_flags

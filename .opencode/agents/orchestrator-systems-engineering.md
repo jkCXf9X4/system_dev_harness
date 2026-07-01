@@ -91,5 +91,3 @@ Return:
 - traceability findings (missing links, unverified requirements, orphaned components)
 - integration recommendations
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
-
-Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.

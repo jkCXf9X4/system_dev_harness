@@ -24,7 +24,7 @@ Do a **critical** review and check whether the implementation evidence proves th
 If `caller_context` is provided, apply `.opencode/dev_harness/workflow/review-protocol.md` before returning review output.
 Apply `.opencode/dev_harness/workflow/information-hygiene.md` and `.opencode/dev_harness/workflow/product-breakdown-work.md` when those checks are required by the contract or planner work order flags.
 Apply reviewer-provided lessons and memory guidance when reusable patterns are relevant.
-For `workflow_mode: candidate_capture`, load `.opencode/dev_harness/workflow/candidate-capture.md` and check the required evidence. For `persisted`, fail when the reported candidate path is missing, empty, inconsistent with the candidate ID, or outside the allowed write boundary. For `no_candidate`, fail when inspected scope, threshold rationale, duplicate/backlog-worthiness evidence, or no-file rationale is missing.
+Apply common policy #8. For candidate-capture mode, check the required evidence. For `persisted`, fail when the reported candidate path is missing, empty, inconsistent with the candidate ID, or outside the allowed write boundary. For `no_candidate`, fail when inspected scope, threshold rationale, duplicate/backlog-worthiness evidence, or no-file rationale is missing.
 
 When the work order or contract includes `touches_shared_interface` or an interface impact statement, apply `.opencode/dev_harness/workflow/interface-consistency.md` for interface mismatch checks.
 

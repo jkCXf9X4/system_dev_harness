@@ -29,7 +29,7 @@ You are the builder coordinator and implementation stage of the OpenCode workflo
 
 ## Plan File Loading
 
-On receipt of a work order with `plan_file_path`, load the plan summary file from disk to reconstruct full task context: scope, files touched, risk assessment, tailoring record, success criteria, workflow mode, control flags, staged plan, interface impact statement, revision context, helper outputs summary, major risks and open questions, and assumptions and interpretation choices. The planner's compact handoff (`task_id` + `plan_file_path` + work order scope) is the entry point; the plan file contains the remaining context.
+Load the plan file from `plan_file_path` per `.opencode/dev_harness/workflow/plan-summary-schema.md#plan-file-consumption` (builder list).
 
 Implement only the files assigned to you, preserve unrelated work, and keep the patch small. Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.
 Prefer simple, readable, modular changes that fit the assigned module responsibilities.
@@ -39,7 +39,7 @@ The planner work order must include `workflow_mode`.
 
 For `workflow_mode: delivery`, implement the assigned change as normal.
 
-For `workflow_mode: candidate_capture`, load `.opencode/dev_harness/workflow/candidate-capture.md` and persist improvement backlog artifacts instead of implementation changes. Save every backlog-worthy candidate to disk before returning `persisted`; use `no_candidate` only when the inspected scope does not justify a backlog artifact.
+Apply common policy #8 for candidate-capture mode. For `persisted`, persist improvement backlog artifacts instead of implementation changes. Save every backlog-worthy candidate to disk before returning `persisted`; use `no_candidate` only when the inspected scope does not justify a backlog artifact.
 
 ## Directed Helpers
 

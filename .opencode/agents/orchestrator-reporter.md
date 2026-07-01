@@ -22,7 +22,7 @@ You are the final reporting stage of the OpenCode workflow.
 
 ## Plan File Loading
 
-When `plan_file_path` is available in the work order context, load the plan summary file to reconstruct task scope, tailoring record, success criteria, workflow mode, risk assessment, and control flags. Use this context to frame the final report.
+Load the plan file from `plan_file_path` per `.opencode/dev_harness/workflow/plan-summary-schema.md#plan-file-consumption` (reporter list).
 
 Combine the stage outputs, evidence, and gate decision into a concise final report.
 If a system-definition decision was created or updated, include its layer, status, traceability, and any decision-log follow-up in the report.
@@ -47,4 +47,3 @@ Return:
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
 
 Do not override the gate decision.
-Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.

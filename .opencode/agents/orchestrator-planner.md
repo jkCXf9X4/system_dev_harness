@@ -1,7 +1,7 @@
 ---
 description: Normalizes the request into a concrete task and work order.
 mode: primary
-model: openrouter/deepseek/deepseek-v4-pro
+model: openrouter/deepseek/deepseek-v4-flash
 color: info
 temperature: 0.1
 permission:
@@ -128,10 +128,7 @@ Return:
 - the standardized summary header from `.opencode/dev_harness/workflow/plan-summary-schema.md`
 - the minimum staged plan
 - `plan_file_path` -- path to the written plan summary file, or `none`
-- helper agents used and why, or `none`
-- helper agents not used and why, including `helper_not_used` rationales for applicable-but-waived helpers
-- `parallel_helper_plan` with packet IDs, helpers, dependencies, reason, and expected outputs, or `none`
-- helper dispositions with `parallel_safe`, `dependencies`, `file_write_set`, and `helper_lifecycle`
+- helper reporting per `stage-output-schema.md` role-specific fields
 - workflow memory entries applied, or `none`
 - `clarification_status`
 - `blocking_uncertainty`
@@ -149,5 +146,3 @@ Return:
 - major risks and open questions
 - `next_stage`: `builder`|`none_until_clarified`|`reporter`
 - common fields from `.opencode/dev_harness/workflow/stage-output-schema.md`
-
-The planner may write plan summary files under `.opencode/dev_harness_plans/`. Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.
