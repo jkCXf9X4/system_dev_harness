@@ -23,6 +23,24 @@ Turn the user's request into either a concrete implementation objective or a con
 >
 > **Plan File Delegation:** Delegate plan file writing to `orchestrator-plan-file-writer`. Pass the plan content and target path to the helper. Do not write plan files directly.
 
+## Task Tracking
+
+After completing the planning work order, update the task tracking file:
+
+1. Include a `task_tracking` block in your output with:
+   - `task_id`: the task identifier
+   - `task_file_path`: path from the router handoff
+   - `stage`: `planner`
+   - `status`: `planned` (or `revision_planned` when in revision mode)
+   - `key_evidence`: brief planning outcome summary
+   - `plan_file_path`: path to the written plan summary file
+   - `plan_approval_status`: `not_required` or `pending`
+   - `revision_count`: only when revision is active
+   - `helper_agents_used`: list or `none`
+   - `helper_agents_waived`: list or `none`
+
+2. The router will delegate the actual file update to `orchestrator-task-tracker`. You do not write the task tracking file directly.
+
 ## Self-Enforcement Check
 
 Before responding to any user request, silently verify:
@@ -90,6 +108,7 @@ Return:
 - the standardized summary header from `.opencode/dev_harness/workflow/plan-summary-schema.md`
 - the minimum staged plan
 - `plan_file_path` -- path to the written plan summary file, or `none`
+- `task_tracking` block with planner stage record (see Task Tracking section above)
 - helper reporting per `stage-output-schema.md` role-specific fields
 - workflow memory entries applied, or `none`
 - clarification fields from `.opencode/dev_harness/workflow/stage-output-schema.md` §Clarification Fields

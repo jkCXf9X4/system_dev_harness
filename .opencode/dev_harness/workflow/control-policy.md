@@ -79,3 +79,28 @@ Load `.opencode/dev_harness/workflow/parallel-helper-execution.md` when planner 
 ## Waivers → See `waivers.md`
 
 ## Revision Loop Policy → See `revision-loop.md`
+
+## Task Tracking
+
+Every task processed by the guarded workflow must have a task tracking file under `.opencode/dev_harness_tasks/`. The task tracking file provides continuous, stage-by-stage traceability across the full lifecycle.
+
+### Required Task Tracking Stages
+
+Every stage must update the task tracking file after completing its work:
+
+```text
+orchestrator-router     → creates the task tracking file
+orchestrator-planner    → appends planner stage record
+orchestrator-builder    → appends builder stage record
+orchestrator-reviewer   → appends reviewer stage record
+orchestrator-reflection → appends reflection stage record
+orchestrator-reporter   → finalizes the task tracking file
+```
+
+### Task Tracking File Writing
+
+The router delegates task tracking file creation to `orchestrator-task-tracker`. Each stage delegates task tracking file updates to `orchestrator-task-tracker`. The router has `edit/write: deny` and must not write task tracking files directly.
+
+Task tracking file write verification (existence + non-empty) is performed by the task-tracker after each write.
+
+### Schema → See `task-summary-schema.md`

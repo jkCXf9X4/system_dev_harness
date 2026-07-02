@@ -30,6 +30,22 @@ Do a **critical** review and assess the implementation evidence. Common policies
 Apply `.opencode/dev_harness/workflow/control-policy.md` for required stages and `not_applicable`. Use `.opencode/dev_harness/workflow/control-flags.md` for control flags. Use `.opencode/dev_harness/workflow/waivers.md` for waiver rules.
 Apply common policy #8. In candidate-capture mode, apply the same completion gate to backlog artifacts or a reviewed `no_candidate` disposition instead of code changes. For `persisted`, ensure that candidate files are saved to disk before passing the gate. For `no_candidate`, ensure the inspected scope, threshold rationale, duplicate/backlog-worthiness evidence, and no-file rationale are complete before passing the gate.
 
+## Task Tracking
+
+After completing the review, include a `task_tracking` block in your output with:
+- `task_id`: the task identifier
+- `task_file_path`: path from the router handoff
+- `stage`: `reviewer`
+- `status`: `approved` | `blocked` | `waiver_required` | `blocked_max_reached`
+- `key_evidence`: brief gate decision summary
+- `blocking_gaps`: list of blocking gap IDs and descriptions — only when `blocked` or `blocked_max_reached`
+- `waiver_rationale`: waiver rationale — only when `waiver_required`
+- `plan_file_verification`: `pass` | `fail` | `not_applicable`
+- `helper_agents_used`: list or `none`
+- `memory_candidates`: list or `none`
+
+The router will delegate the actual file update to `orchestrator-task-tracker`. You do not write the task tracking file directly.
+
 ## Plan File Verification
 
 After receiving the builder evidence and before returning the gate decision, verify the plan summary file:
@@ -76,6 +92,7 @@ Return one of:
 Incorporate validation helper findings into the gate decision. Validation fail findings become reviewer blocked gaps with the validation gap IDs.
 
 Include:
+- `task_tracking` block with reviewer stage record (see Task Tracking section above)
 - helper reporting per `stage-output-schema.md` role-specific fields
 - risk triggers detected
 - blocking gaps

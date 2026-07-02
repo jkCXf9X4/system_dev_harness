@@ -43,6 +43,20 @@ Inspect the stage outputs for:
 
 Use `orchestrator-memory-curator` only for evidenced repeatable findings that are task-independent and useful for future planning or review. Do not ask the curator to store current task state, implementation evidence, backlog candidates, one-off observations, or full transcripts.
 
+## Task Tracking
+
+After completing reflection, include a `task_tracking` block in your output with:
+- `task_id`: the task identifier
+- `task_file_path`: path from the router handoff
+- `stage`: `reflection`
+- `status`: `memory_written` | `memory_rejected` | `needs_more_evidence` | `no_memory_action`
+- `key_evidence`: brief reflection outcome summary
+- `memory_ids_written`: memory entry IDs written or updated, or `none`
+- `memory_candidates_evaluated`: list of candidates evaluated, or `none`
+- `improvement_candidates`: improvement candidates raised, or `none`
+
+The router will delegate the actual file update to `orchestrator-task-tracker`. You do not write the task tracking file directly.
+
 Return separate backlog-worthy workflow problems exposed by reflection as `improvement_candidates`. Do not persist improvement backlog candidates during reflection.
 
 Return one of:
@@ -52,6 +66,7 @@ Return one of:
 - `no_memory_action`
 
 Include:
+- `task_tracking` block with reflection stage record (see Task Tracking section above)
 - reflection status
 - memory candidates evaluated, or `none`
 - memory hygiene summary when memory was relevant, including retrieved entries, stale or conflicting memory, and whether memory influenced the run

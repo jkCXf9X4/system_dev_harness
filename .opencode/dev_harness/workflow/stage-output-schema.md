@@ -133,6 +133,7 @@ Every agent-to-agent handoff passes only these fields inline:
 
 ```text
 task_id: <unique task identifier>
+task_file_path: <path to task tracking file, or none for initial router handoff>
 plan_file_path: <path to plan file on disk, or none>
 status: <current stage status>
 key_evidence: <brief summary, ≤200 tokens>
@@ -169,3 +170,28 @@ Handoff files are stored under `.opencode/dev_harness_handoffs/` with the naming
 ### Schema Versioning
 
 Every handoff file includes `schema_version` as its first field for version-aware downstream validation.
+
+## Task Tracking Fields
+
+Every stage output must include a `task_tracking` block that the router uses to update the task tracking file:
+
+```text
+task_tracking:
+  task_id: <unique task identifier>
+  task_file_path: <path to task tracking file under .opencode/dev_harness_tasks/, or none>
+  stage: <router|planner|builder|reviewer|reflection|reporter>
+  status: <stage-specific status per task-summary-schema.md>
+  key_evidence: <brief summary, ≤200 tokens>
+```
+
+The router creates the task tracking file on first routing and delegates updates to `orchestrator-task-tracker` after each stage completes.
+
+For the initial router-to-planner handoff, `task_file_path` is `none` because the task tracking file has not yet been created. The router creates it before routing to the planner.
+
+### Task Tracking File Path Convention
+
+```
+.opencode/dev_harness_tasks/<YYYY-MM-DD_HHMMSS>-<task-id>.md
+```
+
+The router determines the file path from the `task_id` and current timestamp, creates the file, and passes `task_file_path` to all downstream stages.

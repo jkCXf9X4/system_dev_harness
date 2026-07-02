@@ -10,3 +10,4 @@
 6. For lessons/memory, apply `memory-and-lessons.md`.
 7. Read-only agents: do not modify files using Edit or Write. Return blocking gaps, required follow-up, or `improvement_candidates` instead.
 8. When the work order includes `workflow_mode: candidate_capture`, load `.opencode/dev_harness/workflow/candidate-capture.md`.
+9. **Task tracking**: Every stage must update the task tracking file after completing its work. Apply `.opencode/dev_harness/workflow/task-summary-schema.md` for the task tracking schema. Delegate file writes to `orchestrator-task-tracker`. Include `task_file_path` in all handoffs so downstream stages can load the full lifecycle context.

@@ -53,3 +53,21 @@ Each stage focuses on the fields it needs:
 - **Reviewer**: scope, files_touched, risk_assessment, tailoring_record, workflow_mode, control_flags, success_criteria (plus plan file verification per reviewer's own procedure)
 - **Reflection**: scope, risk_assessment, tailoring_record, success_criteria, workflow_mode, control_flags, assumptions_and_interpretation_choices, workflow_memory_entries_applied
 - **Reporter**: scope, tailoring_record, success_criteria, workflow_mode, risk_assessment, control_flags
+
+## Task Tracking Linkage
+
+Every plan summary file should include a `task_tracking_link` field that links to the corresponding task tracking file:
+
+| Field | Description |
+|---|---|
+| `task_tracking_link` | Path to the task tracking file under `.opencode/dev_harness_tasks/`, or `none` |
+
+This field is conditionally required: emit it when the task tracking file has been created by the router before the planner runs. The router creates the task tracking file before routing to the planner, so this field should always be present for planned tasks.
+
+### Cross-Reference
+
+The task tracking file and plan summary file are complementary:
+- **Plan summary** (`dev_harness_plans/`): Focuses on the planning stage — scope, risk, files, approval, tailoring.
+- **Task tracking** (`dev_harness_tasks/`): Covers the full lifecycle — every stage's status, evidence, and outcome.
+
+Both files reference each other via `plan_file_path` (in task tracking) and `task_tracking_link` (in plan summary).

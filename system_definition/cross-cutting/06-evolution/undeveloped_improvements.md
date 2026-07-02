@@ -1,7 +1,9 @@
 
+Evaluate IMP-054, the god pattern is real but the solution i would prefer is to place the router outside the planner as a top level orchestrator
+Change methodology where details of a task is passed between agents in files and only minimal information is passed agent to agent  
+
 ---
 
-Change methodology where details of a task is passed between agents in files and only minimal information is passed agent to agent  
 
 --- 
 

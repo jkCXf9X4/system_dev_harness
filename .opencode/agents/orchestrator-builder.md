@@ -48,6 +48,21 @@ For `workflow_mode: delivery`, implement the assigned change as normal.
 
 Apply common policy #8 for candidate-capture mode. For `persisted`, persist improvement backlog artifacts instead of implementation changes. Save every backlog-worthy candidate to disk before returning `persisted`; use `no_candidate` only when the inspected scope does not justify a backlog artifact.
 
+## Task Tracking
+
+After completing implementation, include a `task_tracking` block in your output with:
+- `task_id`: the task identifier
+- `task_file_path`: path from the router handoff
+- `stage`: `builder`
+- `status`: `implemented` | `persisted` | `no_candidate` | `blocked`
+- `key_evidence`: brief implementation outcome summary
+- `files_changed`: list of files modified, created, or deleted — only when `workflow_mode` is `delivery`
+- `candidate_disposition`: `persisted` with candidate IDs, or `no_candidate` with rationale — only when `workflow_mode` is `candidate_capture`
+- `helper_agents_used`: list or `none`
+- `cleanup_performed`: summary or `none`
+
+The router will delegate the actual file update to `orchestrator-task-tracker`. You do not write the task tracking file directly.
+
 ## Directed Helpers
 
 Depending on scope, implement directly or use directed subagents:
@@ -66,6 +81,7 @@ When you finish, report:
 - workflow mode
 - files changed
 - summary of the implementation
+- `task_tracking` block with builder stage record (see Task Tracking section above)
 - helper agents used and why, or `none`
 - helper lifecycle decisions for reused or fresh helpers, or `none`
 - builder-owned review pass results, or `none`

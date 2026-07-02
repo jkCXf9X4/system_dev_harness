@@ -14,7 +14,7 @@ The file-based handoff methodology is the standard for all agent-to-agent handof
 
 ### Rules
 
-1. **Minimal inline fields**: Only `task_id`, `plan_file_path`, `status`, and `key_evidence` are passed inline between agents.
+1. **Minimal inline fields**: Only `task_id`, `task_file_path`, `plan_file_path`, `status`, and `key_evidence` are passed inline between agents.
 2. **Full context on disk**: Each stage writes its complete output to a handoff file before returning.
 3. **Pre-consumption integrity check**: Every stage must verify file existence and non-emptiness before loading a handoff file.
 4. **Schema versioning**: Every handoff file includes `schema_version` for version-aware validation.
@@ -24,3 +24,26 @@ The file-based handoff methodology is the standard for all agent-to-agent handof
 
 The initial Router-to-Planner handoff may pass the raw user request inline since there is no prior handoff file to reference. All other handoffs must use the file-based methodology.
 
+## Task Tracking in Handoffs
+
+Every agent-to-agent handoff must include the `task_file_path` field so downstream stages can load the task tracking file for full lifecycle context.
+
+### Handoff Inline Fields (Updated)
+
+Every agent-to-agent handoff passes these fields inline:
+
+```text
+task_id: <unique task identifier>
+task_file_path: <path to task tracking file, or none for initial router handoff>
+plan_file_path: <path to plan file on disk, or none>
+status: <current stage status>
+key_evidence: <brief summary, ≤200 tokens>
+```
+
+### Task Tracking File Lifecycle
+
+1. **Router** creates the task tracking file at `.opencode/dev_harness_tasks/<timestamp>-<task-id>.md` before routing to planner.
+2. **Each stage** updates the task tracking file after completing its work, appending its stage record.
+3. **Reporter** finalizes the task tracking file with the final outcome.
+
+The task tracking file is the authoritative cross-stage lifecycle record. Every stage should update it before returning control to the router.
