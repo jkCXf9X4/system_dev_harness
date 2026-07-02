@@ -1,13 +1,13 @@
 
 
-Review the phrasing and information that the agents have access to in prompts and surrounding artifacts and make sure its relevant and up to date.
-
-Take special consideration of references to old solutions that might confuse or misdirect the agents
-
-
 
 --- 
 
+Track a task in the file structure to enable continous task evolvement
 
-Plan file loading instructions seems to be duplicated across several agents 
-review if possible token optimization / limit information duplication is possible 
+---
+
+Split task into multiple smaller tasks if possible with multiple task descriptions,
+This would enable the planner to divide and conquer larger tasks
+
+Multiple tasks can be stored as files that each subtask can get access to to not pass infinite information thr the router
