@@ -50,7 +50,7 @@ Additionally, memory coverage has gaps: no lessons on review protocol structure,
 
 ## Proposed Improvement
 
-create an audit agent that can be executed on demand that stores the accumulated knowledge of how to best audit the agent frameworks
+Create an audit agent that can be executed on demand that stores the accumulated knowledge of how to best audit the agent frameworks
 
 Conduct a systematic self-consistency audit of the agent framework:
 
@@ -90,35 +90,3 @@ Medium
 ## Implementation Reference
 
 <!-- Link to task contract, PR, or changelog entry when moved to done -->
-
-## Task Contract Seed
-
-The smallest scoped task would:
-1. Create a self-consistency audit checklist based on KM-010, KM-004, and KM-005
-2. Scan all agent definitions in `.opencode/agents/` for KM-010 violations (duplicated content)
-3. Document each violation with file path, line numbers, and suggested fix
-4. Add findings to existing candidates or create new ones as needed
-
-Do NOT implement:
-- Remediation of found violations (document only)
-- Changes to agent prompts or workflow policies
-- Changes to memory entries
-
-## Out Of Scope
-
-- Remediation of found violations (document only)
-- Changes to agent prompts or workflow policies
-- Changes to memory entries
-- Full audit of all 20 agents and 28 policies in one task (start with KM-010 scan of agents)
-
-## Traceability
-
-- Intent: Verify framework follows its own quality rules
-- Product: Evolution layer — framework quality assurance
-- Architecture: Audit-only; no structural changes
-- Implementation: Audit checklist, scan results, candidate updates
-- Verification: Audit checklist is complete; all violations are documented
-
-## Notes
-
-This finding originates from FRAMEWORK-REVIEW-001 memory findings #1–4. The framework defines quality rules (KM-010, KM-004, KM-005) but does not verify its own compliance. Several known violations are already captured by other candidates (IMP-054, IMP-055, IMP-056, IMP-062), but a systematic audit may reveal additional violations.
