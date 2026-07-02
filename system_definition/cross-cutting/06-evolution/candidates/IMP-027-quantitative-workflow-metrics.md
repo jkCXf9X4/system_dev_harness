@@ -24,7 +24,7 @@ Add a measurement and metrics framework for quantitative evaluation of workflow 
 
 - `.opencode/dev_harness/workflow/control-policy.md` (entire file: no reference to metrics, measurement, instrumentation, or quantitative gates)
 - `.opencode/dev_harness/workflow/stage-output-schema.md` (entire file: all fields are qualitative — user_feedback_required, improvement_candidates, research_requests, helper_lifecycle — no quantitative fields like cycle_time, defect_count, revision_count)
-- `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` (entire file: triggers are qualitative heuristics — code changes, behavior changes, architecture changes — no quantitative thresholds like "more than X revision loops in Y tasks")
+- `.opencode/dev_harness/workflow/planner-triggers.md` (entire file: triggers are qualitative heuristics — code changes, behavior changes, architecture changes — no quantitative thresholds like "more than X revision loops in Y tasks")
 - `.opencode/dev_harness/workflow/stage-gate.md` (file does not exist — referenced but absent, no metrics gate is possible)
 - ISO/IEC 15288 §6.3.7 — Measurement Process: per ISO 15288, the measurement process collects, analyzes, and reports data relating to products and processes to support effective management and objective evaluation.
 - CMMI Maturity Level 3 — Process Definition: requires defined, measured processes; Level 4 — Quantitative Management: requires statistical process control

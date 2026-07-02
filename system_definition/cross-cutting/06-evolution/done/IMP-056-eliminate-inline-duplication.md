@@ -67,13 +67,19 @@ Medium
 
 <!-- Date when this candidate was selected for implementation, or N/A -->
 
+2026-07-02
+
 ## Completed Date
 
 <!-- Date when implementation was verified complete, or N/A -->
 
+2026-07-02
+
 ## Implementation Reference
 
 <!-- Link to task contract, PR, or changelog entry when moved to done -->
+
+Implemented as part of combined task IMP-055-056-057-060-062-063. See `.opencode/dev_harness_plans/2026-07-02_000000-IMP-055-056-057-060-062-063.md`.
 
 ## Task Contract Seed
 

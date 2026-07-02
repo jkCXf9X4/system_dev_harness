@@ -49,7 +49,7 @@ Every guarded delivery run MUST pass through an independent reviewer stage befor
 - `system_definition/pbs/03-implementation/implementation.md` — Execution roles (reviewer is read-only)
 - `.opencode/agents/orchestrator-reviewer.md` — Reviewer agent prompt
 - `.opencode/dev_harness/workflow/control-policy.md` — Required stages, gate routing
-- `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` — Review helper selection
+- `.opencode/dev_harness/workflow/planner-triggers.md` — Review helper selection
 
 ## Verification
 

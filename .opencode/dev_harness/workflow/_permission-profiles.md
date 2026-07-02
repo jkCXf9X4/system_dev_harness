@@ -36,3 +36,9 @@ Tools: read, glob, grep, list, bash — allow. edit, write — deny. task: allow
 
 Used by: reviewer.
 
+### `plan_file_writer`
+
+Tools: read, glob, grep, list, edit, write, bash — allow. external_directory — deny. task — deny.
+
+Used by: plan-file-writer.
+

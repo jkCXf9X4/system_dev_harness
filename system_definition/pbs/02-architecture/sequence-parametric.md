@@ -123,7 +123,7 @@ constraint ParallelSafeConcurrency {
 | Parameter | Value | Source |
 |---|---|---|
 | `max_concurrent_helpers` | 3 | Runtime capability — OpenCode task invocation limit |
-| Independence check | Each packet's dependencies are resolved before parallel dispatch | adaptive-risk-triggers.md, parallel-helper-execution.md |
+| Independence check | Each packet's dependencies are resolved before parallel dispatch | planner-triggers.md, parallel-helper-execution.md |
 
 ### C04: Review Gate Invariant
 
@@ -156,6 +156,6 @@ The stage order must follow the guarded chain. Stages may be skipped only with e
 - Sequence tables reference states from `agent-state-machines.md` (planner, builder, validation, reviewer, reflection state transitions)
 - Sequence tables reference interface contracts from `interface-contracts.md` (H01–H14 handoff references, H02-val validation handoff)
 - Parametric constraints C01, C04, C05 are derived from `architecture.md` (completion model, control flow)
-- Parametric constraint C03 references `adaptive-risk-triggers.md` and `parallel-helper-execution.md` concurrency rules
+- Parametric constraint C03 references `planner-triggers.md` and `parallel-helper-execution.md` concurrency rules
 - Validation stage references state from `agent-state-machines.md` (validation state transitions) and interface contract H02-val from `interface-contracts.md`
 - Satisfies SysML Sequence Diagram and Parametric Diagram adaptation requirement (IMP-032 Seed 7)

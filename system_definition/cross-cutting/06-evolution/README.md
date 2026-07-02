@@ -87,7 +87,7 @@ No rejected or deferred evaluations are currently recorded.
 | `done/IMP-018.md` | IMP-018 | PBS / Decomposition — Update guidance for FBS-PBS-WBS alignment | 2026-06-29 | `.opencode/dev_harness/systems_engineering/README.md`, traceability.md, 06-evolution/imp.md, templates, candidate-capture.md |
 | `done/IMP-019.md` | IMP-019 | PBS / Decomposition — Create project management WBS with effort estimates and schedules | 2026-06-29 | `system_definition/cross-cutting/06-evolution/wbs.md` — 20 work packages, effort estimates, dependency graph, 4-phase sequencing |
 | `done/IMP-020.md` | IMP-020 | PBS / Decomposition — Gap analysis and fill for FBS/PBS trees | 2026-06-29 | `system_definition/cross-cutting/06-evolution/gap-analysis.md` — cross-reference tables, unmatched items, verified gaps (none critical); no new artifacts needed |
-| `done/IMP-029.md` | IMP-029 | Workflow tailoring records and documentation | 2026-06-29 | `.opencode/dev_harness/workflow/control-policy.md`, `.opencode/dev_harness/workflow/adaptive-risk-triggers.md`, `.opencode/dev_harness/workflow/plan-summary-schema.md`, `.opencode/agents/orchestrator-planner.md`, `.opencode/agents/orchestrator-reporter.md` |
+| `done/IMP-029.md` | IMP-029 | Workflow tailoring records and documentation | 2026-06-29 | `.opencode/dev_harness/workflow/control-policy.md`, `.opencode/dev_harness/workflow/planner-triggers.md`, `.opencode/dev_harness/workflow/plan-summary-schema.md`, `.opencode/agents/orchestrator-planner.md`, `.opencode/agents/orchestrator-reporter.md` |
 
 ## Related Files
 

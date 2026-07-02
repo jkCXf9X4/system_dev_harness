@@ -100,7 +100,7 @@ Shared workflow policies are implemented as copied agent context under `.opencod
 | Artifact | Purpose |
 | --- | --- |
 | `.opencode/dev_harness/workflow/control-policy.md` | Required stage order, route selection, handoff boundaries, control flags, and waiver rules. |
-| `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` | Planner, builder, and reviewer helper-selection triggers. |
+| `.opencode/dev_harness/workflow/planner-triggers.md` | Planner, builder, and reviewer helper-selection triggers. |
 | `.opencode/dev_harness/workflow/agent-boundaries.md` | Shared read/write, scope-containment, and no-edit boundaries for agents. |
 | `.opencode/dev_harness/workflow/candidate-capture.md` | Candidate-capture ownership, write boundary, required evidence, and valid dispositions. |
 | `.opencode/dev_harness/workflow/information-hygiene.md` | Canonical evidence requirements for changed information artifacts. |

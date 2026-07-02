@@ -51,7 +51,7 @@ The reviewer's independence is structural — enforced by agent permission confi
 - `.opencode/dev_harness/workflow/control-policy.md` — Required stages, gate routing
 - `.opencode/dev_harness/workflow/agent-boundaries.md` — Read-only agents list
 - `system_definition/pbs/02-architecture/architecture.md` — Completion model, boundaries
-- `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` — Review helper triggers
+- `.opencode/dev_harness/workflow/planner-triggers.md` — Review helper triggers
 
 ## Verification
 

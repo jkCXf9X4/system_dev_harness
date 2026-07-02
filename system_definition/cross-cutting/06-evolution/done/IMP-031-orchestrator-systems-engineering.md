@@ -24,7 +24,7 @@ Create a new `orchestrator-systems-engineering` subagent that embodies ISO 15288
 
 - All 19 existing agent files under `.opencode/agents/` — consistent `orchestrator-<role>.md` naming, YAML frontmatter pattern, color assignment
 - `.opencode/dev_harness/workflow/agent-boundaries.md` — read-only / limited-write / editing classification
-- `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` — planner/builder/reviewer trigger tables
+- `.opencode/dev_harness/workflow/planner-triggers.md` — planner/builder/reviewer trigger tables
 - `.opencode/agents/orchestrator.md` — orchestrator task permission allow-list
 - Color audit — all standard colors taken except `danger`
 - `.opencode/dev_harness/workflow/subagent-lifecycle.md` — helper reuse policy
@@ -74,7 +74,7 @@ permission:
 - **Integration touch-points (files needing modification during implementation):**
   1. `.opencode/agents/orchestrator-systems-engineering.md` — new file (agent definition with YAML frontmatter + role prompt)
   2. `.opencode/dev_harness/workflow/agent-boundaries.md` — add `orchestrator-systems-engineering` to Read-Only Agents list
-  3. `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` — add trigger: "Cross-system, multi-module, interface, workflow-stage, or systems-architecture-level analysis requires `orchestrator-systems-engineering`" under Planner Triggers
+  3. `.opencode/dev_harness/workflow/planner-triggers.md` — add trigger: "Cross-system, multi-module, interface, workflow-stage, or systems-architecture-level analysis requires `orchestrator-systems-engineering`" under Planner Triggers
   4. `.opencode/agents/orchestrator-planner.md` — add to Directed Helpers section and parallel-safe list
   5. `.opencode/dev_harness/workflow/parallel-helper-execution.md` — add to typical parallel-safe planner helpers list
   6. `.opencode/agents/orchestrator.md` — add `"orchestrator-systems-engineering": allow` to task permission block
@@ -107,7 +107,7 @@ N/A
 
 1. Create `.opencode/agents/orchestrator-systems-engineering.md` with YAML frontmatter (color: danger, read-only permissions, researcher subagent access only) and role prompt incorporating ISO 15288 pipeline + SysML text patterns + MBSE domains + core SE principles.
 2. Add `orchestrator-systems-engineering` to Read-Only Agents list in `agent-boundaries.md`.
-3. Add systems-engineering trigger entry under Planner Triggers in `adaptive-risk-triggers.md`.
+3. Add systems-engineering trigger entry under Planner Triggers in `planner-triggers.md`.
 4. Add `orchestrator-systems-engineering` to Directed Helpers and parallel-safe list in `orchestrator-planner.md`.
 5. Add to typical parallel-safe planner helpers in `parallel-helper-execution.md`.
 6. Add `"orchestrator-systems-engineering": allow` to `orchestrator.md` task permission block.

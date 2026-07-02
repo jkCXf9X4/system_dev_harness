@@ -24,7 +24,7 @@ Add a validation gate between contract and builder stages to close the verificat
 
 - `.opencode/dev_harness/workflow/control-policy.md` (lines 5-15: Required Stages list shows orchestrator-planner, orchestrator-builder, orchestrator-reviewer, orchestrator-reflection, orchestrator-reporter — no validation stage)
 - `.opencode/dev_harness/workflow/stage-output-schema.md` (entire file: all fields are verification-oriented — no validation acceptance criteria, no "did we build the right thing?" check)
-- `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` (entire file: triggers select helpers for verification, architecture, completeness — no validation trigger)
+- `.opencode/dev_harness/workflow/reviewer-triggers.md` (entire file: triggers select helpers for verification, architecture, completeness — no validation trigger)
 - `.opencode/dev_harness/workflow/agent-boundaries.md` (lines 12-16: Read-Only Agents list includes reviewer but no validation agent)
 - `.opencode/dev_harness/agents/orchestrator-reviewer.md` (lines 70-74: gate returns approved|blocked|waiver_required — verification gate, not validation)
 - ISO/IEC 15288 §6.4 — Validation Process: per ISO 15288, validation confirms that the system meets stakeholder requirements and satisfies stakeholder needs in the intended operational environment, distinct from verification which checks conformance to a technical specification.
@@ -48,7 +48,7 @@ Add a lightweight validation stage (`orchestrator-validation`) between the build
 The validation stage should be:
 - **Optional for low-risk, purely technical tasks** (config changes, dependency bumps, trivial fixes)
 - **Required for feature work, behavior changes, user-facing changes, and ambiguous tasks**
-- Triggered by a new risk trigger in `adaptive-risk-triggers.md`
+- Triggered by a new risk trigger in `reviewer-triggers.md`
 
 ## Expected Benefit
 
@@ -62,7 +62,7 @@ The validation stage should be:
 
 - Adds one more stage to the guarded chain, increasing workflow latency for tasks that require it
 - Risk of validation over-scope if not correctly bounded: must validate the current task only, not the whole product
-- Low blast radius: changes are confined to `control-policy.md` (required stages), `adaptive-risk-triggers.md` (new trigger), agent definitions, and a new `orchestrator-validation.md` agent file
+- Low blast radius: changes are confined to `control-policy.md` (required stages), `reviewer-triggers.md` (new trigger), agent definitions, and a new `orchestrator-validation.md` agent file
 - Does not affect builder, reviewer, reflection, or reporter unless the new stage blocks
 
 ## Suggested Priority
@@ -88,7 +88,7 @@ Medium
 The smallest scoped task would:
 1. Create `.opencode/dev_harness/agents/orchestrator-validation.md` as a read-only agent that receives builder evidence and planner intent, and returns a validation pass/fail with blocking gaps
 2. Add `orchestrator-validation` to the Required Stages list in `control-policy.md` (between builder and reviewer)
-3. Add validation trigger rules to `adaptive-risk-triggers.md` (required when: behavior changes, user-facing changes, ambiguous scope, or `user_feedback_required` was true during planning)
+3. Add validation trigger rules to `reviewer-triggers.md` (required when: behavior changes, user-facing changes, ambiguous scope, or `user_feedback_required` was true during planning)
 4. Add `validation_status` field to `stage-output-schema.md` common fields
 5. Update `agent-boundaries.md` Read-Only Agents list to include orchestrator-validation
 6. Add `not_applicable` path for purely technical tasks (config changes, dependency bumps)
@@ -110,7 +110,7 @@ Do NOT implement these scoped extensions:
 - Intent: ISO/IEC 15288 §6.4 Validation Process; V-Model verification/validation distinction
 - Product: Evolution layer — workflow process improvement
 - Architecture: Maintains existing stage-gate pattern; adds one new stage between builder and reviewer
-- Implementation: New agent file, updated control-policy, updated adaptive-risk-triggers, updated stage-output-schema
+- Implementation: New agent file, updated control-policy, updated reviewer-triggers, updated stage-output-schema
 - Verification: Reviewer gate checks validation stage exists and its output is not missing for applicable tasks
 
 ## Notes

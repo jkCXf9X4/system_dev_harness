@@ -25,7 +25,7 @@ Decompose the orchestrator-planner agent to eliminate the god-object anti-patter
 - `.opencode/agents/orchestrator-planner.md` (151 lines — 2–3× the length of other agent definitions)
 - `.opencode/dev_harness/workflow/plan-summary-schema.md` (planner writes plan files per this schema)
 - `.opencode/dev_harness/workflow/planner-triggers.md` (helper selection logic)
-- `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` (risk-based trigger logic)
+- `.opencode/dev_harness/workflow/planner-triggers.md` (risk-based trigger logic)
 - `.opencode/dev_harness/workflow/control-policy.md` (clarification gate, draft approval, revision handling)
 - Architecture analysis finding #1 from FRAMEWORK-REVIEW-001: "God planner anti-pattern: Planner is 151 lines — 2–3× other agents. Owns routing, helper selection, parallel execution, clarification gate, draft approval, revision handling, interface identification, system-definition placement, and plan file writing"
 

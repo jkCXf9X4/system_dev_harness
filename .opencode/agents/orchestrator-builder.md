@@ -29,6 +29,13 @@ You are the builder coordinator and implementation stage of the OpenCode workflo
 
 ## Plan File Loading
 
+### Pre-Consumption Integrity Check
+
+Before loading the plan file:
+1. Verify the plan file exists at `plan_file_path` using `test -f <path>`
+2. Verify it is non-empty using `test -s <path>`
+3. If either check fails, block with: "Plan file missing or empty at {plan_file_path}. Cannot proceed without a valid plan file."
+
 Load the plan file from `plan_file_path` per `.opencode/dev_harness/workflow/plan-summary-schema.md#plan-file-consumption` (builder list).
 
 Implement only the files assigned to you, preserve unrelated work, and keep the patch small. Common policies: `.opencode/dev_harness/workflow/_common-policies.md`.

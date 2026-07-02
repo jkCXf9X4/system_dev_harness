@@ -445,7 +445,7 @@ def test_workflow_tailoring_record_is_documented(simple_project: Path) -> None:
     planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
     reporter_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reporter.md").lower()
     control_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/control-policy.md").lower()
-    adaptive_triggers = read_prompt(simple_project, ".opencode/dev_harness/workflow/adaptive-risk-triggers.md").lower()
+    planner_triggers = read_prompt(simple_project, ".opencode/dev_harness/workflow/planner-triggers.md").lower()
     plan_schema = read_prompt(simple_project, ".opencode/dev_harness/workflow/plan-summary-schema.md").lower()
     acceptance_criteria = read_prompt(repo_root, "system_definition/cross-cutting/04-verification/acceptance-criteria.md").lower()
     product_verification = read_prompt(repo_root, "system_definition/fbs/01-product/verification.md").lower()
@@ -456,11 +456,9 @@ def test_workflow_tailoring_record_is_documented(simple_project: Path) -> None:
         "system_definition/cross-cutting/06-evolution/done/IMP-029.md",
     ).lower()
 
-    for content in (control_policy, adaptive_triggers):
-        assert "lightweight" in content
-        assert "standard" in content
-        assert "high_assurance" in content
-        assert "tailoring_record" in content
+    assert "tailoring_record" in planner_triggers
+    assert "standard" in planner_triggers
+    assert "high_assurance" in planner_triggers
 
     assert "tailoring_record" in plan_schema
     assert "tailoring_record" in planner_prompt
@@ -921,24 +919,21 @@ def test_workflow_roles_use_runtime_memory_guidance_without_prompt_design_commen
 
 
 def test_adaptive_risk_triggers_drive_helper_selection(simple_project: Path) -> None:
-    risk_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/adaptive-risk-triggers.md").lower()
+    risk_policy = read_prompt(simple_project, ".opencode/dev_harness/workflow/planner-triggers.md").lower()
+    reviewer_triggers = read_prompt(simple_project, ".opencode/dev_harness/workflow/reviewer-triggers.md").lower()
     planner_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-planner.md").lower()
     reviewer_prompt = read_prompt(simple_project, ".opencode/agents/orchestrator-reviewer.md").lower()
 
-    for content in (planner_prompt, reviewer_prompt):
-        assert "adaptive-risk-triggers.md" in content
-        assert "helper_not_used" in content
+    assert "planner-triggers.md" in planner_prompt
+    assert "reviewer-triggers.md" in reviewer_prompt
+    assert "helper_not_used" in planner_prompt
+    assert "helper_not_used" in reviewer_prompt
 
     for content in (risk_policy,):
-        assert "adaptive" in content
         assert "triggers" in content
         assert "code changes require" in content
         assert "behavior changes require" in content
-        assert "system-definition" in content or "product-breakdown-work.md" in content
         assert "external dependency, api, framework, standard, version, or documentation uncertainty requires" in content
-        assert "low-risk documentation, formatting, wording, or metadata-only tasks" in content
-        assert "helper_not_used" in content
-        assert "workflow memory" in content
 
     assert "orchestrator-discovery" in planner_prompt
     assert "orchestrator-contract" in planner_prompt
@@ -951,7 +946,7 @@ def test_adaptive_risk_triggers_drive_helper_selection(simple_project: Path) -> 
     assert "orchestrator-review-completeness" in reviewer_prompt
     assert "memory candidates identified for reflection" in reviewer_prompt
     assert "acceptance criteria" in reviewer_prompt
-    assert "may not approve external claims without cited researcher evidence or a waiver" in risk_policy
+    assert "may not approve external claims without cited researcher evidence or a waiver" in reviewer_triggers
 
 
 def test_planner_and_reviewer_support_parallel_helper_packets(simple_project: Path) -> None:

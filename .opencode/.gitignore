@@ -5,3 +5,4 @@ bun.lock
 dev_harness_plans/*.md
 !dev_harness_plans/README.md
 !dev_harness_plans/.gitkeep
+opencode.json.tmp

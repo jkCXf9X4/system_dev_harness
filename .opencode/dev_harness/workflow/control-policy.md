@@ -14,9 +14,15 @@ orchestrator-reflection
 orchestrator-reporter
 ```
 
-Directed helper stages run when their owning top-level stage determines they are needed from task risk. Missing required top-level output blocks completion. Missing helper output blocks completion only when the owning stage declared that helper required or when the helper is mandatory under `.opencode/dev_harness/workflow/adaptive-risk-triggers.md`.
+Directed helper stages run when their owning top-level stage determines they are needed from task risk. Missing required top-level output blocks completion. Missing helper output blocks completion only when the owning stage declared that helper required or when the helper is mandatory under `.opencode/dev_harness/workflow/planner-triggers.md` (planner context) or `.opencode/dev_harness/workflow/reviewer-triggers.md` (reviewer context).
 
 If a stage is not applicable, it must use the `not_applicable` fields from `.opencode/dev_harness/workflow/stage-output-schema.md`. Missing stage output or unjustified `not_applicable` blocks completion.
+
+## Plan File Writing
+
+The planner delegates plan file writing to `orchestrator-plan-file-writer` (see `.opencode/agents/orchestrator-plan-file-writer.md`). The planner has `edit/write: deny` and must not write plan files directly.
+
+Plan file write verification (existence + non-empty) is performed by the plan-file-writer after each write. The builder performs a pre-consumption integrity check before loading the plan file.
 
 ## Route Selection → See `route-selection.md`
 
@@ -59,7 +65,7 @@ Every completed guarded workflow, including candidate capture, must run `orchest
 
 ## Adaptive Risk Triggers
 
-Load `.opencode/dev_harness/workflow/adaptive-risk-triggers.md` when planner, builder, or reviewer decides which helpers are required, optional, or waived.
+Load `.opencode/dev_harness/workflow/planner-triggers.md` when planner, builder, or reviewer decides which helpers are required, optional, or waived.
 
 ## Parallel Helper Execution
 

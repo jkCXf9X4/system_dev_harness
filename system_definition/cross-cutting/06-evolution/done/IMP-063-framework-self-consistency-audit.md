@@ -34,6 +34,9 @@ Audit the agent framework to verify it follows its own rules, patterns, and qual
 
 ## Current Pain Or Risk
 
+Create an audit agent that can be executed on demand that stores the accumulated knowledge of how to best audit the agent frameworks
+
+
 The framework defines quality rules (KM-010, KM-004, KM-005) but does not verify its own compliance with them. Known or suspected violations include:
 
 - **KM-010 violations**: 
@@ -41,7 +44,7 @@ The framework defines quality rules (KM-010, KM-004, KM-005) but does not verify
   - Helper triggers split across two files (IMP-055)
   - Acceptance criteria exist in two locations (IMP-062 finding #5)
 - **KM-004 violations**: 
-  - Potential duplicate entrypoints for helper selection (planner-triggers.md vs adaptive-risk-triggers.md)
+  - Potential duplicate entrypoints for helper selection (planner-triggers.md vs planner-triggers.md)
 - **KM-005 violations**: 
   - God planner owns 8+ responsibilities (IMP-054)
   - Documentation chain may mix abstraction levels
@@ -83,10 +86,16 @@ Medium
 
 <!-- Date when this candidate was selected for implementation, or N/A -->
 
+2026-07-02
+
 ## Completed Date
 
 <!-- Date when implementation was verified complete, or N/A -->
 
+2026-07-02
+
 ## Implementation Reference
 
 <!-- Link to task contract, PR, or changelog entry when moved to done -->
+
+Implemented as part of combined task IMP-055-056-057-060-062-063. See `.opencode/dev_harness_plans/2026-07-02_000000-IMP-055-056-057-060-062-063.md`.
