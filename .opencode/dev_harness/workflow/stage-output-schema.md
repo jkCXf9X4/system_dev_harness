@@ -54,7 +54,7 @@ All other fields are emitted only when they carry meaningful content. The compac
 Stages use an `output_mode` field to control verbosity:
 
 ```text
-output_mode: compact|full  # compact for lightweight/standard, full for high_assurance
+output_mode: compact|full  # compact for standard, full for high_assurance
 ```
 
 **Compact mode** collapses helper disposition blocks to a single summary line:
@@ -68,7 +68,6 @@ Move detailed rationales to an optional `helper_details` block, emitted only whe
 **Full mode** retains verbose per-helper disposition blocks with individual `helper_not_used` rationales.
 
 The planner sets `output_mode` in the work order based on the selected tailoring profile:
-- `lightweight` → `compact`
 - `standard` → `compact`
 - `high_assurance` → `full`
 
@@ -87,7 +86,7 @@ full_output_path: <path to file on disk containing the full helper output>
 - Parent stages load the full output from `full_output_path` only when they need details beyond the compressed summary.
 
 **Profile behavior:**
-- `lightweight` / `standard` profiles → helpers MUST use `compressed_output` + `full_output_path`.
+- `standard` profile → helpers MUST use `compressed_output` + `full_output_path`.
 - `high_assurance` profile → helpers MAY keep full output inline instead of compressing.
 
 **Planner synthesis:**

@@ -4,8 +4,6 @@ Use helper agents based on task risk instead of forcing the full helper set for 
 
 ## Tailoring Profiles → See `planner-triggers.md` §Tailoring Profiles
 
-## Lightweight Skip Rules → See `planner-triggers.md` §Lightweight Skip Rules
-
 ## Planner Triggers → See `planner-triggers.md` §Planner Triggers
 
 ## Builder Triggers → See `builder-triggers.md`
