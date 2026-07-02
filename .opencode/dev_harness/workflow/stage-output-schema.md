@@ -122,3 +122,50 @@ blocking_uncertainty: <decision that cannot be made safely, or none>
 clarification_questions: <one to three specific questions, or none>
 assumption_rationale: <why assumptions are safe, or not_applicable>
 ```
+
+## File-Based Handoff Methodology
+
+Use this methodology for all agent-to-agent handoffs within the guarded workflow.
+
+### Minimal Inline Fields
+
+Every agent-to-agent handoff passes only these fields inline:
+
+```text
+task_id: <unique task identifier>
+plan_file_path: <path to plan file on disk, or none>
+status: <current stage status>
+key_evidence: <brief summary, ≤200 tokens>
+```
+
+### Full Context on Disk
+
+Full context is stored on disk in handoff files. Each producing stage writes its output to a file before returning control to the router.
+
+### Pre-Consumption Integrity Check
+
+Before loading any handoff file, the consuming stage must verify:
+1. The file exists at the specified path (`test -f <path>`)
+2. The file is non-empty (`test -s <path>`)
+
+If either check fails, the stage must block with: "Handoff file missing or empty at {file_path}. Cannot proceed without a valid handoff file."
+
+### Stage Output Persistence
+
+Each stage writes its complete output to a handoff file before returning:
+- **Planner**: writes plan file to `.opencode/dev_harness_plans/`
+- **Builder**: writes builder evidence to a handoff file
+- **Reviewer**: writes review findings to a handoff file
+- **Reflection**: writes reflection output to a handoff file
+- **Reporter**: writes final report to a handoff file
+
+### Handoff File Location
+
+Handoff files are stored under `.opencode/dev_harness_handoffs/` with the naming convention:
+```
+.opencode/dev_harness_handoffs/<YYYY-MM-DD_HHMMSS>-<task_id>-<stage>.md
+```
+
+### Schema Versioning
+
+Every handoff file includes `schema_version` as its first field for version-aware downstream validation.

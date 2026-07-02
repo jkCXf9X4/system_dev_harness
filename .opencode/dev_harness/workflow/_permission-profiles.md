@@ -42,3 +42,9 @@ Tools: read, glob, grep, list, edit, write, bash — allow. external_directory �
 
 Used by: plan-file-writer.
 
+### `router`
+
+Tools: read, glob, grep, list, bash — allow. edit, write — deny. task — allow specific downstream agents.
+
+Used by: router.
+

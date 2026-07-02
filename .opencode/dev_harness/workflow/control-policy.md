@@ -7,6 +7,7 @@ Use this index for guarded workflow control, stage applicability, control flags,
 Every listed top-level guarded workflow stage must run:
 
 ```text
+orchestrator-router
 orchestrator-planner
 orchestrator-builder
 orchestrator-reviewer
@@ -43,7 +44,7 @@ Any working stage or directed helper may return incidental `improvement_candidat
 Candidate capture uses the normal guarded chain:
 
 ```text
-planner -> builder -> reviewer -> reflection -> reporter
+router -> planner -> builder -> reviewer -> reflection -> reporter
 ```
 
 > **Note:** Validation runs as a reviewer-invoked parallel helper, not a separate serial stage. See `.opencode/agents/orchestrator-validation.md`.

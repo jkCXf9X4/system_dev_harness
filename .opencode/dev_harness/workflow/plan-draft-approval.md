@@ -21,9 +21,9 @@ Use `plan_approval_status: not_required` for routine low-risk delivery work. Can
 
 Operator decisions route as follows:
 
-- `approve`: orchestrator forwards the approved planner work order to builder.
-- `revise`: orchestrator calls planner again with the user's requested revision and prior planner output.
-- `reject`: orchestrator stops before builder execution and reports the rejection rationale.
+- `approve`: orchestrator-router forwards the approved planner work order to builder.
+- `revise`: orchestrator-router calls planner again with the user's requested revision and prior planner output.
+- `reject`: orchestrator-router stops before builder execution and reports the rejection rationale.
 
 Operator decisions are routing inputs, not `plan_approval_status` values.
 

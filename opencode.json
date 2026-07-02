@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "default_agent": "orchestrator-planner",
+  "default_agent": "orchestrator-router",
   "share": "disabled",
   "instructions": [
     ".opencode/dev_harness/instructions.md"

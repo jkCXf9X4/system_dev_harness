@@ -1,5 +1,7 @@
 # Route Selection
 
+> **Ownership**: The `orchestrator-router` owns routing decisions using this policy. The `orchestrator-planner` no longer handles routing.
+
 Purpose: Separates the subject from the requested outcome for guarded workflow routing.
 
 Planner output separates the subject from the requested outcome:
@@ -17,5 +19,5 @@ Bug, fix, regression, feature, documentation, cleanup, and refactoring subjects 
 
 Repo-state review requests use the same split: review-and-change requests are delivery, while review-only assessment requests are candidate capture with either persisted candidates or a reviewed `no_candidate` result.
 
-Both workflow modes use the same guarded chain: planner, builder, reviewer, reflection, and reporter. Validation runs as a reviewer-invoked parallel helper, not a separate serial stage. In `candidate_capture` mode, load `.opencode/dev_harness/workflow/candidate-capture.md` for detailed ownership, write-boundary, disposition, and review rules.
+Both workflow modes use the same guarded chain: router, planner, builder, reviewer, reflection, and reporter. Validation runs as a reviewer-invoked parallel helper, not a separate serial stage. In `candidate_capture` mode, load `.opencode/dev_harness/workflow/candidate-capture.md` for detailed ownership, write-boundary, disposition, and review rules.
 
