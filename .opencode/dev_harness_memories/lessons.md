@@ -269,3 +269,53 @@ When a rule, constraint, or behavioral guardrail already exists in a canonical w
 
 Completion check:
 Reviewers must verify that any rule, constraint, or guardrail appearing in an agent prompt is not a verbatim or near-verbatim duplicate of content already present in a canonical workflow reference file. Evidence of the duplicate-check and the canonical reference location must be documented.
+
+### KM-011: Verify All Related Index Tables When Fixing Multi-Table Documents
+
+Metadata:
+Scope: documentation maintenance and review
+Source: project-review workflow — IMP-064 stale README candidates table fix; reviewer caught stale Selected and Done tables (BG-002, BG-003, BG-004)
+Last verified: 2026-07-02
+Confidence: high (confirmed by post-revision verification of all three tables against directory contents)
+Revalidation trigger: whenever a task touches an index table in a document that contains multiple related index tables
+Environment notes: applies to any multi-table index document (README status tables, lifecycle trackers, evolution logs, backlog summaries)
+
+Decision pointer:
+When fixing a stale index table, verify ALL tables in the document against actual directory contents, not just the primary target.
+
+Pattern:
+Agents fixing a stale index table in a multi-table document may update only the primary target table while leaving sibling tables stale. For example, fixing the Candidates table but missing the Selected table (stale rows) and Done table (missing entries).
+
+Why it matters:
+Partial index updates create a misleading document where some tables are correct and others are stale. Downstream agents and operators who rely on the document as a source of truth will encounter incorrect information, causing rework and trust erosion.
+
+Prevention rule:
+When updating any index table in a multi-table document, enumerate all related tables in the same document and verify each one against the actual filesystem or directory contents. Do not stop after fixing the primary target.
+
+Completion check:
+Reviewers must verify that every index table in the touched document was checked against actual directory contents, not just the table that triggered the task.
+
+### KM-012: Verify Evidence Claims Against Filesystem Before Persisting
+
+Metadata:
+Scope: documentation, candidate creation, and review
+Source: project-review workflow — IMP-064 candidate file claimed IMP-035 in `done/` (actually in `discarded/`) and referenced non-existent IMP-036 (BG-001)
+Last verified: 2026-07-02
+Confidence: high (confirmed by post-revision verification of all evidence claims against filesystem state)
+Revalidation trigger: whenever a candidate file, documentation entry, or report makes claims about file existence, location, or count
+Environment notes: applies to any artifact that asserts filesystem state — candidate files, README tables, status reports, evidence sections
+
+Decision pointer:
+Before persisting any artifact that makes claims about filesystem state, verify every evidence claim (file existence, location, count) against the actual filesystem.
+
+Pattern:
+Agents creating or updating documentation may assert file locations, existence, or counts without verifying them against the actual filesystem. For example, claiming a file is in `done/` when it is in `discarded/`, or referencing a file that does not exist.
+
+Why it matters:
+Unverified evidence claims propagate incorrect information to downstream agents and operators. Each incorrect claim erodes trust in the documentation and creates rework when the error is discovered during review or by a downstream consumer.
+
+Prevention rule:
+Before persisting any artifact that references filesystem state, verify each claim (file path, directory membership, count) against the actual filesystem. Use `ls`, `glob`, or equivalent commands to confirm existence and location. Do not rely on memory, inference, or stale directory listings.
+
+Completion check:
+Reviewers must verify that every filesystem claim in the touched artifact (file existence, location, count) matches the actual filesystem state. Evidence of verification (e.g., command output) should be inspectable.
